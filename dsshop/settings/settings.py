@@ -45,8 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'django.contrib.admin',
 
-    'compressor',
-    'widget_tweaks',
+    # Third party applications
+    'storages',         # Use to connect with Amazon S3
+    'compressor',       # static file compression (may be deleted because of Heroku deployment?)
+    'widget_tweaks',    # Forms customizations
+
+
 ] + get_core_apps()
 
 SITE_ID = 1
