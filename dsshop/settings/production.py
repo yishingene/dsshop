@@ -1,8 +1,4 @@
 
-# Amazon S3 requirements? 
-os.environ['S3_USE_SIGV4'] = 'True'
-os.environ['SWF'] = 'eu-central-1'
-
 # AMAZON S3 STORAGE
 AWS_STORAGE_BUCKET_NAME = 'dsshop'
 AWS_REGION = 'eu-central-1'

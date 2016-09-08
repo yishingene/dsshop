@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
+# Amazon S3 requirements? 
+os.environ['S3_USE_SIGV4'] = 'True'
+os.environ['SWF'] = 'eu-central-1'
+
 
 from oscar.defaults import *
 
