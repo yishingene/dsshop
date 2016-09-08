@@ -9,6 +9,5 @@ dev.py
 # settings/
 # migrations/
 
-development.py
-production.py
+# production.py
 
