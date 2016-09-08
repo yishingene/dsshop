@@ -27,3 +27,4 @@ requests==2.11.1
 rjsmin==1.0.12
 six==1.10.0
 sorl-thumbnail==12.4a1
+whitenoise==3.2.1
