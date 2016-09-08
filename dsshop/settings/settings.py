@@ -25,8 +25,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 from django.utils.translation import ugettext_lazy as _
 
 LANGUAGES = [
-    ('en', _('English')),
     ('nl', _('Dutch')),
+    ('en', _('English')),
     ('fr', _('French'))
 ]
 
@@ -152,7 +152,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'nl-be'
 
 TIME_ZONE = 'UTC'
 
