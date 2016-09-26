@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-08 18:19+0000\n"
+"POT-Creation-Date: 2016-09-26 08:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,4 +28,44 @@ msgstr ""
 
 #: dsshop/settings/settings.py:30
 msgid "French"
+msgstr ""
+
+#: dsshop/settings/settings.py:199
+msgid "Dashboard"
+msgstr ""
+
+#: dsshop/settings/settings.py:204
+msgid "Catalogue"
+msgstr ""
+
+#: dsshop/settings/settings.py:208
+msgid "Products"
+msgstr ""
+
+#: dsshop/settings/settings.py:212
+msgid "Product Types"
+msgstr ""
+
+#: dsshop/settings/settings.py:216
+msgid "Categories"
+msgstr ""
+
+#: dsshop/settings/settings.py:220
+msgid "Ranges"
+msgstr ""
+
+#: dsshop/settings/settings.py:224
+msgid "Low stock alerts"
+msgstr ""
+
+#: dsshop/settings/settings.py:256 dsshop/settings/settings.py:260
+msgid "Customers"
+msgstr ""
+
+#: dsshop/settings/settings.py:264
+msgid "Stock alert requests"
+msgstr ""
+
+#: dsshop/settings/settings.py:310
+msgid "Reports"
 msgstr ""
