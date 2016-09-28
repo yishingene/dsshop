@@ -179,13 +179,13 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
-        'URL': 'http://127.0.0.1:8983/solr',
-        'INCLUDE_SPELLING': True,
-    },
-}
+#HAYSTACK_CONNECTIONS = {
+#    'default': {
+#        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+#        'URL': 'http://127.0.0.1:8983/solr',
+#        'INCLUDE_SPELLING': True,
+#    },
+#}
 
 # SHOP SETTINGS
 OSCAR_DEFAULT_CURRENCY = 'EUR'

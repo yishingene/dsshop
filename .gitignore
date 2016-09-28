@@ -4,6 +4,7 @@
 /venv/
 /static/
 /media/
+/dsshop/media/cache/
 .env
 dev.py
 # settings/
