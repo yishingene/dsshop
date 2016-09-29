@@ -9,7 +9,6 @@
 @import url("flexslider.css");
 @import url("owl.carousel.css");
 @import url("shortcodes.css");
-@import url("simple-line-icons.css");
 @import url("revolution-slider.css");
 @import url("magnific-popup.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic");
@@ -1663,9 +1662,9 @@ a.scheme:hover {
 }
 
 .breadcrumbs:before {
-    content: "\e096";
+    content: "\f041";
     color: #ffc952;
-    font-family: "simple-line-icons";
+    font-family: "fontawesome";
     font-size: 24px;
     display: inline-block;
     position: absolute;

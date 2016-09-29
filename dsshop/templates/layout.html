@@ -24,11 +24,17 @@
 
     <div class="boxed">
         {% include 'partials/header.html' %}
-        {% include 'partials/page-title.html' %}
+        {% block subheader_title %}
+            {% include 'partials/page-title.html' %}
+        {% endblock subheader_title  %}
+        {% block new_breadcrumbs %}
+        {% endblock new_breadcrumbs %}
+        
         <!-- Footer -->
         <footer class="footer">
             {% include 'partials/footer.html' %}
         </footer>
+
     </div>
     
 
