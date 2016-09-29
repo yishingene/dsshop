@@ -1,3 +1,4 @@
+{% load i18n %}
 
 <!--<div class="content-bottom-widgets">        
     <div class="container">
@@ -70,15 +71,15 @@
 
             <div class="col-md-3">
                 <div class="widget widget_recent_entries">
-                    <h4 class="widget-title">Recent News</h4>
+                    <h4 class="widget-title">{% trans 'Opkomende events?' %}</h4>
                     <ul>
                         <li>
                             <a href="blog-single.html">Raising productivity &amp; morale in the warehouse</a>
-                            <span class="post-date">March 25, 2016</span>
+                            <span class="post-date">25 maart 2016</span>
                         </li>
                         <li>
                             <a href="blog-single.html">Seafield logistics goes into administration</a>
-                            <span class="post-date">March 25, 2016</span>
+                            <span class="post-date">25 maart 2016</span>
                         </li>
                     </ul>
                 </div><!-- /.widget_recent_entries -->
@@ -86,23 +87,18 @@
 
             <div class="col-md-3">
                 <div class="widget widget_nav_menu">
-                    <h3 class="widget-title">Information</h3>
+                    <h3 class="widget-title">Informatie</h3>
                     <div class="menu-footer-menu-container">
                         <ul class="menu-footer-menu">
                             <li><a href="#">Home</a></li>
                             <li><a href="#">Shop</a></li>
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Checkout</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Contact us</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">Cart</a></li>
-                            <li><a href="#">Gallery</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Partners</a></li>
-                            <li><a href="#">History</a></li>
+                            <li><a href="#">{% trans 'Over ons' %}</a></li>
+                            <li><a href="#">{% trans 'Afrekenen' %}</a></li>
+                            <li><a href="#">{% trans 'Onze diensten' %}</a></li>
+                            <li><a href="#">{% trans 'Contacteer ons' %}</a></li>
+                            <li><a href="#">{% trans 'nieuws' %}</a></li>
+                            <li><a href="#">{% trans 'Winkelkar' %}</a></li>
+                            <li><a href="#">{% trans "Foto's" %}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -110,7 +106,7 @@
 
             <div class="col-md-3">
                 <div class="widget widget_text information">
-                    <h3 class="widget-title">Contact Us</h3>
+                    <h3 class="widget-title">{% trans 'Contact opnemen' %}</h3>
                     <div class="textwidget">
                         <p>
                             <strong>Oudenbos 77A 3202 Rillaar</strong>

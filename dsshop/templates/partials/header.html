@@ -1,12 +1,14 @@
+{% load i18n %}
+
 <div class="site-header header-v2">
     <div class="flat-top">
         <div class="container">
             <div class="row">
                 <div class="flat-wrapper">
                     <div class="custom-info">
-                        <span>Have any questions?</span>
-                        <span><i class="fa fa-reply"></i>themesflat@gmail.com</span> 
-                        <span><i class="fa fa-map-marker"></i>66 Nicholson St Buffalo New York US</span> 
+                        <span>{% trans 'Contact opnemen?' %}</span>
+                        <span><i class="fa fa-reply"></i>{% trans 'Contactformulier' %}</span> 
+                        <span><i class="fa fa-map-marker"></i>Oudenbos 77A 3202 Rillaar</span> 
                         <span><i class="fa fa-phone"></i>+32 475/ 931 789</span>
                     </div>
 
@@ -88,27 +90,20 @@
                         <li class="home">
                             <a href="index.html">Home</a>
                         </li>
-                        <li><a href="about.html">Company</a>
+                        <li><a href="about.html">Shop</a>
                             <ul class="submenu">
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="company-history.html">Company History</a></li>
-                                <li><a href="our-people.html">Our People</a></li>
-                                <li><a href="partners.html">Partners</a></li>
-                                <li><a href="careers.html">Careers</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="testimonials.html">Testimonials</a></li>
+                                <li><a href="about.html">DS</a></li>
+                                <li><a href="company-history.html">2PK</a></li>
+                                <li><a href="our-people.html">Andere</a></li>
                             </ul><!-- /.submenu -->
                         </li>
-                        <li><a href="services.html">Services</a>
+                        <li><a href="services.html">{% trans 'Onze diensten' %}</a>
                         </li>
-                        <li><a href="portfolio.html">Gallery</a>
+                        <li><a href="portfolio.html">{% trans "Foto's" %}</a>
                         </li>                                              
-                        <li><a href="blog.html">News</a>
-                        </li>
-                        <li><a href="#">Pages</a>
-                        </li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="blog.html">{% trans 'Nieuws' %}</a>
+                        </li>    
+                        <li><a href="contact.html">{% trans 'Contact' %}</a></li>
                     </ul><!-- /.menu -->                                        
                 </nav><!-- /.mainnav -->  
             </div><!-- /.nav-wrap -->
