@@ -18,11 +18,15 @@ from django.conf import settings
 from django.contrib import admin
 from oscar.app import application
 
+from other_pages import views as other_views
+
 urlpatterns = [
 
 	url(r'^i18n/', include('django.conf.urls.i18n')),
 
     url(r'^admin/', admin.site.urls),
+
+    url(r'^contact/$', other_views.ContactPageView.as_view(), name='contact'),
 
     url(r'', include(application.urls)),
 ]
