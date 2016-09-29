@@ -25,6 +25,10 @@
     <div class="boxed">
         {% include 'partials/header.html' %}
         {% include 'partials/page-title.html' %}
+        <!-- Footer -->
+        <footer class="footer">
+            {% include 'partials/footer.html' %}
+        </footer>
     </div>
     
 
@@ -71,7 +75,7 @@
         </div>
     {% endblock %}
 
-    {% include "partials/footer.html" %}
+    {# include "partials/footer.html" #}
 {% endblock %}
 
 {% block cdn_scripts %}
