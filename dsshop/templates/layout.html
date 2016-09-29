@@ -29,6 +29,8 @@
         {% endblock subheader_title  %}
         {% block breadcrumbs %}
         {% endblock breadcrumbs %}
+        {% block product_list %}
+        {% endblock product_list %}
         
         <!-- Footer -->
         <footer class="footer">
@@ -108,6 +110,30 @@
 {% block extrascripts %}
     {% include "partials/extrascripts.html" %}
     {{ block.super }}
+    <script type="text/javascript">
+    var headerFixed = function() {    
+        if ( $('body').hasClass('header-sticky') ) {
+            var hd_height = $('#header').height();           
+            $(window).on('load scroll', function(){                
+                if ( $(window).scrollTop() > hd_height + 30 ) {
+                    $('#header').addClass('downscrolled');                      
+                } else {                    
+                    $('#header').removeClass('downscrolled');                   
+                }
+                if( $(window).scrollTop() > 145 ) {
+                    $('#header').addClass('upscrolled');                    
+                } else {
+                    $('#header').removeClass('upscrolled');                    
+                }
+            })            
+        }   
+    }
+    $(function() { 
+        if ( matchMedia( 'only screen and (min-width: 991px)' ).matches ) {
+            headerFixed();
+        } 
+    });
+    </script>
 {% endblock %}
 
 {% block onbodyload %}

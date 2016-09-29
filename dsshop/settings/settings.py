@@ -64,7 +64,7 @@ INSTALLED_APPS = [
     'modeltranslation'  # Translation of models (productnamen, categorieen, ...)
 
 
-] + get_core_apps()
+] + get_core_apps(['myapps.catalogue'], )
 
 SITE_ID = 1
 
