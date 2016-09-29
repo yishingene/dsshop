@@ -1,0 +1,24 @@
+{% load i18n purchase_info_tags currency_filters %}
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <li>
+        <div class="product-inner">
+            <div class="product-thumbnail">
+                <a href="shop-detail.html">
+                    <img src="images/products/3.jpg" alt="images">
+                </a>
+            </div>
+            {% purchase_info_for_product request product as session %}
+            <div class="product-info">
+                <div class="product-info-wrap">
+                    <h3>{{ product }}</h3>
+                    <span class="price">
+                        {% if session.price.exists %}
+                        <span class="amount">{{ session.price.incl_tax|currency:session.price.currency }}</span>
+                        {% endif %}
+                    </span>
+                    <a class="button" href="#">{% trans 'In winkelwagen' %}</a>
+                </div>
+            </div>
+        </div><!-- /.product-inner -->
+    </li>
+</div>
