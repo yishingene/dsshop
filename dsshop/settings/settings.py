@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'storages',         # Use to connect with Amazon S3
     'compressor',       # static file compression (may be deleted because of Heroku deployment?)
     'widget_tweaks',    # Forms customizations
+    'modeltranslation'  # Translation of models (productnamen, categorieen, ...)
 
 
 ] + get_core_apps()
@@ -118,17 +119,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'dsshop.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Password validation

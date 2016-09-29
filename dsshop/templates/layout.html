@@ -20,10 +20,16 @@
 
 {% block layout %}
     {# Top-horizontal bar with account, notifictions, dashboard links #}
-    {% include "partials/nav_accounts.html" %}
+    {# include "partials/nav_accounts.html" #}
+
+    <div class="boxed">
+        {% include 'partials/header.html' %}
+        {% include 'partials/page-title.html' %}
+    </div>
+    
 
     {# Site logo/title, mini-basket, browse dropdown and searchbox #}
-    <header class="header container-fluid">
+    <header class="header container-fluid" style="margin-top: 1000px;"">
         <div class="page_inner">
             <div class="row">
                 {% include "partials/brand.html" %}
@@ -32,7 +38,7 @@
             </div>
         </div>
         {% block navigation %}
-            {% include "partials/nav_primary.html" %}
+            {# include "partials/nav_primary.html" #}
         {% endblock %}
     </header>
 
@@ -81,6 +87,8 @@
     {{ block.super }}
     <!-- Twitter Bootstrap -->
     <script type="text/javascript" src="{% static 'oscar/js/bootstrap3/bootstrap.min.js' %}"></script>
+    <!-- CANAVA: parallax title -->
+    <script type="text/javascript" src="{% static 'js/parallax.js' %}"></script>
     <!-- Oscar -->
     <script src="{% static 'oscar/js/oscar/ui.js' %}" type="text/javascript" charset="utf-8"></script>
 
