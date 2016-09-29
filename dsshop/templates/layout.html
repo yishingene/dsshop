@@ -27,8 +27,8 @@
         {% block subheader_title %}
             {% include 'partials/page-title.html' %}
         {% endblock subheader_title  %}
-        {% block new_breadcrumbs %}
-        {% endblock new_breadcrumbs %}
+        {% block breadcrumbs %}
+        {% endblock breadcrumbs %}
         
         <!-- Footer -->
         <footer class="footer">
@@ -56,7 +56,6 @@
     {% block content_wrapper %}
         <div class="container-fluid page">
             <div class="page_inner">
-                {% block breadcrumbs %}{% endblock %}
                 {% block header %}
                     <div class="page-header action">
                         <h1>{% block headertext %}{% endblock %}</h1>

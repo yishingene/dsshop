@@ -86,11 +86,14 @@
                         </ul>
                         
                     </div><!-- /.menu-extra -->
-                    <ul class="menu"> 
-                        <li class="home">
-                            <a href="{% url 'promotions:home' %}">Home</a>
+                    <ul class="menu">
+                    	{% url 'promotions:home' as home_url %} 
+                    	{% url 'catalogue:index' as catalogue_url %}
+                        <li class="{% if request.get_full_path == home_url %}active{% endif %}">
+                            <a href="{{ home_url }}">Home</a>
                         </li>
-                        <li><a href="{% url 'catalogue:index' %}">Shop</a>
+                        <li class="{% if request.get_full_path == catalogue_url %}active{% endif %}">
+                        <a href="{{ catalogue_url }}">Shop</a>
                             <ul class="submenu">
                                 <li><a href="about.html">DS</a></li>
                                 <li><a href="company-history.html">2PK</a></li>

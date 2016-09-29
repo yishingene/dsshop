@@ -13,18 +13,10 @@
     {% include 'partials/page-title.html' %}
 {% endblock %}
 
-{% block new_breadcrumbs %}
-	{% include 'partials/breadcrumbs.html' %}
-{% endblock new_breadcrumbs %}
-
 {% block breadcrumbs %}
-    <ul class="breadcrumb">
-        <li>
-            <a href="{{ homepage_url }}">{% trans "Home" %}</a>
-        </li>
-        <li class="active">{{ summary }}</li>
-    </ul>
+	{% include 'partials/breadcrumbs.html' %}
 {% endblock breadcrumbs %}
+
 
 {% block column_left %}
     {% category_tree as tree_categories %}

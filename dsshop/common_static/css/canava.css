@@ -952,7 +952,7 @@ a.scheme:hover {
 	        transition: all 0.3s ease-in-out;
 }
 
-#mainnav > ul > li.home > a:after,
+#mainnav > ul > li.active > a:after,
 #mainnav > ul > li > a:hover:after {
 	width: 60%;
 	background-color: #32bfc0;
@@ -1045,7 +1045,7 @@ a.scheme:hover {
 }
 
 #mainnav > ul > li > a:hover,
-#mainnav > ul > li.home > a {
+#mainnav > ul > li.active > a {
    color: #00bac9 ;
 }
 
