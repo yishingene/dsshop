@@ -1,10 +1,14 @@
-{% load i18n purchase_info_tags currency_filters %}
+{% load i18n thumbnail purchase_info_tags currency_filters %}
 <div class="col-md-4 col-sm-6 col-xs-12">
     <li>
         <div class="product-inner">
             <div class="product-thumbnail">
                 <a href="shop-detail.html">
-                    <img src="images/products/3.jpg" alt="images">
+                {% with image=product.primary_image %}
+                    {% thumbnail image.original "x155" upscale=False as thumb %}
+                    <img src="{{ thumb.url }}" alt="{{ product.get_title }}"></a>
+                    {% endthumbnail %}
+                {% endwith %}
                 </a>
             </div>
             {% purchase_info_for_product request product as session %}
