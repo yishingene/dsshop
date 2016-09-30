@@ -20,7 +20,9 @@
                         <span class="amount">{{ session.price.incl_tax|currency:session.price.currency }}</span>
                         {% endif %}
                     </span>
-                    <a class="button" href="#">{% trans 'In winkelwagen' %}</a>
+                {% if not product.is_parent %}
+                    {% include "catalogue/partials/add_to_basket_form_compact.html" %}
+                {% endif %}
                 </div>
             </div>
         </div><!-- /.product-inner -->

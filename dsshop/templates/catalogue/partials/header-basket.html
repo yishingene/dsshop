@@ -1,9 +1,15 @@
-{% load i18n currency_filters %}
+{% load i18n thumbnail currency_filters %}
 
 <ul class="cart_list product_list_widget"> 
     {% for line in basket.all_lines %}
     <li class="mini_cart_item">
-        <a href="{% url 'basket:summary' %}"><img src="images/products/2.jpg" alt="images">{{  line.description }}</a>
+    {% with image=line.product.primary_image %}
+        {% thumbnail image.original "x155" upscale=False as thumb %}
+        <a href="{% url 'basket:summary' %}">
+        	<img src="{{ thumb.url }}" alt="{{ product.get_title }}">{{  line.description }}
+        </a>
+        {% endthumbnail %}
+    {% endwith %}
         <p><span class="quantity">{{ line.quantity }} × <span class="amount">{{ line.unit_price_incl_tax|currency:request.basket.currency }}</span></span></p>
     </li>
     {% endfor %}  
