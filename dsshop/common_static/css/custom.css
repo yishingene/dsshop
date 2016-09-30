@@ -31,3 +31,9 @@ div.custom-info  > a:hover {
 div.custom-info > a::focus {
 	color: #32bfc0;
 }
+
+#mainnav-mobi ul > li > a:hover {
+	/*background-color: #ffc952;*/
+	background-color: #32bfc0;
+
+}

@@ -2,8 +2,6 @@
 
 {% load i18n %}
 
-
-
 {% block breadcrumbs %}
 	<div class="page-breadcrumbs">
 	    <div class="container">
@@ -13,8 +11,11 @@
 	                    <h2 class="trail-browse">{% trans 'U bevindt zich hier:' %}</h2>
 	                    <ul class="trail-items">
 	                        <li class="trail-item"><a href="{% url 'promotions:home' %}">Home</a></li>
-	                        <li>{% trans 'Producten' %}</li>
-	                        <link rel="stylesheet" type="text/css" href="">
+	                        <li class="trail-item"><a href="{% url 'catalogue:index' %}">{% trans 'Producten' %}</a></li>
+				        {% for category in category.get_ancestors %}
+				            <li class="trail-item"><a href="{{ category.get_absolute_url }}">{{ category.name|title }}</a></li>
+				        {% endfor %}
+	                        <li class="trail-item">{{ category.name|title }}</li>
 	                    </ul>
 	                </div><!-- /.breadcrumbs -->
 	            </div><!-- /.flat-wrapper -->

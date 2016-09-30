@@ -16,6 +16,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'oscar/css/datetimepicker.css' %}" />
     <!-- CANAVA TEMPLATE CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/canava.css' %}">
+    <!-- CANAVA: Responsive -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+
     <!-- CUSTOM STYLES -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
 {% endblock %}
@@ -67,28 +70,88 @@
     {% include "partials/extrascripts.html" %}
     {{ block.super }}
     <script type="text/javascript">
-    var headerFixed = function() {    
-        if ( $('body').hasClass('header-sticky') ) {
-            var hd_height = $('#header').height();           
-            $(window).on('load scroll', function(){                
-                if ( $(window).scrollTop() >  37 ) {
-                    $('#header').addClass('downscrolled');                      
-                } else {                    
-                    $('#header').removeClass('downscrolled');                   
+
+        var responsiveMenu = function() {
+            var menuType = 'desktop';
+
+            $(window).on('load resize', function() {
+                var currMenuType = 'desktop';
+                if ( matchMedia( 'only screen and (max-width: 991px)' ).matches ) {
+                    currMenuType = 'mobile';
                 }
-                if( $(window).scrollTop() > 37 ) {
-                    $('#header').addClass('upscrolled');                    
-                } else {
-                    $('#header').removeClass('upscrolled');                    
+
+                if ( currMenuType !== menuType ) {
+                    menuType = currMenuType;
+
+                    if ( currMenuType === 'mobile' ) {
+                        var $mobileMenu = $('#mainnav').attr('id', 'mainnav-mobi').hide();
+                        var hasChildMenu = $('#mainnav-mobi').find('li:has(ul)');
+
+                        $('.mega-menu .mega-menu-sub').hide();
+                        $('.has-mega-menu .submenu.mega-menu').hide();
+
+                        $('#header').after($mobileMenu);
+                        hasChildMenu.children('ul').hide();
+                        hasChildMenu.children('a:not(.has-mega)').after('<span class="btn-submenu"></span>');
+                        $('.btn-menu').removeClass('active');
+                    } else {
+                        var $desktopMenu = $('#mainnav-mobi').attr('id', 'mainnav').removeAttr('style');
+
+                        $desktopMenu.find('.submenu').removeAttr('style');
+                        $('#header').find('.nav-wrap').append($desktopMenu);
+                        $('.btn-submenu').remove();
+                    }
                 }
-            })            
-        }   
+            });
+
+        $('.btn-menu').on('click', function() {         
+            $('#mainnav-mobi').slideToggle(300);
+            $(this).toggleClass('active');
+        });
+
+        // Mega menu click
+        if ( matchMedia( 'only screen and (max-width: 991px)' ).matches ) {
+            $('.btn-mega').on('click', function() {      
+                $(this).parent('.mega-title').siblings().slideToggle(300);   
+                $(this).toggleClass('active');
+            });
+
+            $('.has-mega').on('click', function() {      
+                $(this).siblings().slideToggle(300);  
+                $(this).toggleClass('active');
+            });
+        }        
+
+        $(document).on('click', '#mainnav-mobi li .btn-submenu', function(e) {
+            $(this).toggleClass('active').next('ul').slideToggle(300);
+            e.stopImmediatePropagation()
+        });
+
     }
-    $(function() { 
-        if ( matchMedia( 'only screen and (min-width: 991px)' ).matches ) {
-            headerFixed();
-        } 
-    });
+
+        var headerFixed = function() {    
+            if ( $('body').hasClass('header-sticky') ) {
+                var hd_height = $('#header').height();           
+                $(window).on('load scroll', function(){                
+                    if ( $(window).scrollTop() >  37 ) {
+                        $('#header').addClass('downscrolled');                      
+                    } else {                    
+                        $('#header').removeClass('downscrolled');                   
+                    }
+                    if( $(window).scrollTop() > 37 ) {
+                        $('#header').addClass('upscrolled');                    
+                    } else {
+                        $('#header').removeClass('upscrolled');                    
+                    }
+                })            
+            }   
+        }
+        $(function() { 
+            if ( matchMedia( 'only screen and (min-width: 991px)' ).matches ) {
+                headerFixed();
+            }
+            responsiveMenu();
+        });
     </script>
 {% endblock %}
 
