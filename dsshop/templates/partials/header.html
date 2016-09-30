@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n thumbnail %}
 
 <div class="site-header header-v2">
     <div class="flat-top">
@@ -43,7 +43,7 @@
                 <nav id="mainnav" class="mainnav">
                     <div class="menu-extra">
                         <ul>
-                            <li id ="s" class="search-box">
+                            <li id="s" class="search-box">
                                 <a href="#search" class="flat-search"><i class="fa fa-search"></i></a>
                                 <div class="submenu top-search">
                                     <div class="widget widget_search">
@@ -57,31 +57,16 @@
                             <li class="shopping-cart">
                                 <a href="#">
                                     <i class="fa fa-shopping-cart"></i>
-                                    <span class="shopping-cart-items-count">2</span>
+                                    <!-- AANTAL ITEMS IN SHOPPING CAR-->
+                                    <span class="shopping-cart-items-count">{{ request.basket.num_lines }}</span>
                                 </a>
+                                {% if request.basket.num_lines %}
                                 <div class="subcart">
                                     <div class="widget_shopping_cart_content">
-                                        <ul class="cart_list product_list_widget">      
-                                            <li class="mini_cart_item">
-                                                <a href="#" class="remove" >x</a>
-                                                <a href="#"><img src="images/products/1.jpg" alt="images">Boskke Cube</a>
-                                                <p><span class="quantity">1 × <span class="amount">$39.00</span></span></p>
-                                            </li> 
-                                            <li class="mini_cart_item">
-                                                <a href="#" class="remove" >x</a>
-                                                <a href="#"><img src="images/products/2.jpg" alt="images">Cast Iron Casserole</a>
-                                                <p><span class="quantity">1 × <span class="amount">$230.00</span></span></p>
-                                            </li>    
-                                        </ul>
-                                        <p class="total">
-                                            <strong>Subtotal:</strong> <span class="amount">$269.00</span>
-                                        </p>
-                                        <div class="group-btn">
-                                            <a class="button" href="#">view cart</a>                                                
-                                            <a class="button bg-scheme3 style1" href="#">checkout</a>
-                                        </div>
+                                        {% include 'catalogue/partials/header-basket.html' with basket=request.basket %}
                                     </div>
                                 </div>
+                                {% endif %}
                             </li>
                         </ul>
                         
@@ -89,6 +74,7 @@
                     <ul class="menu">
                     	{% url 'promotions:home' as home_url %} 
                     	{% url 'catalogue:index' as catalogue_url %}
+                        {% url 'contact' as contact_url %}
                         <li class="{% if request.get_full_path == home_url %}active{% endif %}">
                             <a href="{{ home_url }}">Home</a>
                         </li>
@@ -106,7 +92,7 @@
                         </li>                                              
                         <li><a href="blog.html">{% trans 'Nieuws' %}</a>
                         </li>    
-                        <li><a href="contact.html">{% trans 'Contact' %}</a></li>
+                        <li class="{% if request.get_full_path == contact_url %}active{% endif %}"><a href="{% url 'contact' %}">{% trans 'Contact' %}</a></li>
                     </ul><!-- /.menu -->                                        
                 </nav><!-- /.mainnav -->  
             </div><!-- /.nav-wrap -->

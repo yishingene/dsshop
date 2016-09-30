@@ -1444,7 +1444,9 @@ a.scheme:hover {
     width: 300px;
     right: 0;
     top: 150%;
-    background-color: #ffffff;
+    background-color: #f6f6f6;
+    /*background-color: #edfefe;*/
+    /*border: 1px solid #333333;*/
     padding: 0 20px 20px 20px;
     visibility: hidden;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
