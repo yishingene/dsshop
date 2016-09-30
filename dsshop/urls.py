@@ -18,7 +18,10 @@ from django.conf import settings
 from django.contrib import admin
 from oscar.app import application
 
+from oscarapi.app import application as api
+
 from other_pages import views as other_views
+
 
 urlpatterns = [
 
@@ -29,6 +32,8 @@ urlpatterns = [
     url(r'^contact/$', other_views.ContactPageView.as_view(), name='contact'),
 
     url(r'', include(application.urls)),
+
+    url(r'^api/', include(api.urls)),
 ]
 
 urlpatterns += patterns('',

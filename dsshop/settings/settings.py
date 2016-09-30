@@ -57,11 +57,15 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'django.contrib.admin',
 
+    # DJANGO OSCAR API
+    'oscarapi',
+
     # Third party applications
     'storages',         # Use to connect with Amazon S3
     'compressor',       # static file compression (may be deleted because of Heroku deployment?)
     'widget_tweaks',    # Forms customizations
-    'modeltranslation'  # Translation of models (productnamen, categorieen, ...)
+    'modeltranslation', # Translation of models (productnamen, categorieen, ...)
+    'rest_framework',   # Required om gebruik te kunnen maken van oscarapi
 
 
 ] + get_core_apps(['myapps.catalogue', 'myapps.basket'])
