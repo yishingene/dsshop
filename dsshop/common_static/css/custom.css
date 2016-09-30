@@ -6,3 +6,28 @@ ul.products div.col-xs-12 {
 div.subcart p.total {
 	background-color: transparent !important;
 }
+
+div.custom-info a {
+	color: rgba(255, 255, 255, 0.5);
+	-webkit-transition: none;
+	-moz-transition: none;
+	-ms-transition: none;
+	-o-transition: none;
+	transition: none;
+}
+
+div.custom-info span {
+	-webkit-transition: none;
+	-moz-transition: none;
+	-ms-transition: none;
+	-o-transition: none;
+	transition: none;
+}
+
+div.custom-info  > a:hover {
+	color: #32bfc0;
+}
+
+div.custom-info > a::focus {
+	color: #32bfc0;
+}

@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% load i18n %}
+
+{# yellow title block #}
+{% block subheader_title %}
+    {% include 'partials/page-title.html' with page_title='Winkelwagen' %}
+{% endblock %}
+
+{% block breadcrumbs %}
+<div class="page-breadcrumbs">
+	    <div class="container">
+	        <div class="row">
+	            <div class="flat-wrapper">
+	                <div class="breadcrumbs">
+	                    <h2 class="trail-browse">{% trans 'U bevindt zich hier:' %}</h2>
+	                    <ul class="trail-items">
+	                        <li class="trail-item"><a href="{% url 'promotions:home' %}">Home</a></li>
+	                        <li>{% trans 'Winkelwagen' %}</li>
+	                    </ul>
+	                </div><!-- /.breadcrumbs -->
+	            </div><!-- /.flat-wrapper -->
+	        </div><!-- /.row -->
+	    </div><!-- /.container -->
+	</div><!-- /.page-breadcrumbs -->
+{% endblock breadcrumbs %}

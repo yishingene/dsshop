@@ -1,10 +1,12 @@
+{% load i18n%}
+
 <div class="page-title parallax-style parallax1" style="background-position: 50% -84px;">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">                    
                 <div class="page-title-heading">
-                    <h2>{{ page_title|title }}</h2>
+                    <h2>{% trans page_title|title %}</h2>
                 </div><!-- /.page-title-heading -->                        
             </div><!-- /.col-md-12 -->  
         </div><!-- /.row -->  
