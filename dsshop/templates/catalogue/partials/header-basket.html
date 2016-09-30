@@ -7,10 +7,6 @@
         <p><span class="quantity">{{ line.quantity }} × <span class="amount">{{ line.unit_price_incl_tax|currency:request.basket.currency }}</span></span></p>
     </li>
     {% endfor %}  
-  	<li class="mini_cart_item">
-        <a href="#"><img src="images/products/1.jpg" alt="images">Boskke Cube</a>
-        <p><span class="quantity">1 × <span class="amount">$39.00</span></span></p>
-    </li> 
 </ul>
 <p class="total">
     <strong>Subtotal:</strong> <span class="amount">{{ basket.total_excl_tax|currency:basket.currency }}</span>
