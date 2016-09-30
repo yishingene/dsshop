@@ -1,12 +1,12 @@
 {% load i18n thumbnail purchase_info_tags currency_filters %}
-<div class="col-md-4 col-sm-6 col-xs-12">
+<div class="col-md-4 col-sm-6">
     <li>
         <div class="product-inner">
-            <div class="product-thumbnail">
+            <div class="product-thumbnail text-center">
                 <a href="shop-detail.html">
                 {% with image=product.primary_image %}
-                    {% thumbnail image.original "x155" upscale=False as thumb %}
-                    <img src="{{ thumb.url }}" alt="{{ product.get_title }}"></a>
+                    {% thumbnail image.original "x200" as thumb %}
+                    <img src="{{ thumb.url }}" alt="{{ product.get_title }}" style="height: 200px;"></a>
                     {% endthumbnail %}
                 {% endwith %}
                 </a>
