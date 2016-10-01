@@ -64,6 +64,9 @@
 
     <script src="{% static 'oscar/js/bootstrap-datetimepicker/bootstrap-datetimepicker.js' %}" type="text/javascript" charset="utf-8"></script>
     <script src="{% static 'oscar/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.all.js' %}" type="text/javascript" charset="utf-8"></script>
+    <!-- REAL PYTHON SCRIPT: For django CSRF token -->
+    <script type="text/javascript" src="{% static 'plugins/realpython/csrf_protection.js' %}"></script>
+
 {% endblock %}
 
 {% block extrascripts %}
@@ -151,6 +154,49 @@
                 headerFixed();
             }
             responsiveMenu();
+        });
+    </script>
+    <script type="text/javascript">
+        $('a.nav-basket').on('click', function(){
+            console.log('remove me');
+            console.log($(this).data('update-url'));
+
+            var url = $(this).data('update-url');
+            var item = $(this).parent();
+
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                dataType:'json',
+                success: handler,
+                error: function(xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.status);
+                    alert(thrownError);
+                }
+            });
+            function handler(data) {
+                // 1. remove item from Mini cart
+                item.remove();
+                // 2. update total amount
+                $.ajax({
+                    url: '{% url 'basket-detail' basket.pk %}',
+                    tyep: 'GET',
+                    dataType: 'json',
+                    success: updateTotal,
+                    error: function(xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.status);
+                    alert(thrownError);
+                    }
+                });
+
+                function updateTotal(data) {
+                    console.log(data);
+                    var amount = data['total_incl_tax'];
+
+                    $('span#mini_cart_amount').text('€ ' + amount);
+                }
+
+            } 
         });
     </script>
 {% endblock %}

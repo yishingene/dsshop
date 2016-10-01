@@ -37,3 +37,7 @@ div.custom-info > a::focus {
 	background-color: #32bfc0;
 
 }
+
+.widget_shopping_cart_content .cart_list li .remove:hover {
+	background-color: #dddddd;	
+}
