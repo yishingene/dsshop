@@ -193,9 +193,14 @@
                     console.log(data);
                     var amount = data['total_incl_tax'];
 
-                    $('span#mini_cart_amount').text('€ ' + amount);
+                    if(amount == 0) {
+                        $('div.subcart').remove();
+                        //$('div.subcart').css('visibility', 'hidden')
+                    }
+                    else {
+                        $('span#mini_cart_amount').text('€ ' + amount);
+                    }
                 }
-
             } 
         });
     </script>
