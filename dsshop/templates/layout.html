@@ -179,18 +179,18 @@
                 item.remove();
                 // 2. update total amount
                 $.ajax({
-                    url: '{% url 'basket-detail' basket.pk %}',
-                    tyep: 'GET',
+                    url: "{% url 'basket-detail' basket.pk %}",
+                    type: 'GET',
                     dataType: 'json',
                     success: updateTotal,
                     error: function(xhr, ajaxOptions, thrownError) {
-                    console.log(xhr.status);
-                    alert(thrownError);
+                        console.log(xhr.status);
+                        alert(thrownError);
                     }
                 });
 
                 function updateTotal(data) {
-                    console.log(data);
+                    //console.log(data);
                     var amount = data['total_incl_tax'];
 
                     if(amount == 0) {
@@ -201,6 +201,24 @@
                         $('span#mini_cart_amount').text('€ ' + amount);
                     }
                 }
+                // 3. Update bagde on cart icon
+                $.ajax({
+                    url:  "{% url 'basket-lines-list' basket.pk %}",
+                    type: 'GET',
+                    dataType: 'json',
+                    success: updateBadge,
+                     error: function(xhr, ajaxOptions, thrownError) {
+                        console.log(xhr.status);
+                        alert(thrownError);
+                    }
+                });
+                 function updateBadge(data) {
+                    //console.log(data);
+
+                    dict = data;
+                    //console.log(dict.length);
+                    $('span#nav-cart').text(dict.length);
+                }               
             } 
         });
     </script>
