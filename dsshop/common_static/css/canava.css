@@ -1525,7 +1525,32 @@ a.scheme:hover {
     line-height: 22px;
     text-align: center;
     width: 24px;
-    margin-top: 15px;
+    margin-top: 0px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.widget_shopping_cart_content .cart_list li .update-up {
+    color: #cccccc;
+    float: right;
+    height: 24px;
+    line-height: 22px;
+    text-align: center;
+    width: 24px;
+    margin-top: 0px;
+    margin-right: 55px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    //background-color: #32bfc0;
+}
+
+.widget_shopping_cart_content .cart_list li .update-down {
+    color: #cccccc;
+    float: right;
+    height: 24px;
+    line-height: 22px;
+    text-align: center;
+    width: 24px;
+    margin-top: 0px;
+    margin-right: 0px;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 

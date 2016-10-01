@@ -13,7 +13,19 @@
         </a>
         {% endthumbnail %}
     {% endwith %}
-        <p><span class="quantity">{{ line.quantity }} × <span class="amount">{{ line.unit_price_incl_tax|currency:request.basket.currency }}</span></span></p>
+        <p class="cart">
+        	<span class="quantity">
+        		{{ line.quantity }} × <span class="amount">{{ line.unit_price_incl_tax|currency:request.basket.currency }}</span>
+        		<!--<a class="update-up">+</a><a class="update-down">-</a>-->
+
+
+        		<div class="btn-group btn-group-xs">
+        			<button type="button" class="btn btn-xs">Left</button>
+  					<button type="button" class="btn btn-xs">Middle</button>
+  					<button type="button" class="btn btn-xs">Right</button>
+  				</div>
+        	</span>
+        </p>
     </li>
     {% endfor %}  
 </ul>

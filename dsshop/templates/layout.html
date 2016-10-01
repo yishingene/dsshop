@@ -7,11 +7,7 @@
         files in your project, then set USE_LESS = True in your
         settings file. This will enable the on-the-fly less compiler.
     {% endcomment %}
-    {% if use_less %}
-        <link rel="stylesheet/less" type="text/css" href="{% static 'oscar/less/styles.less' %}" />
-    {% else %}
-        <link rel="stylesheet" type="text/css" href="{% static 'oscar/css/styles.css' %}" />
-    {% endif %}
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'oscar/js/bootstrap-datetimepicker/bootstrap-datetimepicker.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'oscar/css/datetimepicker.css' %}" />
     <!-- CANAVA TEMPLATE CSS-->

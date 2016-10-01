@@ -42,7 +42,12 @@ div.custom-info > a::focus {
 	background-color: #dddddd;	
 }
 
+p.cart {
+	margin-top: 10px;
+}
+
 span.name {
 	font-size: 1.1em;
 	line-height: 1.2em;
 }
+ 
