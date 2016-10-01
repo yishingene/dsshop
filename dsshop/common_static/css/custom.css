@@ -41,3 +41,8 @@ div.custom-info > a::focus {
 .widget_shopping_cart_content .cart_list li .remove:hover {
 	background-color: #dddddd;	
 }
+
+span.name {
+	font-size: 1.1em;
+	line-height: 1.2em;
+}

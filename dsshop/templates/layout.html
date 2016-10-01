@@ -66,6 +66,8 @@
     <script src="{% static 'oscar/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.all.js' %}" type="text/javascript" charset="utf-8"></script>
     <!-- REAL PYTHON SCRIPT: For django CSRF token -->
     <script type="text/javascript" src="{% static 'plugins/realpython/csrf_protection.js' %}"></script>
+    <!-- MATCH HEIGHT: Equal height containers -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
 
 {% endblock %}
 
@@ -220,6 +222,13 @@
                     $('span#nav-cart').text(dict.length);
                 }               
             } 
+        });
+    </script>
+    <!-- MATCHHEIGHT: Init-->
+    <script type="text/javascript">
+        $(function() {
+            $.fn.matchHeight._maintainScroll = true;
+            $('div.product-info-wrap>h3').matchHeight();
         });
     </script>
 {% endblock %}

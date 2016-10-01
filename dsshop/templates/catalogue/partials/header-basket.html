@@ -6,8 +6,10 @@
     {% with image=line.product.primary_image %}
         {% thumbnail image.original "x155" upscale=False as thumb %}
         <a href="#" class="remove nav-basket" data-update-url="{% url 'basket-line-detail' basket_pk=basket.pk pk=line.pk %}">x</a>
+        <!--<a href="#" class="remove nav-basket" data-update-url="{% url 'basket-line-detail' basket_pk=basket.pk pk=line.pk %}">Y</a>
+        <a href="#" class="remove nav-basket" data-update-url="{% url 'basket-line-detail' basket_pk=basket.pk pk=line.pk %}">Z</a>-->
         <a href="{% url 'basket:summary' %}">
-        	<img src="{{ thumb.url }}" alt="{{ product.get_title }}">{{  line.description }}
+        	<img src="{{ thumb.url }}" alt="{{ product.get_title }}"><span class="name">{{  line.description }}</span>
         </a>
         {% endthumbnail %}
     {% endwith %}
