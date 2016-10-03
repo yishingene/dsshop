@@ -155,16 +155,45 @@
         });
     </script>
     <script type="text/javascript">
-        $('a.nav-basket').on('click', function(){
-            console.log('remove me');
-            console.log($(this).data('update-url'));
+        $('a.basket-edit').on('click', function(){
 
-            var url = $(this).data('update-url');
-            var item = $(this).parent();
+            console.log('Edit line!');
+            console.log($(this).parents('li').data('update-url'));
+
+            var url = $(this).parents('li').data('update-url');
+            var method = '';
+            var data = '';
+            var itemToRemove = null;
+
+
+            if ($(this).hasClass('remove')) {
+                var itemToRemove = $(this).parent();
+                method = 'DELETE';
+            }
+            else {
+
+                var currentAmount = $(this).parent().data('quantity');
+
+                method = 'PUT';
+                if ($(this).hasClass('less') ){
+                    currentAmount = currentAmount - 1;
+
+                }
+                else {
+                    currentAmount = currentAmount + 1;
+                }
+                data = {'quantity': currentAmount};
+            }
+
+            console.log('check');
+            console.log(method);
+            console.log(currentAmount);
+            console.log(data);
 
             $.ajax({
                 url: url,
-                type: 'DELETE',
+                type: method,
+                data: data,
                 dataType:'json',
                 success: handler,
                 error: function(xhr, ajaxOptions, thrownError) {
@@ -174,7 +203,16 @@
             });
             function handler(data) {
                 // 1. remove item from Mini cart
-                item.remove();
+
+                if (itemToRemove) {
+                    itemToRemove.remove();
+                }
+
+                else {
+                    console.log('SUCCEEUSSU SU');
+                }
+
+                
                 // 2. update total amount
                 $.ajax({
                     url: "{% url 'basket-detail' basket.pk %}",

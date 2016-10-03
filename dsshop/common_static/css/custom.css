@@ -50,4 +50,21 @@ span.name {
 	font-size: 1.1em;
 	line-height: 1.2em;
 }
- 
+span.group-btn.mini_cart {
+	margin-right: 75px;
+}
+
+span.group-btn.mini_cart > .button {
+	padding: 0 6px;
+	height: 20px !important;
+	line-height: 20px;
+}
+
+a.button.more {
+	color: white !important;
+}
+a.button.less {
+	color: white !important;
+}
+
+
