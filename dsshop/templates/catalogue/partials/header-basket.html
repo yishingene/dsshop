@@ -13,7 +13,7 @@
     {% endwith %}
         <p class="cart">
         	<span class="quantity">
-        		{{ line.quantity }} × <span class="amount">{{ line.unit_price_incl_tax|currency:request.basket.currency }}</span>
+        		<span class="line-quantity">{{ line.quantity }}</span> × <span class="amount">{{ line.unit_price_incl_tax|currency:request.basket.currency }}</span>
         		<!--<a class="update-up">+</a><a class="update-down">-</a>-->
 				<span class="group-btn mini_cart pull-right" data-quantity="{{ line.quantity }}">
 				    <a class="button bg-scheme3 style1 less basket-edit" href="#">-</a>                

@@ -158,31 +158,37 @@
         $('a.basket-edit').on('click', function(){
 
             console.log('Edit line!');
-            console.log($(this).parents('li').data('update-url'));
+            console.log($(this).parents('li.mini_cart_item').data('update-url'));
 
-            var url = $(this).parents('li').data('update-url');
+            var url = $(this).parents('li.mini_cart_item').data('update-url');
             var method = '';
             var data = '';
             var itemToRemove = null;
-
+            var currentLine = $(this).parents('li.mini_cart_item');
+            var currentAmount = $(this).parent().data('quantity');
 
             if ($(this).hasClass('remove')) {
-                var itemToRemove = $(this).parent();
+                itemToRemove = currentLine;
                 method = 'DELETE';
             }
             else {
-
-                var currentAmount = $(this).parent().data('quantity');
-
                 method = 'PUT';
+
                 if ($(this).hasClass('less') ){
                     currentAmount = currentAmount - 1;
+
+                    // Need to remove line if currentAmount has dropped to zero
+                    if (currentAmount == 0) {
+                        method = 'DELETE';
+                        itemToRemove = currentLine;
+                    }
 
                 }
                 else {
                     currentAmount = currentAmount + 1;
                 }
                 data = {'quantity': currentAmount};
+                $(this).parent().data('quantity', currentAmount);
             }
 
             console.log('check');
@@ -201,19 +207,26 @@
                     alert(thrownError);
                 }
             });
+            function removeLine(itemToRemove) {
+                itemToRemove.remove();
+            }
+            function updateLineAmount(amount) {
+
+                currentLine.find('span.line-quantity').text(amount);
+            }
+
             function handler(data) {
                 // 1. remove item from Mini cart
 
                 if (itemToRemove) {
-                    itemToRemove.remove();
+                    removeLine(itemToRemove);
                 }
 
                 else {
-                    console.log('SUCCEEUSSU SU');
+                    updateLineAmount(data.quantity);
                 }
 
-                
-                // 2. update total amount
+                // 2. update total purchase amount
                 $.ajax({
                     url: "{% url 'basket-detail' basket.pk %}",
                     type: 'GET',
@@ -237,7 +250,8 @@
                         $('span#mini_cart_amount').text('€ ' + amount);
                     }
                 }
-                // 3. Update bagde on cart icon
+
+                // 3. Update bagde on cart icon and 
                 $.ajax({
                     url:  "{% url 'basket-lines-list' basket.pk %}",
                     type: 'GET',
@@ -248,12 +262,12 @@
                         alert(thrownError);
                     }
                 });
-                 function updateBadge(data) {
+                function updateBadge(data) {
                     //console.log(data);
 
-                    dict = data;
+                    numLines = data.length;
                     //console.log(dict.length);
-                    $('span#nav-cart').text(dict.length);
+                    $('span#nav-cart').text(numLines);
                 }               
             } 
         });
