@@ -70,6 +70,7 @@
 {% block extrascripts %}
     {% include "partials/extrascripts.html" %}
     {{ block.super }}
+<!-- CUSTOM: Language Selection code -->
     <script type="text/javascript">
         $('a.language_selector').on('click', function(event){
             event.preventDefault();
@@ -84,8 +85,7 @@
                 type: 'POST',
                 data : { 'language' : language, 'next': next },
                 success: function(data){
-                    location.reload();
-
+                    location.reload(); // Refresh pagina na succesvol POST request (language cookie is nu up to date)
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     console.log(xhr.status);
@@ -94,6 +94,7 @@
             });
         })
     </script>
+<!-- Responsive menu voor smartphones-->
     <script type="text/javascript">
 
         var responsiveMenu = function() {
