@@ -25,9 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 from django.utils.translation import ugettext_lazy as _
 
 LANGUAGES = [
-    ('en', _('English')),
-    ('fr', _('French')),
     ('nl', _('Dutch')),
+    ('fr', _('French')),
+    ('en', _('English')),
 ]
 
 

@@ -1,27 +1,4 @@
 {% load i18n thumbnail %}
-
-    <div class="navbar-collapse account-collapse collapse">
-        <div class="container-fluid">
-            {% if LANGUAGES|length > 1 %}
-                <form id="language_selector" class="navbar-left navbar-form" action="{% url 'set_language' %}" method="post">
-                    {% csrf_token %}
-                    <input name="next" type="hidden" value="{{ language_neutral_url_path }}" />
-                    <div class="form-group">
-                        <select name="language" class="form-control">
-                            {% get_language_info_list for LANGUAGES as languages %}
-                            {% for language in languages %}
-                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE%} selected="selected"{% endif %}>
-                                    {{ language.name_local }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <button class="btn btn-default" type="submit" data-loading-text="{% trans 'Submitting...' %}">{% trans "Go" %}</button>
-                </form>
-            {% endif %}
-        </div>
-    </div>
-
 <div class="site-header header-v2">
     <div class="flat-top">
         <div class="container">
@@ -35,21 +12,16 @@
                     </div>
 
                     <div class="social-links">
-                        <form id="language_selector" action="/i18n/setlang/" method="POST">
+                        <form id="language_selector" action="{% url 'set_language' %}" method="POST">
                             {% csrf_token %}
-                            <input id="language_input" name="name" type="hidden" value="nl" class="hidden">
-                            <a class="language_selector" data-language="nl" href="#">
-                                <b>NL</b>
+                            <input id="next_page" name="next" type="hidden" value="{{ language_neutral_url_path }}" class="hidden">
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                            <a class="language_selector" data-language="{{ language.code }}" href="#">
+                                <b>{{ language.code|upper }}</b>
                             </a>
-                            <a class="language_selector" data-language="fr" href="#">
-                                <b>FR</b>
-                            </a>
-                            <a class="language_selector" data-language="en" href="#">
-                                <b>EN</b>
-                            </a>
-                            <button type="submit">push</button>
-                        </form>
-   
+                            {% endfor %}
+                        </form>   
                     </div>
                 </div><!-- /.flat-wrapper -->
             </div><!-- /.row -->
