@@ -22,15 +22,24 @@ class Command(BaseCommand):
 		FILE_PATH = os.path.join(settings.MEDIA_ROOT, 'product_list')
 		FILE = os.path.join(FILE_PATH, 'ds_chassis.csv')
 
-		print('path: %s' % FILE)
-
 		with open(FILE) as file:
-			reader = csv.reader(file)
+			reader = csv.reader(file, delimiter=';')
 			for row in reader:
-				print('row: %s' % row)
+				print('row: %s' % row[0])
 
-		for product in Product.objects.all():
 
-			print('product: %s' % product)
+				'''new, created = Product.objects.get_or_create(
+					title=row[0],
+					#upc=row[1],
+					)'''
+
+				#print(created)
+
+
+#		for product in Product.objects.all():
+
+#			new, created = Product.objects.get_or_create(name=)
+
+#			print('product: %s' % product)
 
 		self.stdout.write('--Het is gefixt!--')
