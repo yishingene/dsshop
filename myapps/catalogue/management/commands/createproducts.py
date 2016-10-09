@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 
-from myapps.catalogue.models import Product, ProductAttribute
+from myapps.catalogue.models import Product, ProductAttribute, ProductClass
 
 import os
 import csv
@@ -24,22 +24,26 @@ class Command(BaseCommand):
 
 		with open(FILE) as file:
 			reader = csv.reader(file, delimiter=';')
+
+			product_class_name = 'Onderdelen'
+			product_class = ProductClass.objects.get(pk=1)
+
 			for row in reader:
-				print('row: %s' % row[0])
 
+				title = row[0]
+				upc = row[1]
 
-				'''new, created = Product.objects.get_or_create(
-					title=row[0],
-					#upc=row[1],
-					)'''
+				try: 
+					item = Product.objects.get(upc=upc)
+				except Product.DoesNotExist:
+					item = Product()
 
-				#print(created)
+					item.upc = upc
+					item.title = title
+					item.product_class = product_class
 
+					print(item)
 
-#		for product in Product.objects.all():
-
-#			new, created = Product.objects.get_or_create(name=)
-
-#			print('product: %s' % product)
+					item.save()
 
 		self.stdout.write('--Het is gefixt!--')
