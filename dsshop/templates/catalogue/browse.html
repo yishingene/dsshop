@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% load basket_tags promotion_tags category_tags product_tags i18n %}
+{% load basket_tags promotion_tags product_tags i18n %}
 
 {% block title %}
     {% if summary %}{{ summary }} |{% endif %} {{ block.super }}
@@ -76,16 +76,7 @@
 
                         <div class="widget widget_product_categories">
                             <h4 class="widget-title">{% trans 'Categoriëen' %}</h4>
-                            <ul class="product-categories">
-                 	{% category_tree as tree_categories %}
-                 		{% if tree_categories %}
-                        	{% for tree_category, info in tree_categories %}
-                        		<li>
-                        			<a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name|title }}</a>
-                        		</li>
-                        	{% endfor %}
-                        {% endif %}
-                            </ul>
+                            {% include 'catalogue/partials/category_overview.html' %}
                         </div><!-- /.widget_product_categories -->
 
                         <div class="widget widget_price_filter">

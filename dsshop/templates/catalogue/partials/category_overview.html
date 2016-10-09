@@ -1,0 +1,16 @@
+{% load category_tags %}
+
+        <ul class="product-categories">
+{% category_tree as tree_categories %}
+	{% if tree_categories %}
+    	{% for tree_category, info in tree_categories %}
+            {% if info.level == 0 %}
+    		<li>
+    			<a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
+    		</li>
+            {% elif info.level == 1 %}
+             {{ tree_category.name }}
+            {% endif %}
+    	{% endfor %}
+    {% endif %}
+        </ul>
