@@ -1,5 +1,5 @@
 {% load i18n staticfiles %}
-<html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js"> 
+<html lang="{{ LANGUAGE_CODE|default:'en-gb' }}" class="no-js"> 
     <head>
         <title>{% if display_version %}[{% trans "Build" %} {{ version }}] {% endif %}{% block title %}{{ shop_name }} - {{ shop_tagline }}{% endblock %}</title>
 

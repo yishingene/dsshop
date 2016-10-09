@@ -71,6 +71,33 @@
     {% include "partials/extrascripts.html" %}
     {{ block.super }}
     <script type="text/javascript">
+        $('a.language_selector').on('click', function(event){
+            event.preventDefault();
+            //console.log('language set');
+            //console.log($(this).data('language'));
+
+            var language = $(this).data('language');
+            var url = $(this).parent('form').attr('action');
+            var method = $(this).parent('form').attr('method');
+
+            $('#language_input').val(language);
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data : { 'name' : language },
+                success: function(data){
+                    console.log(data);
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.status);
+                    alert(thrownError);
+                }         
+
+            });
+        })
+    </script>
+    <script type="text/javascript">
 
         var responsiveMenu = function() {
             var menuType = 'desktop';
