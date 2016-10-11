@@ -29,6 +29,9 @@ class Command(BaseCommand):
 
 			reader = csv.reader(file, delimiter=';')
 
+			cat_string = ''
+			product_class = ProductClass.objects.get(pk=1)
+
 			for row in reader:
 				'''
 				Stappenplan:
@@ -36,11 +39,11 @@ class Command(BaseCommand):
 				2. Check 2de rij: ? 'Category'
 				3. Maak product aan
 				'''
-
+				
 				# Stap 1: Check 2de rij op de naam 'CATEGORY'
 				if row[1] == 'CATEGORY':
 
-					#cat_string = create_from_breadcrumbs(row[1])
+					cat_string = create_from_breadcrumbs(row[0])
 
 					print('category: %s' % row[1])
 
@@ -48,10 +51,30 @@ class Command(BaseCommand):
 					if row[4] in (None, ''):
 						print('deze rij (%s) heeft geen UPC -> ignore!' % reader.line_num)
 
-						pass
-
 					else:
-						print('product: %s' % row[0])
+						# Dit is een product!
+						print('product: %s -- %s' % (row[0], row[4]))
+
+						title = row[0]
+						upc = row[4]
+
+						try:
+							item = Product.objects.get(upc=upc)
+
+						except Product.DoesNotExist:
+
+							print('maak product aan')
+
+							# Maak product aan
+							item = Product()
+							item.title = title
+							item.upc = upc
+							item.product_class = product_class
+
+							item.save()
+
+							# Voeg categorie toe
+							ProductCategory.objects.update_or_create(product=item, category=cat_string)
 
 
 
