@@ -53,11 +53,9 @@
             <div class="general-sidebars">
                 <div class="sidebar-wrap">
                     <div class="sidebar">                               
-
-                        <div class="widget widget_product_categories">
-                            <h4 class="widget-title">{% trans 'Categoriëen' %}</h4>
+                    	{% block categories %}
                             {% include 'catalogue/partials/category_overview.html' %}
-                        </div><!-- /.widget_product_categories -->
+                    	{% endblock categories %}
 
                         <div class="widget widget_price_filter">
                             <div class="price_filter">
