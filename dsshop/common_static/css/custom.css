@@ -66,5 +66,8 @@ a.button.more {
 a.button.less {
 	color: white !important;
 }
-
+span.paginator {
+	margin-right: 5px;
+	color: #32bfc0;
+}
 
