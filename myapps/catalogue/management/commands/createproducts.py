@@ -22,15 +22,43 @@ class Command(BaseCommand):
 		help = 'automatiseer de aanmaak van de product catalogus'
 
 		FILE_PATH = os.path.join(settings.MEDIA_ROOT, 'product_list')
-		FILE = os.path.join(FILE_PATH, 'ds_chassis.csv')
+		#FILE = os.path.join(FILE_PATH, 'ds_chassis.csv')
+		FILE = os.path.join(FILE_PATH, 'DS_Onderdelen.csv')
 		
-
 		with open(FILE) as file:
+
 			reader = csv.reader(file, delimiter=';')
 
 			for row in reader:
+				'''
+				Stappenplan:
+				1. Check 5de rij (= UPC): mag niet leeg zijn
+				2. Check 2de rij: ? 'Category'
+				3. Maak product aan
+				'''
 
-				if reader.line_num == 1:
+				# Stap 1: Check 2de rij op de naam 'CATEGORY'
+				if row[1] == 'CATEGORY':
+
+					#cat_string = create_from_breadcrumbs(row[1])
+
+					print('category: %s' % row[1])
+
+				else:
+					if row[4] in (None, ''):
+						print('deze rij (%s) heeft geen UPC -> ignore!' % reader.line_num)
+
+						pass
+
+					else:
+						print('product: %s' % row[0])
+
+
+
+				#if reader.line_num == 1:
+				#	pass
+
+
 
 					'''product_class_name = 'Onderdelen'
 					product_class = ProductClass.objects.get(pk=1)
@@ -49,7 +77,7 @@ class Command(BaseCommand):
 					ProductCategory.objects.update_or_create(product=item, category=cat_string)'''
 
 
-				title = row[0]
+				'''title = row[0]
 				upc = row[4]
 
 				try: 
@@ -63,6 +91,6 @@ class Command(BaseCommand):
 
 					print('new! %s' % item)
 
-					item.save()
+					item.save()'''
 
 		self.stdout.write('--Het is gefixt!--')
