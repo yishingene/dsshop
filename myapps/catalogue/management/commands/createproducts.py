@@ -23,7 +23,7 @@ class Command(BaseCommand):
 			reader = csv.reader(file, delimiter=';')
 
 			cat_string = ''
-			product_class = ProductClass.objects.get(pk=1)
+			product_class = ProductClass.objects.get(name='Onderdelen')
 
 			for row in reader:
 				'''
