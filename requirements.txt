@@ -2,6 +2,7 @@ Babel==2.3.4
 Django==1.9.9
 Pillow==3.3.1
 Unidecode==0.04.19
+boto==2.42.0
 dj-database-url==0.4.1
 django-appconf==1.0.2
 django-compressor==2.1

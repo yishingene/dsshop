@@ -16,6 +16,15 @@ import os
 os.environ['S3_USE_SIGV4'] = 'True'
 os.environ['SWF'] = 'eu-central-1'
 
+# AMAZON S3 STORAGE
+AWS_STORAGE_BUCKET_NAME = 'dsshop'
+AWS_REGION = 'eu-central-1'
+AWS_ACCESS_KEY_ID = 'AKIAILRG5ALU36LG6OEQ'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_S3_HOST = 's3.eu-central-1.amazonaws.com'
+
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.eu-central-1.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
 
 from oscar.defaults import *
 
@@ -169,13 +178,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+#MEDIA_URL = '/media/'
 
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
     },
 }
+
+MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+DEFAULT_FILE_STORAGE = 'dsshop.custom_storages.MediaStorage'
+
+# WHITENOISE
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 #HAYSTACK_CONNECTIONS = {
 #    'default': {
