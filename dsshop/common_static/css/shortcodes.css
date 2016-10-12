@@ -2227,7 +2227,7 @@ label.error {
 .widget.widget_product_categories {
     padding: 30px;
     border: 10px solid #f4f4f4;
-    border-image-source: url(../images/icon/pattern.svg);
+    /* REMOVED */
     border-image-repeat: repeat;
     border-image-slice: 27.777777778% 27.777777778%;
 }
