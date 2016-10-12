@@ -424,7 +424,7 @@
 	only screen and (                min-resolution: 192dpi),
 	only screen and (                min-resolution: 2dppx) {
 	
-	.flat-accordion .toggle-title.active:after {
+	/*.flat-accordion .toggle-title.active:after {
 		background: url("../images/icon/sub@2x.png");
 		background-size: 26px 10px;
 	}
@@ -437,5 +437,5 @@
 	.widget_search .search-form .search-submit {
 		background: url("../images/icon/search-icon@2x.png");
 		background-size: 30px 30px;
-	}
+	}*/
 }
