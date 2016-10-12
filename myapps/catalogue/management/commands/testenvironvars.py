@@ -9,5 +9,7 @@ class Command(BaseCommand):
 
 	def handle(self, *args, **options):
 
-		
+		print(os.environ)
+		print(os.environ['AWS_ACCESS_KEY_ID'])
+
 		self.stdout.write('--Het is gefixt!--')
