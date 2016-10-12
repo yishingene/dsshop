@@ -24,6 +24,8 @@ DEFAULT_FILE_STORAGE = 'dsshop.custom_storages.MediaStorage'
 
 FILE_UPLOAD_TEMP_DIR = MEDIA_ROOT
 
+OSCAR_MISSING_IMAGE_URL = MEDIA_URL + 'image_not_found.jpg'
+
 # WHITENOISE
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
