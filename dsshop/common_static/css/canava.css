@@ -346,7 +346,7 @@ select {
   	outline: 0;
   	width: 100%;
   	max-width: 100%;
-  	background-image: url(../images/icon/caret.png);
+  	/* REMOVED */
   	background-position: 95% center;
   	background-repeat: no-repeat;
   	position: relative;
@@ -1450,7 +1450,7 @@ a.scheme:hover {
     background-color: #666e70;
     /*background-color: #edfefe;*/
     /*border: 1px solid #333333;*/
-    /*background-image: url(../images/parallax/bg-parallax1.png);*/
+    /* REMOVED */
     padding: 0 20px 20px 20px;
     visibility: hidden;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -1620,7 +1620,7 @@ a.scheme:hover {
 }
 
 .widget.widget_search .search-form .search-submit {
-	background-image: url(../images/icon/arrow.png);
+	/* REMOVED */
     background-repeat: no-repeat;
     background-position: center;
     width: 24px;
