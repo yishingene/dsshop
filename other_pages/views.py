@@ -1,7 +1,12 @@
+import os
+
 from django.views.generic import TemplateView, FormView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.utils.translation import ugettext as _
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from django.conf import settings
 
 from .forms import UploadFileForm
 
@@ -24,9 +29,18 @@ class UploadView(FormView):
 
 	def post(self, request, *args, **kwargs):
 
-		print(request.FILES['file'])
+		self.success_url = request.META.get('HTTP_REFERER')
 
 		return super(UploadView, self).post(request, *args, **kwargs)
+
+	def form_valid(self, form):
+
+		file = self.request.FILES['new_file']
+
+		path = default_storage.save(file.name, ContentFile(file.read()))
+
+
+		return super(UploadView, self).form_valid(form)
 
 
 def upload_file(request):

@@ -30,8 +30,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^contact/$', other_views.ContactPageView.as_view(), name='contact'),
-    #url(r'^upload/$', other_views.UploadView.as_view(), name='upload'),
-    url(r'^upload/$', other_views.upload_file, name='upload'),
+    url(r'^upload/$', other_views.UploadView.as_view(), name='upload'),
+    #url(r'^upload/$', other_views.upload_file, name='upload'),
 
     url(r'', include(application.urls)),
 

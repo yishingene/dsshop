@@ -12,9 +12,9 @@
 		<div class="row">
 			<div class="col-xs-6">
 				<hr>
-					<form method="POST">
+					<form method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
 						{% csrf_token %}
-						{% render_field form.file class+='form-control' %}
+						{% render_field form.new_file class+='form-control' %}
 						<button class="btn btn-default" type="submit" style="margin-top: 10px;">Upload</button>
 					</form>
 				<hr>
