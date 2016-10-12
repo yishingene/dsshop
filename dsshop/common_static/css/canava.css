@@ -3164,5 +3164,5 @@ blockquote {
     margin-left: -32px;
     top: 50%;
     margin-top: -32px;
-    background: url(../images/icon/preloader.gif);
+    /* REMOVED */
 }
