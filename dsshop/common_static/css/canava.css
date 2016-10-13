@@ -1670,7 +1670,7 @@ a.scheme:hover {
 -------------------------------------------------------------- */
 .page-title {
 	position: relative;
-	padding: 65px 0 30px 0;
+	padding: 75px 0 50px 0;
 }
 
 .header-v2 .page-title {
@@ -3048,7 +3048,9 @@ blockquote {
 	background-repeat: repeat;
 }
 
-/* REMOVED */
+.parallax1 { 
+	background-image: url(../images/parallax/bg-parallax1.png);
+}
 
 /* REMOVED */
 
