@@ -47,7 +47,10 @@
 
 		<div class="row">
 			<div class="col-xs-2 col-sm-1">
-				<a href="#" class="remove basket"><b>x</b></a>
+				<a href="#" data-id="{{ forloop.counter0 }}" data-behaviours="remove" class="remove basket"><b>x</b></a>
+                <div style="display:none">
+                    {{ form.DELETE }}
+                </div>
 			</div>
 			<div class="col-sm-2 hidden-xs">
 	    {% with image=product.primary_image %}
