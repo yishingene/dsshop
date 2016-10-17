@@ -75,3 +75,19 @@ span.paginator {
 	color: #32bfc0;
 }
 
+
+a.remove.basket{
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  line-height: 20px;
+  text-align: center;
+  display: inline-block;
+  color: #ccc;
+  background: #fff;
+}
+a.remove.basket:hover{
+	background-color: #21242b;
+	color:white;
+}
+

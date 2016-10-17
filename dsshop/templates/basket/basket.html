@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% load i18n %}
+{% load i18n purchase_info_tags %}
 
 {# yellow title block #}
 {% block subheader_title %}
@@ -24,3 +24,131 @@
 	    </div><!-- /.container -->
 	</div><!-- /.page-breadcrumbs -->
 {% endblock breadcrumbs %}
+
+{% block content %}
+
+<div class="container">
+
+{% if not basket.is_empty %}
+	<div class="row heading-row">
+		<div class="col-xs-2 col-sm-1">leeg</div>
+		<div class="col-sm-2 col-sm-2 hidden-xs">leeg</div>
+		<div class="col-xs-4 col-sm-3">Product</div>
+		<div class="col-xs-2 col-sm-2">Prijs</div>
+		<div class="col-xs-2 col-sm-2">Aantal</div>
+		<div class="col-xs-2 col-sm-2">Totaal</div>
+	</div>
+	{% for form in formset %}
+		{% with line=form.instance product=form.instance.product %}
+			{% purchase_info_for_line request line as session %}
+
+	<div class="row">
+		<div class="col-xs-1">
+			<a href="#" class="remove basket"><b>x</b></a>
+		</div>
+		<div class="col-sm-2 hidden-xs">
+			hidden xs
+		</div>
+		<div class="col-xs-4 col-sm-3">
+			{{ line.description }}
+		</div>
+	</div>
+		{% endwith %}
+
+	{% endfor %}
+{% endif %}
+
+
+	                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="flat-title-section style1 style2">Canava transport services is a full service, freight <span class="scheme">transportation</span> and <span class="scheme">logistics</span> company.</h3>
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+                <div class="flat-divider d20px"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="flat-iconbox ">
+                            <div class="box-header">
+                                <div class="box-icon"><img src="images/services/1.jpg" alt="images"></div>
+                                <h5 class="box-title">Packaged goods transport</h5>
+                            </div>
+                            <div class="box-content">
+                                Focuses on the packaging requirements of goods in transit, in particular for items traveling overland by road or rail.                                
+                                <p class="box-readmore">
+                                    <a href="services-detail.html">Read more</a>
+                                </p>
+                            </div>
+                        </div><!-- /.flat-iconbox -->
+
+                        <div class="flat-iconbox ">
+                            <div class="box-header">
+                                <div class="box-icon"><img src="images/services/3.jpg" alt="images"></div>
+                                <h5 class="box-title">Sea and air freight</h5>
+                            </div>
+                            <div class="box-content">
+                                By using a combination of sea and air freight, you bring added flexibility to your supply chain.                                
+                                <p class="box-readmore">
+                                    <a href="services-detail-v3.html">Read more</a>
+                                </p>
+                            </div>
+                        </div><!-- /.flat-iconbox -->
+
+                        <div class="flat-iconbox ">
+                            <div class="box-header">
+                                <div class="box-icon"><img src="images/services/5.jpg" alt="images"></div>
+                                <h5 class="box-title">Warehousing and storage</h5>
+                            </div>
+                            <div class="box-content">
+                                Canava is able to offer heated or unheated warehouse solutions both for short-term and for long-term storage.                               
+                                <p class="box-readmore">
+                                    <a href="services-detail-v5.html">Read more</a>
+                                </p>
+                            </div>
+                        </div><!-- /.flat-iconbox -->
+                    </div><!-- /.col-md-6 -->
+
+                    <div class="col-md-6">
+                        <div class="flat-iconbox ">
+                            <div class="box-header">
+                                <div class="box-icon"><img src="images/services/2.jpg" alt="images"></div>
+                                <h5 class="box-title">Multimodal transport</h5>
+                            </div>
+                            <div class="box-content">
+                                When it comes to multimodal transport services, Canava Transport has connections you can trust.
+                                <p class="box-readmore">
+                                    <a href="services-detail-v2.html">Read more</a>
+                                </p>
+                            </div>
+                        </div><!-- /.flat-iconbox -->
+
+                        <div class="flat-iconbox ">
+                            <div class="box-header">
+                                <div class="box-icon"><img src="images/services/4.jpg" alt="images"></div>
+                                <h5 class="box-title">Logistics solutions</h5>
+                            </div>
+                            <div class="box-content">
+                                Smart and sustainable business requires the skills of logistics experts who are able to think ahead.
+                                <p class="box-readmore">
+                                    <a href="services-detail-v4.html">Read more</a>
+                                </p>
+                            </div>
+                        </div><!-- /.flat-iconbox -->
+
+                        <div class="flat-iconbox ">
+                            <div class="box-header">
+                                <div class="box-icon"><img src="images/services/6.jpg" alt="images"></div>
+                                <h5 class="box-title">Forwarding services</h5>
+                            </div>
+                            <div class="box-content">
+                                With our extensive network, we will find a competitive and efficient solution to your next assignment.                              
+                                <p class="box-readmore">
+                                    <a href="services-detail-v6.html">Read more</a>
+                                </p>
+                            </div>
+                        </div><!-- /.flat-iconbox -->
+                    </div><!-- /.col-md-6 -->
+                </div><!-- /.row -->
+            </div>
+					
+
+{% endblock content %}
