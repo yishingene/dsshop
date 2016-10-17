@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% load i18n purchase_info_tags %}
+{% load i18n purchase_info_tags thumbnail currency_filters widget_tweaks %}
 
 {# yellow title block #}
 {% block subheader_title %}
@@ -32,25 +32,48 @@
 {% if not basket.is_empty %}
 	<div class="row heading-row">
 		<div class="col-xs-2 col-sm-1">leeg</div>
-		<div class="col-sm-2 col-sm-2 hidden-xs">leeg</div>
+		<div class="col-xs-2 hidden-xs">leeg</div>
 		<div class="col-xs-4 col-sm-3">Product</div>
-		<div class="col-xs-2 col-sm-2">Prijs</div>
-		<div class="col-xs-2 col-sm-2">Aantal</div>
-		<div class="col-xs-2 col-sm-2">Totaal</div>
+		<div class="col-xs-2">Prijs</div>
+		<div class="col-xs-2">Aantal</div>
+		<div class="col-xs-2">Totaal</div>
 	</div>
 	{% for form in formset %}
 		{% with line=form.instance product=form.instance.product %}
 			{% purchase_info_for_line request line as session %}
 
 	<div class="row">
-		<div class="col-xs-1">
+		<div class="col-xs-2 col-sm-1">
 			<a href="#" class="remove basket"><b>x</b></a>
 		</div>
 		<div class="col-sm-2 hidden-xs">
-			hidden xs
+    {% with image=product.primary_image %}
+        {% thumbnail image.original "100x100" upscale=False as thumb %}
+            <a href="{{ product.get_absolute_url }}">
+                <img class="thumbnail" src="{{ thumb.url }}" alt="{{ product.get_title }}"/>
+            </a>
+        {% endthumbnail %}
+    {% endwith %}
 		</div>
 		<div class="col-xs-4 col-sm-3">
 			{{ line.description }}
+		</div>
+		<div class="col-xs-2">
+        {% if line.is_tax_known %}
+            {{ line.unit_price_incl_tax|currency:line.price_currency }}
+        {% else %}
+            {{ line.unit_price_excl_tax|currency:line.price_currency }}
+        {% endif %}
+		</div>
+		<div class="col-xs-2">
+			{% render_field form.quantity class+="form-control" %}
+		</div>
+		<div class="col-xs-2">
+        {% if line.is_tax_known %}
+            {{ line.line_price_incl_tax|currency:line.price_currency }}
+        {% else %}
+            {{ line.line_price_excl_tax|currency:line.price_currency }}
+        {% endif %}	
 		</div>
 	</div>
 		{% endwith %}
