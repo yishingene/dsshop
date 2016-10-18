@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load staticfiles promotion_tags%}
 
 {% block styles %}
@@ -217,11 +217,6 @@
                 data = {'quantity': currentAmount};
                 $(this).parent().data('quantity', currentAmount);
             }
-
-            console.log('check');
-            console.log(method);
-            console.log(currentAmount);
-            console.log(data);
 
             $.ajax({
                 url: url,

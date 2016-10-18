@@ -1,3 +1,29 @@
+/* AANVULLINGEN VIA CANAVA WORDPRESS*/
+
+.woocommerce .woocommerce-info {
+	color: #31708f;
+	padding: 20px 20px 20px 60px;
+	margin-bottom: 40px;
+	position: relative;
+	background: #fff;
+	border: 2px solid;
+}
+
+.woocommerce .woocommerce-info:after {
+	content: "\f05a";
+	position: absolute;
+	font-family: 'FontAwesome';
+	left: 20px;
+	top: 50%;
+	margin-top: -24px;
+	font-size: 28px;
+}
+
+.showlogin {
+	font-weight: bold;
+}
+/* CUSTOM */
+
 h6.subcategory {
 	margin: 0px 0px 10px 0px;
 }
@@ -90,4 +116,5 @@ a.remove.basket:hover{
 	background-color: #21242b;
 	color:white;
 }
+
 
