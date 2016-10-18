@@ -27,7 +27,7 @@
 
 {% block content %}
 
-<div class="container">
+<div id="content_inner" class="container">
 
 {% if not basket.is_empty %}
 	<div class="row heading-row">
@@ -49,6 +49,7 @@
 			<div class="col-xs-2 col-sm-1">
 				<a href="#" data-id="{{ forloop.counter0 }}" data-behaviours="remove" class="remove basket"><b>x</b></a>
                 <div style="display:none">
+                	{{ form.move_to_basket }}
                     {{ form.DELETE }}
                 </div>
 			</div>
@@ -182,5 +183,13 @@
                 </div><!-- /.row -->
             </div>
 					
-
 {% endblock content %}
+
+{% block onbodyload %}
+    {{ block.super }}
+    {# We pass in the URL to send AJAX requests to #}
+    var options = {
+        'basketURL': '{% url 'basket:summary' %}'
+    };
+    oscar.basket.init(options);
+{% endblock %}
