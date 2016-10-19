@@ -47,42 +47,64 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <form method="get" action="." class="form-horizontal">
-        {# Render other search params in a hidden block #}
-        <div style="display:none">
-            {% for value in selected_facets %}
-                <input name="selected_facets" value="{{ value }}" />
-            {% endfor %}
-            {{ search_form.q }}
-        </div>
-        {% if paginator.count %}
-            {% if paginator.num_pages > 1 %}
-                {% blocktrans with start=page.start_index end=page.end_index num_results=paginator.count %}
-                    Found <strong>{{ num_results }}</strong> results, showing <strong>{{ start }}</strong> to <strong>{{ end }}</strong>.
-                {% endblocktrans %}
-            {% else %}
-                {% blocktrans count num_results=paginator.count %}
-                    Found <strong>{{ num_results }}</strong> result.
-                {% plural %}
-                    Found <strong>{{ num_results }}</strong> results. 
-                {% endblocktrans %}
-            {% endif %}
-            <div class="pull-right">
-                {% include "partials/form_field.html" with field=search_form.sort_by %}
+<div class="flat-woocommerce flat-general sidebar-right">
+        <div class="container" style="padding-top: 10px;">
+            <div class="row">
+                <div class="general">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+                        <div class="input-group input-group-lg" style="margin: 20px 50px">
+                            <input name="q" type="search" class="form-control search-field" placeholder="{% trans 'Nieuwe zoekopdracht&hellip;' %}">
+                            <span class="input-group-btn">
+                                <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    <form method="get" action="." class="form-horizontal" style="margin-top: 20px;">
+                        {# Render other search params in a hidden block #}
+                        <div style="display:none">
+                            {% for value in selected_facets %}
+                                <input name="selected_facets" value="{{ value }}" />
+                            {% endfor %}
+                            {{ search_form.q }}
+                        </div>
+                        {% if paginator.count %}
+                            {% if paginator.num_pages > 1 %}
+                                {% blocktrans with start=page.start_index end=page.end_index num_results=paginator.count %}
+                                    Wij vonden <strong>{{ num_results }}</strong> resultaten voor jouw zoekopdracht.
+                                {% endblocktrans %}
+                            {% else %}
+                                {% blocktrans count num_results=paginator.count %}
+                                    Found <strong>{{ num_results }}</strong> result.
+                                {% plural %}
+                                    Found <strong>{{ num_results }}</strong> results. 
+                                {% endblocktrans %}
+                            {% endif %}
+                        {% else %}
+                            <p>
+                                {% trans "Found <strong>0</strong> results." %}
+                                {% if suggestion %}
+                                    {% url 'search:search' as search_url %}
+                                    {% blocktrans %}
+                                        Did you mean <a href="{{ search_url }}?q={{ suggestion }}">"{{ suggestion }}"</a>?
+                                    {% endblocktrans %}
+                                {% endif %}
+                            </p>
+                        {% endif %}
+                    </form>
+                    <div class="search-results">
+                        {% for result in page.object_list %}
+                            {% include 'search/partials/search_result.html' %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="general-sidebars">
+                    {% include "partials/form_field.html" with field=search_form.sort_by %}
+                </div>     
             </div>
-        {% else %}
-            <p>
-                {% trans "Found <strong>0</strong> results." %}
-                {% if suggestion %}
-                    {% url 'search:search' as search_url %}
-                    {% blocktrans %}
-                        Did you mean <a href="{{ search_url }}?q={{ suggestion }}">"{{ suggestion }}"</a>?
-                    {% endblocktrans %}
-                {% endif %}
-            </p>
-        {% endif %}
-    </form>
+        </div>
+    </div>
 </div>
 
     {% if page.object_list %}

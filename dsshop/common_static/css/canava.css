@@ -2540,7 +2540,7 @@ blockquote {
 .search-results {
     padding: 0 30px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    margin: -30px 0 0 0;
+    margin: 10px 0 0 0;
 }
 
 .search-results article {
