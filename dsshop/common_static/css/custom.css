@@ -1,6 +1,6 @@
 /* AANVULLINGEN VIA CANAVA WORDPRESS*/
 
-.woocommerce .woocommerce-info {
+.flat-woocommerce .woocommerce-info {
 	color: #31708f;
 	padding: 20px 20px 20px 60px;
 	margin-bottom: 40px;
@@ -9,7 +9,7 @@
 	border: 2px solid;
 }
 
-.woocommerce .woocommerce-info:after {
+.flat-woocommerce .woocommerce-info:after {
 	content: "\f05a";
 	position: absolute;
 	font-family: 'FontAwesome';
@@ -17,6 +17,10 @@
 	top: 50%;
 	margin-top: -24px;
 	font-size: 28px;
+}
+
+.woocommerce-info.collapse {
+	display: none;
 }
 
 .showlogin {

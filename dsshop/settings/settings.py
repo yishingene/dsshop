@@ -198,6 +198,8 @@ HAYSTACK_CONNECTIONS = {
 OSCAR_DEFAULT_CURRENCY = 'EUR'
 OSCAR_SHOP_NAME = 'Tom Verheyden'
 
+OSCAR_ALLOW_ANON_CHECKOUT = True
+
 # Hidden Oscar features, e.g. wishlists or reviews
 OSCAR_HIDDEN_FEATURES = ['reviews', 'wishlists',]
 
