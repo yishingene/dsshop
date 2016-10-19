@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% load history_tags currency_filters reviews_tags staticfiles product_tags display_tags i18n purchase_info_tags %}
+{% load history_tags currency_filters reviews_tags staticfiles product_tags display_tags i18n purchase_info_tags thumbnail %}
 
 {% block title %}
     {{ product.title }} | {{ block.super }}
@@ -11,34 +11,150 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-<ul class="breadcrumb">
-    <li>
-        <a href="{{ homepage_url }}">{% trans "Home" %}</a>
-    </li>
-    {% with category=product.categories.all.0 %}
-        {% for c in category.get_ancestors_and_self %}
-        <li>
-            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-        </li>
-        {% endfor %}
-        <li class="active">{{ product.title }}</li>
+    <div class="page-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="flat-wrapper">
+                    <div class="breadcrumbs">
+                        <h2 class="trail-browse">{% trans 'U bevindt zich hier:' %}</h2>
+                        <ul class="trail-items">
+                            <li class="trail-item"><a href="{% url 'promotions:home' %}">Home</a></li>
+                            <li class="trail-item"><a href="{% url 'catalogue:index' %}">{% trans 'Producten' %}</a></li>
+                    {% with category=product.categories.all.0 %}
+                        {% for category in category.get_ancestors_and_self %}
+                            <li class="trail-item"><a href="{{ category.get_absolute_url }}">{{ category.name|title }}</a></li>
+                        {% endfor %}
+                    {% endwith %}
+                            <li class="trail-item">{{ product.title }}</li>
+                        </ul>
+                    </div><!-- /.breadcrumbs -->
+                </div><!-- /.flat-wrapper -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.page-breadcrumbs -->
+{% endblock breadcrumbs %}
 
-        {% get_back_button as backbutton %}
-        {% if backbutton %}
-            <li class="pull-right">
-                <a href="{{ backbutton.url }}">
-                    <i class="icon-arrow-left"></i> {{ backbutton.title }}
-                </a>
-            </li>
-        {% endif %}
-    {% endwith %}
-</ul>
-{% endblock %}
-
-{% block header %}
-{% endblock header %}
 
 {% block content %}
+<div class="flat-row flat-woocommerce flat-general sidebar-right">
+    <div class="container">
+        <div class="row">
+            <div class="general"> 
+                <div class="products-detail">
+                {% with all_images=product.images.all %}
+                    {% with image=product.primary_image %}
+                    <div class="products-images">
+                        <a class="popup-gallery" href="images/products/1.jpg">
+                            {% thumbnail image.original "440x400" upscale=False as thumb %}
+                            <img src="{{ thumb.url }}" alt="{{ product.get_title }}">
+                            {% endthumbnail %}
+                        </a>
+                    </div>
+                    {% endwith %}
+                {% endwith %}
+                    <div class="summary">
+                        <div>
+                    {% purchase_info_for_product request product as session %}
+                    {% if session.price.exists %}
+                        {% if session.price.excl_tax == 0 %}
+                        <p class="price"><span class="amount">{% trans 'Gratis' %}</span></p>
+                        {% elif session.price.is_tax_known %}
+                            <p class="price"><span class="amount">{{ session.price.incl_tax|currency:session.price.currency }}</span></p>
+                        {% else %}
+                            <p class="price"><span class="amount">{{ session.price.excl_tax|currency:session.price.currency }}</span></p>
+                        {% endif %}
+                    {% else %}
+                            <p class="price"><span class="amount">&nbsp;</span></p>                        
+                    {% endif %}
+                        </div>
+
+
+                                <div class="description">
+                                    <p>{{ product.description|default:""|striptags }}</p>
+                                </div>
+                                <form class="cart">
+                                    <div class="quantity">
+                                        <input type="number" step="1" min="1" max="100" name="quantity" value="1" class="input-text qty text">
+                                    </div>
+                                    <button type="submit" class="button">Add to cart</button>
+                                </form>
+                                <div class="product_meta">
+                                    <span class="posted_in">Categories: <a href="#">Accessories</a>, <a href="#">Radar Detectors</a></span>
+                                </div>
+                            </div><!-- /.summary -->
+
+                            <div class="flat-tabs" style="clear: left;">
+                                <ul class="menu-tabs">
+                                    <li class="active"><a href="#">Description</a></li>
+                                    <li class=""><a href="#">Reviews (0)</a></li>
+                                </ul>
+                                <div class="content-tab">
+                                    <div class="content-inner active" style="display: block;">
+                                        <p>Experience the High Definition difference with the Escort PASSPORT Max Radar Detector. Using advanced Digital Signal Processing (DSP) Technology developed by the military, it hunts down threats across all radar and laser bands up to 50x faster than conventional detectors for near instantaneous warnings. That way, you can respond in time and avoid hefty fines, higher insurance costs and tedious traffic school.</p>
+                                        <p>False alarms from security cameras, automatic doors and other background radio frequency signals are a thing of the past with the Escort PASSPORT Max. With onboard GPS and AutoLearn Technology, it remembers the location of harmless signals and doesn’t speak up unless the threat it real. Plus, it comes preloaded with Escort’s DEFENDER Database of red-light cameras and speed traps, so you always have a heads up on what’s around the bend.</p>
+                                    </div><!-- /.content-inner -->
+
+                                    <div class="content-inner" style="display: none;">
+                                        <div class="woocommerce-reviews">
+                                            <div id="review_form_wrapper">
+                                                <div id="review_form">
+                                                    <div class="comment-respond">
+                                                        <form id="commentform" class="comment-form">
+                                                            <p class="comment-notes"><span id="email-notes">There are no reviews yet.</span></p>
+                                                            <h5>Be the first to review “Escort passport max” </h5>
+                                                            <p class="comment-form-rating">
+                                                                <label>Your Rating</label>
+                                                                
+                                                            </p>
+                                                            <p class="stars">
+                                                                    <span><i class="fa fa-star-o"></i></span>
+                                                                    <span><i class="fa fa-star-o"></i></span>
+                                                                    <span><i class="fa fa-star-o"></i></span>
+                                                                    <span><i class="fa fa-star-o"></i></span>
+                                                                    <span><i class="fa fa-star-o"></i></span>
+                                                                </p>
+                                                            <p class="comment-form-comment">
+                                                                <label>Your Review <span class="required">*</span></label>
+                                                                <textarea id="comment"></textarea>
+                                                            </p>
+                                                            <p class="comment-form-author">
+                                                                <label for="author">Name <span class="required">*</span></label> 
+                                                                <input id="author" name="author" type="text">
+                                                            </p>
+                                                            <p class="comment-form-email">
+                                                                <label for="email">Email <span class="required">*</span></label> 
+                                                                <input id="email" name="email" type="email">
+                                                            </p>
+                                                            <p class="form-submit">
+                                                                <input name="submit" type="submit" id="submit" class="submit" value="Submit"> 
+                                                            </p>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div><!-- /#review_form_wrapper -->
+                                        </div>
+                                    </div><!-- /.content-inner -->                                    
+                                </div><!-- /.content-tab -->
+                            </div><!-- /.flat-tabs -->
+                        </div>
+
+            </div><!-- /.general -->
+
+            <div class="general-sidebars">
+                <div class="sidebar-wrap">
+                    <div class="sidebar">                               
+                        {% block categories %}
+                            {% include 'catalogue/partials/category_overview.html' %}
+                        {% endblock categories %}
+
+                    </div><!-- /.sidebar -->
+                </div><!-- /.sidebar-wrap -->
+            </div><!-- /.general-sidebars -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div>
+
+
 
 <article class="product_page"><!-- Start of product page -->
 
