@@ -95,7 +95,7 @@
                     </form>
                     <div class="search-results">
                         {% for result in page.object_list %}
-                            {% include 'search/partials/search_result.html' %}
+                            {% include 'search/partials/search_result.html' with product=result.object %}
                         {% endfor %}
                     </div>
                 </div>

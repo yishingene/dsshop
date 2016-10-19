@@ -1,4 +1,21 @@
-<div>
-	search_result.html
-	<hr>
+{% load i18n thumbnail purchase_info_tags currency_filters %}
+<div class="row" {% if forloop.first %}style="padding-top:20px;"{% elif forloop.last %}style="padding-bottom:20px;"{% endif %}>
+	<div class="col-md-2 col-xs-3">
+        <div class="product-thumbnail text-center">
+            <a href="{{ product.get_absolute_url }}">
+            {% with image=product.primary_image %}
+                {% thumbnail image.original "x200" as thumb %}
+                <img class="img img-responsive" src="{{ thumb.url }}" alt="{{ product.get_title }}">
+                {% endthumbnail %}
+            {% endwith %}
+            </a>
+        </div>
+	</div>
+	<div class="col-md-5 col-xs-6">
+		{{ product|title }}
+	</div>
 </div>
+{% if not forloop.last %}
+<hr>
+{% endif %}
+
