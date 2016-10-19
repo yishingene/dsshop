@@ -6,17 +6,26 @@
     "{{ query }}" | {{ block.super }}
 {% endblock %}
 
+
 {% block breadcrumbs %}
-    <ul class="breadcrumb">
-        <li>
-            <a href="{{ homepage_url }}">{% trans "Home" %}</a>
-        </li>
-        <li>
-            {% trans "Search" %} -- {{ request.basket }} -- {{ tim }} -- 
-        </li>
-        <li class="active">"{{ query }}"</li>
-    </ul>
-{% endblock %}
+<div class="page-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="flat-wrapper">
+                    <div class="breadcrumbs">
+                        <h2 class="trail-browse">{% trans 'U bevindt zich hier:' %}</h2>
+                        <ul class="trail-items">
+                            <li class="trail-item"><a href="{% url 'promotions:home' %}">Home</a></li>
+                            <li class="trail-item">{% trans 'Zoeken' %}</li>
+                            <li>{% trans 'Zoekterm' %}: <i style="font-style: italic;">{{ query }}</i></li>
+                        </ul>
+                    </div><!-- /.breadcrumbs -->
+                </div><!-- /.flat-wrapper -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.page-breadcrumbs -->
+{% endblock breadcrumbs %}
+
 
 {% block column_left %}
     {% if has_facets %}
@@ -38,6 +47,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
     <form method="get" action="." class="form-horizontal">
         {# Render other search params in a hidden block #}
         <div style="display:none">
@@ -73,6 +83,7 @@
             </p>
         {% endif %}
     </form>
+</div>
 
     {% if page.object_list %}
         <section>

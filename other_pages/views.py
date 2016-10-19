@@ -8,8 +8,6 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings
 
-from oscar.apps.search.views import FacetedSearchView
-
 from .forms import UploadFileForm
 
 # Create your views here.
@@ -23,16 +21,6 @@ class ContactPageView(TemplateView):
 		ctx['page_title'] = _('contact')
 
 		return ctx
-
-class MySearchView(FacetedSearchView):
-
-	def extra_context(self):
-		extra = super(MySearchView, self).extra_context()
-		extra['request'] = self.request
-		extra['facets'] = self.results.facet_counts()
-		extra['tim'] = 'tim'
-		return extra
-
 
 class UploadView(FormView):
 
