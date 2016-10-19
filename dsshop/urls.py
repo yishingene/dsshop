@@ -16,11 +16,19 @@ Including another URLconf
 from django.conf.urls import url, include, patterns
 from django.conf import settings
 from django.contrib import admin
+
 from oscar.app import application
+from oscar.apps.search import facets
+from oscar.core.loading import get_class
 
 from oscarapi.app import application as api
 
+from haystack.views import search_view_factory
+
 from other_pages import views as other_views
+
+search_view = other_views.MySearchView
+search_form = get_class('search.forms', 'SearchForm')
 
 
 urlpatterns = [
@@ -31,6 +39,11 @@ urlpatterns = [
 
     url(r'^contact/$', other_views.ContactPageView.as_view(), name='contact'),
     url(r'^upload/$', other_views.UploadView.as_view(), name='upload'),
+    url(r'^mysearch/$', search_view_factory(
+                view_class=search_view,
+                form_class=search_form,
+                searchqueryset=facets.base_sqs()), name='mysearch'),
+    #url(r'^search/$', other_views.MySearchView.as_view(), name='mysearch'),
     #url(r'^upload/$', other_views.upload_file, name='upload'),
 
     url(r'', include(application.urls)),

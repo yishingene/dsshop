@@ -277,7 +277,7 @@
 
                 // 2. update total purchase amount
                 $.ajax({
-                    url: "{% url 'basket-detail' basket.pk %}",
+                    url: "{% if basket %}{% url 'basket-detail' basket.pk %}{% else %}{% url 'basket-detail' request.basket.pk %}{% endif %}",
                     type: 'GET',
                     dataType: 'json',
                     success: updateTotal,
@@ -302,7 +302,7 @@
 
                 // 3. Update bagde on cart icon and 
                 $.ajax({
-                    url:  "{% url 'basket-lines-list' basket.pk %}",
+                    url:  {% if basket %}"{% url 'basket-lines-list' basket.pk %}"{% else %}{% url 'basket-lines-list' request.basket.pk %}{% endif %},
                     type: 'GET',
                     dataType: 'json',
                     success: updateBadge,
