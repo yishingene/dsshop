@@ -2228,6 +2228,7 @@ label.error {
     padding: 30px;
     border: 10px solid #f4f4f4;
     /* REMOVED */
+    border-image-source: url(../images/background/pattern.svg);
     border-image-repeat: repeat;
     border-image-slice: 27.777777778% 27.777777778%;
 }

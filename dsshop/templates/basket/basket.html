@@ -27,162 +27,111 @@
 
 {% block content %}
 
-<div id="content_inner" class="container">
+<div id="content_inner" class="flat-row flat-woocommerce flat-general sidebar-right">
+	<div class="container">
 
-{% if not basket.is_empty %}
-	<div class="row heading-row">
-		<div class="col-xs-2 col-sm-1">leeg</div>
-		<div class="col-xs-2 hidden-xs">leeg</div>
-		<div class="col-xs-4 col-sm-3">Product</div>
-		<div class="col-xs-2">Prijs</div>
-		<div class="col-xs-2">Aantal</div>
-		<div class="col-xs-2">Totaal</div>
-	</div>
-	<form action="." method="post" class="basket_summary" id="basket_formset">
-   		{% csrf_token %}
-        {{ formset.management_form }}
-		{% for form in formset %}
-			{% with line=form.instance product=form.instance.product %}
-				{% purchase_info_for_line request line as session %}
+	{% if not basket.is_empty %}
+		<div class="row heading-row">
+			<div class="col-xs-2 col-sm-1"></div>
+			<div class="col-xs-2 hidden-xs"></div>
+			<div class="col-xs-4 col-sm-3">Product</div>
+			<div class="col-xs-2">Prijs</div>
+			<div class="col-xs-2">Aantal</div>
+			<div class="col-xs-2">Totaal</div>
+		</div>
+		<form action="." method="post" class="basket_summary" id="basket_formset">
+	   		{% csrf_token %}
+	        {{ formset.management_form }}
+			{% for form in formset %}
+				{% with line=form.instance product=form.instance.product %}
+					{% purchase_info_for_line request line as session %}
 
+			<div class="row item-row {% cycle '' 'even' %}">
+				<div class="col-xs-2 col-sm-1">
+					<a href="#" data-id="{{ forloop.counter0 }}" data-behaviours="remove" class="remove basket"><b>x</b></a>
+	                <div style="display:none">
+	                	{{ form.move_to_basket }}
+	                    {{ form.DELETE }}
+	                </div>
+				</div>
+				<div class="col-sm-2 hidden-xs">
+		    {% with image=product.primary_image %}
+		        {% thumbnail image.original "100x100" upscale=False as thumb %}
+		            <a href="{{ product.get_absolute_url }}">
+		                <img class="thumbnail basket" src="{{ thumb.url }}" alt="{{ product.get_title }}"/>
+		            </a>
+		        {% endthumbnail %}
+		    {% endwith %}
+				</div>
+				<div class="col-xs-4 col-sm-3">
+					{{ line.description }}
+				</div>
+				<div class="col-xs-2">
+		        {% if line.is_tax_known %}
+		            {{ line.unit_price_incl_tax|currency:line.price_currency }}
+		        {% else %}
+		            {{ line.unit_price_excl_tax|currency:line.price_currency }}
+		        {% endif %}
+				</div>
+				<div class="col-xs-2">
+					{{ form.id }}
+					{% render_field form.quantity class+="form-control" %}
+					<!--<button type="submit">ok</button>-->
+				</div>
+				<div class="col-xs-2">
+		        {% if line.is_tax_known %}
+		            {{ line.line_price_incl_tax|currency:line.price_currency }}
+		        {% else %}
+		            {{ line.line_price_excl_tax|currency:line.price_currency }}
+		        {% endif %}	
+				</div>
+			</div>
+				{% endwith %}
+
+			{% endfor %}
+		</form>
 		<div class="row">
-			<div class="col-xs-2 col-sm-1">
-				<a href="#" data-id="{{ forloop.counter0 }}" data-behaviours="remove" class="remove basket"><b>x</b></a>
-                <div style="display:none">
-                	{{ form.move_to_basket }}
-                    {{ form.DELETE }}
-                </div>
-			</div>
-			<div class="col-sm-2 hidden-xs">
-	    {% with image=product.primary_image %}
-	        {% thumbnail image.original "100x100" upscale=False as thumb %}
-	            <a href="{{ product.get_absolute_url }}">
-	                <img class="thumbnail" src="{{ thumb.url }}" alt="{{ product.get_title }}"/>
-	            </a>
-	        {% endthumbnail %}
-	    {% endwith %}
-			</div>
-			<div class="col-xs-4 col-sm-3">
-				{{ line.description }}
-			</div>
-			<div class="col-xs-2">
-	        {% if line.is_tax_known %}
-	            {{ line.unit_price_incl_tax|currency:line.price_currency }}
-	        {% else %}
-	            {{ line.unit_price_excl_tax|currency:line.price_currency }}
-	        {% endif %}
-			</div>
-			<div class="col-xs-2">
-				{{ form.id }}
-				{% render_field form.quantity class+="form-control" %}
-				<button type="submit">ok</button>
-			</div>
-			<div class="col-xs-2">
-	        {% if line.is_tax_known %}
-	            {{ line.line_price_incl_tax|currency:line.price_currency }}
-	        {% else %}
-	            {{ line.line_price_excl_tax|currency:line.price_currency }}
-	        {% endif %}	
+			<div class="col-md-6 col-md-offset-6">
+				<div class="cart-collaterals">
+					<div class="cart_totals calculated_shipping">
+						<h2>Cart Totals</h2>
+						<div class="row">
+							<div class="col-xs-6">
+								{% trans 'Subtotaal' %}
+							</div>
+							<div class="col-xs-6">
+								
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
+								{% trans 'Verzendingskosten' %}
+							</div>
+							<div class="col-xs-6">
+								
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
+								{% trans 'Totaal' %}
+							</div>
+							<div class="col-xs-6">
+								
+							</div>
+						</div>
+
+						<div class="wc-proceed-to-checkout">
+							<a href="http://demo.linethemes.com/canava/checkout/" class="checkout-button button alt wc-forward">
+								{% trans 'Afrekenen' %}
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-			{% endwith %}
-
-		{% endfor %}
-	</form>
-{% endif %}
-
-
-	                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="flat-title-section style1 style2">Canava transport services is a full service, freight <span class="scheme">transportation</span> and <span class="scheme">logistics</span> company.</h3>
-                    </div><!-- /.col-md-12 -->
-                </div><!-- /.row -->
-                <div class="flat-divider d20px"></div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="flat-iconbox ">
-                            <div class="box-header">
-                                <div class="box-icon"><img src="images/services/1.jpg" alt="images"></div>
-                                <h5 class="box-title">Packaged goods transport</h5>
-                            </div>
-                            <div class="box-content">
-                                Focuses on the packaging requirements of goods in transit, in particular for items traveling overland by road or rail.                                
-                                <p class="box-readmore">
-                                    <a href="services-detail.html">Read more</a>
-                                </p>
-                            </div>
-                        </div><!-- /.flat-iconbox -->
-
-                        <div class="flat-iconbox ">
-                            <div class="box-header">
-                                <div class="box-icon"><img src="images/services/3.jpg" alt="images"></div>
-                                <h5 class="box-title">Sea and air freight</h5>
-                            </div>
-                            <div class="box-content">
-                                By using a combination of sea and air freight, you bring added flexibility to your supply chain.                                
-                                <p class="box-readmore">
-                                    <a href="services-detail-v3.html">Read more</a>
-                                </p>
-                            </div>
-                        </div><!-- /.flat-iconbox -->
-
-                        <div class="flat-iconbox ">
-                            <div class="box-header">
-                                <div class="box-icon"><img src="images/services/5.jpg" alt="images"></div>
-                                <h5 class="box-title">Warehousing and storage</h5>
-                            </div>
-                            <div class="box-content">
-                                Canava is able to offer heated or unheated warehouse solutions both for short-term and for long-term storage.                               
-                                <p class="box-readmore">
-                                    <a href="services-detail-v5.html">Read more</a>
-                                </p>
-                            </div>
-                        </div><!-- /.flat-iconbox -->
-                    </div><!-- /.col-md-6 -->
-
-                    <div class="col-md-6">
-                        <div class="flat-iconbox ">
-                            <div class="box-header">
-                                <div class="box-icon"><img src="images/services/2.jpg" alt="images"></div>
-                                <h5 class="box-title">Multimodal transport</h5>
-                            </div>
-                            <div class="box-content">
-                                When it comes to multimodal transport services, Canava Transport has connections you can trust.
-                                <p class="box-readmore">
-                                    <a href="services-detail-v2.html">Read more</a>
-                                </p>
-                            </div>
-                        </div><!-- /.flat-iconbox -->
-
-                        <div class="flat-iconbox ">
-                            <div class="box-header">
-                                <div class="box-icon"><img src="images/services/4.jpg" alt="images"></div>
-                                <h5 class="box-title">Logistics solutions</h5>
-                            </div>
-                            <div class="box-content">
-                                Smart and sustainable business requires the skills of logistics experts who are able to think ahead.
-                                <p class="box-readmore">
-                                    <a href="services-detail-v4.html">Read more</a>
-                                </p>
-                            </div>
-                        </div><!-- /.flat-iconbox -->
-
-                        <div class="flat-iconbox ">
-                            <div class="box-header">
-                                <div class="box-icon"><img src="images/services/6.jpg" alt="images"></div>
-                                <h5 class="box-title">Forwarding services</h5>
-                            </div>
-                            <div class="box-content">
-                                With our extensive network, we will find a competitive and efficient solution to your next assignment.                              
-                                <p class="box-readmore">
-                                    <a href="services-detail-v6.html">Read more</a>
-                                </p>
-                            </div>
-                        </div><!-- /.flat-iconbox -->
-                    </div><!-- /.col-md-6 -->
-                </div><!-- /.row -->
-            </div>
-					
+	{% endif %}
+	</div>
+</div>					
 {% endblock content %}
 
 
