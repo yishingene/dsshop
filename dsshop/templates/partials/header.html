@@ -1,4 +1,4 @@
-{% load i18n thumbnail %}
+{% load i18n thumbnail category_tags %}
 <div class="site-header header-v2">
     <div class="flat-top">
         <div class="container">
@@ -91,11 +91,18 @@
                         </li>
                         <li class="{% if request.get_full_path == catalogue_url %}active{% endif %}">
                         <a href="{{ catalogue_url }}">Shop</a>
-                            <ul class="submenu">
-                                <li><a href="about.html">DS</a></li>
-                                <li><a href="company-history.html">2PK</a></li>
-                                <li><a href="our-people.html">Andere</a></li>
-                            </ul><!-- /.submenu -->
+                    {% category_tree as tree_categories %}
+                    {% if tree_categories %}
+                        <ul class="submenu">
+                        {% for tree_category, info in tree_categories %}
+                            {% if info.level == 0 %}
+                            <li>
+                                <a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
                         </li>
                         <li><a href="services.html">{% trans 'Onze diensten' %}</a>
                         </li>

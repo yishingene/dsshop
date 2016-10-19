@@ -302,7 +302,7 @@
 
                 // 3. Update bagde on cart icon and 
                 $.ajax({
-                    url:  {% if basket %}"{% url 'basket-lines-list' basket.pk %}"{% else %}{% url 'basket-lines-list' request.basket.pk %}{% endif %},
+                    url:  "{% if basket %}{% url 'basket-lines-list' basket.pk %}{% else %}{% url 'basket-lines-list' request.basket.pk %}{% endif %}",
                     type: 'GET',
                     dataType: 'json',
                     success: updateBadge,
