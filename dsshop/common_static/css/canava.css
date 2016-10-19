@@ -1620,7 +1620,7 @@ a.scheme:hover {
 }
 
 .widget.widget_search .search-form .search-submit {
-	/* REMOVED */
+	background-image: url(../images/background/arrow.png);
     background-repeat: no-repeat;
     background-position: center;
     width: 24px;

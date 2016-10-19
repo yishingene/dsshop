@@ -52,9 +52,8 @@
                                 <a href="#search" class="flat-search"><i class="fa fa-search"></i></a>
                                 <div class="submenu top-search">
                                     <div class="widget widget_search">
-                                        <form class="search-form">
-                                            <input type="search" class="search-field" placeholder="Search …">
-                                            <input type="submit" class="search-submit">
+                                        <form method="get" action="{% url 'search:search' %}" class="search-form">
+                                            <input name="q" type="search" class="search-field" placeholder="{% trans 'Zoek producten&hellip;' %}">
                                         </form>
                                     </div>
                                 </div>

@@ -100,7 +100,11 @@
 								{% trans 'Subtotaal' %}
 							</div>
 							<div class="col-xs-6">
-								
+                                {% if not show_tax_separately and basket.is_tax_known %}
+                                    {{ basket.total_incl_tax|currency:basket.currency }}
+                                {% else %}
+                                    {{ basket.total_excl_tax|currency:basket.currency }}
+                                {% endif %}
 							</div>
 						</div>
 						<div class="row">
@@ -121,7 +125,7 @@
 						</div>
 
 						<div class="wc-proceed-to-checkout">
-							<a href="http://demo.linethemes.com/canava/checkout/" class="checkout-button button alt wc-forward">
+							<a href="{% url 'checkout:index' %}" class="checkout-button button alt wc-forward">
 								{% trans 'Afrekenen' %}
 							</a>
 						</div>
