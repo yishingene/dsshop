@@ -1,0 +1,26 @@
+{% load basket_tags display_tags i18n purchase_info_tags widget_tweaks %}
+
+{% purchase_info_for_product request product as session %}
+
+{% if session.availability.is_available_to_buy %}
+    {% basket_form request product as basket_form %}
+    <form id="add_to_basket_form" action="{% url 'basket:add' pk=product.pk  %}" method="post" class="cart">
+        {% csrf_token %}
+        <div class="quantity">
+            {% render_field basket_form.quantity class+="input-text qty text" step='1' min='1' max='100' type='number' %}
+        </div>
+        <button type="submit" class="button" value="{% trans 'In Winkelwagen' %}" data-loading-text="{% trans 'Aan het toevoegen ...' %}">{% trans "In Winkelwagen" %}</button>
+    </form>
+{% else %}
+    {% if has_active_alert %}
+        <p>{% trans "You have an active stock alert for this product." %}</p>
+    {% else %}
+        <form id="alert_form" method="post" action="{% url 'customer:alert-create' pk=product.id %}" class="cart">
+            {% csrf_token %}
+            <p>{% trans "You can get an email alert when this product is back in stock." %}</p>
+            {% include "partials/form_fields.html" with form=alert_form %}
+            <button type="submit" class="button" value="{% trans 'In Winkelwagen' %}" data-loading-text="{% trans 'Aan het toevoegen ...' %}">{% trans "In Winkelwagen" %}</button>
+        </form>
+    {% endif %}
+{% endif %}
+

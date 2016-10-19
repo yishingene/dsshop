@@ -22,7 +22,7 @@
                             <li class="trail-item"><a href="{% url 'catalogue:index' %}">{% trans 'Producten' %}</a></li>
                     {% with category=product.categories.all.0 %}
                         {% for category in category.get_ancestors_and_self %}
-                            <li class="trail-item"><a href="{{ category.get_absolute_url }}">{{ category.name|title }}</a></li>
+                            <li class="trail-item"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
                         {% endfor %}
                     {% endwith %}
                             <li class="trail-item">{{ product.title }}</li>
@@ -67,17 +67,11 @@
                             <p class="price"><span class="amount">&nbsp;</span></p>                        
                     {% endif %}
                         </div>
-
-
-                                <div class="description">
-                                    <p>{{ product.description|default:""|striptags }}</p>
-                                </div>
-                                <form class="cart">
-                                    <div class="quantity">
-                                        <input type="number" step="1" min="1" max="100" name="quantity" value="1" class="input-text qty text">
-                                    </div>
-                                    <button type="submit" class="button">Add to cart</button>
-                                </form>
+                        <div class="description">
+                            <p>{{ product.description|default:""|striptags }}</p>
+                        </div>
+                        <!-- Add To Basket Form -->
+                        {% include 'catalogue/partials/add_to_basket_form.html' %}
                                 <div class="product_meta">
                                     <span class="posted_in">Categories: <a href="#">Accessories</a>, <a href="#">Radar Detectors</a></span>
                                 </div>
