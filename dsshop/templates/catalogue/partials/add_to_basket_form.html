@@ -19,7 +19,8 @@
             {% csrf_token %}
             <p>{% trans "You can get an email alert when this product is back in stock." %}</p>
             {% include "partials/form_fields.html" with form=alert_form %}
-            <button type="submit" class="button" value="{% trans 'In Winkelwagen' %}" data-loading-text="{% trans 'Aan het toevoegen ...' %}">{% trans "In Winkelwagen" %}</button>
+            {% render_field alert_form.email type='email' class+='search-field' placeholder='Email' %}
+            <button type="submit" class="button" value="{% trans 'In Winkelwagen' %}" data-loading-text="{% trans 'Aan het toevoegen ...' %}">{% trans 'Melding Aanvragen' %}</button>
         </form>
     {% endif %}
 {% endif %}
