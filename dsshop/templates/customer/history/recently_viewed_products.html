@@ -9,7 +9,7 @@
             <li>
                 <a href="{{ product.get_absolute_url }}">
 	            {% with image=product.primary_image %}
-	                {% thumbnail image.original "x200" as thumb %}
+	                {% thumbnail image.original "x100" as thumb %}
                     <img src="{{ thumb.url }}" alt="{{ product }}">
 	                {% endthumbnail %}
 	            {% endwith %}
@@ -18,6 +18,8 @@
             {% purchase_info_for_product request product as session %}
                 {% if session.price.exists %}
                 <span class="amount">{{ session.price.incl_tax|currency:session.price.currency }}</span>
+                {% else %}
+                <span class="amount">{% trans 'Niet beschikbaar' %}</span>
                 {% endif %}
             </li>
             {% endfor %}
