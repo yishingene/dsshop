@@ -10,39 +10,7 @@
 {% block content %}
 <div id="content_inner" class="flat-row flat-woocommerce flat-general sidebar-right">
     <div class="container">
-        {% if not user.is_authenticated %}
-        <div class="woocommerce-info">{% trans 'Bestaande klant?' %}
-            <a data-toggle="collapse" href="#login_form" class="showlogin">{% trans 'Klik hier om in te loggen!' %}</a>
-        </div>
-
-
-        <form id="login_form" method="post" class="login collapse" action="{{ request.get_full_path }}">
-            <p>{% trans 'Als je reeds een account bij ons hebt, kan je hier je inloggen. Nieuwe klanten kunnen hun gegevens verderop invullen' %}</p>
-            {% csrf_token %}
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="form-row form-row-first">
-                        <label for="username">Email<span class="required">*</span></label><br>
-                        <input type="email" class="input-text" name="username" id="id_username">
-                    </p>
-                    <p class="form-row form-row-last">
-                        <label for="password">Password<span class="required">*</span></label><br>
-                        <input class="input-text" type="password" name="password" id="id_password">
-                    </p>
-                    <div class="clear"></div>
-                    <p class="form-row">
-                        <button type="submit" class="button" name="login">{% trans 'inloggen' %}</button>
-                    </p>
-                    <!--<p class="lost_password">
-                        <a href="http://demo.linethemes.com/canava/my-account/lost-password/">Lost your password?</a>
-                    </p>-->
-                    <div class="clear"></div>   
-                </div>
-            </div>
-        </form>
-        {% else %}
-        scheisse
-        {% endif %}
+  
     </div>
 </div>
 {% endblock content %}
