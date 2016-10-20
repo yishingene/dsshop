@@ -1,35 +1,31 @@
 {% load i18n product_tags thumbnail purchase_info_tags currency_filters %}
 
-{% with products_sliced=products|slice:":3" %}
+{% with products_sliced=products|slice:":4" %}
     {% if products_sliced %}
-        <div class="row">
-            {% for product in products_sliced %}
-			<div class="col-md-4 col-sm-6">
-		        <div class="product-inner">
-		            <div class="product-thumbnail text-center">
-		                <a href="{{ product.get_absolute_url }}">
-		                {% with image=product.primary_image %}
-		                    {% thumbnail image.original "x200" as thumb %}
-		                    <img src="{{ thumb.url }}" alt="{{ product.get_title }}" style="height: 200px;">
-		                    {% endthumbnail %}
-		                {% endwith %}
-		                </a>
-		            </div>
-		            {% purchase_info_for_product request product as session %}
-		            <div class="product-info">
-		                <div class="product-info-wrap">
-		                    <h3>{{ product|title }}</h3>
-		                    <span class="price">
-		                        {% if session.price.exists %}
-		                        <span class="amount">{{ session.price.incl_tax|currency:session.price.currency }}</span>
-		                        {% endif %}
-		                    </span>
-		                </div>
-		            </div>
-		        </div><!-- /.product-inner -->
-			</div>
+    <div class="widget widget_products">
+        <h4 class="widget-title">{% trans 'Recent bekeken' %}</h4>
+        <ul class="product_list_widget">
+        	{% for product in products_sliced %}
+            <li>
+                <a href="{{ product.get_absolute_url }}">
+	            {% with image=product.primary_image %}
+	                {% thumbnail image.original "x200" as thumb %}
+                    <img src="{{ thumb.url }}" alt="{{ product }}">
+	                {% endthumbnail %}
+	            {% endwith %}
+                    <span class="product-title">{{ product|title }}</span>
+                </a>
+            {% purchase_info_for_product request product as session %}
+                {% if session.price.exists %}
+                <span class="amount">{{ session.price.incl_tax|currency:session.price.currency }}</span>
+                {% endif %}
+            </li>
             {% endfor %}
-        </div>
+       	</ul>
+   	</div>
     {% endif %}
 {% endwith %}
+
+
+
 

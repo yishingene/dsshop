@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% load basket_tags promotion_tags product_tags i18n %}
+{% load basket_tags promotion_tags product_tags i18n history_tags %}
 
 {% block title %}
     {% if summary %}{{ summary }} |{% endif %} {{ block.super }}
@@ -74,32 +74,13 @@
                             </div>
                         </div><!-- /.widget_price_filter -->
 
-                        <div class="widget widget_products">
-                            <h4 class="widget-title">Featured Products</h4>
-                            <ul class="product_list_widget">
-                                <li>
-                                    <a href="shop-detail.html">
-                                        <img src="images/products/f1.jpg" alt="images">
-                                        <span class="product-title">Rigid industries RI series</span>
-                                    </a>
-                                    <span class="amount">£85.49</span>
-                                </li>
-                                <li>
-                                    <a href="shop-detail.html">
-                                        <img src="images/products/f2.jpg" alt="images">
-                                        <span class="product-title">Rigid industries midnight</span>
-                                    </a>
-                                    <span class="amount">£189.99</span>
-                                </li>
-                                <li>
-                                    <a href="shop-detail.html">
-                                        <img src="images/products/f3.jpg" alt="images">
-                                        <span class="product-title">Metro vac n' blo 500</span>
-                                    </a>
-                                    <span class="amount">£94.99</span>
-                                </li>
-                            </ul>
-                        </div><!-- /.widget_products -->
+                                <!--<div class="related_products woocommerce">
+                        <h4 class="flat-title-section style">{% trans 'Recent bekeken producten' %}</h4>
+                        {- recently_viewed_products current_product=product -}
+                    </div>-->
+                        {% block recently_viewed %}
+                            {% recently_viewed_products current_product=product %}
+                        {% endblock recently_viewed %}
 
                         <div class="widget widget_tag_cloud">
                             <h4 class="widget-title">Product tags</h4>
