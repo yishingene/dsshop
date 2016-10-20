@@ -37,7 +37,7 @@
 {% block content %}
     <div id="content_inner" class="flat-row flat-woocommerce flat-general sidebar-right">
         <div class="container">
-            {% if user.is_authenticated %}
+            {% if not user.is_authenticated %}
             <div class="woocommerce-info">{% trans 'Bestaande klant?' %}
                 <a data-toggle="collapse" href="#login_form" class="showlogin">{% trans 'Klik hier om in te loggen!' %}</a>
             </div>

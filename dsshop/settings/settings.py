@@ -226,14 +226,14 @@ OSCAR_DASHBOARD_NAVIGATION = [
                 'label': _('Categories'),
                 'url_name': 'dashboard:catalogue-category-list',
             },
-            {
-                'label': _('Ranges'),
-                'url_name': 'dashboard:range-list',
-            },
-            {
-                'label': _('Low stock alerts'),
-                'url_name': 'dashboard:stock-alert-list',
-            },
+#            {
+#                'label': _('Ranges'),
+#                'url_name': 'dashboard:range-list',
+#            },
+#            {
+#                'label': _('Low stock alerts'),
+#                'url_name': 'dashboard:stock-alert-list',
+#            },
         ]
     },
 #    {
@@ -270,10 +270,10 @@ OSCAR_DASHBOARD_NAVIGATION = [
                 'label': _('Customers'),
                 'url_name': 'dashboard:users-index',
             },
-            {
-                'label': _('Stock alert requests'),
-                'url_name': 'dashboard:user-alert-list',
-            },
+#            {
+#                'label': _('Stock alert requests'),
+#                'url_name': 'dashboard:user-alert-list',
+#            },
         ]
     },
 #    {
@@ -325,3 +325,4 @@ OSCAR_DASHBOARD_NAVIGATION = [
 
 OSCAR_PRODUCTS_PER_PAGE = 21
 OSCAR_RECENTLY_VIEWED_PRODUCTS = 10
+OSCAR_ACCOUNTS_REDIRECT_URL = '/'
