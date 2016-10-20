@@ -12,7 +12,10 @@
         <button type="submit" class="button" value="{% trans 'In Winkelwagen' %}" data-loading-text="{% trans 'Aan het toevoegen ...' %}">{% trans "In Winkelwagen" %}</button>
     </form>
 {% else %}
-    {% if has_active_alert %}
+    <p>
+        <strong>{% trans 'Dit product is momenteel niet verkrijgbaar via de webshop' %}</strong>
+    </p>
+    <!--{% if has_active_alert %}
         <p>{% trans "You have an active stock alert for this product." %}</p>
     {% else %}
         <form id="alert_form" method="post" action="{% url 'customer:alert-create' pk=product.id %}" class="cart">
@@ -22,6 +25,6 @@
             {% render_field alert_form.email type='email' class+='search-field' placeholder='Email' %}
             <button type="submit" class="button" value="{% trans 'In Winkelwagen' %}" data-loading-text="{% trans 'Aan het toevoegen ...' %}">{% trans 'Melding Aanvragen' %}</button>
         </form>
-    {% endif %}
+    {% endif %}-->
 {% endif %}
 

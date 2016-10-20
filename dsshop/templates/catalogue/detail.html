@@ -45,7 +45,7 @@
                     {% with image=product.primary_image %}
                     <div class="products-images">
                         <a class="popup-gallery" href="images/products/1.jpg">
-                            {% thumbnail image.original "440x400" upscale=False as thumb %}
+                            {% thumbnail image.original "500x500" upscale=False as thumb %}
                             <img src="{{ thumb.url }}" alt="{{ product.get_title }}">
                             {% endthumbnail %}
                         </a>
@@ -53,11 +53,20 @@
                     {% endwith %}
                 {% endwith %}
                     <div class="summary">
+                        <div class="description">
+                            <h4>{{ product.title }}</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
                         <div>
                     {% purchase_info_for_product request product as session %}
                     {% if session.price.exists %}
                         {% if session.price.excl_tax == 0 %}
-                        <p class="price"><span class="amount">{% trans 'Gratis' %}</span></p>
+                            <p class="price"><span class="amount">{% trans 'Gratis' %}</span></p>
                         {% elif session.price.is_tax_known %}
                             <p class="price"><span class="amount">{{ session.price.incl_tax|currency:session.price.currency }}</span></p>
                         {% else %}
@@ -67,73 +76,11 @@
                             <p class="price"><span class="amount">&nbsp;</span></p>                        
                     {% endif %}
                         </div>
-                        <div class="description">
-                            <p>{{ product.description|default:""|striptags }}</p>
-                        </div>
                         <!-- Add To Basket Form -->
                         {% include 'catalogue/partials/add_to_basket_form.html' %}
-                                <div class="product_meta">
-                                    <span class="posted_in">Categories: <a href="#">Accessories</a>, <a href="#">Radar Detectors</a></span>
-                                </div>
-                            </div><!-- /.summary -->
-
-                            <div class="flat-tabs" style="clear: left;">
-                                <ul class="menu-tabs">
-                                    <li class="active"><a href="#">Description</a></li>
-                                    <li class=""><a href="#">Reviews (0)</a></li>
-                                </ul>
-                                <div class="content-tab">
-                                    <div class="content-inner active" style="display: block;">
-                                        <p>Experience the High Definition difference with the Escort PASSPORT Max Radar Detector. Using advanced Digital Signal Processing (DSP) Technology developed by the military, it hunts down threats across all radar and laser bands up to 50x faster than conventional detectors for near instantaneous warnings. That way, you can respond in time and avoid hefty fines, higher insurance costs and tedious traffic school.</p>
-                                        <p>False alarms from security cameras, automatic doors and other background radio frequency signals are a thing of the past with the Escort PASSPORT Max. With onboard GPS and AutoLearn Technology, it remembers the location of harmless signals and doesn’t speak up unless the threat it real. Plus, it comes preloaded with Escort’s DEFENDER Database of red-light cameras and speed traps, so you always have a heads up on what’s around the bend.</p>
-                                    </div><!-- /.content-inner -->
-
-                                    <div class="content-inner" style="display: none;">
-                                        <div class="woocommerce-reviews">
-                                            <div id="review_form_wrapper">
-                                                <div id="review_form">
-                                                    <div class="comment-respond">
-                                                        <form id="commentform" class="comment-form">
-                                                            <p class="comment-notes"><span id="email-notes">There are no reviews yet.</span></p>
-                                                            <h5>Be the first to review “Escort passport max” </h5>
-                                                            <p class="comment-form-rating">
-                                                                <label>Your Rating</label>
-                                                                
-                                                            </p>
-                                                            <p class="stars">
-                                                                    <span><i class="fa fa-star-o"></i></span>
-                                                                    <span><i class="fa fa-star-o"></i></span>
-                                                                    <span><i class="fa fa-star-o"></i></span>
-                                                                    <span><i class="fa fa-star-o"></i></span>
-                                                                    <span><i class="fa fa-star-o"></i></span>
-                                                                </p>
-                                                            <p class="comment-form-comment">
-                                                                <label>Your Review <span class="required">*</span></label>
-                                                                <textarea id="comment"></textarea>
-                                                            </p>
-                                                            <p class="comment-form-author">
-                                                                <label for="author">Name <span class="required">*</span></label> 
-                                                                <input id="author" name="author" type="text">
-                                                            </p>
-                                                            <p class="comment-form-email">
-                                                                <label for="email">Email <span class="required">*</span></label> 
-                                                                <input id="email" name="email" type="email">
-                                                            </p>
-                                                            <p class="form-submit">
-                                                                <input name="submit" type="submit" id="submit" class="submit" value="Submit"> 
-                                                            </p>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div><!-- /#review_form_wrapper -->
-                                        </div>
-                                    </div><!-- /.content-inner -->                                    
-                                </div><!-- /.content-tab -->
-                            </div><!-- /.flat-tabs -->
-                        </div>
-
-            </div><!-- /.general -->
-
+                    </div><!-- /.summary -->
+                </div>
+            </div>
             <div class="general-sidebars">
                 <div class="sidebar-wrap">
                     <div class="sidebar">                               
@@ -144,159 +91,87 @@
                     </div><!-- /.sidebar -->
                 </div><!-- /.sidebar-wrap -->
             </div><!-- /.general-sidebars -->
+        </div>
+        <div class="row">
+            <div class="general">
+                <div class="products-detail">
+                    <div class="flat-tabs" style="clear: left;">
+                        <ul class="menu-tabs">
+                            <li class="active">
+                                <a href="#">{% trans 'kenmerken' %}</a>
+                            </li>
+                            <!--<li class=""><a href="#">Reviews (0)</a></li>-->
+                        </ul>
+                        <div class="content-tab">
+                            <div class="content-inner active" style="display: block;">
+                                <p>Experience the High Definition difference with the Escort PASSPORT Max Radar Detector. Using advanced Digital Signal Processing (DSP) Technology developed by the military, it hunts down threats across all radar and laser bands up to 50x faster than conventional detectors for near instantaneous warnings. That way, you can respond in time and avoid hefty fines, higher insurance costs and tedious traffic school.</p>
+                                <p>False alarms from security cameras, automatic doors and other background radio frequency signals are a thing of the past with the Escort PASSPORT Max. With onboard GPS and AutoLearn Technology, it remembers the location of harmless signals and doesn’t speak up unless the threat it real. Plus, it comes preloaded with Escort’s DEFENDER Database of red-light cameras and speed traps, so you always have a heads up on what’s around the bend.</p>
+                            </div><!-- /.content-inner -->                                    
+                        </div><!-- /.content-tab -->
+                    </div><!-- /.flat-tabs -->
+                            <div class="related_products woocommerce">
+                                <h4 class="flat-title-section style">Related Products</h4>
+                                <ul class="products">
+                                    <li>
+                                        <div class="product-inner">
+                                            <div class="product-thumbnail">
+                                                <a href="shop-detail.html">
+                                                    <img src="images/products/5.jpg" alt="images">
+                                                </a>
+                                            </div>
+                                            <div class="product-info">
+                                                <div class="product-info-wrap">
+                                                    <h3>Metro vac n’ blo 500</h3>
+                                                    <span class="price"><span class="amount">£94.99</span></span>
+                                                    <a class="button" href="#">all to cart</a>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.product-inner -->
+                                    </li>
+
+                                    <li>
+                                        <div class="product-inner">
+                                            <div class="product-thumbnail">
+                                                <a href="shop-detail.html">
+                                                    <img src="images/products/4.jpg" alt="images">
+                                                </a>
+                                            </div>
+                                            <div class="product-info">
+                                                <div class="product-info-wrap">
+                                                    <h3>Hella trumpet horn</h3>
+                                                    <span class="price"><span class="amount">£25.99</span></span>
+                                                    <a class="button" href="#">all to cart</a>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.product-inner -->
+                                    </li>
+
+                                    <li>
+                                        <div class="product-inner">
+                                            <div class="product-thumbnail">
+                                                <a href="shop-detail.html">
+                                                    <img src="images/products/9.jpg" alt="images">
+                                                </a>
+                                            </div>
+                                            <div class="product-info">
+                                                <div class="product-info-wrap">
+                                                    <h3>Smittybilt recovery tow</h3>
+                                                    <span class="price"><span class="amount">£39.99</span></span>
+                                                    <a class="button" href="#">all to cart</a>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.product-inner -->
+                                    </li>
+                                </ul><!-- /.products -->
+                            </div>
+                </div>
+            </div><!-- /.general -->
         </div><!-- /.row -->
     </div><!-- /.container -->
 </div>
 
+{% recently_viewed_products current_product=product %}
 
-
-<article class="product_page"><!-- Start of product page -->
-
-    <div class="row">
-
-        {% block product_gallery %}
-        <div class="col-sm-6">
-            {% include "catalogue/partials/gallery.html" %}
-        </div>
-        {% endblock %}
-
-        {% block product_main %}
-        <div class="col-sm-6 product_main">
-            {% comment %}
-            This is a but clunky here.  Better to have some kind of JS-driven dashboard menu that 
-            pops out when clicked.  A bit like the Django-Debug-Toolbar button
-            {% endcomment %}
-            {% if user.is_authenticated and user.is_staff %}
-                <a class="pull-right hidden-xs" href="{% url 'dashboard:catalogue-product' pk=product.id %}"><small><i class="icon-edit"></i> {% trans "Edit this product" %}</small></a>
-            {% endif %}
-            <h1>{{ product.get_title }}</h1>
-
-            {% block product_stock_record %}
-                {% include "catalogue/partials/stock_record.html" with verbose=1 %}
-            {% endblock %}
-
-            {% iffeature "reviews" %}
-                {% include "catalogue/reviews/partials/review_stars.html" %}
-            {% endiffeature %}
-
-            <hr/>
-
-            {% block product_basket_form %}
-                {% include "catalogue/partials/add_to_basket_form.html" %}
-            {% endblock %}
-        </div><!-- /col-sm-6 -->
-        {% endblock %}
-
-    </div><!-- /row -->
-
-    {% block product_description %}
-        {% if product.description %}
-        <div id="product_description" class="sub-header">
-            <h2>{% trans "Product Description" %}</h2>
-        </div>
-        <p>{{ product.description|safe }}</p>
-        {% endif %}
-    {% endblock %}
-
-    {% block product_info %}
-    <div class="sub-header">
-        <h2>{% trans "Product Information" %}</h2>
-    </div>
-    <table class="table table-striped">
-        {% if product.upc %}
-        <tr>
-            <th>{% trans "UPC" %}</th><td>{{ product.upc }}</td>
-        </tr>
-        {% endif %}
-        <tr>
-            <th>{% trans "Product Type" %}</th><td>{{ product.get_product_class.name }}</td>
-        </tr>
-
-        {% purchase_info_for_product request product as session %}
-        {% if session.price.exists %}
-            <tr>
-                <th>{% trans "Price (excl. tax)" %}</th><td>{{ session.price.excl_tax|currency:session.price.currency }}</td>
-            </tr>
-            {% if session.price.is_tax_known %}
-                <tr>
-                    <th>{% trans "Price (incl. tax)" %}</th><td>{{ session.price.incl_tax|currency:session.price.currency }}</td>
-                </tr>
-                <tr>
-                    <th>{% trans "Tax" %}</th><td>{{ session.price.tax|currency:session.price.currency }}</td>
-                </tr>
-            {% endif %}
-            <tr>
-                <th>{% trans "Availability" %}</th>
-                <td>{{ session.availability.message }}</td>
-            </tr>
-        {% endif %}
-        {% for av in product.attribute_values.all %}
-            <tr>
-                <th>{{ av.attribute.name }}</th>
-                <td>{{ av.value_as_html }}</td>
-            </tr>
-        {% endfor %}
-        {% iffeature "reviews" %}
-            <tr>
-                <th>{% trans "Number of reviews" %}</th>
-                <td>{{ product.num_approved_reviews }}</td>
-            </tr>
-        {% endiffeature %}
-    </table>
-    {% endblock %}
-
-    {% iffeature "reviews" %}
-        {% block product_review %}
-        <section>
-            <div id="reviews" class="sub-header">
-                {% if product.num_approved_reviews > 3 %}
-                    <a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}" class="btn pull-right">{% trans "See all reviews" %}</a>
-                {% endif %}
-                <h2>{% trans "Customer Reviews" %}</h2>
-            </div>
-
-            {% if product.num_approved_reviews == 0 %}
-                <p>
-                    {% if product|is_review_permitted:user %}
-                        {% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id as add_review_url %}
-                            {% blocktrans %}This product does not have any reviews yet -
-                            <a href="{{ add_review_url }}#addreview">be the first to write one</a>.
-                        {% endblocktrans %}
-                    {% else %}
-                        {% trans "This product does not have any reviews yet" %}.
-                    {% endif %}
-                </p>
-            {% else %}
-                <ol class="list-unstyled review-list">
-                    {% for review in product.reviews.approved.all|slice:":3" %}
-                        <li>
-                        {% include 'catalogue/partials/review.html' %}
-                        </li>
-                    {% endfor %}
-                </ol>
-            {% endif %}
-        </section>
-        {% endblock product_review %}
-    {% endiffeature %}
-
-    {% with recommended_products=product.recommended_products.all|slice:":6" %}
-        {% if recommended_products %}
-            <div class="sub-header">
-                <h2>{% trans "Recommended items" %}</h2>
-            </div>
-            <ul class="row">
-                {% for product in recommended_products %}
-                <li class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                    {% render_product product %}
-                </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-
-    {% recently_viewed_products current_product=product %}
-
-</article><!-- End of product page -->
 {% endblock content %}
 
 {% block extrascripts %}

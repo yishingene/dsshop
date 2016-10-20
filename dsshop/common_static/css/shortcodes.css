@@ -361,7 +361,7 @@
     content: "";
     position: relative;
     display: inline-block;
-    /* REMOVED */
+    background: url(../images/background/bg-heading.svg);
     width: 200%;
     height: 16px;
     margin: 0 -200% 0 25px;
