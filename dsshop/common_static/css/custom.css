@@ -66,6 +66,14 @@ div.custom-info > a::focus {
 	color: #32bfc0;
 }
 
+.product-info-wrap h3 {
+	font-size: 16px;
+}
+
+.product-info-wrap .button {
+	width: 100%
+}
+
 #mainnav-mobi ul > li > a:hover {
 	/*background-color: #ffc952;*/
 	background-color: #32bfc0;

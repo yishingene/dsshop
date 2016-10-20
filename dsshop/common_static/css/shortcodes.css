@@ -2127,7 +2127,7 @@ label.error {
     margin: 0 0 5px 0;
 }
 
-.woocommerce .products li .product-info .price {
+.woocommerce .products li .product-info .price, span.amount {
     display: block;
     margin: 0 0 15px 0;
     font-weight: bold;

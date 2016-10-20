@@ -109,68 +109,25 @@
                             </div><!-- /.content-inner -->                                    
                         </div><!-- /.content-tab -->
                     </div><!-- /.flat-tabs -->
-                            <div class="related_products woocommerce">
-                                <h4 class="flat-title-section style">Related Products</h4>
-                                <ul class="products">
-                                    <li>
-                                        <div class="product-inner">
-                                            <div class="product-thumbnail">
-                                                <a href="shop-detail.html">
-                                                    <img src="images/products/5.jpg" alt="images">
-                                                </a>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-info-wrap">
-                                                    <h3>Metro vac n’ blo 500</h3>
-                                                    <span class="price"><span class="amount">£94.99</span></span>
-                                                    <a class="button" href="#">all to cart</a>
-                                                </div>
-                                            </div>
-                                        </div><!-- /.product-inner -->
-                                    </li>
-
-                                    <li>
-                                        <div class="product-inner">
-                                            <div class="product-thumbnail">
-                                                <a href="shop-detail.html">
-                                                    <img src="images/products/4.jpg" alt="images">
-                                                </a>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-info-wrap">
-                                                    <h3>Hella trumpet horn</h3>
-                                                    <span class="price"><span class="amount">£25.99</span></span>
-                                                    <a class="button" href="#">all to cart</a>
-                                                </div>
-                                            </div>
-                                        </div><!-- /.product-inner -->
-                                    </li>
-
-                                    <li>
-                                        <div class="product-inner">
-                                            <div class="product-thumbnail">
-                                                <a href="shop-detail.html">
-                                                    <img src="images/products/9.jpg" alt="images">
-                                                </a>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-info-wrap">
-                                                    <h3>Smittybilt recovery tow</h3>
-                                                    <span class="price"><span class="amount">£39.99</span></span>
-                                                    <a class="button" href="#">all to cart</a>
-                                                </div>
-                                            </div>
-                                        </div><!-- /.product-inner -->
-                                    </li>
-                                </ul><!-- /.products -->
-                            </div>
+            {% with recommended_products=product.recommended_products.all|slice:":3"%}
+                {% if recommended_products %}
+                    <div class="related_products woocommerce">
+                        <h4 class="flat-title-section style">{% trans 'Gerelateerde producten' %}</h4>
+                    {% for product in recommended_products %}
+                        {% include 'partials/recommended_products.html' %}
+                    {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+                    <!--<div class="related_products woocommerce">
+                        <h4 class="flat-title-section style">{% trans 'Recent bekeken producten' %}</h4>
+                        {- recently_viewed_products current_product=product -}
+                    </div>-->
                 </div>
             </div><!-- /.general -->
         </div><!-- /.row -->
     </div><!-- /.container -->
 </div>
-
-{% recently_viewed_products current_product=product %}
 
 {% endblock content %}
 
