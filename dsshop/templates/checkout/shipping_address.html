@@ -1,6 +1,6 @@
 {% extends 'checkout/checkout.html' %}
 
-{% load i18n %}
+{% load i18n widget_tweaks %}
 
 {% block breadcrumbs %}
     <div class="page-breadcrumbs">
@@ -20,3 +20,117 @@
         </div><!-- /.container -->
     </div><!-- /.page-breadcrumbs -->
 {% endblock breadcrumbs %}
+
+
+
+{% block shipping_address %}
+<div class="flat-row flat-woocommerce flat-general sidebar-right">
+    <div class="container">
+        <div class="row">
+        	<div class="col-md-5">
+        		<h3>Factuuradres</h3>
+    			<form action="{% url 'checkout:shipping-address' %}" method="post" id="new_shipping_address" class="form form-horizontal">
+    				{% csrf_token %}
+	        		<label for="id_title">{% trans 'Aanspreking' %}</label>
+	        		{% render_field form.title class+='input-text' %}
+	        		<label for="id_first_name">{% trans 'Voornaam' %}<span class="required">*</span></label>
+	        		{% render_field form.first_name class+='input-text' %}
+	        		<label for="id_last_name">{% trans 'Achternaam' %}<span class="required">*</span></label>
+	        		{% render_field form.last_name class+='input-text' %}
+	        		<label for="id_line1">{% trans 'Eerste adresregel' %}<span class="required">*</span></label>
+	        		{% render_field form.line1 class+='input-text' %}
+	        		<label for="id_line2">{% trans 'Tweede adresregel' %}</label>
+	        		{% render_field form.line2 class+='input-text' %}
+	        		<label for="id_line4">{% trans 'Woonplaats' %}<span class="required">*</span></label>
+	        		{% render_field form.line4 class+='input-text' %}
+	        		<label for="id_postcode">{% trans 'Postcode' %}<span class="required">*</span></label>
+	        		{% render_field form.postcode class+='input-text' %}
+	        		<label for="id_country">{% trans 'Land' %}<span class="required">*</span></label>
+	        		{% render_field form.country %}
+	        		<label for="id_phone_number">{% trans 'Telefoonnummer' %}</label>
+	        		{% render_field form.phone_number %}
+	        		<label for="id_notes">{% trans 'Bijkomende opmerkingen?' %}</label>
+	        		{% render_field form.notes %}
+                    <p class="form-row form-login">
+                        <button type="submit" class="button" name="login">{% trans 'Opslaan' %}</button>
+                    </p> 
+        		</form>
+        	</div>
+        	<div class="col-md-5 col-md-offset-1">
+        		<h3>Overzicht winkelmand</h3>
+        	</div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+	<div class="col-sm-12">
+	    <div class="sub-header">
+	        <h2>{% trans "Where should we ship to?" %}</h2>
+	    </div>
+	    {% if user.is_authenticated %}
+	        {% if addresses %}
+	            <h3>{% trans "An address from your address book?" %}</h3>
+	            <div class="choose-block">
+	                <div class="row">
+	                    {% for address in addresses %}
+	                        {% block select_address_form %}
+	                            <div class="col-sm-6">
+	                                <div class="well">
+	                                    <address>
+	                                        {% block select_address_fields %}
+	                                            {% for field in address.active_address_fields %}
+	                                                <span>{{ field }}</span>{% if not forloop.first %}<br/>{% endif %}
+	                                            {% endfor %}
+	                                        {% endblock %}
+	                                    </address>
+	                                    <form action="{% url 'checkout:shipping-address' %}" method="post" id="select_shipping_address_{{ address.id }}">
+	                                        {% csrf_token %}
+	                                        <input type="hidden" name="action" value="ship_to" />
+	                                        <input type="hidden" name="address_id" value="{{ address.id }}" />
+	                                        {% if address.is_default_for_shipping %}
+	                                            <button type="submit" class="btn btn-success btn-large ship-address" data-loading-text="{% trans 'Saving...' %}"><i class="icon-ok"></i> {% trans "Ship to your default shipping address" %}</button>
+	                                        {% else %}
+	                                            <button type="submit" class="btn btn-primary btn-large ship-address" data-loading-text="{% trans 'Saving...' %}">{% trans "Ship to this address" %}</button>
+	                                        {% endif %}
+
+	                                        <div class="btn-group address-controls">
+	                                            <a href="{% url 'checkout:user-address-update' pk=address.id %}" class="btn btn-default btn-sm">{% trans "Edit address" %}</a>
+	                                            <button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+	                                                <span class="caret"></span>
+	                                            </button>
+	                                            <ul class="dropdown-menu">
+	                                                <li><a href="{% url 'checkout:user-address-delete' pk=address.id %}" class="btn-remove-address">{% trans "Delete" %}</a></li>
+	                                            </ul>
+	                                        </div>
+	                                    </form>
+	                                </div>
+	                            </div>
+	                            {% if forloop.counter|divisibleby:2 %}
+	                                </div><div class="row">
+	                            {% endif %}
+	                        {% endblock %}
+	                    {% endfor %}
+	                </div>
+	            </div>
+	            <h3>{% trans "Or a new address?" %}</h3>
+	        {% endif %}
+	    {% endif %}
+
+	    {% block new_address_form %}
+	        <div class="well">
+	            <form action="{% url 'checkout:shipping-address' %}" method="post" id="new_shipping_address" class="form form-horizontal">
+	                {% csrf_token %}
+	                {% include "partials/form_fields.html" with form=form style='horizontal' %}
+	                <div class="form-group">
+	                    <div class="col-sm-offset-4 col-sm-8">
+	                        <button type="submit" class="btn btn-lg btn-primary" data-loading-text="{% trans 'Continuing...' %}">{% trans "Continue" %}</button>
+	                        {% trans "or" %} <a href="{% url 'basket:summary' %}">{% trans "return to basket" %}</a>
+	                    </div>
+	                </div>
+	            </form>
+	        </div>
+	    {% endblock %}
+	</div>
+</div>
+{% endblock shipping_address %}
