@@ -45,8 +45,10 @@
 	        		{% render_field form.line4 class+='input-text' %}
 	        		<label for="id_postcode">{% trans 'Postcode' %}<span class="required">*</span></label>
 	        		{% render_field form.postcode class+='input-text' %}
+        		{% if form.country %}
 	        		<label for="id_country">{% trans 'Land' %}<span class="required">*</span></label>
 	        		{% render_field form.country %}
+        		{% endif %}
 	        		<label for="id_phone_number">{% trans 'Telefoonnummer' %}</label>
 	        		{% render_field form.phone_number %}
 	        		<label for="id_notes">{% trans 'Bijkomende opmerkingen?' %}</label>

@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Register' %} | {{ block.super }}
+{% endblock %}
+
+{# yellow title block #}
+{% block subheader_title %}
+    {% include 'partials/page-title.html' with page_title='Registreren' %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="page-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="flat-wrapper">
+                    <div class="breadcrumbs">
+                        <h2 class="trail-browse">{% trans 'U bevindt zich hier:' %}</h2>
+                        <ul class="trail-items">
+                            <li class="trail-item"><a href="{% url 'promotions:home' %}">Home</a></li>
+                            <li>{% trans 'Registreren' %}</li>
+                        </ul>
+                    </div><!-- /.breadcrumbs -->
+                </div><!-- /.flat-wrapper -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.page-breadcrumbs -->
+{% endblock breadcrumbs %}
+
+{% block headertext %}
+    {% trans "Register" %}
+{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 30px;">
+    <div class="row">
+        <div class="col-sm-6 register_form">
+            <form id="register_form" action="." method="post" class="form-stacked" style="margin-bottom: 50px;">
+                {% csrf_token %}
+                {% include "partials/form_fields.html"  %}
+                <button name="registration_submit" type="submit" value="Register" class="button" data-loading-text="{%trans 'Registering...' %}" style="margin-top: 30px;">{% trans 'Register' %}</button>
+                {% if cancel_url %}
+                    {% trans "or" %} <a href="{{ cancel_url }}">{% trans "cancel" %}</a>.
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
