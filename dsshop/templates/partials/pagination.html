@@ -1,0 +1,22 @@
+{% load display_tags %}
+{% load i18n %}
+
+{% if paginator.num_pages > 1 %}
+    <div class="row" style="margin: 15px 0px;">
+        <div class="col-md-4">
+            {% if page_obj.has_previous %}
+                <button class="pull-left"><a style="color:white;" href="?{% get_parameters page %}page={{ page_obj.previous_page_number }}">{% trans "previous" %}</a></button>
+            {% endif %}
+        </div>
+        <div class="col-md-4 text-center">
+            {% blocktrans with page_num=page_obj.number total_pages=paginator.num_pages %}
+                Page {{ page_num }} of {{ total_pages }}
+            {% endblocktrans %}
+        </div>
+        <div class="col-md-4">
+            {% if page_obj.has_next %}
+                <button class="pull-right"><a href="?{% get_parameters page %}page={{ page_obj.next_page_number }}" style="color:white;">{% trans "next" %}</a></button>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
