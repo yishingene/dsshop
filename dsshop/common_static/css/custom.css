@@ -3,10 +3,29 @@
 .flat-woocommerce .woocommerce-info {
 	color: #31708f;
 	padding: 20px 20px 20px 60px;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 	position: relative;
 	background: #fff;
 	border: 2px solid;
+}
+
+.flat-woocommerce .woocommerce-danger {
+	color: #31708f;
+	padding: 20px 20px 20px 60px;
+	margin-bottom: 20px;
+	position: relative;
+	background: #fff;
+	border: 2px solid;
+}
+
+.flat-woocommerce .woocommerce-danger:after {
+	content: "\f05a";
+	position: absolute;
+	font-family: 'FontAwesome';
+	left: 20px;
+	top: 50%;
+	margin-top: -24px;
+	font-size: 28px;
 }
 
 .flat-woocommerce .woocommerce-info:after {
@@ -27,6 +46,10 @@
 	font-weight: bold;
 }
 /* CUSTOM */
+
+label.checkbox{
+	margin: 5px 5px;
+}
 
 h6.subcategory {
 	margin: 0px 0px 10px 0px;
@@ -186,5 +209,38 @@ img.thumbnail.basket {
 
 div.description h4 {
 	margin: 0 0 10px 0;
+}
+
+p.form-row {
+	margin: 0px;
+}
+
+.form-row label.checkbox {
+	display: inline-block;
+	margin-left: 10px;	
+}
+
+p.create-account {
+	margin-left: 40px;
+}
+
+p.form-row-first {
+	margin-bottom: 20px;
+}
+
+p.form-row-last {
+	margin-left: 66px;
+}
+
+input#id_password {
+	margin-bottom: 15px;
+}
+
+div#form_options {
+	border: 1px solid #32bfc0;
+}
+
+p.form-login {
+	margin-top: 25px;
 }
 

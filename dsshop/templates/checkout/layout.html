@@ -2,6 +2,11 @@
 
 {% load i18n %}
 
+{# yellow title block #}
+{% block subheader_title %}
+    {% include 'partials/page-title.html' with page_title='Afrekenen' %}
+{% endblock %}
+
 {% block content %}
 <div id="content_inner" class="flat-row flat-woocommerce flat-general sidebar-right">
     <div class="container">
