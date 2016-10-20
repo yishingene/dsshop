@@ -1,0 +1,50 @@
+{% extends 'checkout/layout.html' %}
+
+{% load i18n widget_tweaks %}
+
+{% block checkout_nav %}
+    {% include 'checkout/nav.html' with step=0 %}
+{% endblock %}
+
+{% block content %}
+<div id="content_inner" class="flat-row flat-woocommerce flat-general sidebar-right">
+    <div class="container">
+        <div class="woocommerce-info"><strong>{% trans 'Welkom op onze webshop!' %}</strong>
+             {% trans 'Hier kan je jezelf inloggen of aanmelden' %}
+        </div>
+        <form id="login_form" method="post" class="login" action=".">
+            <p>{% trans 'Als je een nieuwe klant bent kan je ervoor kiezen om als gast te betalen, of een nieuw account aan te maken' %}</p>
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                	{{ form.errors }}
+                    <p class="form-row form-row-first">
+                        <label for="id_username">Email<span class="required">*</span></label><br>
+                        {% render_field form.username class+='input-text' %}
+                    </p>
+                    <p class="form-row form-row-wide create-account">
+						<input class="input-checkbox" id="id_options_0" type="radio" name="options" value="anonymous"> <label for="id_options_0" class="checkbox">{% trans 'Ik wil als gast afrekenen' %}</label>
+					</p>
+                    <p class="form-row form-row-wide create-account">
+						<input class="input-checkbox" id="id_options_1" type="radio" name="options" value="new"> <label for="id_options_1" class="checkbox">{% trans 'Ik wil een nieuwe account aanmaken' %}</label>
+					</p>
+                    <p class="form-row form-row-wide create-account">
+						<input class="input-checkbox" id="id_options_2" type="radio" name="options" value="existing"> <label for="id_options_2" class="checkbox">{% trans 'Ik ben een bestaande klant (vul hieronder je wachtwoord in)' %}</label>
+					</p>
+					<p class="form-row form-row-wide create-account">
+						{% render_field form.password class+='' %} <label for="id_password" class="checkbox">{% trans 'Wachtwoord (Alleen voor bestaande gebruikers!)' %}</label>
+					</p>
+                    <p class="form-row">
+                        <button type="submit" class="button" name="login">{% trans 'inloggen' %}</button>
+                    </p>  
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block onbodyload %}
+    {{ block.super }}
+    oscar.checkout.gateway.init();
+{% endblock %}
