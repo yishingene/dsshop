@@ -31,12 +31,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 from django.utils.translation import ugettext_lazy as _
 
+LANGUAGE_CODE = 'nl-be'
+
 LANGUAGES = [
     ('nl', _('Dutch')),
     ('fr', _('French')),
     ('en', _('English')),
 ]
 
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
+print(LOCALE_PATHS)
+
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -154,7 +163,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'nl-BE'
+
 
 TIME_ZONE = 'UTC'
 

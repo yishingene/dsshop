@@ -1,0 +1,453 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-23 18:32+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: dsshop/settings/settings.py:37
+msgid "Dutch"
+msgstr ""
+
+#: dsshop/settings/settings.py:38
+msgid "French"
+msgstr ""
+
+#: dsshop/settings/settings.py:39
+msgid "English"
+msgstr ""
+
+#: dsshop/settings/settings.py:218
+msgid "Dashboard"
+msgstr ""
+
+#: dsshop/settings/settings.py:223
+msgid "Catalogue"
+msgstr ""
+
+#: dsshop/settings/settings.py:227
+msgid "Products"
+msgstr ""
+
+#: dsshop/settings/settings.py:231
+msgid "Product Types"
+msgstr ""
+
+#: dsshop/settings/settings.py:235
+msgid "Categories"
+msgstr ""
+
+#: dsshop/settings/settings.py:275 dsshop/settings/settings.py:279
+msgid "Customers"
+msgstr ""
+
+#: dsshop/settings/settings.py:329
+msgid "Reports"
+msgstr ""
+
+#: dsshop/templates/base.html:4
+msgid "Build"
+msgstr ""
+
+#: dsshop/templates/base.html:57
+msgid "Version:"
+msgstr ""
+
+#: dsshop/templates/basket/basket.html:16
+#: dsshop/templates/catalogue/browse.html:22
+#: dsshop/templates/catalogue/category.html:11
+#: dsshop/templates/catalogue/detail.html:19
+#: dsshop/templates/checkout/gateway.html:15
+#: dsshop/templates/checkout/payment_details.html:25
+#: dsshop/templates/checkout/shipping_address.html:11
+#: dsshop/templates/customer/profile/profile.html:11
+#: dsshop/templates/customer/registration.html:20
+#: dsshop/templates/search/results.html:21
+msgid "U bevindt zich hier:"
+msgstr ""
+
+#: dsshop/templates/basket/basket.html:19
+#: dsshop/templates/catalogue/partials/header-basket.html:32
+#: dsshop/templates/partials/footer.html:40
+msgid "Winkelwagen"
+msgstr ""
+
+#: dsshop/templates/basket/basket.html:102
+msgid "Totaal winkelwagen"
+msgstr ""
+
+#: dsshop/templates/basket/basket.html:107
+#: dsshop/templates/catalogue/partials/header-basket.html:29
+msgid "Subtotaal"
+msgstr ""
+
+#: dsshop/templates/basket/basket.html:119
+msgid "Verzendingskosten"
+msgstr ""
+
+#: dsshop/templates/basket/basket.html:127
+msgid "Totaal"
+msgstr ""
+
+#: dsshop/templates/basket/basket.html:136
+#: dsshop/templates/catalogue/partials/header-basket.html:33
+#: dsshop/templates/checkout/shipping_address.html:14
+msgid "Afrekenen"
+msgstr ""
+
+#: dsshop/templates/catalogue/browse.html:25
+#: dsshop/templates/catalogue/category.html:14
+#: dsshop/templates/catalogue/detail.html:22
+msgid "Producten"
+msgstr ""
+
+#: dsshop/templates/catalogue/detail.html:69
+msgid "Gratis"
+msgstr ""
+
+#: dsshop/templates/catalogue/detail.html:101
+msgid "kenmerken"
+msgstr ""
+
+#: dsshop/templates/catalogue/detail.html:119
+msgid "Gerelateerde producten"
+msgstr ""
+
+#: dsshop/templates/catalogue/partials/add_to_basket_form.html:12
+#: dsshop/templates/catalogue/partials/add_to_basket_form.html:26
+msgid "In Winkelwagen"
+msgstr ""
+
+#: dsshop/templates/catalogue/partials/add_to_basket_form.html:12
+#: dsshop/templates/catalogue/partials/add_to_basket_form.html:26
+msgid "Aan het toevoegen ..."
+msgstr ""
+
+#: dsshop/templates/catalogue/partials/add_to_basket_form.html:16
+msgid "Dit product is momenteel niet verkrijgbaar via de webshop"
+msgstr ""
+
+#: dsshop/templates/catalogue/partials/add_to_basket_form.html:19
+msgid "You have an active stock alert for this product."
+msgstr ""
+
+#: dsshop/templates/catalogue/partials/add_to_basket_form.html:23
+msgid "You can get an email alert when this product is back in stock."
+msgstr ""
+
+#: dsshop/templates/catalogue/partials/add_to_basket_form.html:26
+msgid "Melding Aanvragen"
+msgstr ""
+
+#: dsshop/templates/catalogue/partials/add_to_basket_form_compact.html:10
+msgid "In winkelwagen"
+msgstr ""
+
+#: dsshop/templates/catalogue/partials/add_to_basket_form_compact.html:13
+#: dsshop/templates/customer/history/recently_viewed_products.html:22
+msgid "Niet beschikbaar"
+msgstr ""
+
+#: dsshop/templates/catalogue/partials/category_overview.html:4
+msgid "Categoriëen"
+msgstr ""
+
+#: dsshop/templates/catalogue/partials/header-basket.html:42
+#: dsshop/templates/layout.html:297
+msgid "Naar shop"
+msgstr ""
+
+#: dsshop/templates/catalogue/partials/subcategory_overview.html:5
+msgid "Subcategorieën"
+msgstr ""
+
+#: dsshop/templates/checkout/gateway.html:19
+#: dsshop/templates/checkout/payment_details.html:29
+msgid "Inloggen of aanmelden"
+msgstr ""
+
+#: dsshop/templates/checkout/gateway.html:31
+msgid "Welkom op onze webshop!"
+msgstr ""
+
+#: dsshop/templates/checkout/gateway.html:32
+msgid "Hier kan je jezelf inloggen of aanmelden"
+msgstr ""
+
+#: dsshop/templates/checkout/gateway.html:35
+msgid ""
+"Als je een nieuwe klant bent kan je ervoor kiezen om als gast te betalen, of "
+"een nieuw account aan te maken"
+msgstr ""
+
+#: dsshop/templates/checkout/gateway.html:46
+msgid "Ik wil als gast afrekenen"
+msgstr ""
+
+#: dsshop/templates/checkout/gateway.html:49
+msgid "Ik wil een nieuwe account aanmaken"
+msgstr ""
+
+#: dsshop/templates/checkout/gateway.html:52
+msgid "Ik ben een bestaande klant (vul hieronder je wachtwoord in)"
+msgstr ""
+
+#: dsshop/templates/checkout/gateway.html:56
+msgid "Wachtwoord (Alleen voor bestaande gebruikers!)"
+msgstr ""
+
+#: dsshop/templates/checkout/gateway.html:60
+msgid "inloggen"
+msgstr ""
+
+#: dsshop/templates/checkout/payment_details.html:5
+msgid "Payment details"
+msgstr ""
+
+#: dsshop/templates/checkout/payment_details.html:12
+msgid "Enter payment details"
+msgstr ""
+
+#: dsshop/templates/checkout/payment_details.html:49
+msgid ""
+"This page needs implementing within your project.  You may want to use one "
+"of Oscar's payment gateway libraries:"
+msgstr ""
+
+#: dsshop/templates/checkout/payment_details.html:57
+#: dsshop/templates/checkout/shipping_address.html:129
+msgid "Continue"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:15
+msgid "Verzendgegevens"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:34
+msgid "Aanspreking"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:36
+msgid "Voornaam"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:38
+msgid "Achternaam"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:40
+msgid "Eerste adresregel"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:42
+msgid "Tweede adresregel"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:44
+msgid "Woonplaats"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:46
+msgid "Postcode"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:49
+msgid "Land"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:52
+msgid "Telefoonnummer"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:54
+msgid "Bijkomende opmerkingen?"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:57
+msgid "Opslaan"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:71
+msgid "Where should we ship to?"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:75
+msgid "An address from your address book?"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:94
+#: dsshop/templates/checkout/shipping_address.html:96
+msgid "Saving..."
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:94
+msgid "Ship to your default shipping address"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:96
+msgid "Ship to this address"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:100
+msgid "Edit address"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:105
+msgid "Delete"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:118
+msgid "Or a new address?"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:129
+msgid "Continuing..."
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:130
+#: dsshop/templates/customer/registration.html:45
+msgid "or"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:130
+msgid "return to basket"
+msgstr ""
+
+#: dsshop/templates/customer/history/recently_viewed_products.html:6
+msgid "Recent bekeken"
+msgstr ""
+
+#: dsshop/templates/customer/profile/profile.html:14
+msgid "Profiel"
+msgstr ""
+
+#: dsshop/templates/customer/profile/profile.html:28
+msgid "Name"
+msgstr ""
+
+#: dsshop/templates/customer/profile/profile.html:32
+msgid "Email address"
+msgstr ""
+
+#: dsshop/templates/customer/profile/profile.html:44
+msgid "Date registered"
+msgstr ""
+
+#: dsshop/templates/customer/profile/profile.html:50
+msgid "Change password"
+msgstr ""
+
+#: dsshop/templates/customer/profile/profile.html:51
+msgid "Edit profile"
+msgstr ""
+
+#: dsshop/templates/customer/profile/profile.html:52
+msgid "Delete profile"
+msgstr ""
+
+#: dsshop/templates/customer/registration.html:6
+#: dsshop/templates/customer/registration.html:33
+#: dsshop/templates/customer/registration.html:43
+msgid "Register"
+msgstr ""
+
+#: dsshop/templates/customer/registration.html:23
+msgid "Registreren"
+msgstr ""
+
+#: dsshop/templates/customer/registration.html:43
+msgid "Registering..."
+msgstr ""
+
+#: dsshop/templates/customer/registration.html:45
+msgid "cancel"
+msgstr ""
+
+#: dsshop/templates/partials/footer.html:16
+msgid "Opkomende events?"
+msgstr ""
+
+#: dsshop/templates/partials/footer.html:35
+msgid "Over ons"
+msgstr ""
+
+#: dsshop/templates/partials/footer.html:37
+#: dsshop/templates/partials/header.html:108
+msgid "Onze diensten"
+msgstr ""
+
+#: dsshop/templates/partials/footer.html:38
+msgid "Contacteer ons"
+msgstr ""
+
+#: dsshop/templates/partials/footer.html:39
+msgid "Account"
+msgstr ""
+
+#: dsshop/templates/partials/footer.html:41
+#: dsshop/templates/partials/header.html:110
+msgid "Foto's"
+msgstr ""
+
+#: dsshop/templates/partials/footer.html:48
+msgid "Contact opnemen"
+msgstr ""
+
+#: dsshop/templates/partials/footer.html:55
+#: dsshop/templates/partials/header.html:9
+msgid "Contactformulier"
+msgstr ""
+
+#: dsshop/templates/partials/header.html:8
+msgid "Contact opnemen?"
+msgstr ""
+
+#: dsshop/templates/partials/header.html:57
+msgid "Zoek producten&hellip;"
+msgstr ""
+
+#: dsshop/templates/partials/header.html:113
+msgid "Contact"
+msgstr ""
+
+#: dsshop/templates/partials/pagination.html:7
+msgid "previous"
+msgstr ""
+
+#: dsshop/templates/partials/pagination.html:17
+msgid "next"
+msgstr ""
+
+#: dsshop/templates/search/results.html:11
+#: dsshop/templates/search/results.html:24
+msgid "Zoeken"
+msgstr ""
+
+#: dsshop/templates/search/results.html:25
+msgid "Zoekterm"
+msgstr ""
+
+#: dsshop/templates/search/results.html:49
+msgid "Nieuwe zoekopdracht&hellip;"
+msgstr ""
+
+#: dsshop/templates/search/results.html:79
+msgid "Wij vonden geen producten die voldoen aan jouw zoekopdracht"
+msgstr ""
+
+#: other_pages/views.py:21
+msgid "contact"
+msgstr ""
