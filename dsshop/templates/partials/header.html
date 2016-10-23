@@ -75,13 +75,11 @@
                                     <!-- AANTAL ITEMS IN SHOPPING CAR-->
                                     <span id="nav-cart" class="shopping-cart-items-count">{{ request.basket.num_lines }}</span>
                                 </a>
-                                {% if request.basket.num_lines %}
                                 <div class="subcart">
                                     <div class="widget_shopping_cart_content">
                                         {% include 'catalogue/partials/header-basket.html' with basket=request.basket %}
                                     </div>
                                 </div>
-                                {% endif %}
                             </li>
                         </ul>
                     </div><!-- /.menu-extra -->

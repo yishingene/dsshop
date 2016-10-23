@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles promotion_tags%}
+{% load i18n staticfiles promotion_tags%}
 
 {% block styles %}
     {% comment %}
@@ -122,7 +122,7 @@
             });
         } 
     </script>
-<!-- Responsive menu voor smartphones-->
+<!-- Responsive menu voor smartphones -->
     <script type="text/javascript">
 
         var responsiveMenu = function() {
@@ -208,6 +208,7 @@
             flatSearch(); 
         });
     </script>
+<!-- Header basket functionaliteit -->
     <script type="text/javascript">
         $('a.basket-edit').on('click', function(){
 
@@ -292,7 +293,7 @@
                     var amount = data['total_incl_tax'];
 
                     if(amount == 0) {
-                        $('div.subcart').remove();
+                        $('div.subcart').html('<ul class="cart_list product_list_widget"><li class="mini_cart_item"><p>Je hebt geen producten in je winkelmand!</p></li></ul><div class="group-btn"><a class="button" href="{% url "catalogue:index" %}">{% trans "Naar shop" %}</a></div>');
                         //$('div.subcart').css('visibility', 'hidden')
                     }
                     else {
