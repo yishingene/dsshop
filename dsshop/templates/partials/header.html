@@ -1,4 +1,4 @@
-{% load i18n thumbnail category_tags %}
+{% load static i18n thumbnail category_tags %}
 <div class="site-header header-v2">
     <div class="flat-top">
         <div class="container">
@@ -37,7 +37,7 @@
         <div class="header-wrap">
             <div id="logo" class="logo">
                 <a href="index.html">
-                    <img src="" alt="images">
+                    <img src="{% static 'images/logo.png' %}" alt="images">
                 </a>
             </div><!-- /.logo -->
             <div class="btn-menu">

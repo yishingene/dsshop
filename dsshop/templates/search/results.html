@@ -6,6 +6,11 @@
     "{{ query }}" | {{ block.super }}
 {% endblock %}
 
+{# yellow title block #}
+{% block subheader_title %}
+    {% trans 'Zoeken' as searchtitle %}
+    {% include 'partials/page-title.html' with page_title=searchtitle %}
+{% endblock %}
 
 {% block breadcrumbs %}
 <div class="page-breadcrumbs">
