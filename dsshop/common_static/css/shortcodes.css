@@ -2289,6 +2289,11 @@ label.error {
     color: #32bfc0;
 }
 
+div.hidden-xs span.amount {
+    color: #32bfc0;
+    font-weight: bold;
+}
+
 /* Widget filter price */
 .widget.widget_price_filter .price_filter {
     background-color: #21242b;

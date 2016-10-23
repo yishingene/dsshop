@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% load currency_filters thumbnail product_tags i18n %}
+{% load currency_filters product_tags i18n %}
 
 {% block title %}
     "{{ query }}" | {{ block.super }}
@@ -26,20 +26,6 @@
     </div><!-- /.page-breadcrumbs -->
 {% endblock breadcrumbs %}
 
-
-{% block column_left %}
-    {% if has_facets %}
-        <h4>{% trans "Refine your search" %}</h4>
-        <dl>
-            {% for field, data in facet_data.items %}
-                {% if data.results %}
-                    {% include 'search/partials/facet.html' with name=data.name items=data.results %}
-                {% endif %}
-            {% endfor %}
-        </dl>
-    {% endif %}
-{% endblock %}
-
 {% block headertext %}
     {% blocktrans with q=query %}
         Products matching "{{ q }}"
@@ -49,16 +35,18 @@
 {% block content %}
 <div class="flat-woocommerce flat-general sidebar-right">
     <div class="container" style="padding-top: 10px;">
-        <div class="row">
+        <div class="row" style="margin-bottom: 50px;">
             <div class="general">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
-                    <div class="input-group input-group-lg" style="margin: 20px 50px">
-                        <input name="q" type="search" class="form-control search-field" placeholder="{% trans 'Nieuwe zoekopdracht&hellip;' %}">
-                        <span class="input-group-btn">
-                            <button class="btn" type="submit"><i class="fa fa-search"></i></button>
-                        </span>
-                    </div>
+                        <form method="get" action="{% url 'search:search' %}" class="form-horizontal" style="margin-top: 20px;">
+                            <div class="input-group input-group-lg" style="margin: 20px 50px">
+                                <input name="q" type="search" class="form-control search-field" placeholder="{% trans 'Nieuwe zoekopdracht&hellip;' %}">
+                                <span class="input-group-btn">
+                                    <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <form method="get" action="." class="form-horizontal" style="margin-top: 20px;">
@@ -83,7 +71,7 @@
                         {% endif %}
                     {% else %}
                         <p>
-                            {% trans "Found <strong>0</strong> results." %}
+                            <div class="woocommerce-warning"><strong>{% trans 'Wij vonden geen producten die voldoen aan jouw zoekopdracht' %}</strong></div>
                             {% if suggestion %}
                                 {% url 'search:search' as search_url %}
                                 {% blocktrans %}
@@ -100,8 +88,8 @@
                     {% endfor %}
                 </div>
                 {% include "partials/pagination.html" with page_obj=page %}
+            {% endif %} 
             </div>
-            {% endif %}     
         </div>
     </div>
 </div>

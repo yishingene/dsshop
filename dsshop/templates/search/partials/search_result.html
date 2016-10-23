@@ -1,6 +1,6 @@
 {% load i18n thumbnail purchase_info_tags currency_filters %}
 <div class="row" {% if forloop.first %}style="padding-top:20px;"{% elif forloop.last %}style="padding-bottom:20px;"{% endif %}>
-	<div class="col-md-2 col-xs-3">
+	<div class="col-sm-2 col-xs-3">
         <div class="product-thumbnail text-center">
             <a href="{{ product.get_absolute_url }}">
             {% with image=product.primary_image %}
@@ -11,9 +11,26 @@
             </a>
         </div>
 	</div>
-	<div class="col-md-5 col-xs-6">
+	<div class="col-sm-5 col-xs-6">
 		{{ product|title }}
 	</div>
+    <div class="col-sm-3 col-xs-3">
+{% with category=product.categories.all.0 %}
+    {% for category in category.get_ancestors_and_self|slice:':2' %}
+        {% if forloop.first %}
+            <strong>{{ category.name }}</strong><br>
+        {% else %}
+            {{ category.name }}
+        {% endif %}
+    {% endfor %}
+{% endwith %}
+    </div>
+    <div class="col-sm-2 hidden-xs">
+{% purchase_info_for_product request product as session %}        
+    {% if session.price.exists %}
+        <span class="amount">{{ session.price.incl_tax|currency:session.price.currency }}</span>
+        {% endif %}
+    </div>
 </div>
 {% if not forloop.last %}
 <hr>
