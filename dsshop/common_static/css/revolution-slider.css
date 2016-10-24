@@ -1091,15 +1091,6 @@ img.tp-slider-alternative-image	{	width:100%; height:auto;}
 	-	BUTTONS	-
 *******************************/
 
-.tp-simpleresponsive .button				{	padding:6px 13px 5px; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; height:30px;
-												cursor:pointer;
-												color:#fff !important; text-shadow:0px 1px 1px rgba(0, 0, 0, 0.6) !important; font-size:15px; line-height:45px !important;
-												background:url(../../img/revolution-slider/gradient/g30.png) repeat-x top; font-family: arial, sans-serif; font-weight: bold; letter-spacing: -1px;
-											}
-
-.tp-simpleresponsive  .button.big			{	color:#fff; text-shadow:0px 1px 1px rgba(0, 0, 0, 0.6); font-weight:bold; padding:9px 20px; font-size:19px;  line-height:57px !important; background:url(../../img/revolution-slider/gradient/g40.png) repeat-x top}
-
-
 .tp-simpleresponsive  .purchase:hover,
 .tp-simpleresponsive  .button:hover,
 .tp-simpleresponsive  .button.big:hover		{	background-position:bottom, 15px 11px}
@@ -1234,10 +1225,6 @@ img.tp-slider-alternative-image	{	width:100%; height:auto;}
         -o-user-select: none;
 	}
 
-.tp-bannershadow.tp-shadow1 {	background:url(../../assets/revolution-slider/shadow1.png) no-repeat; background-size:100% 100%; width:890px; height:60px; bottom:-60px}
-.tp-bannershadow.tp-shadow2 {	background:url(../../assets/revolution-slider/shadow2.png) no-repeat; background-size:100% 100%; width:890px; height:60px;bottom:-60px}
-.tp-bannershadow.tp-shadow3 {	background:url(../../assets/revolution-slider/shadow3.png) no-repeat; background-size:100% 100%; width:890px; height:60px;bottom:-60px}
-
 
 /********************************
 	-	FULLSCREEN VIDEO	-
@@ -1356,19 +1343,6 @@ img.tp-slider-alternative-image	{	width:100%; height:auto;}
 *********************************/
 
 
-/********************************
-	-	DOTTED OVERLAYS	-
-*********************************/
-.tp-dottedoverlay						{	background-repeat:repeat;width:100%;height:100%;position:absolute;top:0px;left:0px;z-index:4}
-.tp-dottedoverlay.twoxtwo				{	background:url(../../assets/revolution-slider/gridtile.png)}
-.tp-dottedoverlay.twoxtwowhite			{	background:url(../../assets/revolution-slider/gridtile_white.png)}
-.tp-dottedoverlay.threexthree			{	background:url(../../assets/revolution-slider/gridtile_3x3.png)}
-.tp-dottedoverlay.threexthreewhite		{	background:url(../../assets/revolution-slider/gridtile_3x3_white.png)}
-/********************************
-	-	DOTTED OVERLAYS ENDS	-
-*********************************/
-
-
 /************************
 	-	NAVIGATION	-
 *************************/
@@ -1391,42 +1365,6 @@ img.tp-slider-alternative-image	{	width:100%; height:auto;}
 												-khtml-opacity: 0;
 												opacity: 0;
 											}
-
-
-.tp-bullets.simplebullets.navbar						{ 	border:1px solid #666; border-bottom:1px solid #444; background:url(../../assets/revolution-slider/boxed_bgtile.png); height:40px; padding:0px 10px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px }
-
-.tp-bullets.simplebullets.navbar-old					{ 	 background:url(../../assets/revolution-slider/navigdots_bgtile.png); height:35px; padding:0px 10px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px }
-
-
-.tp-bullets.simplebullets.round .bullet					{	cursor:pointer; position:relative;	background:url(../../assets/revolution-slider/bullet.png) no-Repeat top left;	width:20px;	height:20px;  margin-right:0px; float:left; margin-top:0px; margin-left:3px}
-.tp-bullets.simplebullets.round .bullet.last			{	margin-right:3px}
-
-.tp-bullets.simplebullets.round-old .bullet				{	cursor:pointer; position:relative;	background:url(../../assets/revolution-slider/bullets.png) no-Repeat bottom left;	width:23px;	height:23px;  margin-right:0px; float:left; margin-top:0px}
-.tp-bullets.simplebullets.round-old .bullet.last		{	margin-right:0px}
-
-
-/**	SQUARE BULLETS **/
-.tp-bullets.simplebullets.square .bullet				{	cursor:pointer; position:relative;	background:url(../../assets/revolution-slider/bullets2.png) no-Repeat bottom left;	width:19px;	height:19px;  margin-right:0px; float:left; margin-top:0px}
-.tp-bullets.simplebullets.square .bullet.last			{	margin-right:0px}
-
-
-/**	SQUARE BULLETS **/
-.tp-bullets.simplebullets.square-old .bullet			{	cursor:pointer; position:relative;	background:url(../../assets/revolution-slider/bullets2.png) no-Repeat bottom left;	width:19px;	height:19px;  margin-right:0px; float:left; margin-top:0px}
-.tp-bullets.simplebullets.square-old .bullet.last		{	margin-right:0px}
-
-
-/** navbar NAVIGATION VERSION **/
-.tp-bullets.simplebullets.navbar .bullet			{	cursor:pointer; position:relative;	background:url(../../assets/revolution-slider/bullet_boxed.png) no-Repeat top left;	width:18px;	height:19px;   margin-right:5px; float:left; margin-top:0px}
-
-.tp-bullets.simplebullets.navbar .bullet.first		{	margin-left:0px !important}
-.tp-bullets.simplebullets.navbar .bullet.last		{	margin-right:0px !important}
-
-
-
-/** navbar NAVIGATION VERSION **/
-.tp-bullets.simplebullets.navbar-old .bullet			{	cursor:pointer; position:relative;	background:url(../../assets/revolution-slider/navigdots.png) no-Repeat bottom left;	width:15px;	height:15px;  margin-left:5px !important; margin-right:5px !important;float:left; margin-top:10px}
-.tp-bullets.simplebullets.navbar-old .bullet.first		{	margin-left:0px !important}
-.tp-bullets.simplebullets.navbar-old .bullet.last		{	margin-right:0px !important}
 
 
 .tp-bullets.simplebullets .bullet:hover,
@@ -1463,21 +1401,6 @@ img.tp-slider-alternative-image	{	width:100%; height:auto;}
 .tp-leftarrow											{	z-index:100;cursor:pointer; position:relative;	width:40px;	height:40px;   }
 .tp-rightarrow											{	z-index:100;cursor:pointer; position:relative;	width:40px;	height:40px;   }
 
-
-.tp-leftarrow.round										{	z-index:100;cursor:pointer; position:relative;	background:url(../../assets/revolution-slider/small_left.png) no-Repeat top left;	width:19px;	height:14px;  margin-right:0px; float:left; margin-top:0px;	}
-.tp-rightarrow.round									{	z-index:100;cursor:pointer; position:relative;	background:url(../../assets/revolution-slider/small_right.png) no-Repeat top left;	width:19px;	height:14px;  margin-right:0px; float:left;	margin-top:0px}
-
-
-.tp-leftarrow.round-old									{	z-index:100;cursor:pointer; position:relative;	background:url(../../assets/revolution-slider/arrow_left.png) no-Repeat top left;	width:26px;	height:26px;  margin-right:0px; float:left; margin-top:0px;	}
-.tp-rightarrow.round-old								{	z-index:100;cursor:pointer; position:relative;	background:url(../../assets/revolution-slider/arrow_right.png) no-Repeat top left;	width:26px;	height:26px;  margin-right:0px; float:left;	margin-top:0px}
-
-
-.tp-leftarrow.navbar									{	z-index:100;cursor:pointer; position:relative;	background:url(../../assets/revolution-slider/small_left_boxed.png) no-Repeat top left;	width:20px;	height:15px;   float:left;	margin-right:6px; margin-top:12px}
-.tp-rightarrow.navbar									{	z-index:100;cursor:pointer; position:relative;	background:url(../../assets/revolution-slider/small_right_boxed.png) no-Repeat top left;	width:20px;	height:15px;   float:left;	margin-left:6px; margin-top:12px}
-
-
-.tp-leftarrow.navbar-old								{	z-index:100;cursor:pointer; position:relative;	background:url(../../assets/revolution-slider/arrowleft.png) no-Repeat top left;		width:9px;	height:16px;   float:left;	margin-right:6px; margin-top:10px}
-.tp-rightarrow.navbar-old								{	z-index:100;cursor:pointer; position:relative;	background:url(../../assets/revolution-slider/arrowright.png) no-Repeat top left;	width:9px;	height:16px;   float:left;	margin-left:6px; margin-top:10px}
 
 .tp-leftarrow.navbar-old.thumbswitharrow				{	margin-right:10px}
 .tp-rightarrow.navbar-old.thumbswitharrow				{	margin-left:0px}
@@ -1618,11 +1541,6 @@ img.tp-slider-alternative-image	{	width:100%; height:auto;}
 
 /*  CAPTION SLIDELINK   **/
 .caption.slidelink a div,
-.tp-caption.slidelink a div {	width:3000px; height:1500px;  background:url(../../assets/revolution-slider/coloredbg.png) repeat}
-
-.tp-caption.slidelink a span	{	background:url(../../assets/revolution-slider/coloredbg.png) repeat}
-
-
 
 /*****************************************
 	-	NAVIGATION FANCY EXAMPLES	-
@@ -2319,23 +2237,6 @@ img.tp-slider-alternative-image	{	width:100%; height:auto;}
     -webkit-transform: scale(1.0);
   }
 }
-
-
-
-.tp-transparentimg {	content:"url(../../assets/revolution-slider/transparent.png)"}
-.tp-3d				{	-webkit-transform-style: preserve-3d;
-						 -webkit-transform-origin: 50% 50%;
-					}
-
-
-
-.tp-caption img {
-background: transparent;
--ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)";
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);
-zoom: 1;
-}
-
 
 @font-face {
   font-family: 'revicons';
