@@ -2,6 +2,12 @@
 
 {% load staticfiles i18n %}
 
+{% block extrastyles %}
+<!-- 	<link rel="stylesheet" type="{% static 'css/revolution-slider.css' %}">
+ -->	
+ 	<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+{% endblock extrastyles %}
+
 {# yellow title block #}
 {% block subheader_title %}
 <div class="page-title parallax-style parallax1" style="background-position: 50% -84px;">
@@ -20,12 +26,12 @@
 
 {% block content %}
     <!-- Slider -->
-    <div class="tp-banner-container">
-        <div class="tp-banner" >
+<!--     <div class="tp-banner-container">
+        <div class="tp-banner">
             <ul>
                 <li data-transition="random-static" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
-                    <img src="{% static 'images/slides/ds_slide.png' %}" alt="slider-image" />
-                    <div class="tp-caption sfl title-slide center" data-x="40" data-y="100" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">                            
+                    <img src="{% static 'images/slides/sm2_2.png' %}">
+                    <div class="tp-caption sfl title-slide center" data-x="40" data-y="100">                            
                         Standard sea freight<br>services
                     </div>  
                     <div class="tp-caption sfr desc-slide center" data-x="40" data-y="240" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">                       
@@ -37,7 +43,7 @@
                 </li>
 
                 <li data-transition="random-static" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
-                    <img src="{% static 'images/slides/2.jpg' %}" alt="slider-image" />
+                    <img src="{% static 'images/slides/2cv_slide.jpg' %}">
                     <div class="tp-caption sfl title-slide center" data-x="40" data-y="100" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">                            
                         International road<br>transport
                     </div>  
@@ -50,7 +56,7 @@
                 </li>
 
                 <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
-                    <img src="{% static 'images/slides/3.jpg' %}" alt="slider-image" />
+                    <img src="{% static 'images/slides/ds_slide.png' %}" alt="slider-image" />
                     <div class="tp-caption sfl title-slide center" data-x="40" data-y="100" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">                            
                         Warehousing and<br>storage
                     </div>  
@@ -63,7 +69,53 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div> -->
+
+        <!-- Slider -->
+        <div class="tp-banner-container">
+            <div class="tp-banner" >
+                <ul>
+                    <li data-transition="random-static" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
+                        <img src="{% static 'images/slides/sm2_2.png' %}" alt="slider-image" />
+                        <div class="tp-caption sfl title-slide center" data-x="40" data-y="100" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">                            
+                            Standard sea freight<br>services
+                        </div>  
+                        <div class="tp-caption sfr desc-slide center" data-x="40" data-y="240" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">                       
+                            If low costs matter for your shipment, try our sea freight<br>services.
+                        </div>    
+                        <div class="tp-caption sfl flat-button-slider bg-button-slider-32bfc0" data-x="40" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
+
+                        <div class="tp-caption sfr flat-button-slider" data-x="225" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Contact us</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
+                    </li>
+
+                    <li data-transition="random-static" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
+                        <img src="images/slides/2.jpg" alt="slider-image" />
+                        <div class="tp-caption sfl title-slide center" data-x="40" data-y="100" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">                            
+                            International road<br>transport
+                        </div>  
+                        <div class="tp-caption sfr desc-slide center" data-x="40" data-y="240" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">                       
+                            The road transport industry is the backbone of strong<br>economies and dynamic societies.
+                        </div>    
+                        <div class="tp-caption sfl flat-button-slider bg-button-slider-32bfc0" data-x="40" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
+
+                        <div class="tp-caption sfr flat-button-slider" data-x="225" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Contact us</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
+                    </li>
+
+                    <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
+                        <img src="images/slides/3.jpg" alt="slider-image" />
+                        <div class="tp-caption sfl title-slide center" data-x="40" data-y="100" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">                            
+                            Warehousing and<br>storage
+                        </div>  
+                        <div class="tp-caption sfr desc-slide center" data-x="40" data-y="240" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">                       
+                            Warehouse services can be offered as a single service or<br>combined with transportation.
+                        </div>    
+                        <div class="tp-caption sfl flat-button-slider bg-button-slider-32bfc0" data-x="40" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
+
+                        <div class="tp-caption sfr flat-button-slider" data-x="225" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Contact us</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
     <!-- Promobox -->
     <div class="flat-row bg-scheme pad-top0px pad-bottom0px">
@@ -71,11 +123,20 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="promobox style1 style2 clearfix">
-                        <h5 class="promobox-title">{% trans 'Bezoek onze webshop voor een overzicht van al onze producten!' %}</h5>
-                        <a class="button black sm" href="{% url 'catalogue:index' %}">Naar webshop<i class="fa fa-chevron-right"></i></a>
+<!--                         <h5 class="promobox-title">{% trans 'Bezoek onze webshop voor een overzicht van al onze producten!' %}</h5>
+                        <a class="button black sm" href="{% url 'catalogue:index' %}">Naar webshop<i class="fa fa-chevron-right"></i></a> -->
+                        <h5 class="promobox-title">{% trans 'Op zoek naar andere oldtimer Citroën onderdelen?' %}</h5>
+                        <a class="button black sm" href="{% url 'catalogue:index' %}">Contacteer ons!<i class="fa fa-chevron-right"></i></a>
                     </div>
                 </div><!-- /.col-md-12 -->
             </div><!-- /.row -->
         </div><!-- /.container -->
     </div><!-- /.flat-row -->
 {% endblock content %}
+
+{% block extrascripts %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'js/jquery.themepunch.tools.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.themepunch.revolution.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/slider.js' %}"></script> 
+{% endblock %}
