@@ -2237,18 +2237,6 @@ img.tp-slider-alternative-image	{	width:100%; height:auto;}
   }
 }
 
-
-/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
-/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
-/*
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  @font-face {
-    font-family: 'revicons';
-    src: url('../../font/revicons.svg?5510888#revicons') format('svg');
-  }
-}
-*/
-
  [class^="revicon-"]:before, [class*=" revicon-"]:before {
   font-family: "revicons";
   font-style: normal;
