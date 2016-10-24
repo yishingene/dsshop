@@ -2,12 +2,6 @@
 
 {% load staticfiles i18n %}
 
-{% block extrastyles %}
-<!-- 	<link rel="stylesheet" type="{% static 'css/revolution-slider.css' %}">
- -->	
- 	<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
-{% endblock extrastyles %}
-
 {# yellow title block #}
 {% block subheader_title %}
 <div class="page-title parallax-style parallax1" style="background-position: 50% -84px;">
@@ -17,105 +11,46 @@
             <div class="col-md-12">                    
                 <div class="page-title-heading">
                     <h2>Home</h2>
-                </div><!-- /.page-title-heading -->                        
-            </div><!-- /.col-md-12 -->  
-        </div><!-- /.row -->  
-    </div><!-- /.container -->                      
+                </div>                        
+            </div> 
+        </div> 
+    </div>                     
 </div>
 {% endblock %}
 
 {% block content %}
+
     <!-- Slider -->
-<!--     <div class="tp-banner-container">
-        <div class="tp-banner">
+    <div class="tp-banner-container">
+        <div class="tp-banner" >
             <ul>
                 <li data-transition="random-static" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
-                    <img src="{% static 'images/slides/sm2_2.png' %}">
-                    <div class="tp-caption sfl title-slide center" data-x="40" data-y="100">                            
-                        Standard sea freight<br>services
-                    </div>  
-                    <div class="tp-caption sfr desc-slide center" data-x="40" data-y="240" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">                       
-                        If low costs matter for your shipment, try our sea freight<br>services.
-                    </div>    
-                    <button class="tp-caption sfl flat-button-slider bg-button-slider-32bfc0" data-x="40" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
+                    <img src="{% static 'images/slides/ds_slide.png' %}" alt="slider-image" />
 
-                    <div class="tp-caption sfr flat-button-slider" data-x="225" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Contact us</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
+                    <div class="tp-caption sfr title-slide center" data-x="40" data-y="240" data-speed="1000" data-start="800">                     
+                        {% trans 'DS Onderdelen' %}
+                    </div>    
+                    <div class="tp-caption sfl flat-button-slider bg-button-slider-32bfc0" data-x="40" data-y="370" data-speed="1000" data-start="1100"><a href="#">{% trans 'Naar shop' %}</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
                 </li>
 
                 <li data-transition="random-static" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
-                    <img src="{% static 'images/slides/2cv_slide.jpg' %}">
-                    <div class="tp-caption sfl title-slide center" data-x="40" data-y="100" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">                            
-                        International road<br>transport
-                    </div>  
-                    <div class="tp-caption sfr desc-slide center" data-x="40" data-y="240" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">                       
-                        The road transport industry is the backbone of strong<br>economies and dynamic societies.
-                    </div>    
-                    <div class="tp-caption sfl flat-button-slider bg-button-slider-32bfc0" data-x="40" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
-
-                    <div class="tp-caption sfr flat-button-slider" data-x="225" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Contact us</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
+                    <img src="{% static 'images/slides/2cv_slide.jpg' %}" alt="slider-image" />
+                    <div class="tp-caption sfl title-slide center" data-x="40" data-y="240" data-speed="1000" data-start="800">                            
+                        {% trans '2PK Onderdelen' %}
+                    </div>     
+                    <div class="tp-caption sfl flat-button-slider bg-button-slider-32bfc0" data-x="40" data-y="370" data-speed="1000" data-start="1100"><a href="#">{% trans 'Naar shop' %}</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
                 </li>
 
                 <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
-                    <img src="{% static 'images/slides/ds_slide.png' %}" alt="slider-image" />
-                    <div class="tp-caption sfl title-slide center" data-x="40" data-y="100" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">                            
-                        Warehousing and<br>storage
-                    </div>  
-                    <div class="tp-caption sfr desc-slide center" data-x="40" data-y="240" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">                       
-                        Warehouse services can be offered as a single service or<br>combined with transportation.
+                    <img src="{% static 'images/slides/sm2_2.jpg' %}" alt="slider-image"/>
+                    <div class="tp-caption sfl title-slide center" data-x="40" data-y="240" data-speed="1000" data-start="800">                            
+                        {% trans 'SM Onderdelen' %}
                     </div>    
-                    <div class="tp-caption sfl flat-button-slider bg-button-slider-32bfc0" data-x="40" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
-
-                    <div class="tp-caption sfr flat-button-slider" data-x="225" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Contact us</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
+                    <div class="tp-caption sfl flat-button-slider bg-button-slider-32bfc0" data-x="40" data-y="370" data-speed="1000" data-start="1100"><a href="#">{% trans 'Naar shop' %}</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
                 </li>
             </ul>
         </div>
-    </div> -->
-
-        <!-- Slider -->
-        <div class="tp-banner-container">
-            <div class="tp-banner" >
-                <ul>
-                    <li data-transition="random-static" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
-                        <img src="{% static 'images/slides/sm2_2.png' %}" alt="slider-image" />
-                        <div class="tp-caption sfl title-slide center" data-x="40" data-y="100" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">                            
-                            Standard sea freight<br>services
-                        </div>  
-                        <div class="tp-caption sfr desc-slide center" data-x="40" data-y="240" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">                       
-                            If low costs matter for your shipment, try our sea freight<br>services.
-                        </div>    
-                        <div class="tp-caption sfl flat-button-slider bg-button-slider-32bfc0" data-x="40" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
-
-                        <div class="tp-caption sfr flat-button-slider" data-x="225" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Contact us</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
-                    </li>
-
-                    <li data-transition="random-static" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
-                        <img src="images/slides/2.jpg" alt="slider-image" />
-                        <div class="tp-caption sfl title-slide center" data-x="40" data-y="100" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">                            
-                            International road<br>transport
-                        </div>  
-                        <div class="tp-caption sfr desc-slide center" data-x="40" data-y="240" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">                       
-                            The road transport industry is the backbone of strong<br>economies and dynamic societies.
-                        </div>    
-                        <div class="tp-caption sfl flat-button-slider bg-button-slider-32bfc0" data-x="40" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
-
-                        <div class="tp-caption sfr flat-button-slider" data-x="225" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Contact us</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
-                    </li>
-
-                    <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
-                        <img src="images/slides/3.jpg" alt="slider-image" />
-                        <div class="tp-caption sfl title-slide center" data-x="40" data-y="100" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">                            
-                            Warehousing and<br>storage
-                        </div>  
-                        <div class="tp-caption sfr desc-slide center" data-x="40" data-y="240" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">                       
-                            Warehouse services can be offered as a single service or<br>combined with transportation.
-                        </div>    
-                        <div class="tp-caption sfl flat-button-slider bg-button-slider-32bfc0" data-x="40" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
-
-                        <div class="tp-caption sfr flat-button-slider" data-x="225" data-y="370" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a href="#">Contact us</a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    </div>
 
     <!-- Promobox -->
     <div class="flat-row bg-scheme pad-top0px pad-bottom0px">

@@ -24,7 +24,9 @@
     {# include "partials/nav_accounts.html" #}
 
     <div class="boxed">
-        {% include 'partials/header.html' %}
+        {% block header %}
+            {% include 'partials/header.html' %}
+        {% endblock header %}
         {% block subheader_title %}
             {% include 'partials/page-title.html' with page_title=page_title %}
         {% endblock subheader_title  %}
