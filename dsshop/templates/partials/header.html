@@ -36,7 +36,7 @@
     <header id="header" class="header"> 
         <div class="header-wrap">
             <div id="logo" class="logo">
-                <a href="index.html">
+                <a href="{% url 'promotions:home' %}">
                     <img src="{% static 'images/logo.png' %}" alt="images">
                 </a>
             </div><!-- /.logo -->
@@ -105,9 +105,9 @@
                         </ul>
                     {% endif %}
                         </li>
-                        <li><a href="services.html">{% trans 'Onze diensten' %}</a>
+                        <li><a href="#">{% trans 'Onze diensten' %}</a>
                         </li>
-                        <li><a href="portfolio.html">{% trans "Foto's" %}</a>
+                        <li><a href="#">{% trans "Foto's" %}</a>
                         </li>                                              
                         </li>    
                         <li class="{% if request.get_full_path == contact_url %}active{% endif %}"><a href="{% url 'contact' %}">{% trans 'Contact' %}</a></li>
