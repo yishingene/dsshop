@@ -8,11 +8,11 @@
     <div class="row">
       <div class="col-md-12">
         <div id="flat-map">
-
 			<div class="col-md-8 col-md-offset-2">
                 <p>Please fill out the following form and a representative will contact you.</p>
                 <div class="flat-divider d10px"></div>
-                <form id="contactform" method="post" action="" novalidate="novalidate">
+                <form id="contactform" method="post" action="{% url 'contact' %}">
+                	{% csrf_token %}
                     <div class="row">
                         <div class="col-md-6">
                             <p><input id="name" name="name" type="text" value="" placeholder="{% trans 'Naam' %}" required="required"></p>

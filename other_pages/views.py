@@ -8,12 +8,20 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings
 
-from .forms import UploadFileForm
+from .forms import UploadFileForm, ContactForm
 
 # Create your views here.
-class ContactPageView(TemplateView):
+class ContactPageView(FormView):
 
 	template_name = 'contact.html'
+	form_class = ContactForm
+
+
+	def post(self, request, *args, **kwargs):
+
+		self.success_url = request.META.get('HTTP_REFERER')
+
+		return super(ContactPageView, self).post(request, *args, **kwargs)
 
 	def get_context_data(self, **kwargs):
 
