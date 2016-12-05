@@ -8,6 +8,20 @@ from myapps.catalogue.models import Product, ProductAttribute, ProductClass, Pro
 import os
 import csv
 
+
+def add_image_to_product(product_code):
+
+
+
+	os.path.isfile()
+
+def get_image_file_name(product_code):
+
+	filename = str(product_code) + 'jpg'
+
+	return filename
+
+
 class Command(BaseCommand):
 
 	def handle(self, *args, **options):
