@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
+from django.core.files import File
 from django.conf import settings
 
 from oscar.apps.catalogue.categories import create_from_breadcrumbs
@@ -7,17 +8,30 @@ from myapps.catalogue.models import Product, ProductAttribute, ProductClass, Pro
 
 import os
 import csv
+import urllib
+
+# Zie ook: stackoverflow: programmatically saving image to django imagefield
 
 
-def add_image_to_product(product_code):
+def add_image_to_product(product, product_code):
 
 
+	full_path = path + get_image_file_name(product_code)
 
 	os.path.isfile()
 
+#	result = urllib.urlretrieve(image_url)
+#
+#	product.image.save(
+#		os.path.basename(self.url),
+#		File(open(result[0]))
+#	)
+#
+#	product.save()
+
 def get_image_file_name(product_code):
 
-	filename = str(product_code) + 'jpg'
+	filename = str(product_code) + '.jpg'
 
 	return filename
 
