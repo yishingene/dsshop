@@ -36,10 +36,26 @@
 {% block content %}
     <div id="content_inner" class="flat-row flat-woocommerce flat-general sidebar-right">
         <div class="container">
+            <div class="row">
+                <div class="general">
+                </div>
+                <div class="general-sidebars">
+                    <div class="sidebar-wrap">
+                        <div class="sidebar">
+                            <div class="widget">
+                                <h4 class="widget-title">{% trans 'Verzendadres' %}</h4>
+                                {% block shipping_address %}
+                                    {{ block.super }}
+                                {% endblock %}
+                            </div>
+                            <a href="{% url 'checkout:shipping-address' %}">Wijzingen</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        {% block shipping_address %}
-            {{ block.super }}
-        {% endblock %}
+
+
 
     {% block order_contents %}
         <div class="sub-header">

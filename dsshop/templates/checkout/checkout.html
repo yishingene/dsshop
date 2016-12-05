@@ -5,24 +5,9 @@
 {% block content %}
 	{% block shipping_address %}
 		{% if shipping_address %}
-			<h2>Adres</h2>
 			{% for field in shipping_address.active_address_fields %}
                 {{ field }}<br/>
             {% endfor %}
-            {% if shipping_address.phone_number %}
-                <h4>{% trans "Contact" %}</h4>
-                <p>
-                    {% trans "Phone" %}: {{ shipping_address.phone_number }}
-                    {% if guest_email %}
-                        <br/>{% trans "Email" %}: {{ guest_email }}
-                    {% endif %}
-                </p>
-            {% endif %}
-
-            {% if shipping_address.notes %}
-                <h4>{% trans "Instructions" %}</h4>
-                <p>{{ shipping_address.notes|linebreaks }}</p>
-            {% endif %}
 
 		{% endif %}
 	{% endblock shipping_address %}
