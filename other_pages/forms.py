@@ -25,7 +25,7 @@ class ContactForm(forms.Form):
 		ctx['phone'] = self.phone
 		
 		title = 'Contactformulier van website'
-		msg_html = render_to_string('templates/others/contact_form.html', 'context': ctx)
+		msg_html = render_to_string('templates/others/contact_form.html', {ctx})
 		mgs_plain = 'niet html versie'
 		to_addresses = ['',]
 		from_adress = 'alfa@beta.gamma'
