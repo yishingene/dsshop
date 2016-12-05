@@ -1,5 +1,7 @@
 {% extends 'layout.html' %}
 
+{% load i18n %}
+
 {% block content %}
 <div class="flat-row">
   <div class="container">
@@ -7,6 +9,25 @@
       <div class="col-md-12">
         <div id="flat-map">
 
+			<div class="col-md-8 col-md-offset-2">
+                <p>Please fill out the following form and a representative will contact you.</p>
+                <div class="flat-divider d10px"></div>
+                <form id="contactform" method="post" action="" novalidate="novalidate">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><input id="name" name="name" type="text" value="" placeholder="{% trans 'Naam' %}" required="required"></p>
+                            <p><input id="email" name="email" type="email" value="" placeholder="Email" required="required"></p>
+                            <p><input id="phone" name="phone" type="text" value="" placeholder="{% trans 'Telefoonnummer' %}" required="required"></p>
+                            <p><input id="email" name="email" type="email" value="" placeholder="{% trans 'Bedrijf (optioneel)' %}"></p>
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <p><textarea name="message" placeholder="{% trans 'Jouw vraag of boodschap' %}" required="required"></textarea></p>
+                            <span class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="{%  trans 'Verzenden' %}">
+                            </span>
+                        </div><!-- /.col-md-6 -->
+                    </div><!-- /.row -->
+                </form>
+            </div>
         </div>    
       </div><!-- /.col-md-12 -->
     </div><!-- /.row -->
