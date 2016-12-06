@@ -45,7 +45,7 @@
 					            <li class="menu-item">
 					                <a {% if active_tab == 'addresses' %} class="active"{% endif %} href="{% url 'customer:address-list' %}">{% trans "Address Book" %}</a>
 					            </li>
-					            <li class="menu-item">
+					            <!-- <li class="menu-item">
 					                <a {% if active_tab == 'emails' %} class="active"{% endif %} href="{% url 'customer:email-list' %}">{% trans "Email History" %}</a>
 					            </li>
 					            <li class="menu-item">
@@ -56,7 +56,7 @@
 					            </li>
 					            <li class="menu-item">
 					                <a {% if active_tab == 'wishlists' %} class="active"{% endif %} href="{% url 'customer:wishlists-list' %}">{% trans "Wish Lists" %}</a>
-					            </li>
+					            </li> -->
                                 {% endblock standard_tabs %}
                             </ul>
                         </div>
@@ -66,5 +66,24 @@
     	</div>
 	</div>
 {% endblock content %}
+
+<!-- TO DO: wordt voorlopig niet gebruikt! -->
+{% block extrascripts %}
+	{{ block.super }}
+		<!-- MATCHHEIGHT: Init-->
+		    <script type="text/javascript">
+		        $(function() {
+		            $.fn.matchHeight._maintainScroll = true;
+		            $('div.product-info-wrap>h3').matchHeight();
+		            $('div.product-info-wrap>span.price').matchHeight();
+		        });
+		    </script>
+		<!-- FLAT TABS: Init -->
+		    <script type="text/javascript">
+		    $(function() { 
+		        flatTabs();
+		    });
+		    </script>
+{% endblock extrascripts %}
 
 

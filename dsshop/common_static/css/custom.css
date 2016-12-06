@@ -47,6 +47,24 @@
 }
 /* CUSTOM */
 
+.btn-primary {
+	background-color: #32bfc0;
+	border-color: #32bfc0;
+}
+
+.btn-primary:hover {
+	filter: brightness(85%);
+	-webkit-filter: brightness(85%);
+	background-color: #32bfc0;
+	border-color: #32bfc0;
+
+}
+
+.btn-warning {
+	background-color: #ffc952;
+	border-color: #ffc952;
+}
+
 label.checkbox{
 	margin: 5px 5px;
 }
@@ -246,4 +264,9 @@ p.form-login {
 
 div.navigation.paging-navigation.numeric {
 	margin-top: 30px;
+}
+
+.widget.widget_text.information .textwidget i {
+	color: #32bfc0;
+	margin-right: 13px;
 }

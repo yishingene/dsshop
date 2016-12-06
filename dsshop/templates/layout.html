@@ -323,14 +323,27 @@
             } 
         });
     </script>
-    <!-- MATCHHEIGHT: Init-->
+<!-- FLAT TABS -->
     <script type="text/javascript">
-        $(function() {
-            $.fn.matchHeight._maintainScroll = true;
-            $('div.product-info-wrap>h3').matchHeight();
-            $('div.product-info-wrap>span.price').matchHeight();
-        });
+        var flatTabs = function () {
+            $('.flat-tabs').each(function() {
+
+                $(this).children('.content-tab').children().hide();
+                $(this).children('.content-tab').children().first().show();
+
+                $(this).find('.menu-tabs').children('li').on('click', function(e) {
+                    var liActive = $(this).index(),
+                        contentActive = $(this).siblings().removeClass('active').parents('.flat-tabs').children('.content-tab').children().eq(liActive);
+
+                    contentActive.addClass('active').fadeIn('slow');
+                    contentActive.siblings().removeClass('active');
+                    $(this).addClass('active').parents('.flat-tabs').children('.content-tab').children().eq(liActive).siblings().hide();
+                    e.preventDefault();
+                });
+            });
+        };
     </script>
+
 {% endblock %}
 
 {% block onbodyload %}
