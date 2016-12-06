@@ -27,8 +27,16 @@
 <div class="flat-row flat-woocommerce flat-general sidebar-right">
     <div class="container">
         <div class="row">
-        	<div class="col-md-5">
+        	<div class="col-md-5 col-sm-6">
         		<h3>Verzendadres</h3>
+		{% if user.is_authenticated %}
+			{% if addresses %}
+			<h4>
+				EERDER OPGESLAGEN ADDRESSEN
+			</h4>
+			{% endif %}
+		{% endif %}
+		{% block new_address_form %}
     			<form action="{% url 'checkout:shipping-address' %}" method="post" id="new_shipping_address" class="form form-horizontal">
     				{% csrf_token %}
 <!-- 	        		<label for="id_title">{% trans 'Aanspreking' %}</label>
@@ -57,8 +65,9 @@
                         <button type="submit" class="button" name="login">{% trans 'Opslaan' %}</button>
                     </p> 
         		</form>
+		{% endblock new_address_form %}
         	</div>
-        	<div class="col-md-5 col-md-offset-1">
+        	<div class="col-sm-5 col-md-offset-2 col-sm-offset-1">
         		<h3>Overzicht winkelmand</h3>
         	</div>
         </div>
@@ -119,20 +128,6 @@
 	        {% endif %}
 	    {% endif %}
 
-	    {% block new_address_form %}
-	        <div class="well">
-	            <form action="{% url 'checkout:shipping-address' %}" method="post" id="new_shipping_address" class="form form-horizontal">
-	                {% csrf_token %}
-	                {% include "partials/form_fields.html" with form=form style='horizontal' %}
-	                <div class="form-group">
-	                    <div class="col-sm-offset-4 col-sm-8">
-	                        <button type="submit" class="btn btn-lg btn-primary" data-loading-text="{% trans 'Continuing...' %}">{% trans "Continue" %}</button>
-	                        {% trans "or" %} <a href="{% url 'basket:summary' %}">{% trans "return to basket" %}</a>
-	                    </div>
-	                </div>
-	            </form>
-	        </div>
-	    {% endblock %}
 	</div>
 </div>
 {% endblock shipping_address %}
