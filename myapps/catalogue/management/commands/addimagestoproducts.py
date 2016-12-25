@@ -39,7 +39,7 @@ class Command(BaseCommand):
 			try:
 				#img = open(image_path, 'r')
 
-				connection = S3Connection(settings.AWS_KEY, settings.AWS_SECRET)
+				connection = S3Connection(settings.AWS_ACCESS_KEY_ID, settings.AWS_SECRET_ACCESS_KEY)
 
 
 
