@@ -62,7 +62,6 @@ class Command(BaseCommand):
 
 			from boto.s3.connection import S3Connection
 			from boto.s3.key import Key
-			from boto.s3 import Object
 
 			try:
 				connection = S3Connection(settings.AWS_ACCESS_KEY_ID, settings.AWS_SECRET_ACCESS_KEY, host=settings.AWS_S3_HOST)
@@ -84,12 +83,16 @@ class Command(BaseCommand):
 				file_name = str(product_code) + '.jpg'
 
 				bucket = connection.get_bucket('dsshop')
-				key = Key(bucket, file_name)
+				bucket_list = bucket.list()
 
-				current_file = Object('dsshop', key)
+				for item in bucket_list:
+					self.stdout.write('list item: %s' % item)
 
-				self.stdout.write('KEY: %s' % key)
-				self.stdout.write('file??? %s' % current_file)
+
+				#current_file = Object('dsshop', key)
+
+				#self.stdout.write('KEY: %s' % key)
+				#self.stdout.write('file??? %s' % current_file)
 
 
 				# self.stdout.write('path: %s' % image_path)
