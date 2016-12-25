@@ -21,7 +21,7 @@ class Command(BaseCommand):
 			path = os.path.join(settings.MEDIA_ROOT + '/custom_image_list')
 
 		else:
-			path = os.path.join(settings.MEDIA_URL + '/custom_image_list')
+			path = os.path.join(settings.MEDIA_URL + 'custom_image_list')
 
 		self.stdout.write('path: %s' % path)
 
