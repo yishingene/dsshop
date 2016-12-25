@@ -30,14 +30,21 @@ class Command(BaseCommand):
 			product_code = product.upc
 			image_path = path + '/' + str(product_code) + '.jpg'
 
-			self.stdout.write('product_code: %s' % product_code)
-			self.stdout.write('path: %s' % image_path)
+			#self.stdout.write('product_code: %s' % product_code)
+			#self.stdout.write('path: %s' % image_path)
+
+			from boto.s3.connection import S3Connection
+
 
 			try:
-				img = open(image_path, 'r')
+				#img = open(image_path, 'r')
+
+				connection = S3Connection(settings.AWS_KEY, settings.AWS_SECRET)
+
+
 
 			except IOError: 
-				self.stdout.write('ERROR')
+				self.stdout.write('CONN PROBLEM')
 				continue
 
 			# image exists!
