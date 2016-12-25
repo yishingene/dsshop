@@ -1,10 +1,16 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.core.files import File
+from django.core.files.base import ContentFile
+from django.core.files.temp import NamedTemporaryFile
 from django.conf import settings
+
+from sorl.thumbnail import get_thumbnail
 
 from myapps.catalogue.models import Product, ProductImage
 
 import os
+import urllib
+from urllib.request import urlopen
 
 class Command(BaseCommand):
 
@@ -19,27 +25,31 @@ class Command(BaseCommand):
 			product_code = product.upc
 			image_path = path + '/' + str(product_code) + '.jpg'
 
-			#print('image: %s' % image_path)
-
 			try:
-				img = open(image_path, 'w')
+				img = open(image_path, 'r')
 
-			except: 
-				print('EXCEPTION')
+			except IOError: 
+				#print('EXCEPTION')
 				continue
 
-			print('--------------')
+			# image exists!
 
-			print('img: %s' % img)
+			extended_path = 'file://' + image_path
+			name = str(product_code) + '.jpg'
 
-			image = File(img)
 
-			# print('product code: %s' % product_code)
-			# print('image: %s' % image_path)
+			img_temp = NamedTemporaryFile(delete=True)
+			img_temp.write(urlopen(extended_path).read())
+			img_temp.flush()
 
-			# new = ProductImage(product=product, original=image)
 
-			# new.save()
+			new = ProductImage(product=product)
+			new.original.save(name, File(img_temp), True)
+
+
+			new.save()
+
+			print('SAVING')
 
 
 
@@ -50,7 +60,10 @@ class Command(BaseCommand):
 
 
 
+				# resized = get_thumbnail(photo.image.file, 'x160')
+				# photo.image.save(resized.name, ContentFile(resized.read()), True)
 
+				# photo.save()
 
 # import os
 # >>> from django.conf import settings
