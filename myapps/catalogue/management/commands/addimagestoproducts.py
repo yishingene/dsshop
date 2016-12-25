@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.core.files import File
 from django.conf import settings
 
-from myapps.catalogue.models import Product
+from myapps.catalogue.models import Product, ProductImage
 
 import os
 
@@ -12,20 +12,38 @@ class Command(BaseCommand):
 
 		help = 'automatiseer het toevoegen van fotos aan een product'
 
-		path = os.path.join(settings.MEDIA_ROOT + 'custom_image_list')
+		path = os.path.join(settings.MEDIA_ROOT + '/custom_image_list')
 
 		for index, product in enumerate(Product.objects.all()):
 
 			product_code = product.upc
-
 			image_path = path + '/' + str(product_code) + '.jpg'
 
-			print('product code: %s' % product_code)
-			print('image: %s' % image_path)
+			#print('image: %s' % image_path)
+
+			try:
+				img = open(image_path, 'w')
+
+			except: 
+				print('EXCEPTION')
+				continue
+
+			print('--------------')
+
+			print('img: %s' % img)
+
+			image = File(img)
+
+			# print('product code: %s' % product_code)
+			# print('image: %s' % image_path)
+
+			# new = ProductImage(product=product, original=image)
+
+			# new.save()
 
 
 
-		print('MEDIA PATH: %s' % path)
+		#print('MEDIA PATH: %s' % path)
 
 		self.stdout.write('--Het is gefixt!--')
 
