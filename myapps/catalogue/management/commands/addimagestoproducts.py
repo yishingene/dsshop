@@ -20,62 +20,91 @@ class Command(BaseCommand):
 		if settings.DEV:
 			path = os.path.join(settings.MEDIA_ROOT + '/custom_image_list')
 
+			for index, product in enumerate(Product.objects.all()):
+
+				product_code = product.upc
+				image_path = path + '/' + str(product_code) + '.jpg'
+
+				try:
+					img = open(image_path, 'r')
+
+				except IOError: 
+					continue
+
+				# image exists!
+				extended_path = 'file://' + image_path
+
+				name = str(product_code) + '.jpg'
+
+				img_temp = NamedTemporaryFile(delete=True)
+				img_temp.write(urlopen(extended_path).read())
+				img_temp.flush()
+
+				new = ProductImage(product=product)
+
+				try:
+					new.original.save(name, File(img_temp), True)
+
+				except: 
+					continue
+
+				new.save()
+				print('SAVING')
+
+			self.stdout.write('--Het is gefixt!--')
+
 		else:
 			path = os.path.join(settings.MEDIA_URL + 'custom_image_list')
 
-		self.stdout.write('path: %s' % path)
+			self.stdout.write('path: %s' % path)
 
-		for index, product in enumerate(Product.objects.all()):
+			for index, product in enumerate(Product.objects.all()):
 
-			product_code = product.upc
-			image_path = path + '/' + str(product_code) + '.jpg'
+				product_code = product.upc
+				image_path = path + '/' + str(product_code) + '.jpg'
 
-			#self.stdout.write('product_code: %s' % product_code)
-			#self.stdout.write('path: %s' % image_path)
+				#self.stdout.write('product_code: %s' % product_code)
+				#self.stdout.write('path: %s' % image_path)
 
-			from boto.s3.connection import S3Connection
+				from boto.s3.connection import S3Connection
 
+				try:
+					connection = S3Connection(settings.AWS_ACCESS_KEY_ID, settings.AWS_SECRET_ACCESS_KEY, host=settings.AWS_S3_HOST)
 
-			try:
-				#img = open(image_path, 'r')
+				except: 
+					self.stdout.write('CONN PROBLEM')
+					continue
 
-				connection = S3Connection(settings.AWS_ACCESS_KEY_ID, settings.AWS_SECRET_ACCESS_KEY, host=settings.AWS_S3_HOST)
+				# image exists!
+				self.stdout.write('CONN OKE!')
 
+				# self.stdout.write('path: %s' % image_path)
 
+				# if settings.DEV == True:
+				# 	extended_path = 'file://' + image_path
 
-			except IOError: 
-				self.stdout.write('CONN PROBLEM')
-				continue
+				# else: 
+				# 	extended_path = image_path
 
-			# image exists!
+				# name = str(product_code) + '.jpg'
 
-			self.stdout.write('path: %s' % image_path)
+				# img_temp = NamedTemporaryFile(delete=True)
+				# img_temp.write(urlopen(extended_path).read())
+				# img_temp.flush()
 
-			if settings.DEV == True:
-				extended_path = 'file://' + image_path
+				# new = ProductImage(product=product)
 
-			else: 
-				extended_path = image_path
+				# try:
+				# 	new.original.save(name, File(img_temp), True)
 
-			name = str(product_code) + '.jpg'
+				# except: 
+				# 	print('BESTAAT REEDS')
+				# 	continue
 
-			img_temp = NamedTemporaryFile(delete=True)
-			img_temp.write(urlopen(extended_path).read())
-			img_temp.flush()
+				# new.save()
+				# print('SAVING')
 
-			new = ProductImage(product=product)
-
-			try:
-				new.original.save(name, File(img_temp), True)
-
-			except: 
-				print('BESTAAT REEDS')
-				continue
-
-			new.save()
-			print('SAVING')
-
-		self.stdout.write('--Het is gefixt!--')
+			self.stdout.write('--Het is gefixt!--')
 
 
 
