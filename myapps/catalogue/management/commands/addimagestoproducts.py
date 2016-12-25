@@ -9,7 +9,9 @@ from sorl.thumbnail import get_thumbnail
 from myapps.catalogue.models import Product, ProductImage
 
 import os
+import urllib
 from urllib.request import urlopen
+
 
 class Command(BaseCommand):
 
@@ -67,6 +69,7 @@ class Command(BaseCommand):
 				#self.stdout.write('path: %s' % image_path)
 
 				from boto.s3.connection import S3Connection
+				from boto.s3.key import Key
 
 				try:
 					connection = S3Connection(settings.AWS_ACCESS_KEY_ID, settings.AWS_SECRET_ACCESS_KEY, host=settings.AWS_S3_HOST)
@@ -76,7 +79,14 @@ class Command(BaseCommand):
 					continue
 
 				# image exists!
-				self.stdout.write('CONN OKE!')
+				#self.stdout.write('CONN OKE!')
+				file_name = str(product_code) + '.jpg'
+
+				bucket = connection.get_bucket('dsshop')
+				key = Key(bucket, file_name)
+
+				self.stdout.write('KEY: %s' % key)
+
 
 				# self.stdout.write('path: %s' % image_path)
 
