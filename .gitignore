@@ -4,8 +4,10 @@
 /venv/
 /static/
 /media/
+/dsshop/media/
 /dsshop/media/cache/
 /dsshop/media/images/products/
+/dsshop/media/custom_image_list/
 .env
 dev.py
 # settings/
