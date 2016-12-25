@@ -9,7 +9,6 @@ from sorl.thumbnail import get_thumbnail
 from myapps.catalogue.models import Product, ProductImage
 
 import os
-import urllib
 from urllib.request import urlopen
 
 class Command(BaseCommand):
@@ -29,56 +28,35 @@ class Command(BaseCommand):
 				img = open(image_path, 'r')
 
 			except IOError: 
-				#print('EXCEPTION')
 				continue
 
 			# image exists!
+			if settings.DEV == True:
+				extended_path = 'file://' + image_path
 
-			extended_path = 'file://' + image_path
+			else: 
+				extended_path = 'http://' + image_path
+
 			name = str(product_code) + '.jpg'
-
 
 			img_temp = NamedTemporaryFile(delete=True)
 			img_temp.write(urlopen(extended_path).read())
 			img_temp.flush()
 
-
 			new = ProductImage(product=product)
-			new.original.save(name, File(img_temp), True)
 
+			try:
+				new.original.save(name, File(img_temp), True)
+
+			except: 
+				print('BESTAAT REEDS')
+				continue
 
 			new.save()
-
 			print('SAVING')
-
-
-
-		#print('MEDIA PATH: %s' % path)
 
 		self.stdout.write('--Het is gefixt!--')
 
-
-
-
-				# resized = get_thumbnail(photo.image.file, 'x160')
-				# photo.image.save(resized.name, ContentFile(resized.read()), True)
-
-				# photo.save()
-
-# import os
-# >>> from django.conf import settings
-# >>> initial_path = car.photo.path
-# >>> car.photo.name = 'cars/chevy_ii.jpg'
-# >>> new_path = settings.MEDIA_ROOT + car.photo.name
-# >>> # Move the file on the filesystem
-# >>> os.rename(initial_path, new_path)
-# >>> car.save()
-# >>> car.photo.path
-# '/media/cars/chevy_ii.jpg'
-# >>> car.photo.path == new_path
-# True
-
-# Zie ook: stackoverflow: programmatically saving image to django imagefield
 
 
 def add_image_to_product(product, product_code):
