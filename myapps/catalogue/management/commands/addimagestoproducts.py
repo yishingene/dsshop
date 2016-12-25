@@ -17,7 +17,11 @@ class Command(BaseCommand):
 
 		help = 'automatiseer het toevoegen van fotos aan een product'
 
-		path = os.path.join(settings.MEDIA_ROOT + '/custom_image_list')
+		if settings.DEV:
+			path = os.path.join(settings.MEDIA_ROOT + '/custom_image_list')
+
+		else:
+			path = os.path.join(settings.MEDIA_URL + '/custom_image_list')
 
 		self.stdout.write('path: %s' % path)
 
@@ -40,7 +44,7 @@ class Command(BaseCommand):
 				extended_path = 'file://' + image_path
 
 			else: 
-				extended_path = 'http://' + image_path
+				extended_path = image_path
 
 			name = str(product_code) + '.jpg'
 
