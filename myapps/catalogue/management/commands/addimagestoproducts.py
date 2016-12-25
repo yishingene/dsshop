@@ -60,6 +60,16 @@ class Command(BaseCommand):
 
 			self.stdout.write('path: %s' % path)
 
+			from boto.s3.connection import S3Connection
+			from boto.s3.key import Key
+			from boto.s3 import Object
+
+			try:
+				connection = S3Connection(settings.AWS_ACCESS_KEY_ID, settings.AWS_SECRET_ACCESS_KEY, host=settings.AWS_S3_HOST)
+
+			except: 
+				self.stdout.write('CONN PROBLEM')
+
 			for index, product in enumerate(Product.objects.all()):
 
 				product_code = product.upc
@@ -68,15 +78,6 @@ class Command(BaseCommand):
 				#self.stdout.write('product_code: %s' % product_code)
 				#self.stdout.write('path: %s' % image_path)
 
-				from boto.s3.connection import S3Connection
-				from boto.s3.key import Key
-
-				try:
-					connection = S3Connection(settings.AWS_ACCESS_KEY_ID, settings.AWS_SECRET_ACCESS_KEY, host=settings.AWS_S3_HOST)
-
-				except: 
-					self.stdout.write('CONN PROBLEM')
-					continue
 
 				# image exists!
 				#self.stdout.write('CONN OKE!')
@@ -85,7 +86,10 @@ class Command(BaseCommand):
 				bucket = connection.get_bucket('dsshop')
 				key = Key(bucket, file_name)
 
+				current_file = Object('dsshop', key)
+
 				self.stdout.write('KEY: %s' % key)
+				self.stdout.write('file??? %s' % current_file)
 
 
 				# self.stdout.write('path: %s' % image_path)
