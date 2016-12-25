@@ -30,10 +30,14 @@ class Command(BaseCommand):
 			product_code = product.upc
 			image_path = path + '/' + str(product_code) + '.jpg'
 
+			self.stdout.write('product_code: %s' % product_code)
+			self.stdout.write('path: %s' % image_path)
+
 			try:
 				img = open(image_path, 'r')
 
 			except IOError: 
+				self.stdout.write('ERROR')
 				continue
 
 			# image exists!
