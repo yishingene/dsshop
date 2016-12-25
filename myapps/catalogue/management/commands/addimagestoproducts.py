@@ -19,6 +19,8 @@ class Command(BaseCommand):
 
 		path = os.path.join(settings.MEDIA_ROOT + '/custom_image_list')
 
+		self.stdout.write('path: %s' % path)
+
 		for index, product in enumerate(Product.objects.all()):
 
 			product_code = product.upc
@@ -31,6 +33,9 @@ class Command(BaseCommand):
 				continue
 
 			# image exists!
+
+			self.stdout.write('path: %s' % image_path)
+
 			if settings.DEV == True:
 				extended_path = 'file://' + image_path
 
