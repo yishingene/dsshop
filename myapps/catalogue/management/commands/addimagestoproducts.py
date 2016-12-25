@@ -20,41 +20,65 @@ class Command(BaseCommand):
 		help = 'automatiseer het toevoegen van fotos aan een product'
 
 		if settings.DEV:
-			#path = os.path.join(settings.MEDIA_ROOT + '/custom_image_list')
+
 			path = 'https://dsshop.s3.eu-central-1.amazonaws.com/media/custom_image_list'
+
 
 			for index, product in enumerate(Product.objects.all()):
 
 				product_code = product.upc
 				image_path = path + '/' + str(product_code) + '.jpg'
 
-				try:
-					img = open(image_path, 'r')
-
-				except IOError: 
-					continue
-
-				# image exists!
-				extended_path = 'file://' + image_path
-
-				name = str(product_code) + '.jpg'
-
-				img_temp = NamedTemporaryFile(delete=True)
-				img_temp.write(urlopen(extended_path).read())
-				img_temp.flush()
-
-				new = ProductImage(product=product)
+				print('image path: %s' % image_path)
 
 				try:
-					new.original.save(name, File(img_temp), True)
+					myfile = urlopen(image_path)
 
-				except: 
+				except:
+					self.stdout.write('--ERROR--')
 					continue
 
-				new.save()
-				print('SAVING')
 
-			self.stdout.write('--Het is gefixt!--')
+				print('myfile: %s' % myfile)
+
+
+
+			
+			# path = os.path.join(settings.MEDIA_ROOT + '/custom_image_list')
+
+			# for index, product in enumerate(Product.objects.all()):
+
+			# 	product_code = product.upc
+			# 	image_path = path + '/' + str(product_code) + '.jpg'
+
+			# 	try:
+			# 		img = open(image_path, 'r')
+
+			# 	except IOError: 
+			# 		print('IO ERROR')
+			# 		continue
+
+			# 	# image exists!
+			# 	extended_path = 'file://' + image_path
+
+			# 	name = str(product_code) + '.jpg'
+
+			# 	img_temp = NamedTemporaryFile(delete=True)
+			# 	img_temp.write(urlopen(extended_path).read())
+			# 	img_temp.flush()
+
+			# 	new = ProductImage(product=product)
+
+			# 	try:
+			# 		new.original.save(name, File(img_temp), True)
+
+			# 	except: 
+			# 		continue
+
+			# 	new.save()
+			# 	print('SAVING')
+
+			# self.stdout.write('--Het is gefixt!--')
 
 		else:
 			path = os.path.join(settings.MEDIA_URL + 'custom_image_list')
