@@ -29,62 +29,74 @@ class Command(BaseCommand):
 				product_code = product.upc
 				image_path = path + '/' + str(product_code) + '.jpg'
 
-				print('image path: %s' % image_path)
+				#print('image path: %s' % image_path)
 
 				try:
 					myfile = urlopen(image_path)
 
 				except:
-					self.stdout.write('--ERROR--')
+					#self.stdout.write('--ERROR--')
 					continue
 
+				#print('myfile: %s' % myfile)
+				file_name = str(product_code) + '.jpg'
 
-				print('myfile: %s' % myfile)
+				img_temp = NamedTemporaryFile(delete=True)
+				img_temp.write(urlopen(image_path).read())
+				img_temp.flush()
 
+				product = ProductImage.objects.get_or_create(product=product)
 
+				try:
+					product.original.save(file_name, File(img_temp), True)
 
-			
-			# path = os.path.join(settings.MEDIA_ROOT + '/custom_image_list')
+				except: 
+					print('ERROR SAVING IMG')
+					break
 
-			# for index, product in enumerate(Product.objects.all()):
+				product.save()
+				print('SAVING')
 
-			# 	product_code = product.upc
-			# 	image_path = path + '/' + str(product_code) + '.jpg'
-
-			# 	try:
-			# 		img = open(image_path, 'r')
-
-			# 	except IOError: 
-			# 		print('IO ERROR')
-			# 		continue
-
-			# 	# image exists!
-			# 	extended_path = 'file://' + image_path
-
-			# 	name = str(product_code) + '.jpg'
-
-			# 	img_temp = NamedTemporaryFile(delete=True)
-			# 	img_temp.write(urlopen(extended_path).read())
-			# 	img_temp.flush()
-
-			# 	new = ProductImage(product=product)
-
-			# 	try:
-			# 		new.original.save(name, File(img_temp), True)
-
-			# 	except: 
-			# 		continue
-
-			# 	new.save()
-			# 	print('SAVING')
-
-			# self.stdout.write('--Het is gefixt!--')
+			self.stdout.write('--Het is gefixt!--')
 
 		else:
-			path = os.path.join(settings.MEDIA_URL + 'custom_image_list')
 
-			self.stdout.write('path: %s' % path)
+			path = 'https://dsshop.s3.eu-central-1.amazonaws.com/media/custom_image_list'
 
+
+			for index, product in enumerate(Product.objects.all()):
+
+				product_code = product.upc
+				image_path = path + '/' + str(product_code) + '.jpg'
+
+				#print('image path: %s' % image_path)
+
+				try:
+					myfile = urlopen(image_path)
+
+				except:
+					#self.stdout.write('--ERROR--')
+					continue
+
+				#print('myfile: %s' % myfile)
+				file_name = str(product_code) + '.jpg'
+
+				img_temp = NamedTemporaryFile(delete=True)
+				img_temp.write(urlopen(myfile).read())
+				img_temp.flush()
+
+				product = ProductImage.objects.get_or_create(product=product)
+
+				try:
+					product.original.save(name, File(img_temp), True)
+
+				except: 
+					continue
+
+				product.save()
+				print('SAVING')
+
+			self.stdout.write('--Het is gefixt!--')
 
 
 			# from boto.s3.connection import S3Connection
