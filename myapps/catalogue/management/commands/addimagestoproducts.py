@@ -27,7 +27,9 @@ class Command(BaseCommand):
 			for index, product in enumerate(Product.objects.all()):
 
 				product_code = product.upc
-				image_path = path + '/' + str(product_code) + '.jpg'
+				file_name = str(product_code) + '.jpg'
+
+				image_path = path + '/' + file_name
 
 				#print('image path: %s' % image_path)
 
@@ -35,29 +37,71 @@ class Command(BaseCommand):
 					myfile = urlopen(image_path)
 
 				except:
-					#self.stdout.write('--ERROR--')
+					self.stdout.write('--ERROR--')
 					continue
 
-				#print('myfile: %s' % myfile)
-				file_name = str(product_code) + '.jpg'
+				print('product: %s' % product)
+				print('file name: %s' % file_name)
+				print('myfile: %s' % myfile)
+				print('path: %s' % image_path)
+				
 
 				img_temp = NamedTemporaryFile(delete=True)
 				img_temp.write(urlopen(image_path).read())
 				img_temp.flush()
 
-				product = ProductImage.objects.get_or_create(product=product)
+				print('img_temp: %s' % img_temp)
+
+				new_image = ProductImage(product=product)
 
 				try:
-					product.original.save(file_name, File(img_temp), True)
+					new_image.original.save(file_name, File(img_temp))
 
 				except: 
 					print('ERROR SAVING IMG')
 					break
 
-				product.save()
+				new_image.save()
 				print('SAVING')
 
 			self.stdout.write('--Het is gefixt!--')
+
+			
+			# path = os.path.join(settings.MEDIA_ROOT + '/custom_image_list')
+
+			# for index, product in enumerate(Product.objects.all()):
+
+			# 	product_code = product.upc
+			# 	image_path = path + '/' + str(product_code) + '.jpg'
+
+			# 	try:
+			# 		img = open(image_path, 'r')
+
+			# 	except IOError: 
+			# 		print('IO ERROR')
+			# 		continue
+
+			# 	# image exists!
+			# 	extended_path = 'file://' + image_path
+
+			# 	name = str(product_code) + '.jpg'
+
+			# 	img_temp = NamedTemporaryFile(delete=True)
+			# 	img_temp.write(urlopen(extended_path).read())
+			# 	img_temp.flush()
+
+			# 	new = ProductImage(product=product)
+
+			# 	try:
+			# 		new.original.save(name, File(img_temp), True)
+
+			# 	except: 
+			# 		continue
+
+			# 	new.save()
+			# 	print('SAVING')
+
+			# self.stdout.write('--Het is gefixt!--')
 
 		else:
 
@@ -85,10 +129,10 @@ class Command(BaseCommand):
 				img_temp.write(urlopen(myfile).read())
 				img_temp.flush()
 
-				product = ProductImage.objects.get_or_create(product=product)
+				new = ProductImage(product=product)
 
 				try:
-					product.original.save(name, File(img_temp), True)
+					new.original.save(name, File(img_temp), True)
 
 				except: 
 					continue
