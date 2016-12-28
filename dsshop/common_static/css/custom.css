@@ -109,10 +109,15 @@ div.custom-info > a::focus {
 
 .product-info-wrap h3 {
 	font-size: 16px;
+	margin: 15px 0 15px 0;
 }
 
 .product-info-wrap .button {
 	width: 100%
+}
+
+div.product-inner {
+	margin-top: 45px;
 }
 
 #mainnav-mobi ul > li > a:hover {

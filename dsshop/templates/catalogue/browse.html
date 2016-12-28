@@ -87,4 +87,7 @@
 {% block onbodyload %}
     {{ block.super }}
     oscar.search.init();
+    $('div.product-info-wrap>h3').matchHeight();
+
 {% endblock %}
+
