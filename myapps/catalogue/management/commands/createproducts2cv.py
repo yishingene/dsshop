@@ -40,7 +40,7 @@ class Command(BaseCommand):
 
 	def handle(self, *args, **options):
 
-		help = 'automatiseer de aanmaak van de product catalogus'
+		help = 'automatiseer de aanmaak van de product catalogus (voor onderdelen!)'
 
 		FILE = os.path.join(settings.MEDIA_ROOT, '2cv_onderdelen.csv')
 		
@@ -52,6 +52,8 @@ class Command(BaseCommand):
 			for row in reader:
 				'''STAPPENPLAN:
 				1. Analyseer Product code (UPC), derde rij
+				2. Maak product category aan als nog niet bestaat
+				3. Maak product aan
 				'''
 
 				upc = str(row[2])
@@ -78,63 +80,23 @@ class Command(BaseCommand):
 							continue
 
 						cat_string = main_cat + '>' + cat_breadcrumb
+						category = create_from_breadcrumbs(cat_string)
 
-						print('CATEGORIE: %s' % cat_string)
+						try:
+							product = Product.objects.get(upc=upc)
 
+						except Product.DoesNotExist:
 
+							product = Product()
+							product.title = row[0]
+							product.ucp = upc
+							product.product_class = product_class
 
+							product.save()
 
-						# print('CAR: %s' % car_type_id)
-						# print('CAT: %s' % category_id)
-						# print('PROD: %s' % product_id)
+							ProductCategory.objects.update_or_create(product=product, category=category)
 
 					else:
 						continue
-
-
-				'''
-				Stappenplan:
-				1. Check 5de rij (= UPC): mag niet leeg zijn
-				2. Check 2de rij: ? 'Category'
-				3. Maak product aan
-				'''
-				
-				# Stap 1: Check 2de rij op de naam 'CATEGORY'
-				# if row[1] == 'CATEGORY':
-
-				# 	cat_string = create_from_breadcrumbs(row[0])
-
-				# 	print('category: %s' % row[1])
-
-				# # Stap 2: Als geen categorie, dan proberen we product aan te maken
-				# else:
-				# 	if row[4] in (None, ''):
-				# 		print('deze rij (%s) heeft geen UPC -> ignore!' % reader.line_num)
-
-				# 	else:
-				# 		# Dit is een product!
-				# 		print('product: %s -- %s' % (row[0], row[4]))
-
-				# 		title = row[0]
-				# 		upc = row[4]
-
-				# 		try:
-				# 			item = Product.objects.get(upc=upc)
-
-				# 		except Product.DoesNotExist:
-
-				# 			print('maak product aan')
-
-				# 			# Maak product aan
-				# 			item = Product()
-				# 			item.title = title
-				# 			item.upc = upc
-				# 			item.product_class = product_class
-
-				# 			item.save()
-
-				# 			# Voeg categorie toe
-				# 			ProductCategory.objects.update_or_create(product=item, category=cat_string)
-
 
 		self.stdout.write('--Het is gefixt!--')
