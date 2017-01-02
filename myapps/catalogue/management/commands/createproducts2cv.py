@@ -73,10 +73,13 @@ class Command(BaseCommand):
 
 			csv_file = file.read()
 
-			reader = csv.reader(csv_file, delimiter=';')
+			reader = csv.reader(csv_file.decode('utf-8').splitlines(), delimiter=';')
 			product_class = ProductClass.objects.get(name='Onderdelen')
 
+			print('HHHHHHHHHHH')
+
 			for row in reader:
+
 				'''STAPPENPLAN:
 				1. Analyseer Product code (UPC), derde rij
 				2. Maak product category aan als nog niet bestaat
