@@ -21,11 +21,10 @@ IMAGES_PATH = 'https://dsshop.s3.eu-central-1.amazonaws.com/media/custom_image_l
 if settings.DEV == True:
 	IMAGES_PATH = 'file://' + settings.MEDIA_ROOT + '/custom_image_list'
 
-#PRODUCTS_FILE = 'https://dsshop.s3.eu-central-1.amazonaws.com/media/2cv_onderdelen.csv'
 PRODUCTS_FILE = 'https://s3.eu-central-1.amazonaws.com/dsshop/media/2cv_onderdelen.csv'
 
-if settings.DEV == True:
-	PRODUCTS_FILE = os.path.join(settings.MEDIA_ROOT, '2cv_onderdelen.csv')
+#if settings.DEV == True:
+#	PRODUCTS_FILE = os.path.join(settings.MEDIA_ROOT, '2cv_onderdelen.csv')
 
 def add_image_to_product(product, category, alternate_id):
 
@@ -72,7 +71,11 @@ class Command(BaseCommand):
 		
 		with urlopen(PRODUCTS_FILE) as file:
 
-			reader = csv.reader(file, delimiter=';')
+			print('*****************file: %s' % file.read())
+
+			csv_file = file.read()
+
+			reader = csv.reader(csv_file, delimiter=';')
 			product_class = ProductClass.objects.get(name='Onderdelen')
 
 			for row in reader:
