@@ -23,7 +23,7 @@ if settings.DEV == True:
 
 PRODUCTS_FILE = 'https://dsshop.s3.eu-central-1.amazonaws.com/media/2cv_onderdelen.csv'
 
-if settings.DEV == True 
+if settings.DEV == True:
 	PRODUCTS_FILE = os.path.join(settings.MEDIA_ROOT, '2cv_onderdelen.csv')
 
 def add_image_to_product(product, category, alternate_id):
