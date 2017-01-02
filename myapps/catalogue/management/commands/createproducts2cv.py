@@ -71,8 +71,6 @@ class Command(BaseCommand):
 		
 		with urlopen(PRODUCTS_FILE) as file:
 
-			print('*****************file: %s' % file.read())
-
 			csv_file = file.read()
 
 			reader = csv.reader(csv_file, delimiter=';')
@@ -121,6 +119,8 @@ class Command(BaseCommand):
 
 						except Product.DoesNotExist:
 
+							self.stdout.write('*** creating product starts here')
+
 							product = Product()
 							product.title = row[0]
 							product.upc = upc
@@ -131,6 +131,8 @@ class Command(BaseCommand):
 							ProductCategory.objects.update_or_create(product=product, category=category)
 
 						finally:
+							self.stdout.write('*** Adding image to product starts here')
+
 							add_image_to_product(product, main_cat, alternate_id)
 
 					else:
