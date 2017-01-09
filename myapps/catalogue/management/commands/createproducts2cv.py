@@ -5,6 +5,7 @@ from django.conf import settings
 from django.db.utils import IntegrityError
 
 from oscar.apps.catalogue.categories import create_from_breadcrumbs
+from oscar.apps.partner.importers import CatalogueImporter
 
 from myapps.catalogue.models import Product, ProductAttribute, ProductClass, ProductCategory, ProductImage
 from myapps.partner.models import StockRecord, Partner
@@ -28,9 +29,28 @@ PRODUCTS_FILE = 'https://s3.eu-central-1.amazonaws.com/dsshop/media/2cv_onderdel
 #if settings.DEV == True:
 #	PRODUCTS_FILE = os.path.join(settings.MEDIA_ROOT, '2cv_onderdelen.csv')
 
-def add_partner_information(product):
+def add_partner_information(product, partner_code, price_purchase, price_sell):
 
-	partner = None
+	partner = Partner.objects.get_or_create(name='Eigen stock')
+
+	price = price_sell.replace(',', '.')
+
+	print('---- prijs %s' % price)
+
+	if price != '':
+
+		importer = CatalogueImporter(logger=None)
+
+		importer._create_stockrecord(
+			item=product,
+			partner_name=partner[0],
+			partner_sku=partner_code,
+			price_excl_tax=price,
+			num_in_stock=0,
+			stats=None
+			)
+
+
 
 def add_image_to_product(product, category, alternate_id):
 
@@ -76,6 +96,10 @@ def add_image_to_product(product, category, alternate_id):
 class Command(BaseCommand):
 
 	def handle(self, *args, **options):
+		'''
+		Veel van onderstaande functionaliteit is gebaseerd op de CatalogueImporter klasse uit de django oscar 
+		Partner applicatie. Zie de importers.py file voor meer informatie
+		'''
 
 		help = 'automatiseer de aanmaak van de product catalogus (voor onderdelen!)'
 		
@@ -95,10 +119,16 @@ class Command(BaseCommand):
 				2. Maak product category aan als nog niet bestaat
 				3. Maak product aan
 				4. Voeg afbeelding toe aan product
+				5. Voeg de nodige prijsinformatie toe
 				'''
 
 				upc = str(row[2])
 				alternate_id = str(row[1])
+				price_purchase = row[4]
+				price_sell = row[5]
+
+				#print('---- prijs %s' % price_sell)
+
 
 				if upc != '':
 
@@ -107,6 +137,7 @@ class Command(BaseCommand):
 						car_type_id = upc[:1]
 						category_id = upc[1:3]
 						product_id = upc[-3:]
+
 
 						if car_type_id == '2':
 
@@ -216,12 +247,19 @@ class Command(BaseCommand):
 
 							product.save()
 
+							# Link het product aan een ProductCategory
 							ProductCategory.objects.update_or_create(product=product, category=category)
 
 						finally:
 							self.stdout.write('*** Adding image to product starts here')
 
 							add_image_to_product(product, main_cat, alternate_id)
+							add_partner_information(
+								product=product, 
+								partner_code=alternate_id, 
+								price_purchase=price_purchase,
+								price_sell=price_sell
+								)
 
 					else:
 						continue
