@@ -65,7 +65,9 @@ def add_image_to_product(product, category, alternate_id):
 		print('DUPLICATE KEY')
 		return 0	
 
-	#new_image.save()
+	
+
+	new_image.save()
 	print('SAVING IMAGE')
 
 class Command(BaseCommand):
