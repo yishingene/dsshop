@@ -7,11 +7,9 @@
 {% category_tree as tree_categories %}
 {% if tree_categories %}
     {% for cat in category.get_descendants %}
-        {% if cat.level == 1 %}
         <li>
             <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
         </li>
-        {% endif %}
     {% endfor %}
 {% endif %}
     </ul>
