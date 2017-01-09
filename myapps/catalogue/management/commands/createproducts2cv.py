@@ -2,6 +2,9 @@ from django.core.management.base import BaseCommand, CommandError
 from django.core.files import File
 from django.core.files.base import ContentFile
 from django.conf import settings
+from django.db.utils import IntegrityError
+
+django.db.utils.IntegrityError
 
 from oscar.apps.catalogue.categories import create_from_breadcrumbs
 
@@ -12,7 +15,7 @@ import csv
 import requests
 import urllib
 from urllib.request import urlopen
-from psycopg2 import IntegrityError
+from psycopg2 import IntegrityError as PG_IntegrityError
 
 # Zie ook: stackoverflow: programmatically saving image to django imagefield
 
@@ -59,6 +62,10 @@ def add_image_to_product(product, category, alternate_id):
 	except IntegrityError: 
 		print('DUPLICATE KEY')
 		return 0
+
+	except PG_IntegrityError:
+		print('DUPLICATE KEY')
+		return 0	
 
 	#new_image.save()
 	print('SAVING IMAGE')
