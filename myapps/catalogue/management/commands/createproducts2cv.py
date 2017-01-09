@@ -4,8 +4,6 @@ from django.core.files.base import ContentFile
 from django.conf import settings
 from django.db.utils import IntegrityError
 
-django.db.utils.IntegrityError
-
 from oscar.apps.catalogue.categories import create_from_breadcrumbs
 
 from myapps.catalogue.models import Product, ProductAttribute, ProductClass, ProductCategory, ProductImage
