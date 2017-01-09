@@ -36,7 +36,7 @@ def add_image_to_product(product, category, alternate_id):
 	else:
 		product_code = product.upc
 
-	file_name = str(product_code) + '.jpg'
+	file_name = str(product_code) + '.JPG'
 	image_path = IMAGES_PATH + '/' + file_name
 
 	try:
