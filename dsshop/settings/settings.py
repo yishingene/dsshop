@@ -84,7 +84,7 @@ INSTALLED_APPS = [
     'rest_framework',   # Required om gebruik te kunnen maken van oscarapi
 
 
-] + get_core_apps(['myapps.catalogue', 'myapps.basket'])
+] + get_core_apps(['myapps.catalogue', 'myapps.basket', 'myapps.partner'])
 
 SITE_ID = 1
 

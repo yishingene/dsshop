@@ -7,6 +7,7 @@ from django.db.utils import IntegrityError
 from oscar.apps.catalogue.categories import create_from_breadcrumbs
 
 from myapps.catalogue.models import Product, ProductAttribute, ProductClass, ProductCategory, ProductImage
+from myapps.partner.models import StockRecord, Partner
 
 import os
 import csv
@@ -26,6 +27,10 @@ PRODUCTS_FILE = 'https://s3.eu-central-1.amazonaws.com/dsshop/media/2cv_onderdel
 
 #if settings.DEV == True:
 #	PRODUCTS_FILE = os.path.join(settings.MEDIA_ROOT, '2cv_onderdelen.csv')
+
+def add_partner_information(product):
+
+	partner = None
 
 def add_image_to_product(product, category, alternate_id):
 
@@ -64,8 +69,6 @@ def add_image_to_product(product, category, alternate_id):
 	except PG_IntegrityError:
 		print('DUPLICATE KEY')
 		return 0	
-
-	
 
 	new_image.save()
 	print('SAVING IMAGE')
