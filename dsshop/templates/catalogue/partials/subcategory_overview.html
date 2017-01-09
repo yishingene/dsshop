@@ -4,17 +4,17 @@
     <h4 class="widget-title">{{ category }}</h4>
     <h6 class="subcategory">{% trans 'Subcategorieën' %}</h6>
     <ul class="product-categories">
+
+
 {% category_tree as tree_categories %}
 {% if tree_categories %}
-	{% for tree_category, info in tree_categories %}
-        {% if info.level == 1 %}
-		<li>
-			<a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
-		</li>
-        {% elif info.level == 1 %}
-         <!--{{ tree_category.name }}<br>-->
+    {% for cat in category.get_descendants %}
+        {% if cat.level == 1 %}
+        <li>
+            <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+        </li>
         {% endif %}
-	{% endfor %}
+    {% endfor %}
 {% endif %}
     </ul>
 </div><!-- /.widget_product_categories -->
