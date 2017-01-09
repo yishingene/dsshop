@@ -102,11 +102,86 @@ class Command(BaseCommand):
 
 							main_cat = '2CV Onderdelen'
 
-							if category_id == '13':
+							if category_id == '11':
+								cat_breadcrumb = 'Chassis'
+
+							elif category_id == '12':
+								cat_breadcrumb = 'Sierstrips'						
+
+							elif category_id == '13':
 								cat_breadcrumb = 'Bumpers'
+
+							elif category_id == '14':
+								cat_breadcrumb = 'Voorvleugel'
+
+							elif category_id == '15':
+								cat_breadcrumb = 'Motorkap'
+
+							elif category_id == '16':
+								cat_breadcrumb = 'Deuren'
+
+							elif category_id == '17':
+								cat_breadcrumb = 'Dak'
+
+							elif category_id == '18':
+								cat_breadcrumb = 'Achtervleugel'
+
+							elif category_id == '19':
+								cat_breadcrumb = 'Kofferklep'
+
+							elif category_id == '21':
+								cat_breadcrumb = 'Ruiten'
+
+							elif category_id == '22':
+								cat_breadcrumb = 'Uitlaat'
+
+							elif category_id == '23':
+								cat_breadcrumb = 'Elektriciteit & Ontsteking'
+
+							elif category_id == '24':
+								cat_breadcrumb = 'Verlichting'
+
+							elif category_id == '25':
+								cat_breadcrumb = 'Motorkap'
+
+							elif category_id == '26':
+								cat_breadcrumb = 'Benzinesysteem'
+
+							elif category_id == '27':
+								cat_breadcrumb = 'Koeling & Verwarming'
 
 							elif category_id == '28':
 								cat_breadcrumb = 'Remmen'
+
+							elif category_id == '30':
+								cat_breadcrumb = 'Leidingen'
+
+							elif category_id == '31':
+								cat_breadcrumb = 'Koppeling'
+
+							elif category_id == '32':
+								cat_breadcrumb = 'Interieur'
+
+							elif category_id == '33':
+								cat_breadcrumb = 'Allerlei'
+
+							elif category_id == '35':
+								cat_breadcrumb = 'Stuurinrichting'
+
+							elif category_id == '36':
+								cat_breadcrumb = 'Aandrijving & Ophanging'
+
+							elif category_id == '37':
+								cat_breadcrumb = 'Accesoires'
+
+							elif category_id == '38':
+								cat_breadcrumb = 'Sloten'
+
+							elif category_id == '39':
+								cat_breadcrumb = 'Plaatwerk'
+
+							elif category_id == '40':
+								cat_breadcrumb = 'Banden'
 
 							else:
 								continue

@@ -4,8 +4,6 @@
     <h4 class="widget-title">{{ category }}</h4>
     <h6 class="subcategory">{% trans 'Subcategorieën' %}</h6>
     <ul class="product-categories">
-
-
 {% category_tree as tree_categories %}
 {% if tree_categories %}
     {% for cat in category.get_descendants %}
@@ -17,4 +15,4 @@
     {% endfor %}
 {% endif %}
     </ul>
-</div><!-- /.widget_product_categories -->
+</div>
