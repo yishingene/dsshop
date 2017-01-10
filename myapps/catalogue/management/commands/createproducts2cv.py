@@ -253,13 +253,14 @@ class Command(BaseCommand):
 						finally:
 							self.stdout.write('*** Adding image to product starts here')
 
-							add_image_to_product(product, main_cat, alternate_id)
-							add_partner_information(
-								product=product, 
-								partner_code=alternate_id, 
-								price_purchase=price_purchase,
-								price_sell=price_sell
-								)
+							if product:
+								add_image_to_product(product, main_cat, alternate_id)
+								# add_partner_information(
+								# 	product=product, 
+								# 	partner_code=alternate_id, 
+								# 	price_purchase=price_purchase,
+								# 	price_sell=price_sell
+								# 	)
 
 					else:
 						continue
