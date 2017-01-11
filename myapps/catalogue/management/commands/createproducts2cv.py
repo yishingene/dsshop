@@ -183,7 +183,7 @@ class Command(BaseCommand):
 								cat_breadcrumb = 'Verlichting'
 
 							elif category_id == '25':
-								cat_breadcrumb = 'Motorkap'
+								cat_breadcrumb = 'Motor'
 
 							elif category_id == '26':
 								cat_breadcrumb = 'Benzinesysteem'
