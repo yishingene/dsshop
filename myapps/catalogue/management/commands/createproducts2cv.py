@@ -30,6 +30,9 @@ PRODUCTS_FILE = 'https://s3.eu-central-1.amazonaws.com/dsshop/media/2cv_onderdel
 #	PRODUCTS_FILE = os.path.join(settings.MEDIA_ROOT, '2cv_onderdelen.csv')
 
 def add_partner_information(product, partner_code, price_purchase, price_sell):
+	'''
+	Deze methode voegt de prijsinformatie toe aan een product door gebruik te maken van de Partner app
+	'''
 
 	partner = Partner.objects.get_or_create(name='Eigen stock')
 
