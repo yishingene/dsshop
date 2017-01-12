@@ -50,8 +50,6 @@ def add_partner_information(product, partner_code, price_purchase, price_sell):
 			stats=None
 			)
 
-
-
 def add_image_to_product(product, category, alternate_id):
 
 	# Voor 2PK onderdelen is de bestandnaam van de afbeelding niet de UPC, maar de andere code
@@ -254,7 +252,7 @@ class Command(BaseCommand):
 							self.stdout.write('*** Adding image to product starts here')
 
 							if product:
-								add_image_to_product(product, main_cat, alternate_id)
+								#add_image_to_product(product, main_cat, alternate_id)
 								add_partner_information(
 									product=product, 
 									partner_code=alternate_id, 
