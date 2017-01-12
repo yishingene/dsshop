@@ -6,8 +6,9 @@ logger = logging.getLogger('oscar.catalogue')
 
 class CatalogueView(OscarCatalogueView):
 
-	def get_queryset(self):
 
-		print( '------- MY CUSTOM VIEW')
+	def get_context_data(self, **kwargs):
 
-		return super(CatalogueView, self).get_queryset()
+		print( '------- MY CUSTOM VIEW context data shit')
+
+		return super(CatalogueView, self).get_context_data(**kwargs)

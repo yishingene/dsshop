@@ -83,6 +83,8 @@ INSTALLED_APPS = [
     'modeltranslation', # Translation of models (productnamen, categorieen, ...)
     'rest_framework',   # Required om gebruik te kunnen maken van oscarapi
 
+    'dsshop',
+
 
 ] + get_core_apps(['myapps.catalogue', 'myapps.basket', 'myapps.partner'])
 
