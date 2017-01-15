@@ -65,6 +65,12 @@
 	border-color: #ffc952;
 }
 
+.btn.btn-warning.dropdown-toggle {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	min-height: 30px;
+}
+
 label.checkbox{
 	margin: 5px 5px;
 }
