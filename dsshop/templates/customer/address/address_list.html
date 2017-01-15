@@ -92,7 +92,15 @@
         {% endfor %}
 	    </div>
     {% else %} 
-        <p>{% trans 'There are no addresses in your address book.' %}</p>
+        <div class="flat-woocommerce">
+            <div class="woocommerce-danger">
+                <strong>{% trans 'There are no addresses in your address book.' %}</strong>
+            </div>
+        </div>
+        <a href="{% url 'customer:address-create' %}" class="btn btn-primary">
+            <i class="fa fa-plus"></i> {% trans 'Add a new address' %}
+        </a>
+        
     {% endif %}
     </div>
 {% endblock tabcontent %}
