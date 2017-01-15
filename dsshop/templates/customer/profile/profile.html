@@ -22,7 +22,11 @@
 
 {% block tabcontent %}
 <div class="widget widget_text information">
-    <h3 class="widget-title">{% trans 'Persoonlijke Gegevens' %}</h3>
+    <h3 class="widget-title">{% trans 'Persoonlijke Gegevens' %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'customer:logout' %}" class="btn btn-danger">
+            {% trans 'Logout' %} <i class="fa fa-sign-out"></i>
+        </a>
+    </h3>
     <div class="textwidget">
         <p>
             <i class="fa fa-user"></i>  <strong>{{ user.get_full_name|default:'???' }}</strong><br>

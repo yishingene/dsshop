@@ -66,9 +66,7 @@
 }
 
 .btn.btn-warning.dropdown-toggle {
-	padding-top: 5px;
-	padding-bottom: 5px;
-	min-height: 30px;
+	border-left: 1px solid grey;
 }
 
 label.checkbox{
