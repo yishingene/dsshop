@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% load i18n %}
+{% load i18n widget_tweaks %}
 
 {% block content %}
 <div class="flat-row">
@@ -9,28 +9,43 @@
       <div class="col-md-12">
         <div id="flat-map">
 			<div class="col-md-8 col-md-offset-2">
-                <p>Please fill out the following form and a representative will contact you.</p>
+                <p>{% trans 'Vul onderstaand formulier in en wij nemen zo snel mogelijk contact op met jou!' %}</p>
                 <div class="flat-divider d10px"></div>
                 <form id="contactform" method="post" action="{% url 'contact' %}">
                 	{% csrf_token %}
                     <div class="row">
                         <div class="col-md-6">
-                            <p><input id="name" name="name" type="text" value="" placeholder="{% trans 'Naam' %}" required="required"></p>
-                            <p><input id="email" name="email" type="email" value="" placeholder="Email" required="required"></p>
-                            <p><input id="phone" name="phone" type="text" value="" placeholder="{% trans 'Telefoonnummer' %}" required="required"></p>
-                            <p><input id="email" name="email" type="email" value="" placeholder="{% trans 'Bedrijf (optioneel)' %}"></p>
-                        </div><!-- /.col-md-6 -->
+                            <p>
+                                {% trans 'Naam' as name %}
+                                {% render_field form.name placeholder=name %}
+                            </p>
+                            <p>
+                                {% trans 'Email' as mail %}
+                                {% render_field form.email placeholder=mail type='email' %}
+                            </p>
+                            <p>
+                                {% trans 'Telefoonnummer' as phone %}
+                                {% render_field form.phone placeholder=phone %}
+                            </p>
+                            <p>
+                                {% trans 'Bedrijf (optioneel)' as company %}
+                                {% render_field form.company placeholder=company %}
+                            </p>
+                        </div>
                         <div class="col-md-6">
-                            <p><textarea name="message" placeholder="{% trans 'Jouw vraag of boodschap' %}" required="required"></textarea></p>
+                            <p>
+                            {% trans 'Jouw vraag of boodschap' as message %}
+                            {% render_field form.message placeholder=message rows='50' %}                      
+                            </p>
                             <span class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="{%  trans 'Verzenden' %}">
                             </span>
-                        </div><!-- /.col-md-6 -->
-                    </div><!-- /.row -->
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>    
-      </div><!-- /.col-md-12 -->
-    </div><!-- /.row -->
-  </div><!-- /.container -->
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock content %}

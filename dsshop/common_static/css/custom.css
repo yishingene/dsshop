@@ -285,3 +285,8 @@ div.navigation.paging-navigation.numeric {
 	color: #32bfc0;
 	margin-right: 13px;
 }
+
+/* CONTACTPAGE */
+#contactform textarea {
+	height: 272px;
+}
