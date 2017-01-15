@@ -19,7 +19,7 @@
 	font-size: 28px;
 }
 
-.flat-woocommerce .woocommerce-warning {
+.flat-woocommerce .woocommerce-danger {
 	color: #a94442;
 	padding: 20px 20px 20px 60px;
 	margin-bottom: 20px;
@@ -28,7 +28,7 @@
 	border: 2px solid;
 }
 
-.flat-woocommerce .woocommerce-warning:after {
+.flat-woocommerce .woocommerce-danger:after {
 	content: "\f05a";
 	position: absolute;
 	font-family: 'FontAwesome';

@@ -21,78 +21,79 @@
 {% endblock breadcrumbs %}
 
 {% block tabcontent %}
+    
+	<div class="widget widget_text information">
+	    <h3 class="widget-title">{% trans 'Adresboek' %}
+            <a href="{% url 'customer:address-create' %}" class="btn btn-primary pull-right">
+                <i class="fa fa-plus"></i> {% trans 'Add a new address' %}
+            </a>
+        </h3>
     {% if addresses %}
-		<div class="widget widget_text information">
-		    <h3 class="widget-title">{% trans 'Adresboek' %}
-                <a href="{% url 'customer:address-create' %}" class="btn btn-primary pull-right">
-                    <i class="fa fa-plus"></i> {% trans 'Add a new address' %}
-                </a>
-            </h3>
-		    <div class="textwidget">
-	    	{% for address in addresses %}
-		        <p>
-                    <div class="row">
-                        <div class="col-sm-1 hidden-xs">
-                            <i class="fa fa-home"></i>
-                        </div>
-                        <div class="col-md-4 col-xs-5">
-                             <address>
-                                {% for field in address.active_address_fields %}
-                                    {{ field }}</br>
-                                {% endfor %}
-                            </address>       
-                        </div>
-                        <div class="col-md-4 col-xs-5">
-                            {% if address.is_default_for_shipping %}
-                                <div> 
-                                    <i class="fa fa-check"></i><b>{% trans 'Default shipping address' %}</b>
-                                </div>  
-                            {% endif %} 
-                            {% if address.is_default_for_billing %}
-                                <div>
-                                    <i class="fa fa-check"></i><b>{% trans 'Default billing address' %}</b>
-                                </div>
-                            {% endif %}
-                        </div>
-                        <div class="col-xs-3">
-                            <div class="btn-group">
-                                <a class="btn btn-warning" href="{% url 'customer:address-detail' pk=address.id %}" style="height:35px;">   {% trans 'Edit' %}
-                                </a>
-                                <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown" style="height:35px;">
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
+	    <div class="textwidget">
+    	{% for address in addresses %}
+	        <p>
+                <div class="row">
+                    <div class="col-sm-1 hidden-xs">
+                        <i class="fa fa-home"></i>
+                    </div>
+                    <div class="col-md-4 col-xs-5">
+                         <address>
+                            {% for field in address.active_address_fields %}
+                                {{ field }}</br>
+                            {% endfor %}
+                        </address>       
+                    </div>
+                    <div class="col-md-4 col-xs-5">
+                        {% if address.is_default_for_shipping %}
+                            <div> 
+                                <i class="fa fa-check"></i><b>{% trans 'Default shipping address' %}</b>
+                            </div>  
+                        {% endif %} 
+                        {% if address.is_default_for_billing %}
+                            <div>
+                                <i class="fa fa-check"></i><b>{% trans 'Default billing address' %}</b>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="btn-group">
+                            <a class="btn btn-warning" href="{% url 'customer:address-detail' pk=address.id %}" style="height:35px;">   {% trans 'Edit' %}
+                            </a>
+                            <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown" style="height:35px;">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{% url 'customer:address-delete' pk=address.id %}">
+                                        {% trans 'Delete' %}
+                                    </a>
+                                </li>
+
+                                {% if address.country.is_shipping_country and not address.is_default_for_shipping %}
                                     <li>
-                                        <a href="{% url 'customer:address-delete' pk=address.id %}">
-                                            {% trans 'Delete' %}
+                                        <a href="{% url 'customer:address-change-status' pk=address.id action='default_for_shipping' %}">
+                                            {% trans 'Set as default shipping address' %}
                                         </a>
                                     </li>
-
-                                    {% if address.country.is_shipping_country and not address.is_default_for_shipping %}
-                                        <li>
-                                            <a href="{% url 'customer:address-change-status' pk=address.id action='default_for_shipping' %}">
-                                                {% trans 'Set as default shipping address' %}
-                                            </a>
-                                        </li>
-                                    {% endif %}
-                                    {% if not address.is_default_for_billing %}
-                                        <li>
-                                            <a href="{% url 'customer:address-change-status' pk=address.id action='default_for_billing' %}">
-                                                {% trans 'Set as default billing address' %}
-                                            </a>
-                                        </li>
-                                    {% endif %}
-                                </ul>
-                            </div>               
-                        </div>
+                                {% endif %}
+                                {% if not address.is_default_for_billing %}
+                                    <li>
+                                        <a href="{% url 'customer:address-change-status' pk=address.id action='default_for_billing' %}">
+                                            {% trans 'Set as default billing address' %}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>               
                     </div>
-		        </p>
-		        <hr>
-	        {% endfor %}
-		    </div>  
-		</div>
-    {% else %}
+                </div>
+	        </p>
+	        <hr>
+        {% endfor %}
+	    </div>
+    {% else %} 
         <p>{% trans 'There are no addresses in your address book.' %}</p>
     {% endif %}
+    </div>
 {% endblock tabcontent %}
 
