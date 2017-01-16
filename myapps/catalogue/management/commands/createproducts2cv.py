@@ -62,7 +62,7 @@ def add_image_to_product(product, category, alternate_id):
 	else:
 		product_code = product.upc
 
-	file_name = str(product_code) + '.jpg'
+	file_name = str(product_code) + '.JPG'
 	image_path = IMAGES_PATH + '/' + file_name
 
 	try:
@@ -256,12 +256,12 @@ class Command(BaseCommand):
 
 							if product:
 								#add_image_to_product(product, main_cat, alternate_id)
-								add_partner_information(
-									product=product, 
-									partner_code=alternate_id, 
-									price_purchase=price_purchase,
-									price_sell=price_sell
-									)
+								# add_partner_information(
+								# 	product=product, 
+								# 	partner_code=alternate_id, 
+								# 	price_purchase=price_purchase,
+								# 	price_sell=price_sell
+								# 	)
 
 					else:
 						continue
