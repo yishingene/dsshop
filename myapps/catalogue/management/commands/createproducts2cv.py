@@ -255,7 +255,7 @@ class Command(BaseCommand):
 							self.stdout.write('*** Adding image to product starts here')
 
 							if product:
-								#add_image_to_product(product, main_cat, alternate_id)
+								add_image_to_product(product, main_cat, alternate_id)
 								# add_partner_information(
 								# 	product=product, 
 								# 	partner_code=alternate_id, 
