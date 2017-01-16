@@ -1,0 +1,53 @@
+{% extends 'customer/baseaccountpage.html' %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+    <div class="page-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="flat-wrapper">
+                    <div class="breadcrumbs">
+                        <h2 class="trail-browse">{% trans 'U bevindt zich hier:' %}</h2>
+                        <ul class="trail-items">
+                            <li class="trail-item">
+                            	<a href="{% url 'promotions:home' %}">Home</a>
+                        	</li>
+                            <li class="trail-item">
+                            	<a href="{% url 'customer:profile-view' %}">{% trans 'Profiel' %}</a>
+                        	</li>
+                            <li>{% trans 'Delete' %}</li>
+                        </ul>
+                    </div><!-- /.breadcrumbs -->
+                </div><!-- /.flat-wrapper -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.page-breadcrumbs -->
+{% endblock breadcrumbs %}
+
+{% block tabcontent %}
+<div class="widget widget_text information">
+    <h3 class="widget-title">{% trans 'Profiel verwijderen' %}
+    </h3>
+    <div class="textwidget">
+        <div class="flat-woocommerce">
+            <div class="woocommerce-danger">
+                <strong>{% trans 'Warning' %}</strong>
+                <p>
+                	{% trans 'Alle profielinformatie zal verdwijderd worden. Het is niet mogelijk deze actie ongedaan te maken!' %}
+                </p>
+            </div>
+        </div>
+        <div>
+        	<p style="margin-top: 40px;">
+        		<b>{% trans 'Bevestig hieronder je wachtwoord om je profiel te verwijderen' %}</b>
+    		</p>
+    		{% csrf_token %}
+    		{{ form.as_p }}
+	        <div class="form-group">
+	            <button class="btn btn-danger" type="submit" data-loading-text="{% trans 'Deleting...' %}">{% trans "Delete" %}</button>
+	            {% trans "or" %} <a href="{% url "customer:profile-view" %}">{% trans "cancel" %}</a>.
+	        </div>
+        </div>
+    </div>
+</div>
+{% endblock tabcontent %}
