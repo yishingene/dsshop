@@ -1,57 +1,53 @@
-    	{% if paginator.count %}
-     		{% if paginator.num_pages > 1 %}
-          <div class="row">
-               <div class="navigation paging-navigation numeric">
-                   <div class="flat-pagination loop-pagination">
-                   {% if page_obj.has_previous %}
-                   	<a class="page-numbers" href="?page={{ page_obj.previous_page_number }}">&#8592;</a>
-                   {% endif %}
+	{% if paginator.num_pages > 1 %}
+    <div class="row">
+         <div class="navigation paging-navigation numeric">
+             <div class="flat-pagination loop-pagination">
+              {% if page_obj.has_previous %}
+               	  <a class="page-numbers" href="?page={{ page_obj.previous_page_number }}">&#8592;</a>
+              {% endif %}
           {% with page_obj.number as current_page %}
           	{% if paginator.num_pages < 8 %}
           		{% for number in paginator.page_range %}
-          			<a class="page-numbers {% if current_page == number %}current{% endif %}" href="?page={{ number }}">{{ number }}
-          		{% endfor %}
-          	{% else %}
-          		{% if current_page <= 4 %}
-          			{% for number in paginator.page_range %}
-          				{% if forloop.counter < current_page|add:'3' %}
-          					<a class="page-numbers {% if current_page == number %}current{% endif %}" href="?page={{ number }}">{{ number }}</a>
-          				{% endif %}
-          				{% if forloop.last %}
-          					<span class="paginator">&hellip;</span>
-          					<a class="page-numbers" href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
-          				{% endif %}
-          			{% endfor %}
-          		{% elif current_page > paginator.num_pages|add:'-4' %}
-          			{% for number in paginator.page_range %}
-          				{% if forloop.first %}
-          					<a class="page-numbers" href="?page=1">1</a>
-          					<span class="paginator">&hellip;</span>
-          				{% endif %}
-          				{% if forloop.counter > current_page|add:'-3' %}
-          					<a class="page-numbers {% if current_page == number %}current{% endif %}" href="?page={{ number }}">{{ number }}</a>
-          				{% endif %}
-          			{% endfor %}
-                   {% elif current_page > 4 and current_page < paginator.num_pages|add:'-3' %}
-                   	<a class="page-numbers" href="?page=1">1</a>
-                   	<span class="paginator">&hellip;</span>
-                   	<a class="page-numbers" href="?page={{ current_page|add:'-2' }}">{{ current_page|add:'-2' }}</a>
-                   	<a class="page-numbers" href="?page={{ current_page|add:'-1' }}">{{ current_page|add:'-1' }}</a>
-                   	<a class="page-numbers current" href="?page={{ current_page }}">{{ current_page }}</a>
-                   	<a class="page-numbers" href="?page={{ current_page|add:'1' }}">{{ current_page|add:'1' }}</a>
-                   	<a class="page-numbers" href="?page={{ current_page|add:'2' }}">{{ current_page|add:'2' }}</a>
-                   	<span class="paginator">&hellip;</span>
-                   	<a class="page-numbers" href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
-                   {% endif %}
-          	{% endif %}
+      			      <a class="page-numbers {% if current_page == number %}current{% endif %}" href="?page={{ number }}">{{ number }}</a>
+      		    {% endfor %}
+    	      {% else %}
+      		    {% if current_page <= 4 %}
+      			    {% for number in paginator.page_range %}
+      				    {% if forloop.counter < current_page|add:'3' %}
+      					  <a class="page-numbers {% if current_page == number %}current{% endif %}" href="?page={{ number }}">{{ number }}</a>
+    				      {% endif %}
+      				    {% if forloop.last %}
+        					<span class="paginator">&hellip;</span>
+        					<a class="page-numbers" href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
+      				    {% endif %}
+      			    {% endfor %}
+      		    {% elif current_page > paginator.num_pages|add:'-4' %}
+      			    {% for number in paginator.page_range %}
+      				    {% if forloop.first %}
+      					  <a class="page-numbers" href="?page=1">1</a>
+      					  <span class="paginator">&hellip;</span>
+      				    {% endif %}
+      				    {% if forloop.counter > current_page|add:'-3' %}
+      					  <a class="page-numbers {% if current_page == number %}current{% endif %}" href="?page={{ number }}">{{ number }}</a>
+      				    {% endif %}
+      			    {% endfor %}
+              {% elif current_page > 4 and current_page < paginator.num_pages|add:'-3' %}
+                 	<a class="page-numbers" href="?page=1">1</a>
+                 	<span class="paginator">&hellip;</span>
+                 	<a class="page-numbers" href="?page={{ current_page|add:'-2' }}">{{ current_page|add:'-2' }}</a>
+                 	<a class="page-numbers" href="?page={{ current_page|add:'-1' }}">{{ current_page|add:'-1' }}</a>
+                 	<a class="page-numbers current" href="?page={{ current_page }}">{{ current_page }}</a>
+                 	<a class="page-numbers" href="?page={{ current_page|add:'1' }}">{{ current_page|add:'1' }}</a>
+                 	<a class="page-numbers" href="?page={{ current_page|add:'2' }}">{{ current_page|add:'2' }}</a>
+                 	<span class="paginator">&hellip;</span>
+                 	<a class="page-numbers" href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
+              {% endif %}
+  	        {% endif %}
           {% endwith %}
-                       <!--<span class="page-numbers current">1</span>
-                       <a class="page-numbers" href="#">2</a>-->
-                   {% if page_obj.has_next %}
-                       <a class="page-numbers" href="?page={{ page_obj.next_page_number }}">&#8594;</a>
-                   {% endif %}
-                   </div><!-- /.flat-pagination -->
-               </div><!-- /.navigation .paging-navigation .numeric -->	
-          </div>
-          {% endif %}
-   	{% endif %}
+              {% if page_obj.has_next %}
+                  <a class="page-numbers" href="?page={{ page_obj.next_page_number }}">&#8594;</a>
+              {% endif %}
+             </div><!-- /.flat-pagination -->
+         </div><!-- /.navigation .paging-navigation .numeric -->	
+    </div>
+  {% endif %}
