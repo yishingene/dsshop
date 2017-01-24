@@ -5,10 +5,14 @@ from django.conf import settings
 from oscar.apps.catalogue.categories import create_from_breadcrumbs
 
 from myapps.catalogue.models import Product, ProductAttribute, ProductClass, ProductCategory
+from myapps.partner.models import StockRecord, Partner
+
+from oscar.apps.partner.importers import CatalogueImporter
 
 import os
 import csv
 import urllib
+from decimal import Decimal
 
 # Zie ook: stackoverflow: programmatically saving image to django imagefield
 
@@ -35,6 +39,30 @@ def get_image_file_name(product_code):
 
 	return filename
 
+
+def add_partner_information(product, partner_code, price_purchase, price_sell):
+	'''
+	Deze methode voegt de prijsinformatie toe aan een product door gebruik te maken van de Partner app
+	'''
+
+	partner = Partner.objects.get_or_create(name='Eigen stock')
+
+	price = price_sell	#.replace(',', '.')
+
+	print('---- prijs %s' % price)
+
+	if price != '':
+
+		importer = CatalogueImporter(logger=None)
+
+		importer._create_stockrecord(
+			item=product,
+			partner_name=partner[0],
+			partner_sku=partner_code,
+			price_excl_tax=price,
+			num_in_stock=0,
+			stats=None
+			)
 
 class Command(BaseCommand):
 
@@ -80,6 +108,16 @@ class Command(BaseCommand):
 						title = row[0]
 						upc = row[4]
 
+						alternate_id = ''
+						price_purchase = 0
+						
+						price_in_table = row[6]
+						price_adjusted = price_in_table.replace(',', '.')
+						price_inc = Decimal(price_adjusted)
+						price_excl = price_inc / Decimal('1.21')
+						price_sell = round(price_excl, 2)
+
+
 						try:
 							item = Product.objects.get(upc=upc)
 
@@ -97,6 +135,16 @@ class Command(BaseCommand):
 
 							# Voeg categorie toe
 							ProductCategory.objects.update_or_create(product=item, category=cat_string)
+
+						finally:
+							if item:
+
+								add_partner_information(
+									product=item, 
+									partner_code=alternate_id, 
+									price_purchase=price_purchase,
+									price_sell=price_sell
+									)
 
 
 		self.stdout.write('--Het is gefixt!--')
