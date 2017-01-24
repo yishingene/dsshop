@@ -70,11 +70,13 @@ class Command(BaseCommand):
 
 		help = 'automatiseer de aanmaak van de product catalogus'
 
-		FILE_PATH = os.path.join(settings.MEDIA_ROOT, 'product_list')
-		#FILE_PATH = settings.MEDIA_ROOT
+		#FILE_PATH = os.path.join(settings.MEDIA_ROOT, 'product_list')	# live
+		FILE_PATH = settings.MEDIA_ROOT								# development
 		FILE = os.path.join(FILE_PATH, 'DS_Onderdelen.csv')
+
+		PRODUCTS_FILE = 'https://s3.eu-central-1.amazonaws.com/dsshop/media/DS_Onderdelen.csv'
 		
-		with open(FILE) as file:
+		with open(PRODUCTS_FILE) as file:
 
 			reader = csv.reader(file, delimiter=';')
 
