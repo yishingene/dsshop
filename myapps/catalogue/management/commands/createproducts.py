@@ -70,8 +70,8 @@ class Command(BaseCommand):
 
 		help = 'automatiseer de aanmaak van de product catalogus'
 
-		#FILE_PATH = os.path.join(settings.MEDIA_ROOT, 'product_list')
-		FILE_PATH = settings.MEDIA_ROOT
+		FILE_PATH = os.path.join(settings.MEDIA_ROOT, 'product_list')
+		#FILE_PATH = settings.MEDIA_ROOT
 		FILE = os.path.join(FILE_PATH, 'DS_Onderdelen.csv')
 		
 		with open(FILE) as file:
