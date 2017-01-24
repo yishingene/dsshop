@@ -39,7 +39,7 @@ def add_partner_information(product, partner_code, price_purchase, price_sell):
 
 	partner = Partner.objects.get_or_create(name='Eigen stock')
 
-	price = price_sell.replace(',', '.')
+	price = price_sell	#.replace(',', '.')
 
 	print('---- prijs %s' % price)
 
