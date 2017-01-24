@@ -204,7 +204,7 @@
                                                 <!-- <th style="font-weight: normal;">{% trans "Num allocated" %}</th> -->
                                                 <th style="font-weight: normal;">{% trans "Low stock threshold" %}</th>
                                             {% endif %}
-                                            <!-- <th style="font-weight: normal;">{% trans "Currency" %}</th> -->
+                                            <th style="font-weight: normal;">{% trans "Currency" %}</th>
                                             <th style="font-weight: normal;">{% trans "Cost price" %}</th>
                                             <th style="font-weight: normal; min-width: 6em;">{% trans "Price (excl tax)" %}</th>
                                             <th style="font-weight: normal;">{% trans "Retail price" %}</th>
@@ -230,7 +230,7 @@
                                                     <!-- <td>{{ stockrecord_form.instance.num_allocated|default:"-" }}</td> -->
                                                     <td>{% include "dashboard/partials/form_field.html" with field=stockrecord_form.low_stock_threshold nolabel=True %}</td>
                                                 {% endif %}
-                                                <!-- <td>{% include "dashboard/partials/form_field.html" with field=stockrecord_form.price_currency nolabel=True %}</td> -->
+                                                <td>{% include "dashboard/partials/form_field.html" with field=stockrecord_form.price_currency nolabel=True %}</td>
                                                 <td>{% include "dashboard/partials/form_field.html" with field=stockrecord_form.cost_price nolabel=True %}</td>
                                                 <td>{% include "dashboard/partials/form_field.html" with field=stockrecord_form.price_excl_tax nolabel=True %}</td>
                                                 <td>{% include "dashboard/partials/form_field.html" with field=stockrecord_form.price_retail nolabel=True %}</td>
