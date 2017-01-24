@@ -119,7 +119,7 @@ class Command(BaseCommand):
 
 				if upc != '':
 
-					alternate_id = ''
+					alternate_id = upc
 					price_purchase = 0
 					
 					price_in_table = row[6]
