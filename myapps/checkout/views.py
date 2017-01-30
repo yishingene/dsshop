@@ -25,16 +25,14 @@ from oscar.apps.order.utils import OrderNumberGenerator
 
 logger = logging.getLogger('oscar.checkout')
 
-class SipsRedirectRequired(RedirectRequired):
+class OgoneRedirectRequired(RedirectRequired):
     '''
-    Custom subklasse van Oscar's RedirectRequired, waarbij we enkele bijkomende argumenten toevoegen
+    Custom subklasse van Oscar's RedirectRequired, voegt geen functionaliteit toe!
     '''
 
-    def __init__(self, url, version, data):
-
+    def __init__(self, url):
         self.url = url
-        self.redirectionVersion = version
-        self.redirectionData = data
+
 
 class PaymentDetailsView(OscarPaymentDetailsView):
     '''
@@ -54,52 +52,31 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         Deze methode is verantwoordelijk voor payment processing 
         ''' 
 
-        print('checkout view: handle_payment methode')
+        print('!!! START: checkout view: handle_payment() methode')
 
         facade = Facade()
 
-        url, redirectionVersion, redirectionData = facade.pre_authorise(order_number, total.incl_tax)
+        reference = facade.pre_authorise(order_number, total.incl_tax, **kwargs)
 
-        print('succesvol geretourneerd! -- terug in handle_payment() methode')
+        print('!!! succesvol geretourneerd! -- terug in handle_payment() methode')
 
-        logger.info("Order: redirecting to %s", url)
-
-        print('logging completed')
-
-        raise SipsRedirectRequired(url, redirectionVersion, redirectionData)
+        #logger.info("Order: redirecting to %s", url)
 
         
         source_type, __ = models.SourceType.objects.get_or_create(
-                    name="Sips")
+                    name="Ogone")
+
         source = models.Source(
             source_type=source_type,
             amount_allocated=total.incl_tax,
             #reference=reference)
             reference=order_number)
+
         self.add_payment_source(source)
 
         # Record payment event
-        self.add_payment_event('auth', total.incl_tax)
+        self.add_payment_event('pre-auth', total.incl_tax)
 
-
-        print('succesvol geretourneerd! -- terug in handle_payment() methode')
-
-        logger.info("Order: redirecting to %s", url)
-
-        print('logging completed')
-
-        
-        source_type, __ = models.SourceType.objects.get_or_create(
-                    name="Sips")
-        source = models.Source(
-            source_type=source_type,
-            amount_allocated=total.incl_tax,
-            reference=reference)
-            #reference=order_number)
-        self.add_payment_source(source)
-
-        # Record payment event
-        self.add_payment_event('auth', total.incl_tax)
 
 
     def submit(self, user, basket, shipping_address, shipping_method,  # noqa (too complex (10))
@@ -164,24 +141,24 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         try:
             self.handle_payment(order_number, order_total, **payment_kwargs)
 
-        except SipsRedirectRequired as e:
+        # except SipsRedirectRequired as e:
 
-            print('SipsRedirectRequired!')
+        #     print('SipsRedirectRequired!')
 
-            logger.info("Order #%s: redirecting to %s", order_number, e.url)
+        #     logger.info("Order #%s: redirecting to %s", order_number, e.url)
 
-            data = {
-                'redirectionVersion': e.redirectionVersion,
-                'redirectionData': e.redirectionData
-            }
+        #     data = {
+        #         'redirectionVersion': e.redirectionVersion,
+        #         'redirectionData': e.redirectionData
+        #     }
 
-            # urlencode retourneert url parameters
-            payload = urlencode(data)
+        #     # urlencode retourneert url parameters
+        #     payload = urlencode(data)
 
-            # volledige url bestaat uit base url + urlencoded parameters
-            complete_url = '%s?%s' % (e.url, payload)
+        #     # volledige url bestaat uit base url + urlencoded parameters
+        #     complete_url = '%s?%s' % (e.url, payload)
 
-            return http.HttpResponseRedirect(complete_url)
+        #     return http.HttpResponseRedirect(complete_url)
 
         except RedirectRequired as e:
             # Redirect required (eg PayPal, 3DS)
@@ -205,12 +182,7 @@ class PaymentDetailsView(OscarPaymentDetailsView):
                     self.request, error=msg, **payment_kwargs)
 
         except SipsPaymentError as e:
-            # A general payment error - Something went wrong which wasn't
-            # anticipated.  Eg, the payment gateway is down (it happens), your
-            # credentials are wrong - that king of thing.
-            # It makes sense to configure the checkout logger to
-            # mail admins on an error as this issue warrants some further
-            # investigation.
+
             msg = six.text_type(e)
             logger.error("Order #%s: payment error (%s)", order_number, msg,
                     exc_info=True)
