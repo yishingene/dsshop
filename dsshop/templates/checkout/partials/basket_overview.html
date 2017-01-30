@@ -1,0 +1,23 @@
+{% load i18n purchase_info_tags thumbnail currency_filters %}
+
+<h4 class="widget-title">{% trans 'Winkelwagen Overzicht' %}</h4>
+{% block order_contents %}
+    <ul class="cart_list product_list_widget"> 
+    {% for line in basket.all_lines %}
+        {% purchase_info_for_line request line as session %}
+        <li class="mini_cart_item" data-update-url="/api/baskets/1/lines/88/">
+        {% with image=line.product.primary_image %}
+            {% thumbnail image.original "x155" upscale=False as thumb %}
+            <img src="{{ thumb.url }}"><span class="name">{{ line.description }}</span>
+            {% endthumbnail %}
+        {% endwith %}
+            <p class="cart">
+                <span class="quantity">
+                    <span class="line-quantity">{{ line.quantity }}</span> × <span class="amount">€&nbsp;{{ line.unit_price_incl_tax|currency:request.basket.currency }}</span>
+                </span>
+            </p>
+        </li>
+    {% endfor %}
+{% endblock order_contents %}
+</ul>
+<a class="button" href="{% url 'basket:summary' %}">Wijzigen</a>

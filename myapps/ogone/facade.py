@@ -1,20 +1,5 @@
 from . import gateway
 
-'''
-https://office-server.sips-atos.com/rs-services/v2/checkout/cardOrder
-'''
-
-SIPS_HOST = 'https://payment-webinit.simu.sips-atos.com/rs-services/v2/paymentInit/'
-SIPS_PATH = '/rs-services/v2/paymentInit/'
-SIPS_MERCHANT = '002001000000001'
-SIPS_PASSWORD = '002001000000001_KEY1'	# secret key
-SIPS_KEY_VERSION = '1'
-SIPS_ORDER_CHANNEL = 'INTERNET'
-SIPS_INTERFACE_VERSION = 'IR_WS_2.9'
-SIPS_CURRENCY_CODE = '978'
-SIPS_PAYMENT_MEAN_BRAND = 'BCMC'
-SIPS_PAYMENT_MEAN_TYPE = 'CARD'
-
 
 class Facade(object):
 	'''
@@ -34,11 +19,10 @@ class Facade(object):
 		'''
 
 		try:
-			url, redirectionVersion, redirectionData = self.gateway.pre(
+			url, redirectionVersion, redirectionData = self.gateway.pre_auth(
 			#url = self.gateway.pre(
 					amount=amount,
 					currency=currency,
-					merchantId=SIPS_MERCHANT,
 					order_number=order_number
 				)
 
