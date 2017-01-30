@@ -77,15 +77,9 @@ def post(url, params):
 
 class Gateway(object):
 
-	def __init__(self, sips_url, merchantId='002001000000001', keyVersion='1', orderChannel='INTERNET', interfaceVersion='IR_WS_2.10', paymentMeanBrand='BCMC', paymentMeanType='CARD'):
+	def __init__(self):
 		
-		self._sips_url = sips_url
-		self._merchantId = merchantId
-		self._keyVersion = keyVersion
-		self._orderChannel = orderChannel
-		self._interfaceVersion = interfaceVersion
-		self._paymentMeanBrand = paymentMeanBrand
-		self._paymentMeanType = paymentMeanType
+		self._PSPID = PSPID
 
 
 	def _fetch_response(self, **kwargs):
@@ -99,10 +93,6 @@ class Gateway(object):
 		base_url = 'http://127.0.0.1:8000'
 		url_path = reverse('sips-place-order')
 
-		#return_url = 'http://127.0.0.1:8000/checkout/thank-you/'
-		#return_url = 'http://127.0.0.1:8000/checkout/sips/place-order/' # DEZE WERKTE!!!
-		return_url = 'http://127.0.0.1:8000/checkout/preview/' # test 
-		return_url = 'http://suikerboon.sites.djangoeurope.com/checkout/preview/' # Host
 
 
 		basket_amount = int(kwargs['amount'] * 100)

@@ -23,34 +23,11 @@ class Facade(object):
 
 	def __init__(self):
 		self.gateway = gateway.Gateway(
-			SIPS_HOST, 
-			SIPS_MERCHANT,
-			SIPS_KEY_VERSION,
-			SIPS_ORDER_CHANNEL,
-			SIPS_INTERFACE_VERSION,
-			SIPS_PAYMENT_MEAN_BRAND,
-			SIPS_PAYMENT_MEAN_TYPE
-			)
-
-	def handle_response(self, method, order_number, amount, currency, response):
-
-		self.record_txn(method, order_number, amount, currency, response)
-
-		if response.is_successful():
-			return response['']
-
-	def record_txn(self, method, order_number, amount, currency, response):
-
-		OrderTransaction.objects.create(
-			order_number=order_number,
-			method=method,
-			amount=amount,
-			currency=currency or 'EUR',
-			status=response.status,
+			OGONE_PSPID='thinkmobile',
 			)
 
 
-	def pre_authorise(self, order_number, amount, txn_ref='test', billing_address=None, currency='EUR'):
+	def pre_authorise(self, order_number, amount, billing_address=None, currency='EUR'):
 		'''
 		Deze methode roept de gateway aan, en heeft tot doel een voorafbetaling van de gebruiker te verkrijgen
 		Hiervoor wordt de pre_auth() methode van de gateway opgeroepen, dewelke een redirection url retouneert

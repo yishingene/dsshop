@@ -78,7 +78,6 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         self.add_payment_event('pre-auth', total.incl_tax)
 
 
-
     def submit(self, user, basket, shipping_address, shipping_method,  # noqa (too complex (10))
             shipping_charge, billing_address, order_total,
             payment_kwargs=None, order_kwargs=None):
