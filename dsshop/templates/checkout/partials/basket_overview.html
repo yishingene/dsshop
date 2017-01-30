@@ -2,22 +2,48 @@
 
 <h4 class="widget-title">{% trans 'Winkelwagen Overzicht' %}</h4>
 {% block order_contents %}
-    <ul class="cart_list product_list_widget"> 
-    {% for line in basket.all_lines %}
-        {% purchase_info_for_line request line as session %}
-        <li class="mini_cart_item" data-update-url="/api/baskets/1/lines/88/">
-        {% with image=line.product.primary_image %}
-            {% thumbnail image.original "x155" upscale=False as thumb %}
-            <img src="{{ thumb.url }}"><span class="name">{{ line.description }}</span>
-            {% endthumbnail %}
-        {% endwith %}
-            <p class="cart">
-                <span class="quantity">
-                    <span class="line-quantity">{{ line.quantity }}</span> × <span class="amount">€&nbsp;{{ line.unit_price_incl_tax|currency:request.basket.currency }}</span>
-                </span>
-            </p>
-        </li>
-    {% endfor %}
+	{% for line in basket.all_lines %}
+	<div class="row">
+		<div class="col-sm-8">
+			<span class="name">
+				<strong>{{ line.description }}</strong>	
+			</span>
+			<br>
+			<div class="row">
+			</div>
+        </div>
+        <div class="col-sm-4">
+	        {% with image=line.product.primary_image %}
+	            {% thumbnail image.original "x155" upscale=False as thumb %}
+	            <img src="{{ thumb.url }}">
+	            {% endthumbnail %}
+	        {% endwith %}
+        </div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2 col-sm-offset-2">
+			{{ line.quantity }} x
+		</div>
+		<div class="col-sm-4 text-right">
+			{{ line.unit_price_incl_tax|currency:request.basket.currency }}&nbsp;&nbsp; = 
+		</div>
+		<div class="col-sm-4 text-right">
+			{{ line.line_price_incl_tax|currency:request.basket.currency }}
+		</div>
+	</div>
+	<hr>
+	{% endfor %}
+	<div class="row">
+		<div class="col-sm-4 col-sm-offset-4 text-right">
+			<strong>{% trans 'Totaal' %}:</strong>
+		</div>
+		<div class="col-sm-4">
+			<p class="total text-right">
+     			<span id="mini_cart_amount" class="amount">
+     				<strong>{{ basket.total_incl_tax|currency:basket.currency }}</strong><br><br>
+ 				</span>
+			</p>
+		</div>
+	</div>
 {% endblock order_contents %}
-</ul>
-<a class="button" href="{% url 'basket:summary' %}">Wijzigen</a>
+<a class="button pull-right" href="{% url 'basket:summary' %}">Wijzigen</a>
