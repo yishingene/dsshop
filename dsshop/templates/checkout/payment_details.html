@@ -44,9 +44,11 @@
                         <div class="sidebar">
                             <div class="widget">
                                 <h4 class="widget-title">{% trans 'Verzendadres' %}</h4>
-                                {% block shipping_address %}
-                                    {{ block.super }}
-                                {% endblock %}
+                                <strong>
+                                    {% block shipping_address %}
+                                        {{ block.super }}
+                                    {% endblock %}
+                                </strong>
                                 <a class="button" href="{% url 'checkout:shipping-address' %}">Wijzigen</a>
                             </div>
                             <div class="widget">

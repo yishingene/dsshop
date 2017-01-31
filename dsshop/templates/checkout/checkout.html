@@ -4,10 +4,10 @@
 
 {% block content %}
 	{% block shipping_address %}
-		{% if shipping_address %}
-			{% for field in shipping_address.active_address_fields %}
-                {{ field }}<br/>
-            {% endfor %}
+		{% if shipping_address %}				
+			{{ shipping_address.line1 }}<br>
+			{{ shipping_address.postcode }} {{ shipping_address.line4 }}<br>
+			{{ shipping_address.country }}<br>
 		{% endif %}
 	{% endblock shipping_address %}
 {% endblock content %}
