@@ -285,6 +285,15 @@ p.form-login {
 	margin-bottom: 20px;
 }
 
+.textwidget form button.button.white {
+	margin-left: 20px;
+	padding: 0px 15px;
+}
+
+.button.white {
+	font-size: 11px;
+}
+
 div.navigation.paging-navigation.numeric {
 	margin-top: 30px;
 }
