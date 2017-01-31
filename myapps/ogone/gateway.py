@@ -87,8 +87,8 @@ class Gateway(object):
 		execute request
 		'''
 
-		print '_fetch_response()'
-		print kwargs
+		print('_fetch_response()')
+		print(kwargs)
 
 		base_url = 'http://127.0.0.1:8000'
 		url_path = reverse('sips-place-order')
@@ -144,7 +144,7 @@ class Gateway(object):
 
 		except requests.ConnectionError:
 
-			print 'godver'
+			print('godver')
 			raise SipsPaymentError(mark_safe('Connection Error'))
 
 
@@ -155,26 +155,26 @@ class Gateway(object):
 
 		if json_response['redirectionStatusCode'] == '00':
 
-			print '--------SIPS CONNECTOR: SUCCESS'
-			print str(json_response)
+			print('--------SIPS CONNECTOR: SUCCESS')
+			print(str(json_response))
 
 			url = str(json_response['redirectionUrl'])
 			redirectionVersion = str(json_response['redirectionVersion'])
 			redirectionData = str(json_response['redirectionData'])
 
-			print url
-			print redirectionVersion
-			print redirectionData
+			print(url)
+			print(redirectionVersion)
+			print(redirectionData)
 
-			#return url
-			return url, redirectionVersion, redirectionData
+			return url
+			#return url, redirectionVersion, redirectionData
 
 
 		else:
-			print '--------SIPS CONNECTOR: FAILURE'
+			print('--------SIPS CONNECTOR: FAILURE')
 
-			print 'error: ' + str(json_response['redirectionStatusCode'])
-			print 'volledige error response: ' + str(json_response)
+			print('error: ' + str(json_response['redirectionStatusCode']))
+			print('volledige error response: ' + str(json_response))
 
 			if str(json_response['redirectionStatusCode']) == '94':
 
@@ -232,7 +232,7 @@ class Gateway(object):
 		Het is deze methode die door de Facade wordt opgeroepen
 		'''
 
-		print '*** GATEWAY pre() methode'
+		print('*** GATEWAY pre() methode')
 
 		return self._fetch_response(**kwargs)
 

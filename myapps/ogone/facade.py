@@ -19,14 +19,14 @@ class Facade(object):
 		'''
 
 		try:
-			url, redirectionVersion, redirectionData = self.gateway.pre_auth(
+			url = self.gateway.pre_auth(
 			#url = self.gateway.pre(
 					amount=amount,
 					currency=currency,
 					order_number=order_number
 				)
 
-			return url, redirectionVersion, redirectionData
+			return url
 			#return url
 
 		except ValueError:

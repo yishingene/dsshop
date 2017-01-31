@@ -19,7 +19,7 @@ from oscar.apps.payment.forms import BankcardForm
 from oscar.apps.payment.exceptions import RedirectRequired, PaymentError, UnableToTakePayment
 from oscar.apps.order.utils import OrderNumberGenerator
 
-#from myapps.ogone.facade import Facade
+from myapps.ogone.facade import Facade
 #from myapps.ogone.gateway import SipsPaymentError
 
 
@@ -180,15 +180,15 @@ class PaymentDetailsView(OscarPaymentDetailsView):
             return self.render_payment_details(
                     self.request, error=msg, **payment_kwargs)
 
-        except SipsPaymentError as e:
+        # except SipsPaymentError as e:
 
-            msg = six.text_type(e)
-            logger.error("Order #%s: payment error (%s)", order_number, msg,
-                    exc_info=True)
-            self.restore_frozen_basket()
+        #     msg = six.text_type(e)
+        #     logger.error("Order #%s: payment error (%s)", order_number, msg,
+        #             exc_info=True)
+        #     self.restore_frozen_basket()
 
-            return self.render_preview(
-                    self.request, error=e.error_msg, **payment_kwargs)
+        #     return self.render_preview(
+        #             self.request, error=e.error_msg, **payment_kwargs)
 
         except PaymentError as e:
             # A general payment error - Something went wrong which wasn't

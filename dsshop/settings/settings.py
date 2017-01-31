@@ -82,6 +82,7 @@ INSTALLED_APPS = [
     'widget_tweaks',    # Forms customizations
     'modeltranslation', # Translation of models (productnamen, categorieen, ...)
     'rest_framework',   # Required om gebruik te kunnen maken van oscarapi
+    'Crypto',
 
     'dsshop',
 
