@@ -38,8 +38,17 @@ class PaymentDetailsView(OscarPaymentDetailsView):
     '''
     Deze PaymentDetailsView overschrijft de default django-oscar implementatie, dewelke niets doet.
     Het is verantwoordelijk voor het communiceren met de payment facade en de betaling te initieren.
-    De submit() methode 
-    De handle_payment() methode update django-oscar met de nodige gegevens na betaling
+
+        * De submit() methode wordt opgeroepen door handle_place_order_submission nadat de gebruiker 
+          op de 'Bestelling Plaatsen' knop heeft gedrukt die zich op de preview pagina bevindt
+          Deze methode voert dan achtereenvolgens volgende stappen uit: 
+            - Een order_number aanmaken
+            - De basket gegevens vastleggen zodat deze niet meer gewijzigd kunnen wordne
+            - De handle_payment() methode oproepen die de eigenlijke gateway met de service provider initieert
+
+        * De handle_payment() methode update django-oscar met de nodige gegevens na betaling. 
+          Dit is de methode die je dient te overschrijven. Na afhandeling van de betaling worden de payment sources
+          up to date gebracht en en de payment events gelogd
     '''
 
     @method_decorator(csrf_exempt)
