@@ -5,9 +5,11 @@
 	{% for line in basket.all_lines %}
 	<div class="row">
 		<div class="col-sm-8">
-			<span class="name">
-				<strong>{{ line.description }}</strong>	
-			</span>
+			<a href="{{ line.product.get_absolute_url }}">
+				<span class="name">
+					<strong>{{ line.description }}</strong>	
+				</span>
+			</a>
 			<br>
 			<div class="row">
 			</div>
@@ -15,7 +17,9 @@
         <div class="col-sm-4">
 	        {% with image=line.product.primary_image %}
 	            {% thumbnail image.original "x155" upscale=False as thumb %}
-	            <img src="{{ thumb.url }}">
+	            <a href="{{ line.product.get_absolute_url }}">
+	            	<img src="{{ thumb.url }}">
+        		</a>
 	            {% endthumbnail %}
 	        {% endwith %}
         </div>

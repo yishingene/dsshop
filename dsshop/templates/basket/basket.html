@@ -55,7 +55,7 @@
 				</div>
 				<div class="col-sm-2 hidden-xs">
 		    {% with image=product.primary_image %}
-		        {% thumbnail image.original "100x100" upscale=False as thumb %}
+		        {% thumbnail image.original "110x110" upscale=False as thumb %}
 		            <a href="{{ product.get_absolute_url }}">
 		                <img class="thumbnail basket img-responsive" src="{{ thumb.url }}" alt="{{ product.get_title }}"/>
 		            </a>
@@ -114,7 +114,7 @@
                                 {% endif %}
 							</div>
 						</div>
-						<div class="row">
+<!-- 						<div class="row">
 							<div class="col-xs-7">
 								{% trans 'Verzendingskosten' %}
 							</div>
@@ -129,9 +129,9 @@
 							<div class="col-xs-5">
 								
 							</div>
-						</div>
+						</div> -->
 
-						<div class="wc-proceed-to-checkout">
+						<div class="wc-proceed-to-checkout" style="margin-top: 15px;">
 							<a href="{% url 'checkout:index' %}" class="checkout-button button alt wc-forward">
 								{% trans 'Afrekenen' %}
 							</a>

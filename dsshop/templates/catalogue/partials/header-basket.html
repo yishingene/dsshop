@@ -7,15 +7,15 @@
     {% with image=line.product.primary_image %}
         {% thumbnail image.original "x155" upscale=False as thumb %}
         <a href="#" class="remove basket-edit">x</a>
-        <a href="{% url 'basket:summary' %}">
-        	<img src="{{ thumb.url }}" alt="{{ product.get_title }}"><span class="name">{{ line.description }}</span>
+        <a href="{{ line.product.get_absolute_url }}">
+        	<img src="{{ thumb.url }}" alt="{{ product.get_title }}">
+            <span class="name">{{ line.description }}</span>
         </a>
         {% endthumbnail %}
     {% endwith %}
         <p class="cart">
         	<span class="quantity">
         		<span class="line-quantity">{{ line.quantity }}</span> × <span class="amount">{{ line.unit_price_incl_tax|currency:request.basket.currency }}</span>
-        		<!--<a class="update-up">+</a><a class="update-down">-</a>-->
 				<span class="group-btn mini_cart pull-right" data-quantity="{{ line.quantity }}">
 				    <a class="button bg-scheme3 style1 less basket-edit" href="#">-</a>                
 				    <a class="button more basket-edit" href="#">+</a>
@@ -35,7 +35,7 @@
 {% else %}
 <ul class="cart_list product_list_widget">
     <li class="mini_cart_item">
-        <p>Je hebt geen producten in je winkelmand!</p>
+        <p>{% trans 'Je hebt geen producten in je winkelmand!' %}</p>
     </li>
 </ul>
 <div class="group-btn">
