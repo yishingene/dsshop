@@ -28,6 +28,45 @@
     <div class="container">
         <div class="row">
             <div class="general">
+            	<h3 class="flat-title-section style">
+            		<span>{% trans 'Shipping Address' %}</span>
+        		</h3>
+        		<div class="row">
+        			<div class="col-sm-7">
+				{% block new_address_form %}
+		    			<form action="{% url 'checkout:shipping-address' %}" method="post" id="new_shipping_address" class="form form-horizontal">
+		    				{% csrf_token %}
+			        		{% render_field form.title class+='input-text' class+='address-form' %}
+			        		{% render_field form.first_name class+='input-text' placeholder=form.first_name.label class+='address-form' %}
+			        		{% render_field form.last_name class+='input-text' placeholder=form.last_name.label class+='address-form' %}
+			        		{% render_field form.line1 class+='input-text' placeholder=form.line1.label class+='address-form' %}
+		<!-- 	        		<label for="id_line2">{% trans 'Tweede adresregel' %}</label>
+			        		{% render_field form.line2 class+='input-text' %} -->
+			        		{% render_field form.line4 class+='input-text' placeholder=form.line4.label class+='address-form' %}
+			        		{% render_field form.postcode class+='input-text' placeholder=form.postcode.label class+='address-form' %}
+		        		{% if form.country %}
+			        		{% render_field form.country placeholder=form.country.label class+='address-form' %}
+		        		{% endif %}
+			        		{% render_field form.phone_number placeholder=form.phone_number.label class+='address-form' %}
+			        		{% render_field form.notes placeholder=form.notes.label %}
+		                    <p class="form-row form-login">
+		                        <button type="submit" class="button" name="login">{% trans 'Opslaan' %}</button>
+		                    </p> 
+		        		</form>
+				{% endblock new_address_form %}
+					</div>
+					<div class="col-sm-4 col-sm-offset-1">
+				{% if user.is_authenticated %}
+					{% if addresses %}
+						<h3>
+							Eerder opgeslagen adressen
+						</h3>
+					{% else %}
+						<h3>Nieuwe Verzendadres</h3>
+					{% endif %}
+				{% endif %}
+					</div>
+        		</div>
             </div>
             <div class="general-sidebars">
                 <div class="sidebar-wrap">
@@ -38,55 +77,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-        	<div class="col-md-6 col-sm-6">
-        		<h3>Verzendadres</h3>
-		{% if user.is_authenticated %}
-			{% if addresses %}
-				<h4>
-					Eerder opgeslagen adressen
-				</h4>
-			{% else %}
-				<h3>Nieuwe Verzendadres</h3>
-			{% endif %}
-		{% endif %}
-		{% block new_address_form %}
-				
-    			<form action="{% url 'checkout:shipping-address' %}" method="post" id="new_shipping_address" class="form form-horizontal">
-    				{% csrf_token %}
-<!-- 	        		<label for="id_title">{% trans 'Aanspreking' %}</label>
-	        		{% render_field form.title class+='input-text' %} -->
-	        		<label for="id_first_name">{% trans 'Voornaam' %}<span class="required">*</span></label>
-	        		{% render_field form.first_name class+='input-text' %}
-	        		<label for="id_last_name">{% trans 'Achternaam' %}<span class="required">*</span></label>
-	        		{% render_field form.last_name class+='input-text' %}
-	        		<label for="id_line1">{% trans 'Eerste adresregel' %}<span class="required">*</span></label>
-	        		{% render_field form.line1 class+='input-text' %}
-	        		<label for="id_line2">{% trans 'Tweede adresregel' %}</label>
-	        		{% render_field form.line2 class+='input-text' %}
-	        		<label for="id_line4">{% trans 'Woonplaats' %}<span class="required">*</span></label>
-	        		{% render_field form.line4 class+='input-text' %}
-	        		<label for="id_postcode">{% trans 'Postcode' %}<span class="required">*</span></label>
-	        		{% render_field form.postcode class+='input-text' %}
-        		{% if form.country %}
-	        		<label for="id_country">{% trans 'Land' %}<span class="required">*</span></label>
-	        		{% render_field form.country %}
-        		{% endif %}
-	        		<label for="id_phone_number">{% trans 'Telefoonnummer' %}</label>
-	        		{% render_field form.phone_number %}
-	        		<label for="id_notes">{% trans 'Bijkomende opmerkingen?' %}</label>
-	        		{% render_field form.notes %}
-                    <p class="form-row form-login">
-                        <button type="submit" class="button" name="login">{% trans 'Opslaan' %}</button>
-                    </p> 
-        		</form>
-		{% endblock new_address_form %}
-        	</div>
-        	<div class="col-md-3 col-md-offset-3 col-sm-offset-1">
-        		<h3>{% trans 'Overzicht winkelmand' %}</h3>
-
-        	</div>
         </div>
     </div>
 </div>
