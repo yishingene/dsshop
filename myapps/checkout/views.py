@@ -56,17 +56,16 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         return super(PaymentDetailsView, self).dispatch(request, *args, **kwargs)
 
 
-    def handle_payment(self, order_number, total, shipping_address, **kwargs):
+    def handle_payment(self, order_number, total, billing_address, **kwargs):
         '''
         Deze methode is verantwoordelijk voor payment processing 
         ''' 
 
         print('------ START: checkout view: handle_payment() methode')
-        #print('shipping_address: %s' % shipping_address)
 
         facade = Facade()
 
-        reference = facade.pre_authorise(order_number, total.incl_tax, **kwargs)
+        reference = facade.pre_authorise(order_number, total.incl_tax, billing_address=billing_address, **kwargs)
 
         print('!!! succesvol geretourneerd! -- terug in handle_payment() methode')
 
@@ -149,7 +148,7 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 
         try:
             # EDITED: shipping_address toegevoegd aan handle_payment() methode
-            self.handle_payment(order_number, order_total, shipping_address, **payment_kwargs)
+            self.handle_payment(order_number, order_total, billing_address, **payment_kwargs)
 
         except RedirectRequired as e:
             # Redirect required (eg PayPal, 3DS)

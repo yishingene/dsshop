@@ -23,11 +23,11 @@ class Facade(object):
 			#url = self.gateway.pre(
 					amount=amount,
 					currency=currency,
-					order_number=order_number
+					order_number=order_number,
+					billing_address=billing_address,
 				)
 
 			return url
-			#return url
 
 		except ValueError:
 			print('^^^^ VALUE ERROR ^^^^')

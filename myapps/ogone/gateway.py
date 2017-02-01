@@ -18,56 +18,14 @@ from oscar.apps.payment.exceptions import GatewayError, UnableToTakePayment, Pay
 #from oscar.apps.payment.exceptions import RedirectRequired, PaymentError, UnableToTakePayment
 
 
-# SIPS JSON PAYPAGE
-SIPS_PAYPAGE_TEST_HOST = 'payment-webinit.simu.sips-atos.com'
-SIPS_PAYPAGE_LIVE_HOST = 'payment-webinit.sips-atos.com'
-SIPS_PAYPAGE_PATH = '/rs-services/v2/paymentInit/'
-SIPS_PAYPAGE_URL = 'https://payment-webinit.simu.sips-atos.com/rs-services/v2/paymentInit/'
-SIPS_PAYPAGE_URL_PRODUCTION = 'https://payment-webinit.sips-atos.com/rs-services/v2/paymentInit/'
-SIPS_PAYPAGE_SECRET_KEY = '002001000000001_KEY1'
-SIPS_PAYPAGE_MERCHANT = '002001000000001'
-
-
-SIPS_PATH = '/rs-services/v2/paymentInit'
-SIPS_MERCHANT = '002001000000001'
-SIPS_PASSWORD = '002001000000001_KEY1'	# secret key
-SIPS_KEY_VERSION = '1'
-SIPS_ORDER_CHANNEL = 'INTERNET'
-SIPS_INTERFACE_VERSION = 'IR_WS_2.10'
-SIPS_CURRENCY_CODE = '978'
-SIPS_PAYMENT_MEAN_BRAND = 'BCMC'
-SIPS_PAYMENT_MEAN_TYPE = 'CARD'
-
-# SIPS OFFICE JSON 
-SIPS_OFFICE_JSON_HOST = 'office-server.test.sips-atos.com'
-
-SIPS_OFFICE_SECRET_KEY = 'CcDeXSiX2CY0mgbuB_MJxXqXYyJaINZixX2KZgY770o'
-SIPS_OFFICE_JSON_MERCHANTID = '037107704346091'
-SIPS_OFFICE_JSON_KEYVERSION	= '2'
-SIPS_OFFICE_JSON_TEST_CARD_1 = '5017670000000000'
-SIPS_EXPIRY_DATE = '201609'
-SIPS_OFFICE_INTERFACE_VERSION = 'IR_WS_2.11'
-
-
-# Response status codes
-SUCCESS, MERCHANT_INVALID, TRANSACTION_INVALID, REQUEST_INVALID, SECURITY_ERROR, DUPLICATE_TRANSACTOIN = '00', '03', '12', '30', '34', '94'
-
 
 logger = logging.getLogger('oscar.checkout')
-
-class SipsPaymentError(PaymentError):
-    '''
-    Custom subklasse vn Oscar's PaymentError
-    '''
-
-    def __init__(self, error_msg):
-
-        self.error_msg = error_msg
 
 
 def post(url, params):
 	'''
-	Deze methode voert het post request naar de sips paypage uit, en retourneert het antwoord van de server
+	Deze methode voert het post request naar de sips paypage uit, en retourneert het antwoord van de server.
+	Hier wordt het vereiste web form voor Ogone dus verstuurd
 	'''
 
 	payload = urlencode(params)
@@ -81,6 +39,15 @@ class Gateway(object):
 		
 		self._PSPID = OGONE_PSPID
 
+	def pre_auth(self, **kwargs):
+		'''
+		De pre_auth() methode wordt gebruikt om betaling onmiddellijk te innen. Dit is zowat de gebruikte webshop betaalmethode.
+		Het is deze methode die door de Facade wordt opgeroepen
+		'''
+
+		print('*** GATEWAY pre() methode')
+
+		return self._fetch_response(**kwargs)
 
 	def _fetch_response(self, **kwargs):
 		'''
@@ -88,12 +55,9 @@ class Gateway(object):
 		'''
 
 		print('_fetch_response()')
-		print(kwargs)
+		print('GATEWAY KWARGS: %s' % kwargs)
 
 		base_url = 'http://127.0.0.1:8000'
-		url_path = reverse('sips-place-order')
-
-
 
 		basket_amount = int(kwargs['amount'] * 100)
 
@@ -200,8 +164,6 @@ class Gateway(object):
 		SHA encryptie seal: http://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages/#python
 		'''
 
-		print('*** GATEWAY _calculate_seal()')
-
 		message = bytes(concat_string).encode('utf-8')
 		secret = bytes(secret_key) 
 
@@ -209,30 +171,4 @@ class Gateway(object):
 
 		return sig
 
-
-	def _check_kwargs(self, kwargs, required_keys):
-
-		for key in required_keys:
-
-			if not key in kwargs:
-				raise ValueError('Je moet %s nog toevoegen als fieds')
-
-		for key in kwargs:
-
-			value = kwargs[key] # de waarde voor een bepaalde key
-
-			if key == 'amount' and value == 0:
-				raise ValueError('Een betaling kan niet 0 zijn')
-
-
-	def pre_auth(self, **kwargs):
-		'''
-		De pre_auth() methode wordt gebruikt om betaling onmiddellijk te innen. Dit is zowat de gebruikte webshop betaalmethode.
-
-		Het is deze methode die door de Facade wordt opgeroepen
-		'''
-
-		print('*** GATEWAY pre() methode')
-
-		return self._fetch_response(**kwargs)
 
