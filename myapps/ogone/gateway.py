@@ -6,7 +6,9 @@ import base64
 import json
 import requests
 import logging
-#from Crypto.Hash import HMAC, SHA256
+import collections
+from Crypto.Hash import HMAC, SHA256, SHA
+from Crypto.Util import py3compat
 
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
@@ -82,13 +84,18 @@ class Gateway(object):
 		concat_string = ''
 
 		# SORTEER DE DICTIONARY
-		for key in sorted(request_dict):
-			concat_string += str(request_dict[key]) + OGONE_SECRET
+		for key, value in sorted(request_dict.items()):
+			concat_string += str(key) + '=' + str(value) + OGONE_SECRET
 
 		print('^^^CONCAT string :%s' % concat_string)
 
 		# Bereken de secret key voor de huidige gegevens
-		signature = self._calculate_seal(concat_string, OGONE_SECRET)
+		#signature = self._calculate_seal(concat_string, OGONE_SECRET)
+
+		test_msg = "AMOUNT=1500Mysecretsig1875!?CURRENCY=EURMysecretsig1875!?LANGUAGE=en_USMysecretsig1875!?ORDERID=1234Mysecretsig1875!?PSPID=MyPSPIDMysecretsig1875!?"
+		test_secret = "Mysecretsig1875!?"
+
+		signature = self._calculate_seal(test_msg, test_secret)
 
 		request_dict['SHASIGN'] = signature
 
@@ -154,17 +161,12 @@ class Gateway(object):
 		Deze methode berekent de HMAC seal
 		SHA encryptie seal: http://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages/#python
 		'''
-		print('alles oke tot hier? 0')
+		message = concat_string.encode(encoding='UTF-8')
+		secret = secret_key.encode(encoding='UTF-8')
 
-		message = concat_string.encode('utf-8')
-		print('alles oke tot hier? 1')
+		#sig = HMAC.new(key=secret, msg=message, digestmod=SHA).hexdigest()
 
-		secret = secret_key.encode('utf-8')
-		print('alles oke tot hier?2')
-
-		sig = HMAC.new(key=secret, msg=message, digestmod=SHA256).hexdigest()
-
-		print('sig berekend?')
+		sig = hashlib.sha1(message).hexdigest()
 
 		return sig
 

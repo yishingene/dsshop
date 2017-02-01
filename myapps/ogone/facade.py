@@ -20,7 +20,6 @@ class Facade(object):
 
 		try:
 			url = self.gateway.pre_auth(
-			#url = self.gateway.pre(
 					amount=amount,
 					currency=currency,
 					order_number=order_number,
