@@ -72,6 +72,8 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         #logger.info("Order: redirecting to %s", url)
 
         
+
+        
         source_type, __ = models.SourceType.objects.get_or_create(
                     name="Ogone")
 
