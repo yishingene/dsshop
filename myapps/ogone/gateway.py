@@ -77,9 +77,9 @@ def post(url, params):
 
 class Gateway(object):
 
-	def __init__(self):
+	def __init__(self, OGONE_PSPID):
 		
-		self._PSPID = PSPID
+		self._PSPID = OGONE_PSPID
 
 
 	def _fetch_response(self, **kwargs):

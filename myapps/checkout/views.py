@@ -56,12 +56,13 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         return super(PaymentDetailsView, self).dispatch(request, *args, **kwargs)
 
 
-    def handle_payment(self, order_number, total, **kwargs):
+    def handle_payment(self, order_number, total, shipping_address, **kwargs):
         '''
         Deze methode is verantwoordelijk voor payment processing 
         ''' 
 
-        print('!!! START: checkout view: handle_payment() methode')
+        print('------ START: checkout view: handle_payment() methode')
+        #print('shipping_address: %s' % shipping_address)
 
         facade = Facade()
 
@@ -147,26 +148,8 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         signals.pre_payment.send_robust(sender=self, view=self)
 
         try:
-            self.handle_payment(order_number, order_total, **payment_kwargs)
-
-        # except SipsRedirectRequired as e:
-
-        #     print('SipsRedirectRequired!')
-
-        #     logger.info("Order #%s: redirecting to %s", order_number, e.url)
-
-        #     data = {
-        #         'redirectionVersion': e.redirectionVersion,
-        #         'redirectionData': e.redirectionData
-        #     }
-
-        #     # urlencode retourneert url parameters
-        #     payload = urlencode(data)
-
-        #     # volledige url bestaat uit base url + urlencoded parameters
-        #     complete_url = '%s?%s' % (e.url, payload)
-
-        #     return http.HttpResponseRedirect(complete_url)
+            # EDITED: shipping_address toegevoegd aan handle_payment() methode
+            self.handle_payment(order_number, order_total, shipping_address, **payment_kwargs)
 
         except RedirectRequired as e:
             # Redirect required (eg PayPal, 3DS)
@@ -188,16 +171,6 @@ class PaymentDetailsView(OscarPaymentDetailsView):
             # were invalid (eg expired bankcard).
             return self.render_payment_details(
                     self.request, error=msg, **payment_kwargs)
-
-        # except SipsPaymentError as e:
-
-        #     msg = six.text_type(e)
-        #     logger.error("Order #%s: payment error (%s)", order_number, msg,
-        #             exc_info=True)
-        #     self.restore_frozen_basket()
-
-        #     return self.render_preview(
-        #             self.request, error=e.error_msg, **payment_kwargs)
 
         except PaymentError as e:
             # A general payment error - Something went wrong which wasn't
@@ -258,10 +231,6 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         Hij is vereist wanneer de gebruiker een bijkomend form (vb bankkaart formulier) dient in te vullen
         De methode leidt de gebruiker verder naar het preview view wanneer de submitted data correct is
         Wanneer de data incorrect is wordt het view opnieuw gerenderd met de nodige foutmeldingen
-        '''
-
-        '''
-        In dit geval is het form dat we nodig hebben het BankcardForm uit de payment app
         '''
 
         # No form data to validate by default, so we simply render the preview
