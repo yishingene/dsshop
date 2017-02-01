@@ -62,8 +62,8 @@ class Gateway(object):
 		execute request
 		'''
 
-		print('_fetch_response()')
-		print('GATEWAY KWARGS: %s' % kwargs)
+		#print('_fetch_response()')
+		#print('GATEWAY KWARGS: %s' % kwargs)
 
 		basket_amount = int(kwargs['amount'] * 100)
 		amount = str(basket_amount)
@@ -79,8 +79,6 @@ class Gateway(object):
 			'PSPID': OGONE_PSPID,
 		}
 
-		print('^^^REQUEST DICT :%s' % request_dict)
-
 		concat_string = ''
 
 		# SORTEER DE DICTIONARY
@@ -90,71 +88,66 @@ class Gateway(object):
 		print('^^^CONCAT string :%s' % concat_string)
 
 		# Bereken de secret key voor de huidige gegevens
-		#signature = self._calculate_seal(concat_string, OGONE_SECRET)
-
-		test_msg = "AMOUNT=1500Mysecretsig1875!?CURRENCY=EURMysecretsig1875!?LANGUAGE=en_USMysecretsig1875!?ORDERID=1234Mysecretsig1875!?PSPID=MyPSPIDMysecretsig1875!?"
-		test_secret = "Mysecretsig1875!?"
-
-		signature = self._calculate_seal(test_msg, test_secret)
+		signature = self._calculate_seal(concat_string, OGONE_SECRET)
 
 		request_dict['SHASIGN'] = signature
 
-		print('^^^SIGNATURE: %s' % signature)
+		
+		#response = requests.post(OGONE_TEST_URL, json=request_dict)	# TEST PAGE
+		response = requests.post(OGONE_TEST_URL, json={'brol': 'yes'})	
 
-		try:
-			response = requests.post(SIPS_PAYPAGE_URL_PRODUCTION, json=request_dict)	# LIVE PAGE
+		print('ogone response: %s' % response)
+		print(response)
 
-		except requests.ConnectionError:
+		# except requests.ConnectionError:
 
-			print('godver')
-			raise SipsPaymentError(mark_safe('Connection Error'))
-
-
-		json_response = response.json()
-
-		logger.info("sips return code #%s" % json_response['redirectionStatusCode'])
+		# 	print('godver')
+		# 	raise SipsPaymentError(mark_safe('Connection Error'))
 
 
-		if json_response['redirectionStatusCode'] == '00':
+		# json_response = response.json()
 
-			print('--------SIPS CONNECTOR: SUCCESS')
-			print(str(json_response))
-
-			url = str(json_response['redirectionUrl'])
-			redirectionVersion = str(json_response['redirectionVersion'])
-			redirectionData = str(json_response['redirectionData'])
-
-			print(url)
-			print(redirectionVersion)
-			print(redirectionData)
-
-			return url
-			#return url, redirectionVersion, redirectionData
+		# logger.info("sips return code #%s" % json_response['redirectionStatusCode'])
 
 
-		else:
-			print('--------SIPS CONNECTOR: FAILURE')
+		# if json_response['redirectionStatusCode'] == '00':
 
-			print('error: ' + str(json_response['redirectionStatusCode']))
-			print('volledige error response: ' + str(json_response))
+		# 	print('--------SIPS CONNECTOR: SUCCESS')
+		# 	print(str(json_response))
 
-			if str(json_response['redirectionStatusCode']) == '94':
+		# 	url = str(json_response['redirectionUrl'])
+		# 	redirectionVersion = str(json_response['redirectionVersion'])
+		# 	redirectionData = str(json_response['redirectionData'])
 
-				raise SipsPaymentError(mark_safe('Er werd reeds een transactie uitgevoerd met deze referentie. ' + \
-					'Een duplicaat transactie wordt omwille van veiligheidsredenen niet toegelaten!'))
+		# 	print(url)
+		# 	print(redirectionVersion)
+		# 	print(redirectionData)
+
+		# 	return url
+		# 	#return url, redirectionVersion, redirectionData
+
+
+		# else:
+		# 	print('--------SIPS CONNECTOR: FAILURE')
+
+		# 	print('error: ' + str(json_response['redirectionStatusCode']))
+		# 	print('volledige error response: ' + str(json_response))
+
+		# 	if str(json_response['redirectionStatusCode']) == '94':
+
+		# 		raise SipsPaymentError(mark_safe('Er werd reeds een transactie uitgevoerd met deze referentie. ' + \
+		# 			'Een duplicaat transactie wordt omwille van veiligheidsredenen niet toegelaten!'))
 
 
 
-			else: 
+		# 	else: 
 
-				raise SipsPaymentError(mark_safe('Ander issue'))
+		# 		raise SipsPaymentError(mark_safe('Ander issue'))
 
 			#return 'http://127.0.0.1:8000/checkout/preview/', None, None, json_response['redirectionStatusCode']
 
 
 		#return response.json()
-
-
 
 	def _calculate_seal(self, concat_string, secret_key):
 		'''
@@ -164,10 +157,9 @@ class Gateway(object):
 		message = concat_string.encode(encoding='UTF-8')
 		secret = secret_key.encode(encoding='UTF-8')
 
-		#sig = HMAC.new(key=secret, msg=message, digestmod=SHA).hexdigest()
+		#sig = hashlib.sha1(message).hexdigest() # Also possible and tested!
+		sig = hashlib.sha256(message).hexdigest()
 
-		sig = hashlib.sha1(message).hexdigest()
+		print('signature: %s' % sig)
 
 		return sig
-
-
