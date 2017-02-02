@@ -14,7 +14,7 @@ from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
 
-from oscar.apps.payment.exceptions import GatewayError, UnableToTakePayment, PaymentError
+from oscar.apps.payment.exceptions import GatewayError, UnableToTakePayment, PaymentError, RedirectRequired
 
 #from oscar.apps.payment.exceptions import RedirectRequired, PaymentError, UnableToTakePayment
 
@@ -92,12 +92,17 @@ class Gateway(object):
 
 		request_dict['SHASIGN'] = signature
 
+		return request_dict
+
 		
 		#response = requests.post(OGONE_TEST_URL, json=request_dict)	# TEST PAGE
-		response = requests.post(OGONE_TEST_URL, json={'brol': 'yes'})	
+		#requests.get(OGONE_TEST_URL)
+		#response = requests.post(OGONE_TEST_URL, json={'brol': 'yes'})	
+
+
 
 		print('ogone response: %s' % response)
-		print(response)
+		print(response.text)
 
 		# except requests.ConnectionError:
 

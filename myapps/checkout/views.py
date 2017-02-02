@@ -56,6 +56,19 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         return super(PaymentDetailsView, self).dispatch(request, *args, **kwargs)
 
 
+    def get(self, request, *args, **kwargs):
+
+        print('////// GET')
+
+        return super(PaymentDetailsView, self).get(request, *args, **kwargs)
+
+
+    def post(self, request, *args, **kwargs):
+
+        print('////// POST')
+
+        return super(PaymentDetailsView, self).post(request, *args, **kwargs)
+
     def handle_payment(self, order_number, total, billing_address, **kwargs):
         '''
         Deze methode is verantwoordelijk voor payment processing 
@@ -63,30 +76,32 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 
         print('------ START: checkout view: handle_payment() methode')
 
+        #raise RedirectRequired('https://secure.ogone.com/ncol/test/orderstandard.asp')
+
         facade = Facade()
 
-        reference = facade.pre_authorise(order_number, total.incl_tax, billing_address=billing_address, **kwargs)
+        request_dict = facade.pre_authorise(order_number, total.incl_tax, billing_address=billing_address, **kwargs)
 
         print('!!! succesvol geretourneerd! -- terug in handle_payment() methode')
 
         #logger.info("Order: redirecting to %s", url)
 
-        
+
 
         
-        source_type, __ = models.SourceType.objects.get_or_create(
-                    name="Ogone")
+        # source_type, __ = models.SourceType.objects.get_or_create(
+        #             name="Ogone")
 
-        source = models.Source(
-            source_type=source_type,
-            amount_allocated=total.incl_tax,
-            #reference=reference)
-            reference=order_number)
+        # source = models.Source(
+        #     source_type=source_type,
+        #     amount_allocated=total.incl_tax,
+        #     #reference=reference)
+        #     reference=order_number)
 
-        self.add_payment_source(source)
+        # self.add_payment_source(source)
 
-        # Record payment event
-        self.add_payment_event('pre-auth', total.incl_tax)
+        # # Record payment event
+        # self.add_payment_event('pre-auth', total.incl_tax)
 
 
     def submit(self, user, basket, shipping_address, shipping_method,  # noqa (too complex (10))
