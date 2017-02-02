@@ -46,6 +46,13 @@
                         <p>
                             {% trans "Voor betaling wordt u omgeleid naar de beveiligde website van Ingenico ePayments" %}
                         </p>
+                        <form method="post" action="{% url 'checkout:preview' %}">
+                            {% csrf_token %}
+                            <input type="text" name="random" id="id_random" value="content">
+                            <button type="submit" class="btn btn-large btn-primary">
+                                {% trans 'Continue' %}
+                            </button>
+                        </form>
                         <a id="view_preview" href="{% url 'checkout:preview' %}" class="btn btn-primary btn-lg">
                             {% trans "Continue" %}
                         </a>

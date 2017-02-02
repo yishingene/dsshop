@@ -24,7 +24,7 @@ class Facade(object):
 					currency=currency,
 					order_number=order_number,
 					billing_address=billing_address,
-				)
+					)
 
 			return url
 

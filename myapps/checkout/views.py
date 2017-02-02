@@ -56,18 +56,18 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         return super(PaymentDetailsView, self).dispatch(request, *args, **kwargs)
 
 
-    def get(self, request, *args, **kwargs):
+    # def get(self, request, *args, **kwargs):
 
-        print('////// GET')
+    #     #self.handle_payment()
 
-        return super(PaymentDetailsView, self).get(request, *args, **kwargs)
+    #     return super(PaymentDetailsView, self).get(request, *args, **kwargs)
 
 
-    def post(self, request, *args, **kwargs):
+    # def post(self, request, *args, **kwargs):
 
-        print('////// POST')
+    #     print('////// POST')
 
-        return super(PaymentDetailsView, self).post(request, *args, **kwargs)
+    #     return super(PaymentDetailsView, self).post(request, *args, **kwargs)
 
     def handle_payment(self, order_number, total, billing_address, **kwargs):
         '''
@@ -87,8 +87,6 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         #logger.info("Order: redirecting to %s", url)
 
 
-
-        
         # source_type, __ = models.SourceType.objects.get_or_create(
         #             name="Ogone")
 
@@ -103,6 +101,18 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         # # Record payment event
         # self.add_payment_event('pre-auth', total.incl_tax)
 
+
+    # def handle_payment_details_submission(self, request):
+
+    #     print('ALS DIT VERSCHIJNT VOOR WE NAAR PREVIEW TEMPLATE GAAN BEGIN IK HET TE SNAPEN')
+
+    #     return super(PaymentDetailsView, self).handle_payment_details_submission(request)
+
+    def render_preview(self, request, **kwargs):
+
+        print('ALS DIT VERSCHIJNT IST OOK NOG WEL CAVA')
+
+        return super(PaymentDetailsView, self).render_preview(request, **kwargs)
 
     def submit(self, user, basket, shipping_address, shipping_method,  # noqa (too complex (10))
             shipping_charge, billing_address, order_total,
@@ -248,6 +258,8 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         De methode leidt de gebruiker verder naar het preview view wanneer de submitted data correct is
         Wanneer de data incorrect is wordt het view opnieuw gerenderd met de nodige foutmeldingen
         '''
+
+        print('ALS DIT VERSCHIJNT VOOR WE NAAR PREVIEW TEMPLATE GAAN BEGIN IK HET TE SNAPEN')
 
         # No form data to validate by default, so we simply render the preview
         # page.  If validating form data and it's invalid, then call the
