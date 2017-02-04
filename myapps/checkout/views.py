@@ -56,12 +56,24 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         return super(PaymentDetailsView, self).dispatch(request, *args, **kwargs)
 
 
-    # def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
 
-    #     #self.handle_payment()
+        print('----- PAYMENT DETAILS VIEW: ///// GET METHOD')
 
-    #     return super(PaymentDetailsView, self).get(request, *args, **kwargs)
+        self.create_hidden_fields(request, *args, **kwargs)
 
+        return super(PaymentDetailsView, self).get(request, *args, **kwargs)
+
+
+    def create_hidden_fields(self, request, *args, **kwargs):
+
+        print(request)
+        print(args)
+        print(kwargs)
+
+        print(request.POST)
+
+        return False
 
     # def post(self, request, *args, **kwargs):
 
@@ -101,12 +113,6 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         # # Record payment event
         # self.add_payment_event('pre-auth', total.incl_tax)
 
-
-    # def handle_payment_details_submission(self, request):
-
-    #     print('ALS DIT VERSCHIJNT VOOR WE NAAR PREVIEW TEMPLATE GAAN BEGIN IK HET TE SNAPEN')
-
-    #     return super(PaymentDetailsView, self).handle_payment_details_submission(request)
 
     def render_preview(self, request, **kwargs):
 
@@ -257,6 +263,8 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         Hij is vereist wanneer de gebruiker een bijkomend form (vb bankkaart formulier) dient in te vullen
         De methode leidt de gebruiker verder naar het preview view wanneer de submitted data correct is
         Wanneer de data incorrect is wordt het view opnieuw gerenderd met de nodige foutmeldingen
+
+        Let op: Deze methode wordt enkel opgeroepen in geval van een POST request (want form submission)
         '''
 
         print('ALS DIT VERSCHIJNT VOOR WE NAAR PREVIEW TEMPLATE GAAN BEGIN IK HET TE SNAPEN')

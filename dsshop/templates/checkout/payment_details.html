@@ -50,7 +50,7 @@
                             {% csrf_token %}
                             <input type="text" name="random" id="id_random" value="content">
                             <button type="submit" class="btn btn-large btn-primary">
-                                {% trans 'Continue' %}
+                                -- {% trans 'Continue' %} --
                             </button>
                         </form>
                         <a id="view_preview" href="{% url 'checkout:preview' %}" class="btn btn-primary btn-lg">
