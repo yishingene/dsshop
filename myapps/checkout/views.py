@@ -20,6 +20,7 @@ from oscar.apps.payment.exceptions import RedirectRequired, PaymentError, Unable
 from oscar.apps.order.utils import OrderNumberGenerator
 
 from myapps.ogone.facade import Facade
+from myapps.payment.forms import HiddenOgoneForm
 #from myapps.ogone.gateway import SipsPaymentError
 
 
@@ -113,12 +114,6 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         # # Record payment event
         # self.add_payment_event('pre-auth', total.incl_tax)
 
-
-    def render_preview(self, request, **kwargs):
-
-        print('ALS DIT VERSCHIJNT IST OOK NOG WEL CAVA')
-
-        return super(PaymentDetailsView, self).render_preview(request, **kwargs)
 
     def submit(self, user, basket, shipping_address, shipping_method,  # noqa (too complex (10))
             shipping_charge, billing_address, order_total,
@@ -267,7 +262,8 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         Let op: Deze methode wordt enkel opgeroepen in geval van een POST request (want form submission)
         '''
 
-        print('ALS DIT VERSCHIJNT VOOR WE NAAR PREVIEW TEMPLATE GAAN BEGIN IK HET TE SNAPEN')
+
+
 
         # No form data to validate by default, so we simply render the preview
         # page.  If validating form data and it's invalid, then call the
@@ -275,5 +271,19 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         return self.render_preview(request)
 
 
+    def render_preview(self, request, **kwargs):
+        """
+        Show a preview of the order.
+        If sensitive data was submitted on the payment details page, you will
+        need to pass it back to the view here so it can be stored in hidden
+        form inputs.  This avoids ever writing the sensitive data to disk.
+        """
 
+        self.preview = True
+        ctx = self.get_context_data(**kwargs)
+
+        #ctx['hidden_form'] = 
+
+
+        return self.render_to_response(ctx)
 
