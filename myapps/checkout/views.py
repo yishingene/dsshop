@@ -279,37 +279,25 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         form inputs.  This avoids ever writing the sensitive data to disk.
         """
 
+        # STAP 1: Dit is gekopieerde code van de superklasse
         self.preview = True
         ctx = self.get_context_data(**kwargs)
 
-        #basket = self.get_submitted_basket()
-
+        
+        # STAP 2: ROEP build_submission() op, deze retourneert de basket en andere data in de vorm van een dict
         submission = self.build_submission()
         basket = submission['basket']
 
+        # order_total is een Price object
         order_total = submission['order_total']
 
-
-
-        #print('SUBMISSION: %s' % order_total.incl_tax*100 )
-        #print('ORDERID: %s' % basket.id )
-        #print("BASKET: %s" % basket)
-
-        amount = str(int(order_total.incl_tax * 100))
+        
+        amount = str(int(order_total.incl_tax * 100))   # Niet-komma getal!
         OGONE_CURRENCY = 'EUR'
         OGONE_LANGUAGE = 'nl_BE'
         order_id = str(basket.id)
         OGONE_PSPID = 'thinkmobile'
-        OGONE_SECRET = 'DitIsMijn1stePassPhrase'
-
-
-        ctx['OGONE_AMOUNT'] = amount
-        ctx['OGONE_PSPID'] = 'thinkmobile'
-        ctx['OGONE_LANGUAGE'] = 'nl_BE'
-        ctx['OGONE_ORDERID'] = order_id
-        ctx['OGONE_CURRENCY'] = 'EUR'
-        #ctx['OGONE_SHASIGN'] = 
-
+        OGONE_SECRET = 'DitIsMijn1stePassPhrase'    # TODO: Dit moet een environ var worden!
 
         request_dict = {
             'AMOUNT': amount,
@@ -321,21 +309,21 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 
         concat_string = ''
 
-        # SORTEER DE DICTIONARY
+        # SORTEER BOVENSTAANDE DICTIONARY
         for key, value in sorted(request_dict.items()):
             concat_string += str(key) + '=' + str(value) + OGONE_SECRET
-
-        print('***** CONCAT STRING: %s' % concat_string)
 
         # Bereken de secret key voor de huidige gegevens
         signature = self._calculate_seal(concat_string, OGONE_SECRET)
 
         request_dict['SHASIGN'] = signature
-
+        
+        ctx['OGONE_AMOUNT'] = amount
+        ctx['OGONE_PSPID'] = 'thinkmobile'
+        ctx['OGONE_LANGUAGE'] = 'nl_BE'
+        ctx['OGONE_ORDERID'] = order_id
+        ctx['OGONE_CURRENCY'] = 'EUR'
         ctx['OGONE_SHASIGN'] = signature
-
-        print('***** sig: %s' % signature)
-
 
         return self.render_to_response(ctx)
 
