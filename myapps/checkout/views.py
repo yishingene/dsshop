@@ -1,5 +1,6 @@
 import requests
 import logging
+import hashlib
 
 from django import http
 from django.core.urlresolvers import reverse
@@ -20,7 +21,7 @@ from oscar.apps.payment.exceptions import RedirectRequired, PaymentError, Unable
 from oscar.apps.order.utils import OrderNumberGenerator
 
 from myapps.ogone.facade import Facade
-from myapps.payment.forms import HiddenOgoneForm
+#from myapps.payment.forms import HiddenOgoneForm
 #from myapps.ogone.gateway import SipsPaymentError
 
 
@@ -264,7 +265,6 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 
 
 
-
         # No form data to validate by default, so we simply render the preview
         # page.  If validating form data and it's invalid, then call the
         # render_payment_details view.
@@ -282,8 +282,73 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         self.preview = True
         ctx = self.get_context_data(**kwargs)
 
-        #ctx['hidden_form'] = 
+        #basket = self.get_submitted_basket()
+
+        submission = self.build_submission()
+        basket = submission['basket']
+
+        order_total = submission['order_total']
+
+
+
+        #print('SUBMISSION: %s' % order_total.incl_tax*100 )
+        #print('ORDERID: %s' % basket.id )
+        #print("BASKET: %s" % basket)
+
+        amount = str(int(order_total.incl_tax * 100))
+        OGONE_CURRENCY = 'EUR'
+        OGONE_LANGUAGE = 'nl_BE'
+        order_id = str(basket.id)
+        OGONE_PSPID = 'thinkmobile'
+        OGONE_SECRET = 'DitIsMijn1stePassPhrase'
+
+
+        ctx['OGONE_AMOUNT'] = amount
+        ctx['OGONE_PSPID'] = 'thinkmobile'
+        ctx['OGONE_LANGUAGE'] = 'nl_BE'
+        ctx['OGONE_ORDERID'] = order_id
+        ctx['OGONE_CURRENCY'] = 'EUR'
+        #ctx['OGONE_SHASIGN'] = 
+
+
+        request_dict = {
+            'AMOUNT': amount,
+            'CURRENCY' : OGONE_CURRENCY,
+            'LANGUAGE': OGONE_LANGUAGE,
+            'ORDERID': order_id,
+            'PSPID': OGONE_PSPID,
+        }
+
+        concat_string = ''
+
+        # SORTEER DE DICTIONARY
+        for key, value in sorted(request_dict.items()):
+            concat_string += str(key) + '=' + str(value) + OGONE_SECRET
+
+        print('***** CONCAT STRING: %s' % concat_string)
+
+        # Bereken de secret key voor de huidige gegevens
+        signature = self._calculate_seal(concat_string, OGONE_SECRET)
+
+        request_dict['SHASIGN'] = signature
+
+        ctx['OGONE_SHASIGN'] = signature
+
+        print('***** sig: %s' % signature)
 
 
         return self.render_to_response(ctx)
+
+
+    def _calculate_seal(self, concat_string, secret_key):
+        '''
+        Deze methode berekent de HMAC seal
+        SHA encryptie seal: http://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages/#python
+        '''
+        message = concat_string.encode(encoding='UTF-8')
+        secret = secret_key.encode(encoding='UTF-8')
+
+        sig = hashlib.sha256(message).hexdigest()
+
+        return sig
 
