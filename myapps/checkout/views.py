@@ -12,7 +12,6 @@ from django.utils.translation import ugettext as _
 from django.utils import six
 
 from oscar.apps.checkout.views import PaymentDetailsView as OscarPaymentDetailsView
-from oscar.apps.checkout.views import OrderPlacementMixin
 from oscar.apps.checkout.views import ThankYouView as OscarThankYouView
 from oscar.apps.checkout import signals
 from oscar.apps.payment import models
@@ -34,6 +33,7 @@ class OgoneRedirectRequired(RedirectRequired):
 
     def __init__(self, url):
         self.url = url
+
 
 
 class PaymentDetailsView(OscarPaymentDetailsView):
@@ -340,3 +340,29 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 
         return sig
 
+
+class ThankYouView(OscarThankYouView):
+    """
+    Displays the 'thank you' page which summarises the order just submitted.
+    """
+    template_name = 'checkout/thank_you.html'
+    context_object_name = 'order'
+
+    def get_object(self):
+        # We allow superusers to force an order thank-you page for testing
+        order = None
+
+        if self.request.user.is_superuser:
+            if 'order_number' in self.request.GET:
+                order = Order._default_manager.get(number=self.request.GET['order_number'])
+
+            elif 'order_id' in self.request.GET:
+                order = Order._default_manager.get(id=self.request.GET['order_id'])
+
+        if not order:
+            if 'checkout_order_id' in self.request.session:
+                order = Order._default_manager.get(pk=self.request.session['checkout_order_id'])
+        #else:
+        #    raise http.Http404(_("No order found"))
+
+        return order
