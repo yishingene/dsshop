@@ -29,16 +29,6 @@ Order = get_model('order', 'Order')
 
 logger = logging.getLogger('oscar.checkout')
 
-class OgoneRedirectRequired(RedirectRequired):
-    '''
-    Custom subklasse van Oscar's RedirectRequired, voegt geen functionaliteit toe!
-    '''
-
-    def __init__(self, url):
-        self.url = url
-
-
-
 class PaymentDetailsView(OscarPaymentDetailsView):
     '''
     Deze PaymentDetailsView overschrijft de default django-oscar implementatie, dewelke niets doet.
@@ -50,16 +40,12 @@ class PaymentDetailsView(OscarPaymentDetailsView):
             - Een order_number aanmaken
             - De basket gegevens vastleggen zodat deze niet meer gewijzigd kunnen wordne
             - De handle_payment() methode oproepen die de eigenlijke gateway met de service provider initieert
+            - Als handle_payment() succesvol was: handle_order_placement() oproepen
 
         * De handle_payment() methode update django-oscar met de nodige gegevens na betaling. 
           Dit is de methode die je dient te overschrijven. Na afhandeling van de betaling worden de payment sources
           up to date gebracht en en de payment events gelogd
     '''
-
-    # @method_decorator(csrf_exempt)
-    # def dispatch(self, request, *args, **kwargs):
-    #     return super(PaymentDetailsView, self).dispatch(request, *args, **kwargs)
-
 
     # def get(self, request, *args, **kwargs):
 
@@ -70,30 +56,12 @@ class PaymentDetailsView(OscarPaymentDetailsView):
     #     return super(PaymentDetailsView, self).get(request, *args, **kwargs)
 
 
-    # def create_hidden_fields(self, request, *args, **kwargs):
-
-    #     print(request)
-    #     print(args)
-    #     print(kwargs)
-
-    #     print(request.POST)
-
-    #     return False
-
-    # def post(self, request, *args, **kwargs):
-
-    #     print('////// POST')
-
-    #     return super(PaymentDetailsView, self).post(request, *args, **kwargs)
-
     def handle_payment(self, order_number, total, billing_address, **kwargs):
         '''
         Deze methode is verantwoordelijk voor payment processing 
         ''' 
 
         print('------ START: checkout view: handle_payment() methode')
-
-        #raise RedirectRequired('https://secure.ogone.com/ncol/test/orderstandard.asp')
 
         facade = Facade()
 
@@ -400,13 +368,15 @@ class ThankYouView(OscarThankYouView):
 
     def get(self, request, *args, **kwargs):
 
-        logger.info("--TEMM: in get() methode")
+        # logger.info("--TEMM: in get() methode")
+
+        # signals.post_payment.send_robust(sender=self, view=self)
+
+        # # If all is ok with payment, try and place order
+        # logger.info("Order #%s: payment successful, placing order",
+        #         order_number)
 
         return super(ThankYouView, self).get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-
-        return super(ThankYouView, self).post(request, *args, **kwargs)
 
 
     def get_object(self):
@@ -415,7 +385,7 @@ class ThankYouView(OscarThankYouView):
         '''
 
         # We allow superusers to force an order thank-you page for testing
-        order = None
+        #order = None
 
         # if self.request.user.is_superuser:
         #     if 'order_number' in self.request.GET:
@@ -424,14 +394,14 @@ class ThankYouView(OscarThankYouView):
         #     elif 'order_id' in self.request.GET:
         #         order = Order._default_manager.get(id=self.request.GET['order_id'])
 
-        if not order:
-            if 'checkout_order_id' in self.request.session:
-                order = Order._default_manager.get(pk=self.request.session['checkout_order_id'])
+        # if not order:
+        #     if 'checkout_order_id' in self.request.session:
+        #         order = Order._default_manager.get(pk=self.request.session['checkout_order_id'])
 
-            elif 'orderID' in self.request.GET:
-                order = Order._default_manager.get(number=self.request.GET['orderID'])
+        #     elif 'orderID' in self.request.GET:
+        #         order = Order._default_manager.get(number=self.request.GET['orderID'])
 
-            else:
-               raise http.Http404(_("No order found"))
+        #     else:
+        #        raise http.Http404(_("No order found"))
 
-        return order
+        return self.order
