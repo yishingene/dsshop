@@ -11,6 +11,8 @@ from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 from django.utils import six
 
+from oscar.core.loading import get_model
+
 from oscar.apps.checkout.views import PaymentDetailsView as OscarPaymentDetailsView
 from oscar.apps.checkout.views import ThankYouView as OscarThankYouView
 from oscar.apps.checkout import signals
@@ -23,6 +25,7 @@ from myapps.ogone.facade import Facade
 #from myapps.payment.forms import HiddenOgoneForm
 #from myapps.ogone.gateway import SipsPaymentError
 
+Order = get_model('order', 'Order')
 
 logger = logging.getLogger('oscar.checkout')
 
