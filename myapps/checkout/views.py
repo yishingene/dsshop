@@ -425,9 +425,9 @@ class ThankYouView(OscarThankYouView):
             if 'checkout_order_id' in self.request.session:
                 order = Order._default_manager.get(pk=self.request.session['checkout_order_id'])
 
-            elif 'ORDERID' in self.request.GET:
-                order = Order._default_manager.get(number=self.request.GET['ORDERID'])
-                
+            elif 'orderID' in self.request.GET:
+                order = Order._default_manager.get(number=self.request.GET['orderID'])
+
             else:
                raise http.Http404(_("No order found"))
 
