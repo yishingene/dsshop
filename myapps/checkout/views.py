@@ -414,17 +414,21 @@ class ThankYouView(OscarThankYouView):
         # We allow superusers to force an order thank-you page for testing
         order = None
 
-        if self.request.user.is_superuser:
-            if 'order_number' in self.request.GET:
-                order = Order._default_manager.get(number=self.request.GET['order_number'])
+        # if self.request.user.is_superuser:
+        #     if 'order_number' in self.request.GET:
+        #         order = Order._default_manager.get(number=self.request.GET['order_number'])
 
-            elif 'order_id' in self.request.GET:
-                order = Order._default_manager.get(id=self.request.GET['order_id'])
+        #     elif 'order_id' in self.request.GET:
+        #         order = Order._default_manager.get(id=self.request.GET['order_id'])
 
         if not order:
             if 'checkout_order_id' in self.request.session:
                 order = Order._default_manager.get(pk=self.request.session['checkout_order_id'])
-        else:
-           raise http.Http404(_("No order found"))
+
+            elif 'ORDERID' in self.request.GET:
+                order = Order._default_manager.get(number=self.request.GET['ORDERID'])
+                
+            else:
+               raise http.Http404(_("No order found"))
 
         return order
