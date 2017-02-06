@@ -279,6 +279,66 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         form inputs.  This avoids ever writing the sensitive data to disk.
         """
 
+        '''
+
+        NIEUWE WERKWIJZE (ALFABETISCHE STAPPEN)
+
+        '''
+        # STAP A: Dit is gekopieerde code van de superklasse
+        self.preview = True
+        ctx = self.get_context_data(**kwargs)
+
+        # STAP B: Haal alle nodige order informatie op (via self.build_submission())
+        submission = self.build_submission()
+
+        print('---- SUBMISSION %s' % submission)
+
+        payment_kwargs = submission['payment_kwargs']
+        order_kwargs = submission['order_kwargs']
+        basket = submission['basket']
+        shipping_charge = submission['shipping_charge']
+        order_total = submission['order_total']
+
+        # STAP C: Maak order nummer aan en freeze basket
+        #         Deze code is rechtstreeks gekopieerd van de submit() methode code
+
+        # Taxes must be known at this point
+        assert basket.is_tax_known(), (
+            "Basket tax must be set before a user can place an order")
+        assert shipping_charge.is_tax_known(), (
+            "Shipping charge tax must be set before a user can place an order")
+
+        # We generate the order number first as this will be used
+        # in payment requests (ie before the order model has been 
+        # created). We also save it in the session for multi-stage
+        # checkouts (eg when we redirect to a 3rd party site and place
+        # the order on a different request).
+
+        order_number = self.generate_order_number(basket)
+        self.checkout_session.set_order_number(order_number)
+        logger.info("Order #%s: beginning submission proces for basket #%d" ,
+                    order_number, basket.id)
+
+        # Freeze the basket so it cannot be manipulated while the customer is
+        # completing payment on a 3rd party site.  Also, store a reference to
+        # the basket in the session so that we know which basket to thaw it we
+        # get an unsuccessful payment response when redirecting to a 3rd party 
+        # site. 
+
+        self.freeze_basket(basket)
+        self.checkout_session.set_submitted_basket(basket)
+
+        # We define a general error message for when an unanticipated payment
+        # error occurs.
+        error_msg = _("A problem occured while processing payment for this "
+                      "order - no payment has been taken. Please "
+                      "contact customer services if this problem persists")
+
+        signals.pre_payment.send_robust(sender=self, view=self)
+
+
+
+
         # STAP 1: Dit is gekopieerde code van de superklasse
         self.preview = True
         ctx = self.get_context_data(**kwargs)
@@ -347,6 +407,17 @@ class ThankYouView(OscarThankYouView):
     """
     template_name = 'checkout/thank_you.html'
     context_object_name = 'order'
+
+    def get(self, request, *args, **kwargs):
+
+        logger.info("--TEMM: in get() methode")
+
+        return super(ThankYouView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+
+        return super(ThankYouView, self).post(request, *args, **kwargs)
+
 
     def get_object(self):
         # We allow superusers to force an order thank-you page for testing
