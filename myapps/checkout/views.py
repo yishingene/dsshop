@@ -47,13 +47,50 @@ class PaymentDetailsView(OscarPaymentDetailsView):
           up to date gebracht en en de payment events gelogd
     '''
 
-    # def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
 
-    #     #print('----- PAYMENT DETAILS VIEW: ///// GET METHOD')
 
-    #     self.create_hidden_fields(request, *args, **kwargs)
+        if 'orderID' in self.request.GET:
 
-    #     return super(PaymentDetailsView, self).get(request, *args, **kwargs)
+            # Als we hier zijn is de betaling succesvol afgehandeld denk ik
+
+            submission = self.build_submission()
+
+            payment_kwargs = submission['payment_kwargs']
+            basket = submission['basket']
+            billing_address = submission['billing_address']
+            shipping_charge = submission['shipping_charge']
+            shipping_address = submission['shipping_address']
+            shipping_method = submission['shipping_method']
+            order_total = submission['order_total']
+            order_kwargs = submission['order_kwargs']
+            user = submission['user']
+
+            order_number = self.generate_order_number(basket)
+
+            print('going to log now .......')
+
+            signals.post_payment.send_robust(sender=self, view=self)
+
+            # If all is ok with payment, try and place order
+            logger.info("Order #%s: payment successful, placing order",
+                    order_number)
+
+            # Hier maken we het feitelijke Oscar order aan
+
+            order = self.place_order(order_number=order_number, user=user, basket=basket, shipping_address=shipping_address,
+                                        shipping_method=shipping_method, shipping_charge=shipping_charge, 
+                                        billing_address=billing_address, order_total=order_total, **order_kwargs)
+
+            print('---- ORDER %s' % order)
+
+            basket.submit()
+
+            return self.handle_successful_order(order)
+
+
+        else: 
+            return super(PaymentDetailsView, self).get(request, *args, **kwargs)
 
 
     def handle_payment(self, order_number, total, billing_address, **kwargs):
@@ -262,13 +299,25 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         # STAP B: Haal alle nodige order informatie op (via self.build_submission())
         submission = self.build_submission()
 
-        #print('---- SUBMISSION %s' % submission)
-
         payment_kwargs = submission['payment_kwargs']
-        order_kwargs = submission['order_kwargs']
         basket = submission['basket']
+        billing_address = submission['billing_address']
         shipping_charge = submission['shipping_charge']
+        shipping_address = submission['shipping_address']
+        shipping_method = submission['shipping_method']
         order_total = submission['order_total']
+        order_kwargs = submission['order_kwargs']
+        user = submission['user']
+
+        order_number = self.generate_order_number(basket)
+
+        order = self.place_order(order_number=order_number, user=user, basket=basket, shipping_address=shipping_address,
+                                    shipping_method=shipping_method, shipping_charge=shipping_charge, 
+                                    billing_address=billing_address, order_total=order_total, **order_kwargs)
+
+        print('---- ORDER %s' % order)
+
+
 
         # STAP C: Maak order nummer aan en freeze basket
         #         Deze code is rechtstreeks gekopieerd van de submit() methode code
