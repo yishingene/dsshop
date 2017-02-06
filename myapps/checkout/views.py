@@ -291,7 +291,7 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         # STAP B: Haal alle nodige order informatie op (via self.build_submission())
         submission = self.build_submission()
 
-        print('---- SUBMISSION %s' % submission)
+        #print('---- SUBMISSION %s' % submission)
 
         payment_kwargs = submission['payment_kwargs']
         order_kwargs = submission['order_kwargs']
@@ -303,9 +303,9 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         #         Deze code is rechtstreeks gekopieerd van de submit() methode code
 
         # Taxes must be known at this point
-        assert basket.is_tax_known(), (
+        assert basket.is_tax_known, (
             "Basket tax must be set before a user can place an order")
-        assert shipping_charge.is_tax_known(), (
+        assert shipping_charge.is_tax_known, (
             "Shipping charge tax must be set before a user can place an order")
 
         # We generate the order number first as this will be used
@@ -337,33 +337,20 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         signals.pre_payment.send_robust(sender=self, view=self)
 
 
-
-
-        # STAP 1: Dit is gekopieerde code van de superklasse
-        self.preview = True
-        ctx = self.get_context_data(**kwargs)
-
+        # STAP C: Maak de hidden form fields voor Ogone aan
         
-        # STAP 2: ROEP build_submission() op, deze retourneert de basket en andere data in de vorm van een dict
-        submission = self.build_submission()
-        basket = submission['basket']
-
-        # order_total is een Price object
-        order_total = submission['order_total']
-
-        
-        amount = str(int(order_total.incl_tax * 100))   # Niet-komma getal!
+        OGONE_AMOUNT = str(int(order_total.incl_tax * 100))   # Niet-komma getal!
         OGONE_CURRENCY = 'EUR'
         OGONE_LANGUAGE = 'nl_BE'
-        order_id = str(basket.id)
+        OGONE_ORDERID = str(order_number)
         OGONE_PSPID = 'thinkmobile'
         OGONE_SECRET = 'DitIsMijn1stePassPhrase'    # TODO: Dit moet een environ var worden!
 
         request_dict = {
-            'AMOUNT': amount,
+            'AMOUNT': OGONE_AMOUNT,
             'CURRENCY' : OGONE_CURRENCY,
             'LANGUAGE': OGONE_LANGUAGE,
-            'ORDERID': order_id,
+            'ORDERID': OGONE_ORDERID,
             'PSPID': OGONE_PSPID,
         }
 
@@ -378,10 +365,10 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 
         request_dict['SHASIGN'] = signature
         
-        ctx['OGONE_AMOUNT'] = amount
+        ctx['OGONE_AMOUNT'] = OGONE_AMOUNT
         ctx['OGONE_PSPID'] = 'thinkmobile'
         ctx['OGONE_LANGUAGE'] = 'nl_BE'
-        ctx['OGONE_ORDERID'] = order_id
+        ctx['OGONE_ORDERID'] = OGONE_ORDERID
         ctx['OGONE_CURRENCY'] = 'EUR'
         ctx['OGONE_SHASIGN'] = signature
 
