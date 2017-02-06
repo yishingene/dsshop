@@ -53,29 +53,29 @@ class PaymentDetailsView(OscarPaymentDetailsView):
           up to date gebracht en en de payment events gelogd
     '''
 
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        return super(PaymentDetailsView, self).dispatch(request, *args, **kwargs)
+    # @method_decorator(csrf_exempt)
+    # def dispatch(self, request, *args, **kwargs):
+    #     return super(PaymentDetailsView, self).dispatch(request, *args, **kwargs)
 
 
-    def get(self, request, *args, **kwargs):
+    # def get(self, request, *args, **kwargs):
 
-        print('----- PAYMENT DETAILS VIEW: ///// GET METHOD')
+    #     #print('----- PAYMENT DETAILS VIEW: ///// GET METHOD')
 
-        self.create_hidden_fields(request, *args, **kwargs)
+    #     self.create_hidden_fields(request, *args, **kwargs)
 
-        return super(PaymentDetailsView, self).get(request, *args, **kwargs)
+    #     return super(PaymentDetailsView, self).get(request, *args, **kwargs)
 
 
-    def create_hidden_fields(self, request, *args, **kwargs):
+    # def create_hidden_fields(self, request, *args, **kwargs):
 
-        print(request)
-        print(args)
-        print(kwargs)
+    #     print(request)
+    #     print(args)
+    #     print(kwargs)
 
-        print(request.POST)
+    #     print(request.POST)
 
-        return False
+    #     return False
 
     # def post(self, request, *args, **kwargs):
 
@@ -407,6 +407,10 @@ class ThankYouView(OscarThankYouView):
 
 
     def get_object(self):
+        '''
+        Opmerking: get_object() is een standaard methode van DetailView (waarvan ThankYouView een subklasse is)
+        '''
+
         # We allow superusers to force an order thank-you page for testing
         order = None
 
@@ -420,7 +424,7 @@ class ThankYouView(OscarThankYouView):
         if not order:
             if 'checkout_order_id' in self.request.session:
                 order = Order._default_manager.get(pk=self.request.session['checkout_order_id'])
-        #else:
-        #    raise http.Http404(_("No order found"))
+        else:
+           raise http.Http404(_("No order found"))
 
         return order
