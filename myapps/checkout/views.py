@@ -49,10 +49,16 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 
     def get(self, request, *args, **kwargs):
 
+        print('---- in get() methode van PaymentDetailsView')
 
-        if 'orderID' in self.request.GET:
+        print(request.GET)
+
+
+        if 'orderID' in request.GET:
 
             # Als we hier zijn is de betaling succesvol afgehandeld denk ik
+
+            print('------------ hierzo ------------')
 
             submission = self.build_submission()
 
@@ -309,13 +315,13 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         order_kwargs = submission['order_kwargs']
         user = submission['user']
 
-        order_number = self.generate_order_number(basket)
+        # order_number = self.generate_order_number(basket)
 
-        order = self.place_order(order_number=order_number, user=user, basket=basket, shipping_address=shipping_address,
-                                    shipping_method=shipping_method, shipping_charge=shipping_charge, 
-                                    billing_address=billing_address, order_total=order_total, **order_kwargs)
+        # order = self.place_order(order_number=order_number, user=user, basket=basket, shipping_address=shipping_address,
+        #                             shipping_method=shipping_method, shipping_charge=shipping_charge, 
+        #                             billing_address=billing_address, order_total=order_total, **order_kwargs)
 
-        print('---- ORDER %s' % order)
+        # print('---- ORDER %s' % order)
 
 
 
@@ -417,6 +423,8 @@ class ThankYouView(OscarThankYouView):
 
     def get(self, request, *args, **kwargs):
 
+        print('THANKYOUVIEW -- GET() --')
+
         # logger.info("--TEMM: in get() methode")
 
         # signals.post_payment.send_robust(sender=self, view=self)
@@ -428,29 +436,29 @@ class ThankYouView(OscarThankYouView):
         return super(ThankYouView, self).get(request, *args, **kwargs)
 
 
-    def get_object(self):
-        '''
-        Opmerking: get_object() is een standaard methode van DetailView (waarvan ThankYouView een subklasse is)
-        '''
+    # def get_object(self):
+    #     '''
+    #     Opmerking: get_object() is een standaard methode van DetailView (waarvan ThankYouView een subklasse is)
+    #     '''
 
-        # We allow superusers to force an order thank-you page for testing
-        #order = None
+    #     # We allow superusers to force an order thank-you page for testing
+    #     #order = None
 
-        # if self.request.user.is_superuser:
-        #     if 'order_number' in self.request.GET:
-        #         order = Order._default_manager.get(number=self.request.GET['order_number'])
+    #     # if self.request.user.is_superuser:
+    #     #     if 'order_number' in self.request.GET:
+    #     #         order = Order._default_manager.get(number=self.request.GET['order_number'])
 
-        #     elif 'order_id' in self.request.GET:
-        #         order = Order._default_manager.get(id=self.request.GET['order_id'])
+    #     #     elif 'order_id' in self.request.GET:
+    #     #         order = Order._default_manager.get(id=self.request.GET['order_id'])
 
-        # if not order:
-        #     if 'checkout_order_id' in self.request.session:
-        #         order = Order._default_manager.get(pk=self.request.session['checkout_order_id'])
+    #     # if not order:
+    #     #     if 'checkout_order_id' in self.request.session:
+    #     #         order = Order._default_manager.get(pk=self.request.session['checkout_order_id'])
 
-        #     elif 'orderID' in self.request.GET:
-        #         order = Order._default_manager.get(number=self.request.GET['orderID'])
+    #     #     elif 'orderID' in self.request.GET:
+    #     #         order = Order._default_manager.get(number=self.request.GET['orderID'])
 
-        #     else:
-        #        raise http.Http404(_("No order found"))
+    #     #     else:
+    #     #        raise http.Http404(_("No order found"))
 
-        return self.order
+    #     return self.order
