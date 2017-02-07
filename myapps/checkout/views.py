@@ -11,10 +11,12 @@ from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 from django.utils import six
 
-from oscar.core.loading import get_model
+from oscar.core.loading import get_model, get_class
 
 from oscar.apps.checkout.views import PaymentDetailsView as OscarPaymentDetailsView
 from oscar.apps.checkout.views import ThankYouView as OscarThankYouView
+from oscar.apps.checkout.session import CheckoutSessionMixin
+from oscar.apps.checkout import exceptions
 from oscar.apps.checkout import signals
 from oscar.apps.payment import models
 from oscar.apps.payment.forms import BankcardForm
@@ -26,6 +28,7 @@ from myapps.ogone.facade import Facade
 #from myapps.ogone.gateway import SipsPaymentError
 
 Order = get_model('order', 'Order')
+CheckoutSessionData = get_class('checkout.utils', 'CheckoutSessionData')
 
 logger = logging.getLogger('oscar.checkout')
 
@@ -47,6 +50,30 @@ class PaymentDetailsView(OscarPaymentDetailsView):
           up to date gebracht en en de payment events gelogd
     '''
 
+    def dispatch(self, request, *args, **kwargs):
+        # Assign the checkout session manager so it's available in all checkout
+        # views.
+        self.checkout_session = CheckoutSessionData(request)
+
+        if 'orderID' in request.GET:
+            print('ORDERID OK!')
+
+        # Enforce any pre-conditions for the view.
+        try:
+            self.check_pre_conditions(request)
+        except exceptions.FailedPreCondition as e:
+            for message in e.messages:
+                messages.warning(request, message)
+            return http.HttpResponseRedirect(e.url)
+
+        # Check if this view should be skipped
+        try:
+            self.check_skip_conditions(request)
+        except exceptions.PassedSkipCondition as e:
+            return http.HttpResponseRedirect(e.url)
+
+        return super(CheckoutSessionMixin, self).dispatch(request, *args, **kwargs)
+
     def get(self, request, *args, **kwargs):
 
         print('---- in get() methode van PaymentDetailsView')
@@ -62,6 +89,8 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 
             submission = self.build_submission()
 
+            print('***** submission POST payment: %s' % submission)
+
             payment_kwargs = submission['payment_kwargs']
             basket = submission['basket']
             billing_address = submission['billing_address']
@@ -73,6 +102,24 @@ class PaymentDetailsView(OscarPaymentDetailsView):
             user = submission['user']
 
             order_number = self.generate_order_number(basket)
+
+            # POST PAYMENT: add_payment_event() en add_payment_source
+            source_type, __ = models.SourceType.objects.get_or_create(
+                        name="Ogone")
+
+            source = models.Source(
+                source_type=source_type,
+                amount_allocated=basket.total_incl_tax,
+                #reference=reference)
+                reference=order_number)
+
+            self.add_payment_source(source)
+
+            # Record payment event
+            self.add_payment_event('pre-auth', basket.total_incl_tax)
+
+            print('**** Payment source en payment event OK')
+
 
             print('going to log now .......')
 
@@ -293,17 +340,14 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         form inputs.  This avoids ever writing the sensitive data to disk.
         """
 
-        '''
-
-        NIEUWE WERKWIJZE (ALFABETISCHE STAPPEN)
-
-        '''
         # STAP A: Dit is gekopieerde code van de superklasse
         self.preview = True
         ctx = self.get_context_data(**kwargs)
 
         # STAP B: Haal alle nodige order informatie op (via self.build_submission())
         submission = self.build_submission()
+
+        print('***** submission PRE payment: %s' % submission)
 
         payment_kwargs = submission['payment_kwargs']
         basket = submission['basket']
@@ -314,16 +358,6 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         order_total = submission['order_total']
         order_kwargs = submission['order_kwargs']
         user = submission['user']
-
-        # order_number = self.generate_order_number(basket)
-
-        # order = self.place_order(order_number=order_number, user=user, basket=basket, shipping_address=shipping_address,
-        #                             shipping_method=shipping_method, shipping_charge=shipping_charge, 
-        #                             billing_address=billing_address, order_total=order_total, **order_kwargs)
-
-        # print('---- ORDER %s' % order)
-
-
 
         # STAP C: Maak order nummer aan en freeze basket
         #         Deze code is rechtstreeks gekopieerd van de submit() methode code
