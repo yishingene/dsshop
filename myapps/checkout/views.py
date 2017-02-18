@@ -56,7 +56,15 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         self.checkout_session = CheckoutSessionData(request)
 
         if 'orderID' in request.GET:
-            print('ORDERID OK!')
+
+            basket = self.get_submitted_basket()
+
+            print('***** basket POST payment: %s' % basket)
+
+            my_submission = self.build_submission_for_basket(basket)
+
+            print('***** submission POST payment: %s' % my_submission)
+            
 
         # Enforce any pre-conditions for the view.
         try:
@@ -144,6 +152,41 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 
         else: 
             return super(PaymentDetailsView, self).get(request, *args, **kwargs)
+
+    def build_submission_for_basket(self, basket):
+        '''
+        CUSTOM METHOD
+        '''
+
+        shipping_address = self.get_shipping_address(basket)
+        shipping_method = self.get_shipping_method(basket, shipping_address)
+        billing_address = self.get_billing_address(shipping_address)
+        if not shipping_method: 
+            total = shipping_charge = None
+        else:
+            shipping_charge = shipping_method.calculate(basket)
+            total = self.get_order_totals(basket, shipping_charge=shipping_charge)
+
+        submission = {
+            'user': self.request.user,
+            'basket': basket,
+            'shipping_address': shipping_address,
+            'shipping_method': shipping_method,
+            'shipping_charge': shipping_charge,
+            'billing_address': billing_address,
+            'order_total': total,
+            'order_kwargs': {},
+            'payment_kwargs': {}
+            }
+
+        if billing_address:
+            submission['payment_kwargs']['billing_address'] = billing_address
+
+        if (not user_is_authenticated(submission['user']) and 'guest_email' not in submission['order_kwargs']):
+            email = self.checkout_session.get_guest_email()
+            submission['order_kwargs']['guest_email'] = email
+
+        return submission
 
 
     def handle_payment(self, order_number, total, billing_address, **kwargs):
