@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
+    'modeltranslation', # Translation of models (productnamen, categorieen, ...) -> moest voor django.contrib.admin komen
     'django.contrib.admin',
 
     # DJANGO OSCAR API
@@ -80,7 +81,7 @@ INSTALLED_APPS = [
     'storages',         # Use to connect with Amazon S3
     'compressor',       # static file compression (may be deleted because of Heroku deployment?)
     'widget_tweaks',    # Forms customizations
-    'modeltranslation', # Translation of models (productnamen, categorieen, ...)
+    
     'rest_framework',   # Required om gebruik te kunnen maken van oscarapi
     'Crypto',
 
