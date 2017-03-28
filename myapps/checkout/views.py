@@ -93,59 +93,59 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 
             # Als we hier zijn is de betaling succesvol afgehandeld denk ik
 
-            print('------------ hierzo ------------')
+            print('------------ hierzo ------------ %s' % request.GET['orderID'])
 
-            submission = self.build_submission()
+            # submission = self.build_submission()
 
-            print('***** submission POST payment: %s' % submission)
+            # print('***** submission POST payment: %s' % submission)
 
-            payment_kwargs = submission['payment_kwargs']
-            basket = submission['basket']
-            billing_address = submission['billing_address']
-            shipping_charge = submission['shipping_charge']
-            shipping_address = submission['shipping_address']
-            shipping_method = submission['shipping_method']
-            order_total = submission['order_total']
-            order_kwargs = submission['order_kwargs']
-            user = submission['user']
+            # payment_kwargs = submission['payment_kwargs']
+            # basket = submission['basket']
+            # billing_address = submission['billing_address']
+            # shipping_charge = submission['shipping_charge']
+            # shipping_address = submission['shipping_address']
+            # shipping_method = submission['shipping_method']
+            # order_total = submission['order_total']
+            # order_kwargs = submission['order_kwargs']
+            # user = submission['user']
 
-            order_number = self.generate_order_number(basket)
+            # order_number = self.generate_order_number(basket)
 
-            # POST PAYMENT: add_payment_event() en add_payment_source
-            source_type, __ = models.SourceType.objects.get_or_create(
-                        name="Ogone")
+            # # POST PAYMENT: add_payment_event() en add_payment_source
+            # source_type, __ = models.SourceType.objects.get_or_create(
+            #             name="Ogone")
 
-            source = models.Source(
-                source_type=source_type,
-                amount_allocated=basket.total_incl_tax,
-                #reference=reference)
-                reference=order_number)
+            # source = models.Source(
+            #     source_type=source_type,
+            #     amount_allocated=basket.total_incl_tax,
+            #     #reference=reference)
+            #     reference=order_number)
 
-            self.add_payment_source(source)
+            # self.add_payment_source(source)
 
-            # Record payment event
-            self.add_payment_event('pre-auth', basket.total_incl_tax)
+            # # Record payment event
+            # self.add_payment_event('pre-auth', basket.total_incl_tax)
 
-            print('**** Payment source en payment event OK')
+            # print('**** Payment source en payment event OK')
 
 
-            print('going to log now .......')
+            # print('going to log now .......')
 
-            signals.post_payment.send_robust(sender=self, view=self)
+            # signals.post_payment.send_robust(sender=self, view=self)
 
-            # If all is ok with payment, try and place order
-            logger.info("Order #%s: payment successful, placing order",
-                    order_number)
+            # # If all is ok with payment, try and place order
+            # logger.info("Order #%s: payment successful, placing order",
+            #         order_number)
 
-            # Hier maken we het feitelijke Oscar order aan
+            # # Hier maken we het feitelijke Oscar order aan
 
-            order = self.place_order(order_number=order_number, user=user, basket=basket, shipping_address=shipping_address,
-                                        shipping_method=shipping_method, shipping_charge=shipping_charge, 
-                                        billing_address=billing_address, order_total=order_total, **order_kwargs)
+            # order = self.place_order(order_number=order_number, user=user, basket=basket, shipping_address=shipping_address,
+            #                             shipping_method=shipping_method, shipping_charge=shipping_charge, 
+            #                             billing_address=billing_address, order_total=order_total, **order_kwargs)
 
-            print('---- ORDER %s' % order)
+            # print('---- ORDER %s' % order)
 
-            basket.submit()
+            # basket.submit()
 
             return self.handle_successful_order(order)
 
@@ -474,6 +474,14 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         ctx['OGONE_ORDERID'] = OGONE_ORDERID
         ctx['OGONE_CURRENCY'] = 'EUR'
         ctx['OGONE_SHASIGN'] = signature
+
+        # Maak order al aan
+
+        order = self.place_order(order_number=order_number, user=user, basket=basket, shipping_address=shipping_address,
+                                        shipping_method=shipping_method, shipping_charge=shipping_charge, 
+                                        billing_address=billing_address, order_total=order_total, **order_kwargs)
+
+        basket.submit()
 
         return self.render_to_response(ctx)
 
