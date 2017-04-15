@@ -3,7 +3,7 @@ from .models import Product
 
 class ProductTranslationOptions(TranslationOptions):
 
-	fields = ('title', )
+	fields = ('title', 'description')
 
 
 translator.register(Product, ProductTranslationOptions)
