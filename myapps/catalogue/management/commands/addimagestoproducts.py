@@ -80,12 +80,14 @@ class Command(BaseCommand):
 					myfile = urlopen(image_path)
 
 				except:
-					self.stdout.write('--ERROR: file bestaat wsl niet--')
+					self.stdout.write('--ERROR: file bestaat wsl niet-- %s' % product_code)
 					continue
 
 				image_content = ContentFile(requests.get(image_path).content) 
 
 				new_image = ProductImage(product=product)
+
+				self.stdout.write('VERDER: %s' % product_code)
 
 				try:
 					new_image.original.save(file_name, image_content)
