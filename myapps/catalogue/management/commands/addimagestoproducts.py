@@ -24,49 +24,6 @@ class Command(BaseCommand):
 		help = 'automatiseer het toevoegen van fotos aan een product'
 
 		if settings.DEV:
-
-			'''
-			DIT IS DE AWS METHODE ###################################################################
-			'''
-
-			# path = 'https://dsshop.s3.eu-central-1.amazonaws.com/media/custom_image_list'
-
-			# for index, product in enumerate(Product.objects.all()):
-
-			# 	product_code = product.upc
-			# 	file_name = str(product_code) + '.jpg'
-
-			# 	image_path = path + '/' + file_name
-
-			# 	try:
-			# 		myfile = urlopen(image_path)
-
-			# 	except:
-			# 		self.stdout.write('--ERROR: file bestaat wsl niet--')
-			# 		continue
-
-			# 	# print('product: %s' % product)
-			# 	# print('file name: %s' % file_name)
-			# 	# print('myfile: %s' % myfile)
-			# 	# print('path: %s' % image_path)
-
-			# 	image_content = ContentFile(requests.get(image_path).content) 
-
-			# 	new_image = ProductImage(product=product)
-
-			# 	try:
-			# 		#new_image.original.save(file_name, File(img_temp))
-			# 		new_image.original.save(file_name, image_content)
-
-			# 	except IntegrityError: 
-			# 		print('DUPLICATE KEY')
-			# 		continue
-
-			# 	new_image.save()
-			# 	print('SAVING')
-
-			# self.stdout.write('--Het is gefixt!--')
-
 			
 			'''
 			DIT IS DE DEV METHODE ###################################################################
@@ -134,10 +91,10 @@ class Command(BaseCommand):
 					new_image.original.save(file_name, image_content)
 
 				except IntegrityError: 
-					print('DUPLICATE KEY')
+					self.stdout.write('--DUPLICATE KEY--')
 					continue
 
 				new_image.save()
-				print('SAVING')
+				self.stdout.write('--SAVING--')
 
 			self.stdout.write('--Het is gefixt!--')
