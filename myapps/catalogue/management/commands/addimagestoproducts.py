@@ -73,7 +73,7 @@ class Command(BaseCommand):
 			for index, product in enumerate(Product.objects.all()):
 
 				product_code = product.upc
-				file_name = str(product_code) + '.jpg'
+				file_name = str(product_code) + '.JPG'
 
 				image_path = path + '/' + file_name
 
