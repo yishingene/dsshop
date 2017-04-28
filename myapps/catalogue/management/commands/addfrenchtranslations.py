@@ -15,9 +15,10 @@ from decimal import Decimal
 from urllib.request import urlopen
 from psycopg2 import IntegrityError as PG_IntegrityError
 
-# Zie ook: stackoverflow: programmatically saving image to django imagefield
+# production mode
 TRANSLATIONSFILE_FILE = 'https://s3.eu-central-1.amazonaws.com/dsshop/media/2pk_frans.csv'
 
+# development mode
 if settings.DEV == True:
 	TRANSLATIONSFILE_FILE = 'file://' + os.path.join(settings.MEDIA_ROOT, '2pk_frans.csv')
 
@@ -29,7 +30,7 @@ class Command(BaseCommand):
 		Voeg de franse vertalingen toe aan de bestaande producten
 		'''
 
-		help = 'Add translations to existing products'
+		help = 'Add French translations to existing products'
 
 		with urlopen(TRANSLATIONSFILE_FILE) as file:
 
@@ -50,13 +51,10 @@ class Command(BaseCommand):
 						#self.stdout.write('Product: %s' % upc)
 						#self.stdout.write('Frans: %s' % str(row[3]))
 
-
-
 					except Product.DoesNotExist:
 
 						self.stdout.write('Bestaat niet ... ')
 						continue
-
 
 		self.stdout.write('--Het is gefixt!--')
 
