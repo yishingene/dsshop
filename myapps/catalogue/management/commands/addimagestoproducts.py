@@ -13,6 +13,7 @@ import urllib
 from urllib.request import urlopen
 
 from psycopg2 import IntegrityError
+from django.db.utils import IntegrityError as DjangoIntegrityError
 
 import requests
 
@@ -94,6 +95,10 @@ class Command(BaseCommand):
 
 				except IntegrityError: 
 					self.stdout.write('--DUPLICATE KEY--')
+					continue
+
+				except DjangoIntegrityError:
+					self.stdout.write('--DUPLICATE KEY-- van django')
 					continue
 
 				new_image.save()
