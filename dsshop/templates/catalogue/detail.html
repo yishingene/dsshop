@@ -44,12 +44,13 @@
                 {% with all_images=product.images.all %}
                     {% with image=product.primary_image %}
                     <div class="products-images">
-                        <a class="popup-gallery" href="{{ image.url }}">
+                        <a class="popup-gallery" href="{{ image.original.url }}">
                             {% thumbnail image.original "500x500" upscale=False as thumb %}
                             <img src="{{ thumb.url }}" alt="{{ product.get_title }}">
                             {% endthumbnail %}
                         </a>
                     </div>
+
                     {% endwith %}
                 {% endwith %}
                     <div class="summary">
