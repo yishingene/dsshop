@@ -2,22 +2,22 @@
 
 {% category_tree as tree_categories %}
 <div class="widget widget_product_categories">
-{% if category.get_depth==1 %}
+{% if category.get_depth == 1 %}
     <h4 class="widget-title">{{ category }}</h4>
-{% elif category.get_depth==2 %}
+{% elif category.get_depth == 2 %}
 	<h4 class="widget-title">{{ category.get_parent }}</h4>
 {% endif %}
     <h6 class="subcategory">{% trans 'Subcategorieën' %}</h6>
     <ul class="product-categories">
 {% if tree_categories %}
     {% for tree_cat, info in tree_categories %}
-    	{% if info.level==1 and category.get_depth==1 and tree_cat.get_parent==category %}
+    	{% if info.level == 1 and category.get_depth == 1 and tree_cat.get_parent == category %}
         <li>
             <a href="{{ tree_cat.get_absolute_url }}">{{ tree_cat.name }}</a>
         </li>
-        {% elif info.level==1 and category.get_depth==2 and tree_cat.get_parent==category.get_parent %}
+        {% elif info.level == 1 and category.get_depth == 2 and tree_cat.get_parent == category.get_parent %}
         <li>
-    	{% if category==tree_cat %}
+    	{% if category == tree_cat %}
     		<strong><u><a href="{{ tree_cat.get_absolute_url }}">{{ tree_cat.name }}</a></u></strong>
     	{% else %}
         	<a href="{{ tree_cat.get_absolute_url }}">{{ tree_cat.name }}</a>
