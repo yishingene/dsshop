@@ -8,13 +8,13 @@
           {% with page_obj.number as current_page %}
           	{% if paginator.num_pages < 8 %}
           		{% for number in paginator.page_range %}
-      			      <a class="page-numbers {% if current_page==number %}current{% endif %}" href="?page={{ number }}">{{ number }}</a>
+      			      <a class="page-numbers {% if current_page == number %}current{% endif %}" href="?page={{ number }}">{{ number }}</a>
       		    {% endfor %}
     	      {% else %}
       		    {% if current_page <= 4 %}
       			    {% for number in paginator.page_range %}
       				    {% if forloop.counter < current_page|add:'3' %}
-      					  <a class="page-numbers {% if current_page==number %}current{% endif %}" href="?page={{ number }}">{{ number }}</a>
+      					  <a class="page-numbers {% if current_page == number %}current{% endif %}" href="?page={{ number }}">{{ number }}</a>
     				      {% endif %}
       				    {% if forloop.last %}
         					<span class="paginator">&hellip;</span>
@@ -28,7 +28,7 @@
       					  <span class="paginator">&hellip;</span>
       				    {% endif %}
       				    {% if forloop.counter > current_page|add:'-3' %}
-      					  <a class="page-numbers {% if current_page==number %}current{% endif %}" href="?page={{ number }}">{{ number }}</a>
+      					  <a class="page-numbers {% if current_page == number %}current{% endif %}" href="?page={{ number }}">{{ number }}</a>
       				    {% endif %}
       			    {% endfor %}
               {% elif current_page > 4 and current_page < paginator.num_pages|add:'-3' %}
