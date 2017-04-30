@@ -65,7 +65,7 @@
                         <div>
                     {% purchase_info_for_product request product as session %}
                     {% if session.price.exists %}
-                        {% if session.price.excl_tax==0 %}
+                        {% if session.price.excl_tax == 0 %}
                             <p class="price"><span class="amount">{% trans 'Gratis' %}</span></p>
                         {% elif session.price.is_tax_known %}
                             <p class="price"><span class="amount">{{ session.price.incl_tax|currency:session.price.currency }}</span></p>
