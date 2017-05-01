@@ -3,16 +3,16 @@
 
 /* Smaller than standard 1200 */
 @media only screen and (max-width: 1199px) {
-	.menu-extra {
+/*	.menu-extra {
 		display: none;
-	}
+	}*/
 
 #mainnav > ul > li > a {
 		padding: 0 9px 0 9px;
 	}
 
 	.header-v2 .header-wrap {
-		width: 100%;
+		width: 90%;
 	}
 }
 
