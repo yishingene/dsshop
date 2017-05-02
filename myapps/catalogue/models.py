@@ -15,7 +15,7 @@ class ProductImage(AbstractProductImage):
     """
     An image of a product
     """
-    #original = models.ImageField(_("Original"), upload_to=settings.OSCAR_IMAGE_FOLDER, max_length=255)
+    original = models.ImageField(_("Original"), upload_to=settings.OSCAR_IMAGE_FOLDER, max_length=255)
 
     def save(self, *args, **kwargs):
 
