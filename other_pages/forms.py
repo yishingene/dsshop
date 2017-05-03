@@ -18,15 +18,15 @@ class ContactForm(forms.Form):
 	def send_email(self):
 
 		ctx = {}
-		ctx['name'] = self.name
-		ctx['message'] = self.message
-		ctx['company'] = self.company
-		ctx['email'] = self.email
-		ctx['phone'] = self.phone
+		ctx['name'] = self.cleaned_data['name']
+		ctx['message'] = self.cleaned_data['message']
+		ctx['company'] = self.cleaned_data.get('company', 'geen bedrijf opgegeven')
+		ctx['email'] = self.cleaned_data['email']
+		ctx['phone'] = self.cleaned_data['phone']
 		
 		title = 'Contactformulier van website'
-		msg_html = render_to_string('templates/others/contact_form.html', {ctx})
-		mgs_plain = 'niet html versie'
+		msg_html = render_to_string('others/contact_form.html', ctx)
+		msg_plain = 'niet html versie'
 		to_addresses = ['',]
 		from_adress = 'alfa@beta.gamma'
 
