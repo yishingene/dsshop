@@ -11,10 +11,21 @@ class ProductForm(OscarProductForm):
 
     class Meta(OscarProductForm.Meta):
         fields = [
-            'title_nl', 'title_fr', 'title_en', 'upc', 'description', 'is_discountable', 'structure']
+            'title_nl',
+            'title_fr',
+            #'title_en',
+            'upc',
+            'description',
+            'is_discountable',
+            'structure'
+            ]
 
 
 
 CategoryForm = movenodeform_factory(
     Category,
-    fields=['name_nl', 'name_fr', 'name_en', 'description', 'image'])
+    fields=['name_nl',
+    		'name_fr',
+    		#'name_en',
+    		'description',
+    		'image'])

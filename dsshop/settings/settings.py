@@ -36,7 +36,7 @@ LANGUAGE_CODE = 'nl-be'
 LANGUAGES = [
     ('nl', _('Dutch')),
     ('fr', _('French')),
-    ('en', _('English')),
+    #('en', _('English')),
 ]
 
 LOCALE_PATHS = (
