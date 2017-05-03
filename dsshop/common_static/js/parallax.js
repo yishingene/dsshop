@@ -18,7 +18,6 @@ http://www.gnu.org/licenses/gpl.html
 	jQuerywindow.resize(function () {
 		windowHeight = jQuerywindow.height();
 	});
-
 	jQuery.fn.parallax = function(xpos, speedFactor, outerHeight) {
 		var jQuerythis = jQuery(this);
 		var getHeight;
@@ -29,7 +28,6 @@ http://www.gnu.org/licenses/gpl.html
 		jQuerythis.each(function(){
 		    firstTop = jQuerythis.offset().top;
 		});
-
 		if (outerHeight) {
 			getHeight = function(jqo) {
 				return jqo.outerHeight(true);
@@ -39,16 +37,13 @@ http://www.gnu.org/licenses/gpl.html
 				return jqo.height();
 			};
 		}
-			
 		// setup defaults if arguments aren't specified
 		if (arguments.length < 1 || xpos === null) xpos = "50%";
 		if (arguments.length < 2 || speedFactor === null) speedFactor = 0.1;
 		if (arguments.length < 3 || outerHeight === null) outerHeight = true;
-		
 		// function to be called whenever the window is scrolled or resized
 		function update(){
 			var pos = jQuerywindow.scrollTop();				
-
 			jQuerythis.each(function(){
 				var jQueryelement = jQuery(this);
 				var top = jQueryelement.offset().top;
@@ -58,14 +53,9 @@ http://www.gnu.org/licenses/gpl.html
 				if (top + height < pos || top > pos + windowHeight) {
 					return;
 				}
-
-
 				jQuerythis.css('backgroundPosition', xpos + " " + Math.round((top - pos) * speedFactor) + "px");
-
-
 			});
 		}		
-
 		jQuerywindow.bind('scroll', update).resize(update);
 		update();
 	};
