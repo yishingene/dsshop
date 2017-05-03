@@ -7,6 +7,7 @@ from django.utils.translation import ugettext as _
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings
+from django.contrib import messages
 
 from .forms import UploadFileForm, ContactForm
 
@@ -26,6 +27,8 @@ class ContactPageView(FormView):
 	def form_valid(self, form):
 
 		form.send_email()
+
+		messages.add_message(self.request, messages.SUCCESS, _('Bedankt voor je bericht!'))
 
 		return super(ContactPageView, self).form_valid(form)
 

@@ -19,6 +19,25 @@
 	font-size: 28px;
 }
 
+.flat-woocommerce .woocommerce-success {
+	color: #008C8C;
+	padding: 20px 20px 20px 60px;
+	margin-bottom: 20px;
+	position: relative;
+	background: #fff;
+	border: 2px solid;
+}
+
+.flat-woocommerce .woocommerce-success:after {
+	content: "\f05a";
+	position: absolute;
+	font-family: 'FontAwesome';
+	left: 20px;
+	top: 50%;
+	margin-top: -24px;
+	font-size: 28px;
+}
+
 .flat-woocommerce .woocommerce-danger {
 	color: #a94442;
 	padding: 20px 20px 20px 60px;

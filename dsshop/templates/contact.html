@@ -10,7 +10,15 @@
         <div id="flat-map">
 			<div class="col-md-8 col-md-offset-2">
                 <p>{% trans 'Vul onderstaand formulier in en wij nemen zo snel mogelijk contact op met jou!' %}</p>
-                <div class="flat-divider d10px"></div>
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="flat-woocommerce">
+                        <div class="woocommerce-{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}success{% else %}danger{% endif %}">
+                            <p>{{ message }}<p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
                 <form id="contactform" method="post" action="{% url 'contact' %}">
                 	{% csrf_token %}
                     <div class="row">
