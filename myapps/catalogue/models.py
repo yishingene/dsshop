@@ -19,17 +19,17 @@ class ProductImage(AbstractProductImage):
 
     def save(self, *args, **kwargs):
 
-    	# pil_image = Image.open(self.original)
+    	pil_image = Image.open(self.original)
 
-    	# reduced_image = resizeimage.resize_width(pil_image, 1000)
+    	reduced_image = resizeimage.resize_width(pil_image, 1000)
 
-    	# new_image_io = BytesIO()
-    	# reduced_image.save(new_image_io, format='JPEG')
+    	new_image_io = BytesIO()
+    	reduced_image.save(new_image_io, format='JPEG')
 
-    	# name = self.original.name
-    	# self.original.delete(save=False) 
+    	name = self.original.name
+    	self.original.delete(save=False) 
 
-    	# self.original.save(name, content=ContentFile(new_image_io.getvalue()), save=False)
+    	self.original.save(name, content=ContentFile(new_image_io.getvalue()), save=False)
 
     	return super(ProductImage, self).save(*args, **kwargs)
 
