@@ -35,7 +35,6 @@ pycrypto==2.6.1
 pyparsing==2.1.10
 pysolr==3.5.0
 python-dateutil==2.6.0
-python-image-resize==1.1.2
 pytz==2016.10
 rcssmin==1.0.6
 requests==2.11.1

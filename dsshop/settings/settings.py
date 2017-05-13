@@ -81,7 +81,7 @@ INSTALLED_APPS = [
     'storages',         # Use to connect with Amazon S3
     'compressor',       # static file compression (may be deleted because of Heroku deployment?)
     'widget_tweaks',    # Forms customizations
-    'imageresize',       # Image resizing before upload
+    #'imageresize',       # Image resizing before upload
     
     'rest_framework',   # Required om gebruik te kunnen maken van oscarapi
     'Crypto',

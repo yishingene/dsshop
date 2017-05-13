@@ -8,7 +8,7 @@ from oscar.apps.catalogue.abstract_models import AbstractProductImage
 
 from PIL import Image
 from io import BytesIO
-from imageresize import imageresize
+from myapps import imageresize
 
 @python_2_unicode_compatible
 class ProductImage(AbstractProductImage):
