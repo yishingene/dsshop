@@ -29,10 +29,10 @@ class ProductImage(AbstractProductImage):
     	new_image_io = BytesIO()
     	reduced_image.save(new_image_io, format='JPEG')
 
-    	temp_name = self.original.name
+    	name = self.original.name
     	self.original.delete(save=False) 
 
-    	self.original.save(temp_name, content=ContentFile(new_image_io.getvalue()), save=False)
+    	self.original.save(name, content=ContentFile(new_image_io.getvalue()), save=False)
 
     	return super(ProductImage, self).save(*args, **kwargs)
 
