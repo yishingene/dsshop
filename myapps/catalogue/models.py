@@ -4,11 +4,11 @@ from django.core.files.base import ContentFile
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 
-
 from oscar.apps.catalogue.abstract_models import AbstractProductImage
 
 from PIL import Image
 from io import BytesIO
+from imageresize import imageresize
 
 @python_2_unicode_compatible
 class ProductImage(AbstractProductImage):
@@ -21,14 +21,16 @@ class ProductImage(AbstractProductImage):
 
     	pil_image = Image.open(self.original)
 
-    	size = 900, 900
-    	pil_image.thumbnail(size, Image.ANTIALIAS)
+    	reduced_image = imageresize.resize_width(pil_image, 1000)
+
+    	#size = 900, 900
+    	#pil_image.thumbnail(size, Image.ANTIALIAS)
 
     	new_image_io = BytesIO()
-    	pil_image.save(new_image_io, format='JPEG')
+    	reduced_image.save(new_image_io, format='JPEG')
 
     	temp_name = self.original.name
-    	#self.original.delete(save=False) 
+    	self.original.delete(save=False) 
 
     	self.original.save(temp_name, content=ContentFile(new_image_io.getvalue()), save=False)
 
