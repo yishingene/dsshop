@@ -21,10 +21,13 @@ class ProductImage(AbstractProductImage):
 
     	pil_image = Image.open(self.original)
 
-    	reduced_image = resizeimage.resize_width(pil_image, 1000)
+    	size = 900, 900
+    	pil_image.thumbnail(size, Image.ANTIALIAS)
+
+    	#reduced_image = resizeimage.resize_width(pil_image, 1000)
 
     	new_image_io = BytesIO()
-    	reduced_image.save(new_image_io, format='JPEG')
+    	pil_image.save(new_image_io, format='JPEG')
 
     	name = self.original.name
     	self.original.delete(save=False) 
