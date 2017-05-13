@@ -20,7 +20,7 @@ class ProductImage(AbstractProductImage):
 
     	pil_image = Image.open(self.original)
 
-    	size = 900, 900
+    	size = 1500, 1500
     	pil_image.thumbnail(size, Image.ANTIALIAS)
 
     	new_image_io = BytesIO()

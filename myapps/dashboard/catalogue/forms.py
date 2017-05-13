@@ -7,8 +7,6 @@ from treebeard.forms import movenodeform_factory
 
 from PIL import Image
 from io import BytesIO
-from myapps.imageresize import resizeimage
-
 
 Category = get_model('catalogue', 'Category')
 ProductImage = get_model('catalogue', 'ProductImage')
