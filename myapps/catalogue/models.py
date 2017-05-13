@@ -28,7 +28,7 @@ class ProductImage(AbstractProductImage):
     	pil_image.save(new_image_io, format='JPEG')
 
     	temp_name = self.original.name
-    	self.original.delete(save=False) 
+    	#self.original.delete(save=False) 
 
     	self.original.save(temp_name, content=ContentFile(new_image_io.getvalue()), save=False)
 
