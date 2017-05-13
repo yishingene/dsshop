@@ -8,7 +8,6 @@ from oscar.apps.catalogue.abstract_models import AbstractProductImage
 
 from PIL import Image
 from io import BytesIO
-from myapps.imageresize import resizeimage
 
 @python_2_unicode_compatible
 class ProductImage(AbstractProductImage):
@@ -23,8 +22,6 @@ class ProductImage(AbstractProductImage):
 
     	size = 900, 900
     	pil_image.thumbnail(size, Image.ANTIALIAS)
-
-    	#reduced_image = resizeimage.resize_width(pil_image, 1000)
 
     	new_image_io = BytesIO()
     	pil_image.save(new_image_io, format='JPEG')
