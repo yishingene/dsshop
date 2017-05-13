@@ -56,9 +56,7 @@ class UploadView(FormView):
 
 		path = default_storage.save(file.name, ContentFile(file.read()))
 
-
 		return super(UploadView, self).form_valid(form)
-
 
 def upload_file(request):
 

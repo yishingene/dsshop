@@ -21,7 +21,6 @@ class ProductForm(OscarProductForm):
             ]
 
 
-
 CategoryForm = movenodeform_factory(
     Category,
     fields=['name_nl',

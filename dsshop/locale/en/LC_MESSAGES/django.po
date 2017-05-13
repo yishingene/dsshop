@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-15 16:30+0000\n"
+"POT-Creation-Date: 2017-05-10 18:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,35 +26,35 @@ msgstr ""
 msgid "French"
 msgstr ""
 
-#: dsshop/settings/settings.py:39
-msgid "English"
-msgstr ""
-
-#: dsshop/settings/settings.py:220
+#: dsshop/settings/settings.py:223
+#: dsshop/templates/dashboard/catalogue/product_update.html:17
 msgid "Dashboard"
 msgstr ""
 
-#: dsshop/settings/settings.py:225
+#: dsshop/settings/settings.py:228
 msgid "Catalogue"
 msgstr ""
 
-#: dsshop/settings/settings.py:229
+#: dsshop/settings/settings.py:232
+#: dsshop/templates/dashboard/catalogue/product_update.html:11
+#: dsshop/templates/dashboard/catalogue/product_update.html:20
 msgid "Products"
 msgstr ""
 
-#: dsshop/settings/settings.py:233
+#: dsshop/settings/settings.py:236
 msgid "Product Types"
 msgstr ""
 
-#: dsshop/settings/settings.py:237
+#: dsshop/settings/settings.py:240
+#: dsshop/templates/dashboard/catalogue/product_update.html:73
 msgid "Categories"
 msgstr ""
 
-#: dsshop/settings/settings.py:277 dsshop/settings/settings.py:281
+#: dsshop/settings/settings.py:280 dsshop/settings/settings.py:284
 msgid "Customers"
 msgstr ""
 
-#: dsshop/settings/settings.py:331
+#: dsshop/settings/settings.py:334
 msgid "Reports"
 msgstr ""
 
@@ -72,10 +72,12 @@ msgstr ""
 #: dsshop/templates/catalogue/detail.html:19
 #: dsshop/templates/checkout/gateway.html:15
 #: dsshop/templates/checkout/payment_details.html:23
+#: dsshop/templates/checkout/preview.html:23
 #: dsshop/templates/checkout/shipping_address.html:11
 #: dsshop/templates/customer/address/address_list.html:10
 #: dsshop/templates/customer/order/order_list.html:12
 #: dsshop/templates/customer/profile/profile.html:11
+#: dsshop/templates/customer/profile/profile_delete.html:10
 #: dsshop/templates/customer/registration.html:20
 #: dsshop/templates/search/results.html:21
 msgid "U bevindt zich hier:"
@@ -91,21 +93,23 @@ msgstr ""
 msgid "Totaal winkelwagen"
 msgstr ""
 
-#: dsshop/templates/basket/basket.html:107
+#: dsshop/templates/basket/basket.html:114
 #: dsshop/templates/catalogue/partials/header-basket.html:29
 msgid "Subtotaal"
 msgstr ""
 
-#: dsshop/templates/basket/basket.html:119
+#: dsshop/templates/basket/basket.html:126
 msgid "Verzendingskosten"
 msgstr ""
 
-#: dsshop/templates/basket/basket.html:127
+#: dsshop/templates/basket/basket.html:134
+#: dsshop/templates/checkout/partials/basket_overview.html:42
 msgid "Totaal"
 msgstr ""
 
-#: dsshop/templates/basket/basket.html:136
+#: dsshop/templates/basket/basket.html:143
 #: dsshop/templates/catalogue/partials/header-basket.html:33
+#: dsshop/templates/checkout/preview.html:26
 #: dsshop/templates/checkout/shipping_address.html:14
 msgid "Afrekenen"
 msgstr ""
@@ -116,15 +120,19 @@ msgstr ""
 msgid "Producten"
 msgstr ""
 
-#: dsshop/templates/catalogue/detail.html:69
+#: dsshop/templates/catalogue/detail.html:58
+msgid "Geen beschrijving opgegeven"
+msgstr ""
+
+#: dsshop/templates/catalogue/detail.html:64
 msgid "Gratis"
 msgstr ""
 
-#: dsshop/templates/catalogue/detail.html:101
+#: dsshop/templates/catalogue/detail.html:96
 msgid "kenmerken"
 msgstr ""
 
-#: dsshop/templates/catalogue/detail.html:119
+#: dsshop/templates/catalogue/detail.html:114
 msgid "Gerelateerde producten"
 msgstr ""
 
@@ -167,6 +175,10 @@ msgstr ""
 msgid "Categoriëen"
 msgstr ""
 
+#: dsshop/templates/catalogue/partials/header-basket.html:38
+msgid "Je hebt geen producten in je winkelmand!"
+msgstr ""
+
 #: dsshop/templates/catalogue/partials/header-basket.html:42
 #: dsshop/templates/layout.html:298 dsshop/templates/promotions/home.html:33
 #: dsshop/templates/promotions/home.html:41
@@ -174,8 +186,20 @@ msgstr ""
 msgid "Naar shop"
 msgstr ""
 
+#: dsshop/templates/catalogue/partials/search_input.html:7
+msgid "Doorzoek onze catalogus"
+msgstr ""
+
 #: dsshop/templates/catalogue/partials/subcategory_overview.html:10
 msgid "Subcategorieën"
+msgstr ""
+
+#: dsshop/templates/checkout/checkout.html:16
+msgid "Change"
+msgstr ""
+
+#: dsshop/templates/checkout/checkout.html:19
+msgid "Shipping method"
 msgstr ""
 
 #: dsshop/templates/checkout/gateway.html:19
@@ -216,11 +240,18 @@ msgstr ""
 msgid "inloggen"
 msgstr ""
 
+#: dsshop/templates/checkout/partials/basket_overview.html:3
+msgid "Winkelwagen Overzicht"
+msgstr ""
+
 #: dsshop/templates/checkout/payment_details.html:5
+#: dsshop/templates/checkout/payment_details.html:42
+#: dsshop/templates/checkout/preview.html:5
 msgid "Payment details"
 msgstr ""
 
 #: dsshop/templates/checkout/payment_details.html:12
+#: dsshop/templates/checkout/preview.html:12
 msgid "Enter payment details"
 msgstr ""
 
@@ -228,105 +259,81 @@ msgstr ""
 msgid "Betalingsgegevens"
 msgstr ""
 
-#: dsshop/templates/checkout/payment_details.html:46
-msgid "Verzendadres"
+#: dsshop/templates/checkout/payment_details.html:47
+msgid ""
+"Voor betaling wordt u omgeleid naar de beveiligde website van Ingenico "
+"ePayments"
 msgstr ""
 
 #: dsshop/templates/checkout/payment_details.html:53
-msgid "Winkelwagen Overzicht"
-msgstr ""
-
-#: dsshop/templates/checkout/payment_details.html:86
-msgid ""
-"This page needs implementing within your project.  You may want to use one "
-"of Oscar's payment gateway libraries:"
-msgstr ""
-
-#: dsshop/templates/checkout/payment_details.html:94
+#: dsshop/templates/checkout/payment_details.html:57
 msgid "Continue"
+msgstr ""
+
+#: dsshop/templates/checkout/payment_details.html:66
+#: dsshop/templates/checkout/preview.html:82
+msgid "Verzendadres"
+msgstr ""
+
+#: dsshop/templates/checkout/preview.html:27
+#: dsshop/templates/checkout/preview.html:42
+msgid "Overzicht"
+msgstr ""
+
+#: dsshop/templates/checkout/preview.html:71
+msgid "Submitting..."
+msgstr ""
+
+#: dsshop/templates/checkout/preview.html:71
+msgid "Place order"
 msgstr ""
 
 #: dsshop/templates/checkout/shipping_address.html:15
 msgid "Verzendgegevens"
 msgstr ""
 
-#: dsshop/templates/checkout/shipping_address.html:42
-msgid "Aanspreking"
+#: dsshop/templates/checkout/shipping_address.html:32
+msgid "Shipping Address"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_address.html:36
+msgid "Nieuw adres"
 msgstr ""
 
 #: dsshop/templates/checkout/shipping_address.html:44
-msgid "Voornaam"
-msgstr ""
-
-#: dsshop/templates/checkout/shipping_address.html:46
-msgid "Achternaam"
-msgstr ""
-
-#: dsshop/templates/checkout/shipping_address.html:48
-msgid "Eerste adresregel"
-msgstr ""
-
-#: dsshop/templates/checkout/shipping_address.html:50
 msgid "Tweede adresregel"
 msgstr ""
 
-#: dsshop/templates/checkout/shipping_address.html:52
-msgid "Woonplaats"
-msgstr ""
-
 #: dsshop/templates/checkout/shipping_address.html:54
-msgid "Postcode"
-msgstr ""
-
-#: dsshop/templates/checkout/shipping_address.html:57
-msgid "Land"
-msgstr ""
-
-#: dsshop/templates/checkout/shipping_address.html:60
-#: dsshop/templates/contact.html:27
-msgid "Telefoonnummer"
-msgstr ""
-
-#: dsshop/templates/checkout/shipping_address.html:62
-msgid "Bijkomende opmerkingen?"
-msgstr ""
-
-#: dsshop/templates/checkout/shipping_address.html:65
 msgid "Opslaan"
 msgstr ""
 
-#: dsshop/templates/checkout/shipping_address.html:80
-msgid "Where should we ship to?"
+#: dsshop/templates/checkout/shipping_address.html:64
+msgid "Jouw addressen"
 msgstr ""
 
-#: dsshop/templates/checkout/shipping_address.html:84
-msgid "An address from your address book?"
-msgstr ""
-
-#: dsshop/templates/checkout/shipping_address.html:103
-#: dsshop/templates/checkout/shipping_address.html:105
+#: dsshop/templates/checkout/shipping_address.html:77
+#: dsshop/templates/checkout/shipping_address.html:81
+#: dsshop/templates/dashboard/catalogue/product_update.html:353
+#: dsshop/templates/dashboard/catalogue/product_update.html:357
+#: dsshop/templates/dashboard/catalogue/product_update.html:360
 msgid "Saving..."
 msgstr ""
 
-#: dsshop/templates/checkout/shipping_address.html:103
-msgid "Ship to your default shipping address"
+#: dsshop/templates/checkout/shipping_address.html:78
+msgid "Standaard adres gebruiken"
 msgstr ""
 
-#: dsshop/templates/checkout/shipping_address.html:105
+#: dsshop/templates/checkout/shipping_address.html:82
 msgid "Ship to this address"
 msgstr ""
 
-#: dsshop/templates/checkout/shipping_address.html:109
-msgid "Edit address"
+#: dsshop/templates/checkout/shipping_address.html:91
+msgid "Je hebt nog geen addressen in je adresboek"
 msgstr ""
 
-#: dsshop/templates/checkout/shipping_address.html:114
-#: dsshop/templates/customer/address/address_list.html:67
-msgid "Delete"
-msgstr ""
-
-#: dsshop/templates/checkout/shipping_address.html:127
-msgid "Or a new address?"
+#: dsshop/templates/checkout/shipping_address.html:96
+msgid "Adressen beheren"
 msgstr ""
 
 #: dsshop/templates/contact.html:12
@@ -335,32 +342,72 @@ msgid ""
 "jou!"
 msgstr ""
 
-#: dsshop/templates/contact.html:19
+#: dsshop/templates/contact.html:27
 msgid "Naam"
 msgstr ""
 
-#: dsshop/templates/contact.html:23
+#: dsshop/templates/contact.html:31
 msgid "Email"
 msgstr ""
 
-#: dsshop/templates/contact.html:31
+#: dsshop/templates/contact.html:35
+msgid "Telefoonnummer"
+msgstr ""
+
+#: dsshop/templates/contact.html:39
 msgid "Bedrijf (optioneel)"
 msgstr ""
 
-#: dsshop/templates/contact.html:37
+#: dsshop/templates/contact.html:45
 msgid "Jouw vraag of boodschap"
 msgstr ""
 
-#: dsshop/templates/contact.html:40
+#: dsshop/templates/contact.html:48
 msgid "Verzenden"
 msgstr ""
 
+#: dsshop/templates/customer/address/address_delete.html:8
+msgid "Address book"
+msgstr ""
+
+#: dsshop/templates/customer/address/address_delete.html:14
 #: dsshop/templates/customer/address/address_list.html:14
-#: dsshop/templates/customer/address/address_list.html:26
+#: dsshop/templates/customer/address/address_list.html:25
 msgid "Adresboek"
 msgstr ""
 
-#: dsshop/templates/customer/address/address_list.html:28
+#: dsshop/templates/customer/address/address_delete.html:18
+msgid "Are you sure you want to delete this address?"
+msgstr ""
+
+#: dsshop/templates/customer/address/address_delete.html:23
+#: dsshop/templates/customer/profile/profile_delete.html:47
+msgid "Deleting..."
+msgstr ""
+
+#: dsshop/templates/customer/address/address_delete.html:24
+#: dsshop/templates/customer/address/address_list.html:67
+#: dsshop/templates/customer/profile/profile_delete.html:18
+#: dsshop/templates/customer/profile/profile_delete.html:47
+#: dsshop/templates/dashboard/catalogue/product_update.html:282
+msgid "Delete"
+msgstr ""
+
+#: dsshop/templates/customer/address/address_delete.html:25
+#: dsshop/templates/customer/profile/profile_delete.html:48
+#: dsshop/templates/customer/registration.html:45
+#: dsshop/templates/dashboard/catalogue/product_update.html:351
+msgid "or"
+msgstr ""
+
+#: dsshop/templates/customer/address/address_delete.html:25
+#: dsshop/templates/customer/profile/profile_delete.html:48
+#: dsshop/templates/customer/registration.html:45
+msgid "cancel"
+msgstr ""
+
+#: dsshop/templates/customer/address/address_list.html:27
+#: dsshop/templates/customer/address/address_list.html:100
 msgid "Add a new address"
 msgstr ""
 
@@ -373,6 +420,7 @@ msgid "Default billing address"
 msgstr ""
 
 #: dsshop/templates/customer/address/address_list.html:59
+#: dsshop/templates/dashboard/catalogue/product_update.html:279
 msgid "Edit"
 msgstr ""
 
@@ -384,7 +432,7 @@ msgstr ""
 msgid "Set as default billing address"
 msgstr ""
 
-#: dsshop/templates/customer/address/address_list.html:95
+#: dsshop/templates/customer/address/address_list.html:96
 msgid "There are no addresses in your address book."
 msgstr ""
 
@@ -400,6 +448,7 @@ msgstr ""
 
 #: dsshop/templates/customer/baseaccountpage.html:40
 #: dsshop/templates/customer/profile/profile.html:14
+#: dsshop/templates/customer/profile/profile_delete.html:16
 msgid "Profiel"
 msgstr ""
 
@@ -431,52 +480,59 @@ msgstr ""
 msgid "Recent bekeken"
 msgstr ""
 
-#: dsshop/templates/customer/order/order_list.html:15
+#: dsshop/templates/customer/order/order_list.html:16
 msgid "Order history"
 msgstr ""
 
-#: dsshop/templates/customer/order/order_list.html:28
-msgid "Filter"
-msgstr ""
-
-#: dsshop/templates/customer/order/order_list.html:33
-msgid "Filtering..."
-msgstr ""
-
-#: dsshop/templates/customer/order/order_list.html:33
-msgid "Filter results"
+#: dsshop/templates/customer/order/order_list.html:27
+msgid "Bestelgeschiedenis"
 msgstr ""
 
 #: dsshop/templates/customer/order/order_list.html:34
-msgid "Reset"
-msgstr ""
-
-#: dsshop/templates/customer/order/order_list.html:45
-msgid "Order number"
-msgstr ""
-
-#: dsshop/templates/customer/order/order_list.html:46
-msgid "Num items"
-msgstr ""
-
-#: dsshop/templates/customer/order/order_list.html:47
-msgid "Total inc tax"
-msgstr ""
-
-#: dsshop/templates/customer/order/order_list.html:48
-msgid "Date submitted"
-msgstr ""
-
-#: dsshop/templates/customer/order/order_list.html:62
+#: dsshop/templates/customer/order/order_list.html:88
 msgid "No orders match your search."
 msgstr ""
 
-#: dsshop/templates/customer/order/order_list.html:64
+#: dsshop/templates/customer/order/order_list.html:40
+#: dsshop/templates/customer/order/order_list.html:90
 msgid "Je hebt nog geen bestellingen geplaatst!"
 msgstr ""
 
-#: dsshop/templates/customer/order/order_list.html:66
+#: dsshop/templates/customer/order/order_list.html:44
+#: dsshop/templates/customer/order/order_list.html:92
 msgid "Naar onze shop"
+msgstr ""
+
+#: dsshop/templates/customer/order/order_list.html:54
+msgid "Filter"
+msgstr ""
+
+#: dsshop/templates/customer/order/order_list.html:59
+msgid "Filtering..."
+msgstr ""
+
+#: dsshop/templates/customer/order/order_list.html:59
+msgid "Filter results"
+msgstr ""
+
+#: dsshop/templates/customer/order/order_list.html:60
+msgid "Reset"
+msgstr ""
+
+#: dsshop/templates/customer/order/order_list.html:71
+msgid "Order number"
+msgstr ""
+
+#: dsshop/templates/customer/order/order_list.html:72
+msgid "Num items"
+msgstr ""
+
+#: dsshop/templates/customer/order/order_list.html:73
+msgid "Total inc tax"
+msgstr ""
+
+#: dsshop/templates/customer/order/order_list.html:74
+msgid "Date submitted"
 msgstr ""
 
 #: dsshop/templates/customer/profile/profile.html:25
@@ -503,6 +559,24 @@ msgstr ""
 msgid "Profiel Verwijderen"
 msgstr ""
 
+#: dsshop/templates/customer/profile/profile_delete.html:29
+msgid "Profiel verwijderen"
+msgstr ""
+
+#: dsshop/templates/customer/profile/profile_delete.html:34
+msgid "Warning"
+msgstr ""
+
+#: dsshop/templates/customer/profile/profile_delete.html:36
+msgid ""
+"Alle profielinformatie zal verdwijderd worden. Het is niet mogelijk deze "
+"actie ongedaan te maken!"
+msgstr ""
+
+#: dsshop/templates/customer/profile/profile_delete.html:42
+msgid "Bevestig hieronder je wachtwoord om je profiel te verwijderen"
+msgstr ""
+
 #: dsshop/templates/customer/registration.html:6
 #: dsshop/templates/customer/registration.html:33
 #: dsshop/templates/customer/registration.html:43
@@ -517,12 +591,155 @@ msgstr ""
 msgid "Registering..."
 msgstr ""
 
-#: dsshop/templates/customer/registration.html:45
-msgid "or"
+#: dsshop/templates/dashboard/catalogue/product_update.html:44
+#, python-format
+msgid ""
+"\n"
+"                            You are currently editing a product variant of\n"
+"                            <a href=\"%(parent_url)s\">%(title)s</a>.\n"
+"                        "
 msgstr ""
 
-#: dsshop/templates/customer/registration.html:45
-msgid "cancel"
+#: dsshop/templates/dashboard/catalogue/product_update.html:59
+msgid "Sections"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:71
+#: dsshop/templates/dashboard/catalogue/product_update.html:104
+msgid "Product details"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:76
+#: dsshop/templates/dashboard/catalogue/product_update.html:147
+#: dsshop/templates/dashboard/catalogue/product_update.html:268
+msgid "Attributes"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:79
+msgid "Images"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:82
+#: dsshop/templates/dashboard/catalogue/product_update.html:199
+msgid "Stock and pricing"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:85
+#: dsshop/templates/dashboard/catalogue/product_update.html:259
+msgid "Variants"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:88
+msgid "Upselling"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:91
+#: dsshop/templates/dashboard/catalogue/product_update.html:329
+msgid "Translations"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:127
+msgid "Category"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:149
+msgid "Product Type:"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:170
+msgid "Upload, change or remove images"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:204
+msgid "Partner"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:205
+msgid "SKU"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:207
+msgid "Num in stock"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:208
+msgid "Num allocated"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:209
+msgid "Low stock threshold"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:211
+msgid "Currency"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:212
+msgid "Cost price"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:213
+msgid "Price (excl tax)"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:214
+msgid "Retail price"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:215
+msgid "Delete?"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:260
+msgid "Adding..."
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:262
+msgid "Add variant"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:267
+msgid "Title"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:269
+msgid "Stock records"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:291
+msgid "This product does not have any variants."
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:293
+msgid "One can't add variants to this product at this point."
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:295
+msgid "This is likely because this product still has stock records."
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:311
+msgid "Recommended products"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:349
+msgid "Cancel"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:354
+msgid "Save and add another variant"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:358
+msgid "Save and continue editing"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:361
+msgid "Save"
+msgstr ""
+
+#: dsshop/templates/dashboard/catalogue/product_update.html:365
+msgid "View on site"
 msgstr ""
 
 #: dsshop/templates/partials/footer.html:16
@@ -543,7 +760,7 @@ msgid "Contacteer ons"
 msgstr ""
 
 #: dsshop/templates/partials/footer.html:41
-#: dsshop/templates/partials/header.html:110
+#: dsshop/templates/partials/header.html:111
 msgid "Foto's"
 msgstr ""
 
@@ -564,12 +781,20 @@ msgstr ""
 msgid "Zoek producten"
 msgstr ""
 
-#: dsshop/templates/partials/header.html:113
+#: dsshop/templates/partials/header.html:114
 msgid "Contact"
 msgstr ""
 
 #: dsshop/templates/partials/pagination.html:7
 msgid "previous"
+msgstr ""
+
+#: dsshop/templates/partials/pagination.html:11
+#, python-format
+msgid ""
+"\n"
+"                Page %(page_num)s of %(total_pages)s\n"
+"            "
 msgstr ""
 
 #: dsshop/templates/partials/pagination.html:17
@@ -609,14 +834,87 @@ msgstr ""
 msgid "Zoekterm"
 msgstr ""
 
+#: dsshop/templates/search/results.html:35
+#, python-format
+msgid ""
+"\n"
+"        Products matching \"%(q)s\"\n"
+"    "
+msgstr ""
+
 #: dsshop/templates/search/results.html:49
 msgid "Nieuwe zoekopdracht"
 msgstr ""
 
-#: dsshop/templates/search/results.html:79
+#: dsshop/templates/search/results.html:67
+#, python-format
+msgid ""
+"\n"
+"                                Wij vonden <strong>%(num_results)s</strong> "
+"resultaten voor jouw zoekopdracht.\n"
+"                            "
+msgstr ""
+
+#: dsshop/templates/search/results.html:71
+#, python-format
+msgid ""
+"\n"
+"                                Found <strong>%(num_results)s</strong> "
+"result.\n"
+"                            "
+msgid_plural ""
+"\n"
+"                                Found <strong>%(num_results)s</strong> "
+"results. \n"
+"                            "
+msgstr[0] ""
+msgstr[1] ""
+
+#: dsshop/templates/search/results.html:80
 msgid "Wij vonden geen producten die voldoen aan jouw zoekopdracht"
 msgstr ""
 
-#: other_pages/views.py:35
+#: dsshop/templates/search/results.html:84
+#, python-format
+msgid ""
+"\n"
+"                                    Did you mean <a href=\"%(search_url)s?q="
+"%(suggestion)s\">\"%(suggestion)s\"</a>?\n"
+"                                "
+msgstr ""
+
+#: myapps/catalogue/models.py:18
+msgid "Original"
+msgstr ""
+
+#: myapps/checkout/views.py:276
+msgid ""
+"A problem occurred while processing payment for this order - no payment has "
+"been taken.  Please contact customer services if this problem persists"
+msgstr ""
+
+#: myapps/checkout/views.py:436
+msgid ""
+"A problem occured while processing payment for this order - no payment has "
+"been taken. Please contact customer services if this problem persists"
+msgstr ""
+
+#: myapps/shipping/methods.py:52
+msgid "Free shipping"
+msgstr ""
+
+#: myapps/shipping/methods.py:68
+msgid "No shipping required"
+msgstr ""
+
+#: myapps/shipping/methods.py:77
+msgid "Fixed price shipping"
+msgstr ""
+
+#: other_pages/views.py:31
+msgid "Bedankt voor je bericht!"
+msgstr ""
+
+#: other_pages/views.py:38
 msgid "contact"
 msgstr ""

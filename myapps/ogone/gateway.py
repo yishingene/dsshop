@@ -23,7 +23,9 @@ from oscar.apps.payment.exceptions import GatewayError, UnableToTakePayment, Pay
 OGONE_PSPID = 'thinkmobile'
 OGONE_CURRENCY = 'EUR'
 OGONE_LANGUAGE = 'nl_BE'
-OGONE_SECRET = 'DitIsMijn1stePassPhrase'
+#OGONE_SECRET = 'DitIsMijn1stePassPhrase'
+OGONE_SECRET = 'DitIsMijn2dePassphrase!'
+
 
 OGONE_TEST_URL = 'https://secure.ogone.com/ncol/test/orderstandard.asp'
 
