@@ -345,4 +345,14 @@ OSCAR_PRODUCTS_PER_PAGE = 21
 OSCAR_RECENTLY_VIEWED_PRODUCTS = 10
 OSCAR_ACCOUNTS_REDIRECT_URL = '/'
 
+OSCAR_INITIAL_ORDER_STATUS = 'Aanvraag'
+OSCAR_ORDER_STATUS_PIPELINE = {
+    'Aanvraag': ('Verzendkosten toegevoegd', 'afhaling door klant', 'Geannuleerd',),
+    'Verzendkosten toegevoegd': ('Betaald', 'Geannuleerd '),
+    'Afhaling door klant': ('Betaald','Geannuleerd', ),
+    'Betaald': ('Verwerkt'),
+    'Verwerkt': (),
+    'Geannuleerd': (),
+}
+
 DEV = False
