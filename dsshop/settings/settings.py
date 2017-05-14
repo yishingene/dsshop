@@ -335,6 +335,11 @@ OSCAR_DASHBOARD_NAVIGATION = [
 #        ]
 #    },
     {
+        'label': _('Orders'),
+        'icon': 'icon-list',
+        'url_name': 'dashboard:order-list',
+    },
+    {
         'label': _('Reports'),
         'icon': 'icon-bar-chart',
         'url_name': 'dashboard:reports-index',
