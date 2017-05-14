@@ -75,20 +75,6 @@
                         {% include 'catalogue/partials/add_to_basket_form.html' %}
                     </div><!-- /.summary -->
                 </div>
-            </div>
-            <div class="general-sidebars">
-                <div class="sidebar-wrap">
-                    <div class="sidebar">                               
-                        {% block categories %}
-                            {% include 'catalogue/partials/category_overview.html' %}
-                        {% endblock categories %}
-
-                    </div><!-- /.sidebar -->
-                </div><!-- /.sidebar-wrap -->
-            </div><!-- /.general-sidebars -->
-        </div>
-        <div class="row">
-            <div class="general">
                 <div class="products-detail">
                     <div class="flat-tabs" style="clear: left;">
                         <ul class="menu-tabs">
@@ -119,8 +105,20 @@
                 {% endif %}
             {% endwith %}
                 </div>
-            </div><!-- /.general -->
-        </div><!-- /.row -->
+            </div>
+            <div class="general-sidebars">
+                <div class="sidebar-wrap">
+                    <div class="sidebar">                               
+                        {% block categories %}
+                            {% include 'catalogue/partials/category_overview.html' %}
+                        {% endblock categories %}
+                        {% block recently_viewed %}
+                            {% recently_viewed_products current_product=product %}
+                        {% endblock recently_viewed %}
+                    </div><!-- /.sidebar -->
+                </div><!-- /.sidebar-wrap -->
+            </div><!-- /.general-sidebars -->
+        </div>
     </div><!-- /.container -->
 </div>
 

@@ -33,5 +33,4 @@ class ProductImage(AbstractProductImage):
 
     	return super(ProductImage, self).save(*args, **kwargs)
 
-
 from oscar.apps.catalogue.models import *	

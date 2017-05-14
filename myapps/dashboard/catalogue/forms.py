@@ -28,7 +28,6 @@ class ProductForm(OscarProductForm):
             'structure'
             ]
 
-
 # This adds the catagory translations to the dashboard category edit form
 CategoryForm = movenodeform_factory(
     Category,

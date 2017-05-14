@@ -194,6 +194,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 FILE_UPLOAD_TEMP_DIR = MEDIA_ROOT
+
+# The below setting is used for file uploads. Any file larger than 10Mb will not be handled in memory
 FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760
 
 HAYSTACK_CONNECTIONS = {
