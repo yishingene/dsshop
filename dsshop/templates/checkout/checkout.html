@@ -10,7 +10,7 @@
 			{{ shipping_address.country }}<br>
 		{% endif %}
         {% if shipping_method %}
-            <div class="well well-info">
+<!--             <div class="well well-info">
                 {% block shipping_method_actions %}
                     <a href="{% url 'checkout:shipping-method' %}" class="pull-right">
                         {% trans "Change" %}
@@ -23,7 +23,7 @@
                     {% endif %}
                 </p>
 
-            </div>
+            </div> -->
         {% endif %}
 	{% endblock shipping_address %}
     {% block shipping_method %}
