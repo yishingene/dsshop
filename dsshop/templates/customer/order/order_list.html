@@ -31,12 +31,12 @@
         {% if orders %}
         {% else %}
             {% if form.is_bound %}
-                <p>{% trans "No orders match your search." %}</p>
+                <p>{% trans 'No orders match your search.' %}</p>
             {% else %}
                 <div class="row">
                     <div class="col-md-8 col-xs-10">
                         <div class="flat-woocommerce">
-                            <div class="woocommerce-danger">
+                            <div class="woocommerce-info">
                                 <strong>{% trans "Je hebt nog geen bestellingen geplaatst!" %}</strong>
                             </div>
                         </div>
@@ -83,15 +83,6 @@
             {% endfor %}
         </table>
         {% include "partials/pagination.html" %}
-    {% else %}
-        {% if form.is_bound %}
-            <p>{% trans "No orders match your search." %}</p>
-        {% else %}
-            <p>{% trans "Je hebt nog geen bestellingen geplaatst!" %}</p>
-            <p>
-            	<a class="button" href="{% url 'catalogue:index' %}">{% trans 'Naar onze shop' %}</a>
-            </p>
-        {% endif %}
     {% endif %}
 
 {% endblock tabcontent %}
