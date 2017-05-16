@@ -13,7 +13,7 @@ class ContactForm(forms.Form):
 	message = forms.CharField(widget=forms.Textarea)
 	phone = forms.CharField()
 	email = forms.CharField()
-	company = forms.CharField()
+	company = forms.CharField(required=False)
 
 	def send_email(self):
 

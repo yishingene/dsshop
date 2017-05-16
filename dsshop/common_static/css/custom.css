@@ -322,6 +322,12 @@ div.navigation.paging-navigation.numeric {
 	margin-right: 13px;
 }
 
+.glyphicon-calendar:before{
+	font-family: FontAwesome;
+	content: "\f073";
+
+}
+
 /* CONTACTPAGE */
 #contactform textarea {
 	height: 272px;

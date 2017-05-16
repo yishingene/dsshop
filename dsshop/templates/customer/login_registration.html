@@ -42,7 +42,7 @@
                 <p>
                     <a href="{% url 'password-reset' %}">{% trans 'Help! ' %} {% trans "I've forgotten my password" %}</a>
                 </p>
-                <button name="login_submit" type="submit" value="Register" class="button" data-loading-text="{%trans 'Registering...' %}" style="margin-top: 30px;">{% trans 'Register' %}</button>
+                <button name="login_submit" type="submit" value="Register" class="button" data-loading-text="{%trans 'Registering...' %}" style="margin-top: 30px;">{% trans 'Login' %}</button>
             </form>
         </div>
         <div class="col-sm-5 col-sm-offset-1 register_form">
@@ -52,7 +52,7 @@
             <form id="register_form" action="{{ request.get_full_path }}" method="post" class="form-stacked" style="margin-bottom: 50px;">
                 {% csrf_token %}
                 {% include "partials/form_fields.html" with form=registration_form %}
-                <button name="registration_submit" type="submit" value="Register" class="button" data-loading-text="{%trans 'Registering...' %}" style="margin-top: 30px;">{% trans 'Log in' %}</button>
+                <button name="registration_submit" type="submit" value="Register" class="button" data-loading-text="{%trans 'Registering...' %}" style="margin-top: 30px;">{% trans 'Register' %}</button>
             </form>
         </div>
     </div>
