@@ -81,10 +81,10 @@ INSTALLED_APPS = [
     'storages',         # Use to connect with Amazon S3
     'compressor',       # static file compression (may be deleted because of Heroku deployment?)
     'widget_tweaks',    # Forms customizations
-    #'imageresize',       # Image resizing before upload
     
     'rest_framework',   # Required om gebruik te kunnen maken van oscarapi
-    'Crypto',
+    'Crypto',           # Wordt gebruikt voor hashing om te communiceren met payment gateway
+    'easy_pdf',         # Wordt gebruikt om pdf's te genereren op basis van templates
 
     'dsshop',
 
