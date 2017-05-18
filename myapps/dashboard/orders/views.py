@@ -9,19 +9,27 @@ class InvoicePdfView(PDFTemplateView):
 	template_name = 'dashboard/orders/invoice.html'
 	download_filename =  'factuur_tom_verheyden.pdf'
 
+	order_nr = 0
+
+	def get(self, request, *args, **kwargs):
+
+		self.order_nr = kwargs['number']
+
+		print(kwargs['number'])
+
+		return super(InvoicePdfView, self).get(request, *args, **kwargs)
+
 	def get_context_data(self, **kwargs):
 
-		ctx = super(TestPdfView, self).get_context_data(**kwargs)
+		ctx = super(InvoicePdfView, self).get_context_data(**kwargs)
 
 		ctx['pagesize'] = 'A4'
 		ctx['title'] = 'Dit is mijn titel'
+		ctx['order'] = self.order_nr
 
 		return ctx
 
 
-	# def get(self, request, *args, **kwargs):
-
-	# 	return super(InvoicePdfView, self).get(request, *args, **kwargs)
 
 
 
