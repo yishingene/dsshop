@@ -89,8 +89,9 @@ INSTALLED_APPS = [
     'dsshop',
 
 
-] + get_core_apps(['myapps.catalogue', 'myapps.basket', 'myapps.partner', 
-    'myapps.checkout', 'myapps.payment', 'myapps.shipping', 'myapps.dashboard.catalogue'])
+] + get_core_apps(['myapps.catalogue', 'myapps.basket', 'myapps.partner', 'myapps.checkout',
+    'myapps.payment', 'myapps.shipping', 'myapps.dashboard.catalogue', 'myapps.dashboard.orders', 
+    ])
 
 SITE_ID = 1
 
