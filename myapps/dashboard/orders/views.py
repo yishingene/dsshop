@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from oscar.core.loading import get_class, get_model
 
 from easy_pdf.views import PDFTemplateView
@@ -6,6 +8,14 @@ Order = get_model('order', 'Order')
 
 class InvoicePdfView(PDFTemplateView):
 
+	#if settings.DEV:
+	#base_url = '/Users/timclaes/development/thinkmobile/2016/dsshop/dsshop/common_static'
+
+	base_url = 'file://' + settings.STATIC_ROOT
+
+	if settings.DEV:
+		img_url = '/Users/timclaes/development/thinkmobile/2016/dsshop/dsshop/common_static/images/logo.png'
+
 	template_name = 'dashboard/orders/invoice.html'
 	download_filename =  'factuur_tom_verheyden.pdf'
 
@@ -13,6 +23,8 @@ class InvoicePdfView(PDFTemplateView):
 	order = None
 
 	def get(self, request, *args, **kwargs):
+
+		print('*****************  URL: %s' % self.base_url)
 
 		order_nr = kwargs['number']
 		self.order = Order.objects.get(number=order_nr)
@@ -27,6 +39,7 @@ class InvoicePdfView(PDFTemplateView):
 		ctx['title'] = 'Dit is mijn titel'
 		#ctx['order_nr'] = self.order_nr
 		ctx['order'] = self.order
+		ctx['url'] = self.img_url
 
 		return ctx
 

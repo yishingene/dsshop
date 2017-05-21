@@ -1,6 +1,8 @@
 {% extends 'easy_pdf/base.html' %}
 
-{% block extra_style %}
+{% load i18n static %}
+
+{% block style_base %}
     <style type="text/css">
 
         .clearfix:after {
@@ -14,10 +16,12 @@
           text-decoration: underline;
         }
 
+        td.company {
+            text-align: right;
+        }
+
         body {
-          position: relative;
-          width: 21cm;  
-          height: 29.7cm; 
+          position: relative; 
           margin: 0 auto; 
           color: #001028;
           background: #FFFFFF; 
@@ -41,11 +45,12 @@
         }
 
        h1 {
+          padding-top: 10px;
           border-top: 1px solid #5D6975;
           border-bottom: 1px solid #5D6975;
           color: #5D6975;
-          font-size: 2.4em;
-          line-height: 1.4em;
+          font-size: 4.0em;
+          line-height: 0.4em;
           font-weight: normal;
           text-align: center;
           margin: 0 0 20px 0;
@@ -147,10 +152,19 @@
 {% block page_header %}
    <header class="clearfix">
       <div id="logo">
-        <img src="logo.png">
+        <img src="{{ url }}">
       </div>
-      <h1>Hi there! {{ title }} -- {{ order.currency }} | {{ order.id }} -- {{ order.user.get_full_name }}</h1>
-        </div>
+      <h1>{% trans 'Invoice' %}</h1>
+      <p>Hi there! {{ title }} -- {{ order.currency }} | {{ order.id }} -- {{ order.user.get_full_name }}</p>
+      <div id="client-company">
+        <table>
+            <tr>
+                <td class="client">Mijn Klant</td>
+                <td class="company"> Mijn bedrijf</td>
+            </tr>
+        </table>
+          
+      </div>
       <div id="company" class="clearfix">
         <div>Company Name</div>
         <div>455 Foggy Heights,<br /> AZ 85004, US</div>
@@ -171,7 +185,7 @@
 
 {% block content %}
 
-<!--  
+ 
     <main>
       <table>
         <thead>
@@ -230,6 +244,6 @@
         <div>NOTICE:</div>
         <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
       </div>
-    </main> -->
+    </main>
 
 {% endblock %}
