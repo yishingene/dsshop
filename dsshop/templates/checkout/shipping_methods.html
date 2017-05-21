@@ -1,0 +1,118 @@
+{% extends "checkout/checkout.html" %}
+
+{% load currency_filters %}
+{% load i18n %}
+{% load shipping_tags %}
+
+{% block title %}
+    {% trans "Shipping method" %} | {{ block.super }}
+{% endblock %}
+
+{# yellow title block #}
+{% block subheader_title %}
+    {% trans 'Shipping' as shipping %}
+    {% include 'partials/page-title.html' with page_title=shipping %}
+{% endblock %}
+
+{% block checkout_nav %}
+    {% include 'checkout/nav.html' with step=2 %}
+{% endblock %}
+
+{% block checkout_title %}{% trans "Shipping method" %}{% endblock %}
+
+{% block order_contents %}{% endblock %}
+{% block payment_method %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="page-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="flat-wrapper">
+                    <div class="breadcrumbs">
+                        <h2 class="trail-browse">{% trans 'U bevindt zich hier:' %}</h2>
+                        <ul class="trail-items">
+                            <li class="trail-item"><a href="{% url 'promotions:home' %}">Home</a></li>
+                            <li class="trail-item"><a href="{% url 'checkout:index' %}">{% trans 'Afrekenen' %}</a></li>
+                            <li>{% trans 'Shipping' %}</li>
+                        </ul>
+                    </div><!-- /.breadcrumbs -->
+                </div><!-- /.flat-wrapper -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.page-breadcrumbs -->
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div id="content_inner" class="flat-row flat-woocommerce flat-general sidebar-right">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4 class="flat-title-section style2">{% trans 'Verzend' %} <span class="scheme">{% trans 'naar mijn adres' %}</span></h4>
+                <ul class="flat-list">
+                    <li>Export and import worldwide services</li>
+                    <li>Space guaranteed with airlines</li>
+                    <li>Hanging garment distribution</li>
+                    <li>Cargo insurance for all types of transports</li>
+                    <li>Customs clearance services for both imports and exports, in Constanta and Bucharest</li>
+                    <li>Warehousing and distribution services</li>
+                </ul>
+            </div><!-- /.col-md-6 -->
+
+            <div class="col-md-6">
+                <h4 class="flat-title-section style2">{% trans 'Zelf' %} <span class="scheme">{% trans 'afhalen' %}</span></h4>
+                <ul class="flat-list">
+                    <li>Combined sea and air imports from Asia, Middle East and Oceania offers a fast and reliable service</li>
+                    <li>FCL (full container load), export and import to/from any destination in the world</li>
+                    <li>Project cargo management for overweight / oversized cargoes</li>
+                    <li>Bulk (conventional) sea freight shipments</li>
+                </ul>
+            </div><!-- /.col-md-6 -->
+        </div>
+        {% block shipping_method %}
+    <div class="basket-title">
+        <div class="row">
+            <h4 class="col-sm-8">{% trans "Method" %}</h4>
+            <h4 class="col-sm-3">{% trans "Cost" %}</h4>
+        </div>
+    </div>
+    {% for method in methods %}
+        <div class="basket-items">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h4>{{ method.name }}</h4>
+                    {% if method.description %}
+                        <p>{{ method.description|safe }}</p>
+                    {% endif %}
+                    {% if method.is_discounted %}
+                        <small>
+                            {% shipping_charge_discount method basket as discount %}
+                            {% blocktrans with amount=discount|currency:basket.currency name=method.discount_name %}
+                                This includes a discount of <strong>{{ amount }}</strong> as
+                                your basket qualifies for the <strong>{{ name }}</strong> offer.
+                            {% endblocktrans %}
+                        </small>
+                    {% endif %}
+                </div>
+                <div class="col-sm-1">
+                    {% shipping_charge method basket as charge %}
+                    {% if charge.is_tax_known %}
+                        {{ charge.incl_tax|currency:basket.currency }}
+                    {% else %}
+                        {{ charge.excl_tax|currency:basket.currency }}
+                    {% endif %}
+                </div>
+                <div class="col-sm-3">
+                    <form method="post" action="{% url 'checkout:shipping-method' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="method_code" value="{{ method.code }}" />
+                        <button type="submit" class="btn btn-lg btn-primary pull-right" data-loading-text="{% trans 'Submitting...' %}">{% trans "Select option" %}</button>
+                    </form>
+                </div>    
+            </div>
+        </div>
+    {% endfor %}
+{% endblock shipping_method %}
+    </div>
+</div>
+{% endblock %}
+

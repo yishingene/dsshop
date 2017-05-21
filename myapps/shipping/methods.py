@@ -67,6 +67,22 @@ class NoShippingRequired(Free):
     code = 'no-shipping-required'
     name = _('No shipping required')
 
+class SelfService(Free):
+
+    code = 'self-service'
+    name = _('Ik kom de goederen zelf afhalen.')
+
+class DefferedShippingCost(Base):
+
+    code = 'deffered'
+    name = _('Verzend de producten naar mijn adres!')
+
+    def calculate(self, basket):
+
+        return prices.Price(
+            currency=basket.currency,
+            excl_tax=100
+            )
 
 class FixedPrice(Base):
     """
