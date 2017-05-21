@@ -1,6 +1,6 @@
 {% extends 'easy_pdf/base.html' %}
 
-{% load i18n static %}
+{% load i18n static currency_filters %}
 
 {% block extra_style %}
     <meta http-equiv="content-type" content="text/html; charset=utf-8"> 
@@ -10,11 +10,6 @@
           content: "";
           display: table;
           clear: both;
-        }
-
-        a {
-          color: #5D6975;
-          text-decoration: underline;
         }
 
         td.company {
@@ -55,30 +50,6 @@
           font-weight: normal;
           text-align: center;
           margin: 0 0 20px 0;
-          /*background: url(dimension.png);*/
-        }
-
-        #project {
-          float: left;
-        }
-
-        #project span {
-          color: #5D6975;
-          text-align: right;
-          width: 52px;
-          margin-right: 10px;
-          display: inline-block;
-          font-size: 0.8em;
-        }
-
-        #company {
-          float: right;
-          text-align: right;
-        }
-
-        #project div,
-        #company div {
-          white-space: nowrap;        
         }
 
         table {
@@ -88,8 +59,12 @@
           margin-bottom: 20px;
         }
 
-        table tr:nth-child(2n-1) td {
-          background: #F5F5F5;
+        tr.products {
+            height: 50px;
+        }
+
+        tr.totals {
+            height: 25px;
         }
 
         table th,
@@ -105,41 +80,26 @@
           font-weight: normal;
         }
 
-        table .service,
-        table .desc {
-          text-align: left;
-        }
-
         table td {
           padding: 20px;
           text-align: right;
         }
 
-        table td.service,
-        table td.desc {
-          vertical-align: top;
-        }
-
-        table td.unit,
-        table td.qty,
-        table td.total {
-          font-size: 1.2em;
-        }
-
-        table td.grand {
-          border-top: 1px solid #5D6975;;
-        }
         th.item, td.item {
             width: 35%;
+            text-align: left;
         }
         th.product-code, td.product-code {
             width: 15%;
+            text-align: center;
         }
         th.quantity, td.quantity {
             width: 15%; 
+            text-align: center;
         }
         th.price, td.price {
             width: 15%;
+            text-align: center;
         }
         th.total, td.total {
             width: 20%;
@@ -236,45 +196,34 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="item">Design</td>
-            <td class="product-code">Creating a recognizable design solution based on the company's existing visual identity</td>
+        {% for line in order.lines.all %}
+          <tr class="products" style="border-bottom: 1px solid grey;">
+            <td class="item"">{{ line.title }}</td>
+            <td class="product-code">{{ line.upc }}</td>
             <td class="price">$40.00</td>
-            <td class="quantity">26</td>
-            <td class="total">$1,040.00</td>
+            <td class="quantity">{{ line.quantity }}</td>
+            <td class="total">{{ line.line_price_before_discounts_incl_tax|currency:order.currency }}</td>
           </tr>
-          <tr>
-            <td class="service">Development</td>
-            <td class="desc">Developing a Content Management System-based Website</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">80</td>
-            <td class="total">$3,200.00</td>
+        {% endfor %}
+          <tr class="totals">
+            {% trans 'Subtotal' as subtotal %}
+            <td colspan="4" class="total">{{ subtotal|upper }}</td>
+            <td class="total">{{ order.basket_total_excl_tax|currency:order.currency }}</td>
           </tr>
-          <tr>
-            <td class="service">SEO</td>
-            <td class="desc">Optimize the site for search engines (SEO)</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">20</td>
-            <td class="total">$800.00</td>
+          {% trans 'Verzendkosten' as shipping %}
+          <tr class="totals">
+            <td colspan="4" class="total">{{ shipping|upper }}</td>
+            <td class="total"></td>
           </tr>
-          <tr>
-            <td class="service">Training</td>
-            <td class="desc">Initial training sessions for staff responsible for uploading web content</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">4</td>
-            <td class="total">$160.00</td>
+          {% trans 'BTW 21%' as tax %}
+          <tr class="totals">
+            <td colspan="4" class="total">{{ tax|upper }}</td>
+            <td class="total">{{ order.total_tax|currency:order.currency }}</td>
           </tr>
-          <tr>
-            <td colspan="4">SUBTOTAL</td>
-            <td class="total">$5,200.00</td>
-          </tr>
-          <tr>
-            <td colspan="4">TAX 25%</td>
-            <td class="total">$1,300.00</td>
-          </tr>
-          <tr>
-            <td colspan="4" class="grand total">GRAND TOTAL</td>
-            <td class="grand total">$6,500.00</td>
+          {% trans 'Total' as total %}
+          <tr class="totals" style="font-weight: bold;">
+            <td colspan="4" class="grand total">{{ total|upper }}</td>
+            <td class="grand total">{{ order.total_incl_tax|currency:order.currency }}</td>
           </tr>
         </tbody>
       </table>
