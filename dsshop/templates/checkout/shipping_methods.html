@@ -10,7 +10,7 @@
 
 {# yellow title block #}
 {% block subheader_title %}
-    {% trans 'Shipping' as shipping %}
+    {% trans 'Shipping method' as shipping %}
     {% include 'partials/page-title.html' with page_title=shipping %}
 {% endblock %}
 
@@ -33,7 +33,7 @@
                         <ul class="trail-items">
                             <li class="trail-item"><a href="{% url 'promotions:home' %}">Home</a></li>
                             <li class="trail-item"><a href="{% url 'checkout:index' %}">{% trans 'Afrekenen' %}</a></li>
-                            <li>{% trans 'Shipping' %}</li>
+                            <li>{% trans 'Shipping method' %}</li>
                         </ul>
                     </div><!-- /.breadcrumbs -->
                 </div><!-- /.flat-wrapper -->

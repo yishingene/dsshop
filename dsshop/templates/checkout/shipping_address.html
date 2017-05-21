@@ -2,6 +2,12 @@
 
 {% load i18n widget_tweaks %}
 
+{# yellow title block #}
+{% block subheader_title %}
+    {% trans 'Verzendgegevens' as shipping %}
+    {% include 'partials/page-title.html' with page_title=shipping %}
+{% endblock %}
+
 {% block breadcrumbs %}
     <div class="page-breadcrumbs">
         <div class="container">
