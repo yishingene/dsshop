@@ -187,7 +187,7 @@
             <th class="item">{{ item|upper }}</th>
             {% trans 'Product code' as product_code %}
             <th class="product-code">{{ product_code|upper }}</th>
-            {% trans 'Price' as price %}
+            {% trans 'Prijs BTW excl' as price %}
             <th class="price">{{ price|upper }}</th>
             {% trans 'Quantity' as quantity %}
             <th class="quantity">{{ quantity|upper }}</th>
@@ -200,9 +200,9 @@
           <tr class="products" style="border-bottom: 1px solid grey;">
             <td class="item"">{{ line.title }}</td>
             <td class="product-code">{{ line.upc }}</td>
-            <td class="price">$40.00</td>
+            <td class="price">{{ line.unit_price_excl_tax }}</td>
             <td class="quantity">{{ line.quantity }}</td>
-            <td class="total">{{ line.line_price_before_discounts_incl_tax|currency:order.currency }}</td>
+            <td class="total">{{ line.line_price_before_discounts_excl_tax|currency:order.currency }}</td>
           </tr>
         {% endfor %}
           <tr class="totals">
