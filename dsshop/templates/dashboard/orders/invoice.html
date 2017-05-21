@@ -2,7 +2,8 @@
 
 {% load i18n static %}
 
-{% block style_base %}
+{% block extra_style %}
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"> 
     <style type="text/css">
 
         .clearfix:after {
@@ -41,7 +42,7 @@
         }
 
         #logo img {
-          width: 90px;
+          width: 250px;
         }
 
        h1 {
@@ -128,6 +129,22 @@
         table td.grand {
           border-top: 1px solid #5D6975;;
         }
+        th.item, td.item {
+            width: 35%;
+        }
+        th.product-code, td.product-code {
+            width: 15%;
+        }
+        th.quantity, td.quantity {
+            width: 15%; 
+        }
+        th.price, td.price {
+            width: 15%;
+        }
+        th.total, td.total {
+            width: 20%;
+            text-align: right;
+        }
 
         #notices .notice {
           color: #5D6975;
@@ -155,29 +172,45 @@
         <img src="{{ url }}">
       </div>
       <h1>{% trans 'Invoice' %}</h1>
-      <p>Hi there! {{ title }} -- {{ order.currency }} | {{ order.id }} -- {{ order.user.get_full_name }}</p>
       <div id="client-company">
         <table>
             <tr>
+                <td class="client">{% if order.billing_address %}{{ order.billing_address.title }} {{ order.billing_address.first_name }} {{ order.billing_address.last_name }}{% else %}{{ order.shipping_address.title }} {{ order.shipping_address.first_name }} {{ order.shipping_address.last_name }}{% endif %}</td>
+                <td class="company">ELV bvba</td>
+            </tr>
+            <tr>
+                <td class="client">{% if order.billing_address %}{{ order.billing_address.line1 }}{% else %}{{ order.shipping_address.line1 }}{% endif %}</td>
+                <td class="company">Oudenbos 77A</td>
+            </tr>
+            <tr>
+                <td class="client">{% if order.billing_address %}{{ order.billing_address.postcode }} {{ order.billing_address.city }}{% else %}{{ order.shipping_address.postcode }} {{ order.shipping_address.city }}{% endif %}</td>
+                <td class="company">3202 Rillaar</td>
+            </tr>
+            <tr>
+                <td class="client">{% if order.billing_address %}{{ order.billing_address.county }}{% else %}{{ order.shipping_address.country }}{% endif %}</td>
+                <td class="company">{% trans 'Belgium' %}</td>
+            </tr>
+            <tr>
                 <td class="client">Mijn Klant</td>
-                <td class="company"> Mijn bedrijf</td>
+                <td class="company">BE0500.518.020</td>
             </tr>
         </table>
-          
       </div>
-      <div id="company" class="clearfix">
-        <div>Company Name</div>
-        <div>455 Foggy Heights,<br /> AZ 85004, US</div>
-        <div>(602) 519-0450</div>
-        <div><a href="mailto:company@example.com">company@example.com</a></div>
-      </div>
-      <div id="project">
-        <div><span>PROJECT</span> Website development</div>
-        <div><span>CLIENT</span> John Doe</div>
-        <div><span>ADDRESS</span> 796 Silver Harbour, TX 79273, US</div>
-        <div><span>EMAIL</span> <a href="mailto:john@example.com">john@example.com</a></div>
-        <div><span>DATE</span> August 17, 2015</div>
-        <div><span>DUE DATE</span> September 17, 2015</div>
+      <div>
+          <table>
+              <tr>
+                <td>
+                    <h4>{% trans 'Factuur nummer' %}</h4>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
+                    <h4>{% trans 'Date' %}</h4>
+                </td>
+                <td></td>
+              </tr>
+          </table>
       </div>
     </header>
 {% endblock %}
@@ -190,19 +223,24 @@
       <table>
         <thead>
           <tr>
-            <th class="service">SERVICE</th>
-            <th class="desc">DESCRIPTION</th>
-            <th>PRICE</th>
-            <th>QTY</th>
-            <th>TOTAL</th>
+            {% trans 'Item' as item %}
+            <th class="item">{{ item|upper }}</th>
+            {% trans 'Product code' as product_code %}
+            <th class="product-code">{{ product_code|upper }}</th>
+            {% trans 'Price' as price %}
+            <th class="price">{{ price|upper }}</th>
+            {% trans 'Quantity' as quantity %}
+            <th class="quantity">{{ quantity|upper }}</th>
+            {% trans 'Total' as total %}
+            <th class="total">{{ total|upper }}</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="service">Design</td>
-            <td class="desc">Creating a recognizable design solution based on the company's existing visual identity</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">26</td>
+            <td class="item">Design</td>
+            <td class="product-code">Creating a recognizable design solution based on the company's existing visual identity</td>
+            <td class="price">$40.00</td>
+            <td class="quantity">26</td>
             <td class="total">$1,040.00</td>
           </tr>
           <tr>

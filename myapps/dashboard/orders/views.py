@@ -16,6 +16,9 @@ class InvoicePdfView(PDFTemplateView):
 	if settings.DEV:
 		img_url = '/Users/timclaes/development/thinkmobile/2016/dsshop/dsshop/common_static/images/logo.png'
 
+	else:
+		img_url = ''
+
 	template_name = 'dashboard/orders/invoice.html'
 	download_filename =  'factuur_tom_verheyden.pdf'
 
@@ -23,8 +26,6 @@ class InvoicePdfView(PDFTemplateView):
 	order = None
 
 	def get(self, request, *args, **kwargs):
-
-		print('*****************  URL: %s' % self.base_url)
 
 		order_nr = kwargs['number']
 		self.order = Order.objects.get(number=order_nr)
@@ -36,8 +37,6 @@ class InvoicePdfView(PDFTemplateView):
 		ctx = super(InvoicePdfView, self).get_context_data(**kwargs)
 
 		ctx['pagesize'] = 'A4'
-		ctx['title'] = 'Dit is mijn titel'
-		#ctx['order_nr'] = self.order_nr
 		ctx['order'] = self.order
 		ctx['url'] = self.img_url
 
