@@ -1,0 +1,84 @@
+{% extends 'checkout/checkout.html' %}
+{% load i18n  %}
+
+{% block title %}
+    {% trans "Payment details" %} | {{ block.super }}
+{% endblock %}
+
+{% block checkout_nav %}
+    {% include 'checkout/nav.html' with step=3 %}
+{% endblock %}
+
+{% block checkout_title %}{% trans "Enter payment details" %}{% endblock %}
+
+{% block shipping_method %}{% endblock %}
+{% block payment_method %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="page-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="flat-wrapper">
+                    <div class="breadcrumbs">
+                        <h2 class="trail-browse">{% trans 'U bevindt zich hier:' %}</h2>
+                        <ul class="trail-items">
+                            <li class="trail-item"><a href="{% url 'promotions:home' %}">Home</a></li>
+                            <li class="trail-item"><a href="{% url 'checkout:index' %}">Afrekenen</a></li>
+                            <li>{% trans 'Betalingsgegevens' %}</li>
+                        </ul>
+                    </div><!-- /.breadcrumbs -->
+                </div><!-- /.flat-wrapper -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.page-breadcrumbs -->
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div id="content_inner" class="flat-row flat-woocommerce flat-general sidebar-right">
+    <div class="container">
+        <div class="row">
+            <div class="general">
+                <h3 class="flat-title-section style">
+                    <span>{% trans 'Payment details' %}</span>
+                </h3>        
+                {% block payment_details %}
+                    {% block payment_details_content %}
+                        <p>
+                            {% trans "Voor betaling wordt u omgeleid naar de beveiligde website van Ingenico ePayments" %}
+                        </p>
+                        <form method="post" action="{% url 'checkout:preview' %}">
+                            {% csrf_token %}
+                            <input type="text" name="random" id="id_random" value="content">
+                            <button type="submit" class="btn btn-large btn-primary">
+                                -- {% trans 'Continue' %} --
+                            </button>
+                        </form>
+                        <a id="view_preview" href="{% url 'checkout:preview' %}" class="btn btn-primary btn-lg">
+                            {% trans "Continue" %}
+                        </a>
+                    {% endblock payment_details_content %}
+                {% endblock payment_details %}
+            </div>
+            <div class="general-sidebars">
+                <div class="sidebar-wrap">
+                    <div class="sidebar">
+                        <div class="widget">
+                            <h4 class="widget-title">{% trans 'Verzendadres' %}</h4>
+                            <strong>
+                                {% block shipping_address %}
+                                    {{ block.super }}
+                                {% endblock %}
+                            </strong>
+                            <a class="button" href="{% url 'checkout:shipping-address' %}">Wijzigen</a>
+                        </div>
+                        <div class="widget">
+                            {% include 'checkout/partials/basket_overview.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        HIER KOMT DE INHOUD
+    </div>
+</div>
+{% endblock %}

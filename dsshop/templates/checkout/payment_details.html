@@ -1,5 +1,5 @@
-{% extends 'checkout/checkout.html' %}
-{% load i18n  %}
+{% extends "checkout/checkout.html" %}
+{% load i18n %}
 
 {% block title %}
     {% trans "Payment details" %} | {{ block.super }}
@@ -11,27 +11,9 @@
 
 {% block checkout_title %}{% trans "Enter payment details" %}{% endblock %}
 
+{% block order_contents %}{% endblock %}
 {% block shipping_method %}{% endblock %}
 {% block payment_method %}{% endblock %}
-
-{% block breadcrumbs %}
-    <div class="page-breadcrumbs">
-        <div class="container">
-            <div class="row">
-                <div class="flat-wrapper">
-                    <div class="breadcrumbs">
-                        <h2 class="trail-browse">{% trans 'U bevindt zich hier:' %}</h2>
-                        <ul class="trail-items">
-                            <li class="trail-item"><a href="{% url 'promotions:home' %}">Home</a></li>
-                            <li class="trail-item"><a href="{% url 'checkout:index' %}">Afrekenen</a></li>
-                            <li>{% trans 'Betalingsgegevens' %}</li>
-                        </ul>
-                    </div><!-- /.breadcrumbs -->
-                </div><!-- /.flat-wrapper -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </div><!-- /.page-breadcrumbs -->
-{% endblock breadcrumbs %}
 
 {% block content %}
 <div id="content_inner" class="flat-row flat-woocommerce flat-general sidebar-right">
@@ -40,24 +22,20 @@
             <div class="general">
                 <h3 class="flat-title-section style">
                     <span>{% trans 'Payment details' %}</span>
-                </h3>        
-                {% block payment_details %}
-                    {% block payment_details_content %}
-                        <p>
-                            {% trans "Voor betaling wordt u omgeleid naar de beveiligde website van Ingenico ePayments" %}
-                        </p>
-                        <form method="post" action="{% url 'checkout:preview' %}">
-                            {% csrf_token %}
-                            <input type="text" name="random" id="id_random" value="content">
-                            <button type="submit" class="btn btn-large btn-primary">
-                                -- {% trans 'Continue' %} --
-                            </button>
-                        </form>
-                        <a id="view_preview" href="{% url 'checkout:preview' %}" class="btn btn-primary btn-lg">
-                            {% trans "Continue" %}
-                        </a>
-                    {% endblock payment_details_content %}
-                {% endblock payment_details %}
+                </h3> 
+        {% block payment_details %}
+            {% block payment_details_content %}
+                <p>{% trans "This page needs implementing within your project.  You may want to use one of Oscar's payment gateway libraries:" %}</p>
+                <ul>
+                    <li><a href="https://github.com/django-oscar/django-oscar-paypal">django-oscar-paypal</a></li>
+                    <li><a href="https://github.com/django-oscar/django-oscar-datacash">django-oscar-datacash</a></li>
+                    <li><a href="https://github.com/django-oscar/django-oscar-gocardless">django-oscar-gocardless</a></li>
+                    <li><a href="https://github.com/django-oscar/django-oscar-paymentexpress">django-oscar-paymentexpress</a></li>
+                    <li><a href="https://github.com/django-oscar/django-oscar-accounts">django-oscar-accounts</a></li>
+                </ul>
+                <a id="view_preview" href="{% url 'checkout:preview' %}" class="btn btn-primary btn-lg">{% trans "Continue" %}</a>
+            {% endblock payment_details_content %}
+        {% endblock payment_details %}
             </div>
             <div class="general-sidebars">
                 <div class="sidebar-wrap">
@@ -78,7 +56,7 @@
                 </div>
             </div>
         </div>
-        HIER KOMT DE INHOUD
     </div>
 </div>
-{% endblock %}
+
+{% endblock content %}

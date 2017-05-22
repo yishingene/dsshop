@@ -1,0 +1,95 @@
+{% extends 'checkout/checkout.html' %}
+{% load i18n currency_filters  %}
+
+{% block title %}
+    {% trans "Payment details" %} | {{ block.super }}
+{% endblock %}
+
+{% block checkout_nav %}
+    {% include 'checkout/nav.html' with step=3 %}
+{% endblock %}
+
+{% block checkout_title %}{% trans "Enter payment details" %}{% endblock %}
+
+{% block shipping_method %}{% endblock %}
+
+
+{% block breadcrumbs %}
+    <div class="page-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="flat-wrapper">
+                    <div class="breadcrumbs">
+                        <h2 class="trail-browse">{% trans 'U bevindt zich hier:' %}</h2>
+                        <ul class="trail-items">
+                            <li class="trail-item"><a href="{% url 'promotions:home' %}">Home</a></li>
+                            <li class="trail-item"><a href="{% url 'checkout:index' %}">{% trans 'Afrekenen' %}</a></li>
+                            <li>{% trans 'Overzicht' %}</li>
+                        </ul>
+                    </div><!-- /.breadcrumbs -->
+                </div><!-- /.flat-wrapper -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.page-breadcrumbs -->
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div id="content_inner" class="flat-row flat-woocommerce flat-general sidebar-right">
+    <div class="container">
+        <div class="row">
+            <div class="general">
+                <h3 class="flat-title-section style">
+                    <span>{% trans 'Overzicht' %}</span>
+                </h3>        
+                {% block place_order %}
+                    <!-- <form method="post" action="{% url 'checkout:preview' %}" id="place_order_form"> -->
+                    <!-- <form method="post" action="https://secure.ogone.com/ncol/test/orderstandard.asp" id="place_order_form"> -->
+                       <!--  <input type="hidden" name="action" value="place_order" /> -->
+
+                    <form method="post" action="https://secure.ogone.com/ncol/test/orderstandard.asp" id="form1" name="form1">
+                        {% comment %}
+                            When submitting sensitive data on the payment details page (eg a bankcard)
+                            we don't want to save the data and so we pass the bound form to the preview
+                            template and render it in a hidden div.  Then the payment information will
+                            get re-submitted when the user confirms the order.
+                        {% endcomment %}
+                        <div style="display:none">
+                            {% block hiddenforms %}{% endblock %}
+
+                            <input type="hidden" name="PSPID" value="{{ OGONE_PSPID }}">
+                            <input type="hidden" name="ORDERID" value="{{ OGONE_ORDERID }}">
+                            <input type="hidden" name="AMOUNT" value="{{ OGONE_AMOUNT }}">
+                            <input type="hidden" name="CURRENCY" value="{{ OGONE_CURRENCY }}">
+                            <input type="hidden" name="LANGUAGE" value="{{ OGONE_LANGUAGE }}">
+                            <input type="hidden" name="SHASIGN" value="{{ OGONE_SHASIGN|upper }}">
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <div class="row">
+                                <div class="col-sm-3 col-sm-offset-9">
+                                     <button id='place-order' type="submit" class="btn btn-primary btn-lg btn-block" data-loading-text="{% trans 'Submitting...' %}">{% trans "Place order" %}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                {% endblock place_order %}
+            </div>
+            <div class="general-sidebars">
+                <div class="sidebar-wrap">
+                    <div class="sidebar">
+                        <div class="widget">
+                            <h4 class="widget-title">{% trans 'Verzendadres' %}</h4>
+                            <strong>
+                                {% block shipping_address %}
+                                    {{ block.super }}
+                                {% endblock %}
+                            </strong>
+                            <a class="button" href="{% url 'checkout:shipping-address' %}">Wijzigen</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
