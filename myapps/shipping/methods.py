@@ -64,24 +64,25 @@ class NoShippingRequired(Free):
     This is a special shipping method that indicates that no shipping is
     actually required (eg for digital goods).
     """
-    code = 'no-shipping-required'
+    code = 'geen-verzending-nodig'
     name = _('No shipping required')
 
 class SelfService(Free):
 
-    code = 'self-service'
+    code = 'Ophaling door klant'
     name = _('Ik kom de goederen zelf afhalen.')
 
 class DefferedShippingCost(Base):
 
-    code = 'deffered'
+    code = 'Verzenden naar klant'
     name = _('Verzend de producten naar mijn adres!')
 
     def calculate(self, basket):
 
         return prices.Price(
             currency=basket.currency,
-            excl_tax=100
+            excl_tax=100,
+            incl_tax=121,
             )
 
 class FixedPrice(Base):

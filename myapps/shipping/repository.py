@@ -6,7 +6,7 @@ class Repository(repository.Repository):
 
 	'''
 
-	methods = (methods.DefferedShippingCost(), methods.NoShippingRequired())
+	methods = (methods.DefferedShippingCost(), methods.SelfService())
 
 
 # class Repository(repository.Repository):
