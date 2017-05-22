@@ -1,11 +1,15 @@
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 
 from oscar.apps.dashboard.orders.views import OrderDetailView as OscarOrderDetailView
 from oscar.core.loading import get_class, get_model
 
 from easy_pdf.views import PDFTemplateView
+from decimal import Decimal as D
 
 Order = get_model('order', 'Order')
+ShippingCostForm = get_class('myapps.dashboard.orders.forms', 'ShippingCostForm')
+	
 
 class InvoicePdfView(PDFTemplateView):
 
@@ -47,9 +51,13 @@ class OrderDetailView(OscarOrderDetailView):
 
 	def post(self, request, *args, **kwargs):
 
-		print('------------------- My Order Detail View')
-
 		order = self.object = self.get_object()
+
+		print('**** REQUEST POST: %s' % request.POST)
+
+		if 'shipping_excl_tax' in request.POST:
+			# HIER MOETEN WE NU NOG FORM HANDLING UITVOEREN
+			print(' $$ $$ $ $ $ $$$ jeeej')
 
 		if 'order_action' in request.POST:
 			return self.handle_order_action(
@@ -63,3 +71,10 @@ class OrderDetailView(OscarOrderDetailView):
 
 		return self.reload_page(error=_("No valid action submitted"))
 
+	def get_context_data(self, **kwargs):
+		ctx = super(OrderDetailView, self).get_context_data(**kwargs)
+		
+		# my own form
+		ctx['shipping_cost_form'] = ShippingCostForm(instance=self.object)
+
+		return ctx

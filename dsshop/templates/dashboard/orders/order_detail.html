@@ -420,6 +420,16 @@
 
             <div class="tab-pane {% if active_tab == 'shipping' %}active{% endif %}" id="shipping">
                 {% block tab_shipping %}
+                	<div>
+                		{{ shipping_cost_form.errors }} mmm
+                		<form method="post">
+                			{{ shipping_cost_form.as_p }}
+                			{% csrf_token %}
+                			<input type="hidden" name="test" value="test" />
+                            <input type="submit" value="{% trans 'Aanpassen' %}" class="btn btn-info" />
+                		</form>
+                		 
+                	</div>
                     <div class="table-header">
                         <h3>{% trans "Shipping" %}</h3>
                     </div>
@@ -620,7 +630,7 @@
                                                     {% csrf_token %}
                                                     <input type="hidden" name="order_action" value="delete_note" />
                                                     <input type="hidden" name="note_id" value="{{ note.id }}" />
-                                                    <input type="submit" value="{% trans "Delete" %}" class="btn btn-danger" />
+                                                    <input type="submit" value="{% trans 'Delete' %}" class="btn btn-danger" />
                                                 </form>
                                             {% endif %}
                                         </td>
