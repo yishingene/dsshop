@@ -1,5 +1,6 @@
 from django.conf import settings
 
+from oscar.apps.dashboard.orders.views import OrderDetailView as OscarOrderDetailView
 from oscar.core.loading import get_class, get_model
 
 from easy_pdf.views import PDFTemplateView
@@ -42,8 +43,23 @@ class InvoicePdfView(PDFTemplateView):
 
 		return ctx
 
+class OrderDetailView(OscarOrderDetailView):
 
+	def post(self, request, *args, **kwargs):
 
+		print('------------------- My Order Detail View')
 
+		order = self.object = self.get_object()
 
+		if 'order_action' in request.POST:
+			return self.handle_order_action(
+				request, order, request.POST['order_action']
+				)
+
+		if 'line_action' in request.POST:
+			return self.handle_line_action(
+				request, order, request.POST['line_action']
+				)
+
+		return self.reload_page(error=_("No valid action submitted"))
 

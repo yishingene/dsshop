@@ -81,8 +81,8 @@ class DefferedShippingCost(Base):
 
         return prices.Price(
             currency=basket.currency,
-            excl_tax=100,
-            incl_tax=121,
+            excl_tax=D('100.00'),
+            incl_tax=D('121.00'),
             )
 
 class FixedPrice(Base):
