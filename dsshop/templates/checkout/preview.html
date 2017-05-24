@@ -38,6 +38,18 @@
                 <h3 class="flat-title-section style">
                     <span>{% trans 'Overzicht' %}</span>
                 </h3> 
+
+                <div class="row heading-row">
+                    <div class="col-sm-2 hidden-xs"></div>
+                    <div class="col-sm-4 col-xs-5">{% trans 'Product' %}</div>
+                    <div class="col-sm-2 hidden-xs">{% trans 'Prijs (BTW incl.)' %}</div>
+                    <div class="col-sm-2 col-xs-3">{% trans 'Aantal' %}</div>
+                    <div class="col-sm-2 col-xs-2 total">{% trans 'Totaal' %}</div>
+                </div>
+                <br>
+                <br>
+                <br>
+
 			{% block place_order %}
 			    <form method="post" action="{% url 'checkout:preview' %}" id="place_order_form">
 			        {% csrf_token %}
