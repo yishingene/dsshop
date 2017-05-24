@@ -30,7 +30,6 @@ class InvoicePdfView(PDFTemplateView):
 	template_name = 'dashboard/orders/invoice.html'
 	download_filename =  'factuur_tom_verheyden.pdf'
 
-	#order_nr = 0
 	order = None
 
 	def get(self, request, *args, **kwargs):
@@ -53,23 +52,18 @@ class InvoicePdfView(PDFTemplateView):
 class OrderDetailView(OscarOrderDetailView):
 
 	def post(self, request, *args, **kwargs):
+		'''
+		Override to process custom ShippingCostForm
+		'''
 
 		order = self.object = self.get_object()
 
-		print('**** REQUEST POST: %s' % request.POST)
-
 		if 'shipping_excl_tax' in request.POST:
 
-
 			form = ShippingCostForm(request.POST, instance=self.object)
-
-			print('---------- ORDERDETAILVIEW: FORM HANDLING')
-			print(form)
-
 			form.save(commit=False)
 
 			return self.reload_page(success='De verzendkosten zijn toegevoegd!')
-			
 
 		if 'order_action' in request.POST:
 			return self.handle_order_action(
@@ -86,12 +80,15 @@ class OrderDetailView(OscarOrderDetailView):
 	def get_context_data(self, **kwargs):
 		ctx = super(OrderDetailView, self).get_context_data(**kwargs)
 		
-		# my own form
+		# Add custom form to context
 		ctx['shipping_cost_form'] = ShippingCostForm(instance=self.object)
 
 		return ctx
 
 	def reload_page(self, fragment=None, error=None, success=None):
+		'''
+		Method override so we can add and displa success messages next to error messages
+		'''
 		url = reverse('dashboard:order-detail',
 		          	kwargs={'number': self.object.number})
 		if fragment:
