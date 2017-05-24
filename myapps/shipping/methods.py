@@ -69,7 +69,7 @@ class NoShippingRequired(Free):
 
 class SelfService(Free):
 
-    code = 'Ophaling door klant'
+    code = 'Afhaling door klant'
     name = _('Ik kom de goederen zelf afhalen.')
 
 class DefferedShippingCost(Base):
