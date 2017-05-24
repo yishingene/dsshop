@@ -41,9 +41,9 @@
         </div>
         {% if orders or form.is_bound %}
         {% endif %}
-        {% if orders %}
         <div class="widget widget_text information">
             <h3 class="widget-title">{{ form.description }}</h3>
+        {% if orders %}
             <table class="table table-striped table-bordered">
                 <tr>
                     <th>{% trans "Order number" %}</th>
@@ -63,7 +63,18 @@
         {% include "partials/pagination.html" %}
         {% else %}
             {% if form.is_bound %}
-                <p>{% trans 'No orders match your search.' %}</p>
+                <div class="row">
+                    <div class="col-md-8 col-xs-10">
+                        <div class="flat-woocommerce">
+                            <div class="woocommerce-info">
+                                <strong>{% trans 'No orders match your search.' %}</strong>
+                            </div>
+                        </div>
+                        <p>
+                            <a class="button" href="{% url 'catalogue:index' %}">{% trans 'Naar onze shop' %}</a>
+                        </p>
+                    </div>
+                </div>
             {% else %}
                 <div class="row">
                     <div class="col-md-8 col-xs-10">
