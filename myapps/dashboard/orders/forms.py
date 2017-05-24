@@ -15,16 +15,17 @@ class ShippingCostForm(forms.ModelForm):
 
 		return cleaned_data
 
-	def save(self, commit=False):
+	def save(self, commit=True):
 
-		total_incl_tax = self.instance.basket_total_before_discounts_incl_tax
-		total_excl_tax = self.instance.basket_total_before_discounts_excl_tax
+		my_order = super(ShippingCostForm, self).save(commit=True)
 
-		self.instance.total_incl_tax = self.instance.shipping_incl_tax + total_incl_tax
-		self.instance.total_excl_tax = self.instance.shipping_excl_tax + total_excl_tax
+		my_order.shipping_incl_tax = self.instance.shipping_excl_tax * D('1.21')
+
+		my_order.total_excl_tax = my_order.basket_total_before_discounts_excl_tax + my_order.shipping_excl_tax
+		my_order.total_incl_tax = my_order.basket_total_before_discounts_incl_tax + my_order.shipping_incl_tax
 
 		return super(ShippingCostForm, self).save(commit=True)
 
 	class Meta:
 		model = Order
-		fields = ['shipping_excl_tax', 'shipping_incl_tax', ]
+		fields = ['shipping_excl_tax', ]
