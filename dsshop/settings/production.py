@@ -43,5 +43,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
 
+OSCAR_FROM_EMAIL = 'website@tomverheyden.com'
+
 # Allow all host headers
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.tomverheyden.com', '.aws.amazon.com', '.herokuapp.com']

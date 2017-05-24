@@ -43,10 +43,6 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-print(LOCALE_PATHS)
-
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -90,7 +86,8 @@ INSTALLED_APPS = [
 
 
 ] + get_core_apps(['myapps.catalogue', 'myapps.basket', 'myapps.partner', 'myapps.checkout',
-    'myapps.payment', 'myapps.shipping', 'myapps.dashboard.catalogue', 'myapps.dashboard.orders', 
+    'myapps.payment', 'myapps.shipping', 'myapps.dashboard.catalogue', 'myapps.dashboard.orders',
+    'myapps.order', 
     ])
 
 SITE_ID = 1
@@ -170,14 +167,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -204,14 +196,6 @@ HAYSTACK_CONNECTIONS = {
         'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
     },
 }
-
-#HAYSTACK_CONNECTIONS = {
-#    'default': {
-#        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
-#        'URL': 'http://127.0.0.1:8983/solr',
-#        'INCLUDE_SPELLING': True,
-#    },
-#}
 
 # SHOP SETTINGS
 OSCAR_DEFAULT_CURRENCY = 'EUR'

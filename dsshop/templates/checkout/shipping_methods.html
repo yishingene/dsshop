@@ -1,8 +1,6 @@
 {% extends "checkout/checkout.html" %}
 
-{% load currency_filters %}
-{% load i18n %}
-{% load shipping_tags %}
+{% load currency_filters i18n shipping_tags %}
 
 {% block title %}
     {% trans "Shipping method" %} | {{ block.super }}
@@ -46,88 +44,43 @@
 <div id="content_inner" class="flat-row flat-woocommerce flat-general sidebar-right">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5 col-sm-8 col-xs-10">
                 <h4 class="flat-title-section style2">{% trans 'Verzend' %} <span class="scheme">{% trans 'naar mijn adres' %}</span></h4>
                 <p>
-                    Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean lacinia bibendum nulla sed consectetur. Nullam quis risus eget urna mollis ornare vel eu leo. Donec id elit non mi porta gravida at eget metus.
+                    {% blocktrans %}
+                        Op dit moment kunnen wij de verzendkosten nog niet automatisch berekenen. Op basis van de bestelde 
+                        onderdelen berekenen wij de correcte verzendkosten, en contacteren we jou om deze te bevestigen. We streven ernaar om een antwoord te geven binnen de 2 werkdagen.
+                    {% endblocktrans %}
                 </p>
-                <ul class="flat-list">
-                    <li>Export and import worldwide services</li>
-                    <li>Space guaranteed with airlines</li>
-                    <li>Hanging garment distribution</li>
-                    <li>Cargo insurance for all types of transports</li>
-                    <li>Customs clearance services for both imports and exports, in Constanta and Bucharest</li>
-                    <li>Warehousing and distribution services</li>
-                </ul>
+
                 <form method="post" action="{% url 'checkout:shipping-method' %}">
                     {% csrf_token %}
                     <input type="hidden" name="method_code" value="{{ methods.0.code }}" />
-                    <button type="submit" class="btn btn-lg btn-primary" data-loading-text="{% trans 'Submitting...' %}">{% trans "Select option" %}</button>
+                    <button type="submit" class="button" data-loading-text="{% trans 'Submitting...' %}">{% trans "Select option" %}</button>
                 </form>
             </div><!-- /.col-md-6 -->
 
-            <div class="col-md-6">
+            <div class="col-md-5 col-md-offset-1 col-sm-8 col-xs-10">
                 <h4 class="flat-title-section style2">{% trans 'Zelf' %} <span class="scheme">{% trans 'afhalen' %}</span></h4>
                 <p>
-                    Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean lacinia bibendum nulla sed consectetur. Nullam quis risus eget urna mollis ornare vel eu leo. Donec id elit non mi porta gravida at eget metus.
+                    {% blocktrans %}
+                        Het is mogelijk om je bestelling zelf op te halen aan ons magazijn. Wij zullen alle producten uit
+                        je bestelling klaarzetten, en deze kan afgehaald worden na afspraak.
+                    {% endblocktrans %}
                 </p>
-                <ul class="flat-list">
+<!--                 <ul class="flat-list">
                     <li>Combined sea and air imports from Asia, Middle East and Oceania offers a fast and reliable service</li>
                     <li>FCL (full container load), export and import to/from any destination in the world</li>
                     <li>Project cargo management for overweight / oversized cargoes</li>
                     <li>Bulk (conventional) sea freight shipments</li>
-                </ul>
+                </ul> -->
                 <form method="post" action="{% url 'checkout:shipping-method' %}">
                     {% csrf_token %}
                     <input type="hidden" name="method_code" value="{{ methods.1.code }}" />
-                    <button type="submit" class="btn btn-lg btn-primary" data-loading-text="{% trans 'Submitting...' %}">{% trans "Select option" %}</button>
+                    <button type="submit" class="button" data-loading-text="{% trans 'Submitting...' %}">{% trans "Select option" %}</button>
                 </form>
             </div><!-- /.col-md-6 -->
         </div>
-        {% block shipping_method %}
-    <div class="basket-title">
-        <div class="row">
-            <h4 class="col-sm-8">{% trans "Method" %}</h4>
-            <h4 class="col-sm-3">{% trans "Cost" %}</h4>
-        </div>
-    </div>
-    {% for method in methods %}
-        <div class="basket-items">
-            <div class="row">
-                <div class="col-sm-8">
-                    <h4>{{ method.name }}</h4>
-                    {% if method.description %}
-                        <p>{{ method.description|safe }}</p>
-                    {% endif %}
-                    {% if method.is_discounted %}
-                        <small>
-                            {% shipping_charge_discount method basket as discount %}
-                            {% blocktrans with amount=discount|currency:basket.currency name=method.discount_name %}
-                                This includes a discount of <strong>{{ amount }}</strong> as
-                                your basket qualifies for the <strong>{{ name }}</strong> offer.
-                            {% endblocktrans %}
-                        </small>
-                    {% endif %}
-                </div>
-                <div class="col-sm-1">
-                    {% shipping_charge method basket as charge %}
-                    {% if charge.is_tax_known %}
-                        {{ charge.incl_tax|currency:basket.currency }}
-                    {% else %}
-                        {{ charge.excl_tax|currency:basket.currency }}
-                    {% endif %}
-                </div>
-                <div class="col-sm-3">
-                    <form method="post" action="{% url 'checkout:shipping-method' %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="method_code" value="{{ method.code }}" />
-                        <button type="submit" class="btn btn-lg btn-primary pull-right" data-loading-text="{% trans 'Submitting...' %}">{% trans "Select option" %}</button>
-                    </form>
-                </div>    
-            </div>
-        </div>
-    {% endfor %}
-{% endblock shipping_method %}
     </div>
 </div>
 {% endblock %}
