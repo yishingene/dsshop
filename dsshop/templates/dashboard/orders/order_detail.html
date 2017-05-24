@@ -252,52 +252,6 @@
                     {% endblock %}
                 </form>
 
- <!--                {% block shipping_events %}
-                    <div class="table-header">
-                        <h3>{% trans "Shipping Events" %}</h3>
-                    </div>
-                    {% with events=order.shipping_events.all %}
-                        <table class="table table-striped table-bordered table-hover">
-                            {% if events %}
-                                <thead>
-                                    <tr>
-                                        <th>{% trans "Date" %}</th>
-                                        <th>{% trans "Event" %}</th>
-                                        <th>{% trans "Lines" %}</th>
-                                        <th>{% trans "Reference" %}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for event in events %}
-                                        {% with line_qtys=event.line_quantities.all %}
-                                            <tr>
-                                                <td>{{ event.date_created }}</td>
-                                                <td>{{ event.event_type.name }}</td>
-                                                <td>
-                                                    {% for line_qty in event.line_quantities.all %}
-                                                        <a href="{% url 'dashboard:order-line-detail' number=order.number line_id=line_qty.line.id %}">
-                                                            {% blocktrans with title=line_qty.line.title event_qty=line_qty.quantity total_qty=line_qty.line.quantity %}
-                                                                {{ title }} (quantity {{ event_qty }}/{{ total_qty }})
-                                                            {% endblocktrans %}
-                                                        </a>
-                                                    {% endfor %}
-                                                </td>
-                                                <td>{{ event.notes|default:"-" }}</td>
-                                            </tr>
-                                        {% endwith %}
-                                    {% endfor %}
-                                </tbody>
-                            {% else %}
-                                <tbody>
-                                    <tr>
-                                        <td>{% trans "No shipping events." %}</td>
-                                    </tr>
-                                </tbody>
-                            {% endif %}
-                        </table>
-                    {% endwith %}
-                {% endblock %} -->
-
                 {% block payment_events %}
                     <div class="table-header">
                         <h3 >{% trans "Payment Events" %}</h3>
@@ -344,7 +298,7 @@
             <div class="tab-pane {% if active_tab == 'shipping' %}active{% endif %}" id="shipping">
                 {% block tab_shipping %}
                 	<div>
-                		{{ shipping_cost_form.errors }} mmm
+                		{{ shipping_cost_form.errors }}
                 		<form method="post">
                 			{{ shipping_cost_form.as_p }}
                 			{% csrf_token %}

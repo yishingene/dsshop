@@ -1,4 +1,7 @@
 from django.conf import settings
+from django.core.urlresolvers import reverse
+from django.contrib import messages
+from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 
 from oscar.apps.dashboard.orders.views import OrderDetailView as OscarOrderDetailView
@@ -56,8 +59,17 @@ class OrderDetailView(OscarOrderDetailView):
 		print('**** REQUEST POST: %s' % request.POST)
 
 		if 'shipping_excl_tax' in request.POST:
-			# HIER MOETEN WE NU NOG FORM HANDLING UITVOEREN
-			print(' $$ $$ $ $ $ $$$ jeeej')
+
+
+			form = ShippingCostForm(request.POST, instance=self.object)
+
+			print('---------- ORDERDETAILVIEW: FORM HANDLING')
+			print(form)
+
+			form.save(commit=False)
+
+			return self.reload_page(success='De verzendkosten zijn toegevoegd!')
+			
 
 		if 'order_action' in request.POST:
 			return self.handle_order_action(
@@ -78,3 +90,14 @@ class OrderDetailView(OscarOrderDetailView):
 		ctx['shipping_cost_form'] = ShippingCostForm(instance=self.object)
 
 		return ctx
+
+	def reload_page(self, fragment=None, error=None, success=None):
+		url = reverse('dashboard:order-detail',
+		          	kwargs={'number': self.object.number})
+		if fragment:
+			url += '#' + fragment
+		if error:
+			messages.error(self.request, error)
+		if success:
+			messages.success(self.request, success)
+		return HttpResponseRedirect(url)
