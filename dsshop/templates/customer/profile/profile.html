@@ -29,13 +29,13 @@
     </h3>
     <div class="textwidget">
         <p>
-            <i class="fa fa-user"></i>  <strong>{{ user.get_full_name|default:'???' }}</strong><br>
-            <i class="fa fa-envelope"></i> <strong>{{ user.email }}</strong><br>
-            <i class="fa fa-calendar"></i> {% trans 'Geregistreerd op ' %} <strong>{{ user.date_joined|date:'d M Y' }}</strong>
+            <i class="fa fa-user"></i>&nbsp;<strong>{{ user.get_full_name|default:'???' }}</strong><br>
+            <i class="fa fa-envelope"></i><strong>{{ user.email }}</strong><br>
+            <i class="fa fa-calendar"></i>{% trans 'Geregistreerd op ' %}<strong>{{ user.date_joined|date:'d M Y' }}</strong>
         </p>
         <p>
             <a class="btn btn-primary" href="{% url 'customer:profile-update' %}"><b>{% trans 'Gegevens wijzigen' %}</b></a>
-            <a class="btn btn-warning" href="{% url 'customer:profile-update' %}"><b>{% trans 'Wachtwoord Wijzigen' %}</b></a>
+            <a class="btn btn-warning" href="{% url 'customer:change-password' %}"><b>{% trans 'Wachtwoord Wijzigen' %}</b></a>
             <a id="delete_profile" class="btn btn-danger" href="{% url 'customer:profile-delete' %}"><b>{% trans 'Profiel Verwijderen' %}</b></a> 
         </p>
     </div>  

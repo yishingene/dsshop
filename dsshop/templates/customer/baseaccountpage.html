@@ -9,17 +9,23 @@
 {% block body_class %}account-profile{% endblock %}
 
 {% block breadcrumbs %}
-    <ul class="breadcrumb">
-        <li>
-            <a href="{{ homepage_url }}">{% trans 'Home' %}</a>
-        </li>
-        <li>
-            <a href="{% url 'customer:summary' %}">{% trans 'Account' %}</a>
-        </li>
-        {% block extra_breadcrumbs %}{% endblock %}
-        <li class="active">{{ page_title }}</li>
-    </ul>
-{% endblock %}
+    <div class="page-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="flat-wrapper">
+                    <div class="breadcrumbs">
+                        <h2 class="trail-browse">{% trans 'U bevindt zich hier:' %}</h2>
+                        <ul class="trail-items">
+                            <li class="trail-item"><a href="{% url 'promotions:home' %}">Home</a></li>
+                            <li class="trail-item"><a href="{% url 'customer:summary' %}">Home</a></li>
+                            <li>{% trans 'Edit profile' %}</li>
+                        </ul>
+                    </div><!-- /.breadcrumbs -->
+                </div><!-- /.flat-wrapper -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.page-breadcrumbs -->
+{% endblock breadcrumbs %}
 
 {% block headertext %}{{ page_title }}{% endblock %}
 
