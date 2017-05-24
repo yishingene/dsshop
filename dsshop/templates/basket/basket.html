@@ -34,10 +34,10 @@
 		<div class="row heading-row">
 			<div class="col-sm-1 col-xs-2"></div>
 			<div class="col-sm-2 hidden-xs"></div>
-			<div class="col-sm-3 col-xs-5">Product</div>
-			<div class="col-sm-2 hidden-xs">Prijs</div>
-			<div class="col-sm-2 col-xs-3">Aantal</div>
-			<div class="col-sm-2 col-xs-2 total">Totaal</div>
+			<div class="col-sm-3 col-xs-5">{% trans 'Product' %}</div>
+			<div class="col-sm-2 hidden-xs">{% trans 'Prijs (BTW incl.)' %}</div>
+			<div class="col-sm-2 col-xs-3">{% trans 'Aantal' %}</div>
+			<div class="col-sm-2 col-xs-2 total">{% trans 'Totaal' %}</div>
 		</div>
 		<form action="." method="post" class="basket_summary" id="basket_formset">
 	   		{% csrf_token %}
@@ -109,35 +109,6 @@
                             {% endif %}
 							</div>
 						</div>
-<!-- 						<div class="row">
-							<div class="col-xs-7">
-								{% trans 'Subtotaal' %}
-							</div>
-							<div class="col-xs-5">
-                                {% if not show_tax_separately and basket.is_tax_known %}
-                                    {{ basket.total_incl_tax|currency:basket.currency }}
-                                {% else %}
-                                    {{ basket.total_excl_tax|currency:basket.currency }}
-                                {% endif %}
-							</div>
-						</div> -->
-<!-- 						<div class="row">
-							<div class="col-xs-7">
-								{% trans 'Verzendingskosten' %}
-							</div>
-							<div class="col-xs-5">
-								
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-7">
-								{% trans 'Totaal' %}
-							</div>
-							<div class="col-xs-5">
-								
-							</div>
-						</div> -->
-
 						<div class="wc-proceed-to-checkout" style="margin-top: 15px;">
 							<a href="{% url 'checkout:index' %}" class="checkout-button button alt wc-forward">
 								{% trans 'Afrekenen' %}
@@ -151,13 +122,3 @@
 	</div>
 </div>					
 {% endblock content %}
-
-
-{% block onbodyload %}
-    {{ block.super }}
-    {# We pass in the URL to send AJAX requests to #}
-    var options = {
-        'basketURL': '{% url 'basket:summary' %}'
-    };
-    oscar.basket.init(options);
-{% endblock %}
