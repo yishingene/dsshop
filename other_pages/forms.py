@@ -2,6 +2,14 @@ from django import forms
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
+from .models import Event
+
+
+class EventForm(forms.ModelForm):
+
+	class Meta:
+		model = Event
+		fields = '__all__'
 
 class UploadFileForm(forms.Form):
 

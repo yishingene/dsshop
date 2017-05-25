@@ -83,6 +83,7 @@ INSTALLED_APPS = [
     'easy_pdf',         # Wordt gebruikt om pdf's te genereren op basis van templates
 
     'dsshop',
+    'other_pages',
 
 
 ] + get_core_apps(['myapps.catalogue', 'myapps.basket', 'myapps.partner', 'myapps.checkout',
