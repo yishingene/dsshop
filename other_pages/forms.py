@@ -1,11 +1,14 @@
 from django import forms
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.forms.widgets import SelectDateWidget
 
 from .models import Event
 
 
 class EventForm(forms.ModelForm):
+
+	date = forms.DateField(widget=SelectDateWidget())
 
 	class Meta:
 		model = Event

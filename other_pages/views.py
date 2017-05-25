@@ -8,18 +8,21 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings
 from django.contrib import messages
+from django.urls import reverse_lazy
 
-from .forms import UploadFileForm, ContactForm
+from .forms import UploadFileForm, ContactForm, EventForm
 from .models import Event
 
 # Create your views here.
-class EventListView(ListView):
+class EventListView(FormView, ListView):
 
 	template_name = 'events/event_list.html'
 	model = Event
+	form_class = EventForm
+	success_url = reverse_lazy('event-list')
 
 
-class EventDetailView(DetailView):
+class EventDetailView(FormView, DetailView):
 
 	template_name = 'events/event_detail.html'
 	model = Event
