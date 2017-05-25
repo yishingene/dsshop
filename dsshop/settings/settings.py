@@ -267,6 +267,12 @@ OSCAR_DASHBOARD_NAVIGATION = [
         'url_name': 'dashboard:order-list',
     },
     {
+        'label': _('Events'),
+        'icon': 'icon-calendar',
+        'url_name': 'event-list',
+        'access_fn': lambda user, url_name, url_args, url_kwargs: user.is_staff,
+    },
+    {
         'label': _('Reports'),
         'icon': 'icon-bar-chart',
         'url_name': 'dashboard:reports-index',

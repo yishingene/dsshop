@@ -64,9 +64,6 @@ class Gateway(object):
 		execute request
 		'''
 
-		#print('_fetch_response()')
-		#print('GATEWAY KWARGS: %s' % kwargs)
-
 		basket_amount = int(kwargs['amount'] * 100)
 		amount = str(basket_amount)
 
@@ -96,65 +93,11 @@ class Gateway(object):
 
 		return request_dict
 
-		
-		#response = requests.post(OGONE_TEST_URL, json=request_dict)	# TEST PAGE
-		#requests.get(OGONE_TEST_URL)
-		#response = requests.post(OGONE_TEST_URL, json={'brol': 'yes'})	
-
-
 
 		print('ogone response: %s' % response)
 		print(response.text)
 
-		# except requests.ConnectionError:
 
-		# 	print('godver')
-		# 	raise SipsPaymentError(mark_safe('Connection Error'))
-
-
-		# json_response = response.json()
-
-		# logger.info("sips return code #%s" % json_response['redirectionStatusCode'])
-
-
-		# if json_response['redirectionStatusCode'] == '00':
-
-		# 	print('--------SIPS CONNECTOR: SUCCESS')
-		# 	print(str(json_response))
-
-		# 	url = str(json_response['redirectionUrl'])
-		# 	redirectionVersion = str(json_response['redirectionVersion'])
-		# 	redirectionData = str(json_response['redirectionData'])
-
-		# 	print(url)
-		# 	print(redirectionVersion)
-		# 	print(redirectionData)
-
-		# 	return url
-		# 	#return url, redirectionVersion, redirectionData
-
-
-		# else:
-		# 	print('--------SIPS CONNECTOR: FAILURE')
-
-		# 	print('error: ' + str(json_response['redirectionStatusCode']))
-		# 	print('volledige error response: ' + str(json_response))
-
-		# 	if str(json_response['redirectionStatusCode']) == '94':
-
-		# 		raise SipsPaymentError(mark_safe('Er werd reeds een transactie uitgevoerd met deze referentie. ' + \
-		# 			'Een duplicaat transactie wordt omwille van veiligheidsredenen niet toegelaten!'))
-
-
-
-		# 	else: 
-
-		# 		raise SipsPaymentError(mark_safe('Ander issue'))
-
-			#return 'http://127.0.0.1:8000/checkout/preview/', None, None, json_response['redirectionStatusCode']
-
-
-		#return response.json()
 
 	def _calculate_seal(self, concat_string, secret_key):
 		'''
@@ -167,6 +110,6 @@ class Gateway(object):
 		#sig = hashlib.sha1(message).hexdigest() # Also possible and tested!
 		sig = hashlib.sha256(message).hexdigest()
 
-		print('signature: %s' % sig)
+		#print('signature: %s' % sig)
 
 		return sig

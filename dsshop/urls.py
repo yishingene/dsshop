@@ -34,6 +34,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^contact/$', other_views.ContactPageView.as_view(), name='contact'),
+    url(r'^dashboard/events/$', other_views.EventListView.as_view(), name='event-list'),
+    url(r'^dashboard/events/(?P<event_id>\d+)/$', other_views.EventDetailView.as_view(), name='event-detail'),
     url(r'^upload/$', other_views.UploadView.as_view(), name='upload'),
 
     url(r'', include(application.urls)),

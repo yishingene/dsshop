@@ -1,6 +1,6 @@
 import os
 
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, FormView, ListView, DetailView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.utils.translation import ugettext as _
@@ -10,8 +10,20 @@ from django.conf import settings
 from django.contrib import messages
 
 from .forms import UploadFileForm, ContactForm
+from .models import Event
 
 # Create your views here.
+class EventListView(ListView):
+
+	template_name = 'events/event_list.html'
+	model = Event
+
+
+class EventDetailView(DetailView):
+
+	template_name = 'events/event_detail.html'
+	model = Event
+
 class ContactPageView(FormView):
 
 	template_name = 'contact.html'
