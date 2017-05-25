@@ -1,1 +1,18 @@
-event_detail.html
+{% extends 'dashboard/layout.html' %}
+
+{% load i18n %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
+        </li>
+        <li class="active">{% trans "Events" %}</li>
+    </ul>
+{% endblock %}
+
+{% block header %}
+    <div class="page-header">
+        <h1>{% trans "Events" %}</h1>
+    </div>
+{% endblock header %}

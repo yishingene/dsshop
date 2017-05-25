@@ -1,1 +1,97 @@
-event_list.html
+{% extends 'dashboard/layout.html' %}
+
+{% load i18n %}
+
+.collapse-title {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	font-size: 12px;
+	font-weight: 700;
+	color: #959595;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	content: "Example"
+}
+
+{% block extrastyles %}
+    {{ block.super }}
+    <style type="text/css">
+
+    	.collapse-title {
+			margin-right: 0;
+			margin-left: 0;
+			background-color: #fff;
+			border-color: #ddd;
+			border-width: 1px;
+			border-radius: 4px 4px 0 0;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			position: relative;
+			padding: 45px 15px 0px;
+			margin: 0 -15px 15px;
+			border-color: #e5e5e5 #eee #eee;
+			border-style: solid;
+			border-width: 1px 0;
+    	}
+
+		.collapse-title::after {
+			box-sizing: border-box;
+			position: absolute;
+			top: 15px;
+			left: 15px;
+			font-size: 12px;
+			font-weight: 700;
+			color: #959595;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			content: "{% trans 'Alle beurzen' %}"
+		}
+    </style>
+
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
+        </li>
+        <li class="active">{% trans "Events" %}</li>
+    </ul>
+{% endblock %}
+
+{% block header %}
+    <div class="page-header">
+        <h1>{% trans "Events" %}</h1>
+    </div>
+{% endblock header %}
+
+{% block dashboard_content %}
+<div class="container">
+	<div class="row">
+		{% if not object_list %}
+		<div class="col-sm-7 collapse-title">
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			{% for event in object_list %}
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingOne">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+			          Collapsible Group Item #1
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+			      <div class="panel-body">
+			        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+			      </div>
+			    </div>
+			  </div>
+			  {% endfor %}
+			</div>
+		</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock dashboard_content %}
+
