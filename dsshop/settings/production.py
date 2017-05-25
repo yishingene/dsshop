@@ -6,8 +6,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'dsshop_db',                      # Or path to database file if using sqlite3.
-        #'NAME': 'test',
-        # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
         'HOST': '',                      # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
@@ -45,5 +43,5 @@ EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
 
 OSCAR_FROM_EMAIL = 'website@tomverheyden.com'
 
-# Allow all host headers
+# Allow these domains
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.tomverheyden.com', '.aws.amazon.com', '.herokuapp.com']

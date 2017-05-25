@@ -131,7 +131,7 @@
       <div id="logo">
         <img src="{{ url }}">
       </div>
-      <h1>{% trans 'Invoice' %}</h1>
+      <h1>{% trans 'Factuur' %}</h1>
       <div id="client-company">
         <table>
             <tr>
@@ -159,16 +159,16 @@
       <div>
           <table>
               <tr>
-                <td>
+                <td style="width:35%">
                     <h4>{% trans 'Factuur nummer' %}</h4>
                 </td>
-                <td></td>
+                <td>{{ order.number }}</td>
               </tr>
-              <tr>
+              <tr  style="width:30%">
                 <td>
                     <h4>{% trans 'Date' %}</h4>
                 </td>
-                <td></td>
+                <td>{{ order.date_placed|date:'m N o' }}</td>
               </tr>
           </table>
       </div>
@@ -206,7 +206,7 @@
           </tr>
         {% endfor %}
           <tr class="totals">
-            {% trans 'Subtotal' as subtotal %}
+            {% trans 'Subtotaal' as subtotal %}
             <td colspan="4" class="total">{{ subtotal|upper }}</td>
             <td class="total">{{ order.basket_total_excl_tax|currency:order.currency }}</td>
           </tr>
