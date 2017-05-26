@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends 'catalogue/browse.html' %}
 
 {% load history_tags currency_filters reviews_tags staticfiles product_tags display_tags i18n purchase_info_tags thumbnail %}
 
@@ -55,7 +55,7 @@
                     <div class="summary">
                         <div class="description">
                             <h4>{{ product.title }}</h4>
-                            <p>{% trans 'Geen beschrijving opgegeven' %}</p>
+                            <!-- <p>{% trans 'Geen beschrijving opgegeven' %}</p> -->
                         </div>
                         <div>
                     {% purchase_info_for_product request product as session %}
@@ -63,9 +63,19 @@
                         {% if session.price.excl_tax == 0 %}
                             <p class="price"><span class="amount">{% trans 'Gratis' %}</span></p>
                         {% elif session.price.is_tax_known %}
-                            <p class="price"><span class="amount">{{ session.price.incl_tax|currency:session.price.currency }}</span></p>
+                            <p class="price" style="margin-bottom: 0px;">
+                                <span class="amount">
+                                    {{ session.price.incl_tax|currency:session.price.currency }}
+                                </span>
+                            </p>
+                            {% trans 'BTW incl.' %}
                         {% else %}
-                            <p class="price"><span class="amount">{{ session.price.excl_tax|currency:session.price.currency }}</span></p>
+                            <p class="price">
+                                <span class="amount">
+                                    {{ session.price.excl_tax|currency:session.price.currency }} 
+                                </span>
+                            </p>
+                            {% trans 'BTW excl.' %}
                         {% endif %}
                     {% else %}
                             <p class="price"><span class="amount">&nbsp;</span></p>                        
@@ -76,12 +86,11 @@
                     </div><!-- /.summary -->
                 </div>
                 <div class="products-detail">
-                    <div class="flat-tabs" style="clear: left;">
+ <!--                    <div class="flat-tabs" style="clear: left;">
                         <ul class="menu-tabs">
                             <li class="active">
                                 <a href="#">{% trans 'kenmerken' %}</a>
                             </li>
-                            <!--<li class=""><a href="#">Reviews (0)</a></li>-->
                         </ul>
                         <div class="content-tab">
                             <div class="content-inner active" style="display: block;">
@@ -91,9 +100,9 @@
                                 consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
                                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </div><!-- /.content-inner -->                                    
-                        </div><!-- /.content-tab -->
-                    </div><!-- /.flat-tabs -->
+                            </div>                                    
+                        </div>
+                    </div> -->
             {% with recommended_products=product.recommended_products.all|slice:":3"%}
                 {% if recommended_products %}
                     <div class="related_products woocommerce">
@@ -110,7 +119,7 @@
                 <div class="sidebar-wrap">
                     <div class="sidebar">                               
                         {% block categories %}
-                            {% include 'catalogue/partials/category_overview.html' %}
+                            {% include 'catalogue/partials/subcategory_overview.html' with category=product.categories.all.0 %}
                         {% endblock categories %}
                         {% block recently_viewed %}
                             {% recently_viewed_products current_product=product %}

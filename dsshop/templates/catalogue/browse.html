@@ -50,7 +50,6 @@
                     {% include 'catalogue/partials/pagination.html' with paginator=paginator page_obj=page_obj %}
                 </div><!-- /.woocommerce -->
             </div><!-- /.general -->
-
             <div class="general-sidebars">
                 <div class="sidebar-wrap">
                     <div class="sidebar">                               
@@ -60,19 +59,6 @@
                         {% block recently_viewed %}
                             {% recently_viewed_products current_product=product %}
                         {% endblock recently_viewed %}
-
-<!--                         <div class="widget widget_tag_cloud">
-                            <h4 class="widget-title">Product tags</h4>
-                            <div class="tagcloud">
-                                <a href="#">Blue</a>
-                                <a href="#">Hitch</a>
-                                <a href="#">Horn</a>
-                                <a href="#">Led</a>
-                                <a href="#">Metro</a>
-                                <a href="#">Smittybilt</a>
-                                <a href="#">Tow</a>
-                            </div>
-                        </div> -->
                     </div><!-- /.sidebar -->
                 </div><!-- /.sidebar-wrap -->
             </div><!-- /.general-sidebars -->
@@ -82,7 +68,6 @@
 {% endif %}
 
 {% endblock product_list %}
-
 
 {% block onbodyload %}
     {{ block.super }}
