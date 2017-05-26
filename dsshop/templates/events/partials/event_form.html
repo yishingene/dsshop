@@ -1,30 +1,35 @@
 {% load widget_tweaks %}
 
-<div class="row">
-	<div class="col-xs-10 col-xs-offset-1" style="width:420px;">
-		<div class="form-group">
-			<label for="{{ update_form.name.id_for_label }}">{{ update_form.name.label }}</label>
-			{% render_field update_form.name class+="update_form-control" %}
-		</div>
-		<div class="form-group">
-			<label for="{{ update_form.date.id_for_label }}">{{ update_form.date.label }}</label><br>
-			{% render_field update_form.date class+="update_form-control" %}
-		</div>
-		<div class="form-group">
-			<label for="{{ update_form.duration.id_for_label }}">{{ update_form.duration.label }}</label><br>
-			{% render_field update_form.duration class+="update_form-control" %}
-		</div>
-		<div class="form-group">
-			<label for="{{ update_form.location.id_for_label }}">{{ update_form.location.label }}</label>
-			{% render_field update_form.location class+="update_form-control" %}
-		</div>
-		<div class="form-group">
-			<label for="{{ update_form.country.id_for_label }}">{{ update_form.country.label }}</label>
-			{% render_field update_form.country class+="update_form-control" %}
-		</div>
-		<div class="form-group">
-			<label for="{{ update_form.website.id_for_label }}">{{ update_form.website.label }}</label>
-			{% render_field update_form.website class+="update_form-control" %}
-		</div>
-	</div>
-</div>
+
+      	<div class="modal-body">
+			<div class="row">
+				<div class="col-xs-10 col-xs-offset-1" style="width:420px;">
+					<div class="form-group">
+						<label for="{{ update_form.name.id_for_label }}">{{ update_form.name.label }}</label>
+						{% render_field update_form.name class+="form-control" %}
+					</div>
+					<div class="form-group">
+						<label for="{{ update_form.date.id_for_label }}">{{ update_form.date.label }}</label><br>
+						{% render_field update_form.date class+="form-control" %}
+					</div>
+					<div class="form-group">
+						<label for="{{ update_form.duration.id_for_label }}">{{ update_form.duration.label }}</label><br>
+						{% render_field update_form.duration class+="form-control" %}
+					</div>
+					<div class="form-group">
+						<label for="{{ update_form.location.id_for_label }}">{{ update_form.location.label }}</label>
+						{% render_field update_form.location class+="form-control" %}
+					</div>
+					<div class="form-group">
+						<label for="{{ update_form.country.id_for_label }}">{{ update_form.country.label }}</label>
+						{% render_field update_form.country class+="form-control" %}
+					</div>
+					<div class="form-group">
+						<label for="{{ update_form.website.id_for_label }}">{{ update_form.website.label }}</label>
+						{% render_field update_form.website class+="form-control" %}
+					</div>
+				</div>
+			</div>
+      	</div>
+
+

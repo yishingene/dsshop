@@ -1,6 +1,6 @@
 import os
 
-from django.views.generic import TemplateView, FormView, ListView, DetailView, DeleteView
+from django.views.generic import TemplateView, FormView, ListView, DetailView, DeleteView, UpdateView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.utils.translation import ugettext as _
@@ -56,10 +56,74 @@ class EventDeleteView(DeleteView):
 	model = Event
 	success_url = reverse_lazy('event-list')
 
-class EventUpdateView(FormView, DetailView):
+class EventUpdateView(FormView):
 
 	model = Event
 	success_url = reverse_lazy('event-list')
+	fields = '__all__'
+	form_class = EventForm
+	queryset = None
+	pk_url_kwarg = 'pk'
+
+
+	def post(self, request, *args, **kwargs):
+
+		print('------- post ')
+
+		form = EventForm(request.POST, instance=self.get_object())
+
+		if form.is_valid():
+			return self.form_valid(form)
+
+		else:
+			return self.form_invalid(form)
+
+	def form_valid(self, form):
+		"""
+		If the form is valid, redirect to the supplied URL.
+		"""
+		self.object = form.save(commit=True)
+
+		return HttpResponseRedirect(self.success_url)
+
+	def get_object(self, queryset=None):
+
+		if queryset is None:
+			queryset = self.get_queryset()
+		# Next, try looking up by primary key.
+		pk = self.kwargs.get(self.pk_url_kwarg)
+
+		if pk is not None:
+			queryset = queryset.filter(pk=pk)
+		# Next, try looking up by slug.
+		
+		# If none of those are defined, it's an error.
+		if pk is None:
+			raise AttributeError("Generic detail view %s must be called with "
+		                     "an object pk"
+		                     % self.__class__.__name__)
+		try:
+		# Get the single item from the filtered queryset
+			obj = queryset.get()
+		except queryset.model.DoesNotExist:
+			raise Http404(_("No %(verbose_name)s found matching the query") %
+		              {'verbose_name': queryset.model._meta.verbose_name})
+		return obj
+
+	def get_queryset(self):
+	
+		if self.queryset is None:
+			if self.model:
+				return self.model._default_manager.all()
+			else:
+				raise ImproperlyConfigured(
+					"%(cls)s is missing a QuerySet. Define "
+					"%(cls)s.model, %(cls)s.queryset, or override "
+					"%(cls)s.get_queryset()." % {
+					    'cls': self.__class__.__name__
+					}
+				)
+		return self.queryset.all()
 
 class ContactPageView(FormView):
 

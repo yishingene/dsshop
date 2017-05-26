@@ -30,7 +30,7 @@ class EventFormNode(template.Node):
 
 		t = context.template.engine.get_template('events/partials/event_form.html')
 
-		return t.render(Context({'update_form': form}, autoescape=context.autoescape))
+		return t.render(Context({'update_form': form, 'event': self.event.resolve(context)}, autoescape=context.autoescape))
 
 	def get_form(self, context):
 
@@ -39,6 +39,3 @@ class EventFormNode(template.Node):
 		print(' yyyyyyyyyyy %s' % event)
 
 		return EventForm(instance=event)
-
-
-

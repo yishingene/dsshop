@@ -170,26 +170,22 @@
 {% for event in object_list %}
 <div class="modal fade" id="update-modal-{{ forloop.counter }}">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Wijzig {{ event.name }}</h4>
-      </div>
-      <div class="modal-body">
-
-
-		{% event_form event %}
-
-      <!-- 	{{ update_form_1 }} -->
-      </div>
-      <div class="modal-footer">
-      	<form method="POST" action="{% url 'event-update' event.pk %}">
-  			{% csrf_token %}
-        	<button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
-        	<button class="btn btn-info">Wijzigen</button>
-	        </form>
-      </div>
-    </div>
+	<div class="modal-content">
+	    <form method="POST" action="{% url 'event-update' event.pk %}">
+	    	{% csrf_token %}
+	      	<div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		        	<span aria-hidden="true">&times;</span>
+	        	</button>
+		        <h4 class="modal-title" id="myModalLabel">Wijzig {{ event.name }}</h4>
+	      	</div>
+  				{% event_form event %}
+	  	  	<div class="modal-footer">		
+	    		<button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+	    		<button class="btn btn-info">Wijzigen</button>
+	  	  	</div>
+	  	</form>
+	</div>
   </div>
 </div>
 {% endfor %}
