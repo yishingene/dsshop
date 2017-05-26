@@ -48,13 +48,13 @@
 			content: "{% trans 'Alle beurzen' %}"
 		}
 		#s2id_id_date_day {
-			width: 18% !important;
+			width: 19% !important;
 		}
 		#s2id_id_date_month {
-			width: 48	% !important;
+			width: 49% !important;
 		}
 		#s2id_id_date_year {
-			width: 30% !important;
+			width: 29% !important;
 		}
     </style>
 
@@ -78,6 +78,15 @@
 {% block dashboard_content %}
 <div class="container">
 	<div class="row">
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="flat-woocommerce">
+                        <div class="woocommerce-{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}success{% else %}danger{% endif %}">
+                            <p>{{ message }}<p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
 		<div class="col-sm-7" style="padding-left: 0px;">
 			<button class="btn btn-info" data-toggle="modal" data-target="#eventmodal" style="margin-top: 15px;">
 				{% trans 'Event toevoegen' %}
@@ -91,7 +100,7 @@
 			    <div class="panel-heading" role="tab" id="headingOne">
 			      <h4 class="panel-title">
 			        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-			          {{ event.name }} - {{ event.date|date:'b o'}}
+			          {{ event.name|title }} ({{ event.date|date:'b o'}})
 			        </a>
 			      </h4>
 			    </div>
@@ -119,36 +128,24 @@
 	      </div>
 	      <div class="modal-body">
 	      	<div class="row">
-	      		<div class="col-xs-4">
-	      			{{ form.name.label }}
+	      		<div class="col-xs-10 col-xs-offset-1" style="width:420px;">
+	      			<div class="form-group">
+	      				<label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+	      				{% render_field form.name class+="form-control" %}
+	      			</div>
+	      			<div class="form-group">
+	      				<label for="{{ form.date.id_for_label }}">{{ form.date.label }}</label><br>
+	      				{% render_field form.date class+="form-control" %}
+	      			</div>
+	      			<div class="form-group">
+	      				<label for="{{ form.location.id_for_label }}">{{ form.location.label }}</label>
+	      				{% render_field form.location class+="form-control" %}
+	      			</div>
+	      			<div class="form-group">
+	      				<label for="{{ form.website.id_for_label }}">{{ form.website.label }}</label>
+	      				{% render_field form.website class+="form-control" %}
+	      			</div>
 	      		</div>
-	      		<div class="col-xs-8">
-	      			{% render_field form.name %}
-      			</div>
-	      	</div>
-	      	<div class="row">
-	      		<div class="col-xs-4">
-	      			{{ form.date.label }}
-	      		</div>
-	      		<div class="col-xs-8" style="width:300px;">
-	      			{% render_field form.date %}
-      			</div>
-	      	</div>
-	      	<div class="row">
-	      		<div class="col-xs-4">
-	      			{{ form.location.label }}
-	      		</div>
-	      		<div class="col-xs-8">
-	      			{% render_field form.location %}
-      			</div>
-	      	</div>
-	      	<div class="row">
-	      		<div class="col-xs-4">
-	      			{{ form.website.label }}
-	      		</div>
-	      		<div class="col-xs-8">
-	      			{% render_field form.website %}
-      			</div>
 	      	</div>
 	      </div>
 	      <div class="modal-footer">

@@ -2,7 +2,7 @@ import os
 
 from django.views.generic import TemplateView, FormView, ListView, DetailView
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.utils.translation import ugettext as _
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
@@ -21,6 +21,24 @@ class EventListView(FormView, ListView):
 	form_class = EventForm
 	success_url = reverse_lazy('event-list')
 
+	def post(self, request, *args, **kwargs):
+
+
+		form = self.get_form()
+
+		if form.is_valid():
+			return self.form_valid(form)
+
+		else:
+			return self.form_invalid(form)
+
+	def form_valid(self, form):
+		"""
+		If the form is valid, redirect to the supplied URL.
+		"""
+		form.save(commit=True)
+
+		return HttpResponseRedirect(self.success_url)
 
 class EventDetailView(FormView, DetailView):
 

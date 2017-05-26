@@ -14,6 +14,7 @@ class EventForm(forms.ModelForm):
 		model = Event
 		fields = '__all__'
 
+
 class UploadFileForm(forms.Form):
 
 	new_file = forms.FileField()
