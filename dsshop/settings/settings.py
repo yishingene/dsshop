@@ -290,7 +290,7 @@ OSCAR_ORDER_STATUS_PIPELINE = {
     'Verzendkosten toegevoegd': ('Klant verwittigd van verzendkosten', ),
     'Klant verwittigd van verzendkosten': ('Betaald', 'Geannuleerd', ),
     'Afhaling door klant': ('Betaald','Geannuleerd', ),
-    'Betaald': ('Verwerkt'),
+    'Betaald': ('Verwerkt', ),
     'Verwerkt': (),
     'Geannuleerd': (),
 }
