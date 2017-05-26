@@ -25,6 +25,12 @@ class EventListView(FormView, ListView):
 
 		ctx = super(EventListView, self).get_context_data(**kwargs)
 
+		for event in Event.objects.all():
+
+			index = event.pk
+			form_name = 'update_form_%s' % (index)
+			ctx[form_name] = EventForm(instance=event)
+
 		return ctx
 
 	def post(self, request, *args, **kwargs):
@@ -50,10 +56,10 @@ class EventDeleteView(DeleteView):
 	model = Event
 	success_url = reverse_lazy('event-list')
 
-class EventDetailView(FormView, DetailView):
+class EventUpdateView(FormView, DetailView):
 
-	template_name = 'events/event_detail.html'
 	model = Event
+	success_url = reverse_lazy('event-list')
 
 class ContactPageView(FormView):
 

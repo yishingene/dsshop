@@ -1,6 +1,6 @@
 {% extends 'dashboard/layout.html' %}
 
-{% load i18n widget_tweaks %}
+{% load i18n event_tags widget_tweaks %}
 
 .collapse-title {
 	position: absolute;
@@ -106,7 +106,7 @@
 			    </div>
 			    <div id="collapse-{{ forloop.counter }}" class="panel-collapse collapse {% if forloop.first %}in{% endif %}" role="tabpanel" aria-labelledby="headingOne">
 			      <div class="panel-body">
-			      	<a class="btn btn-info" href="">{% trans 'Wijzig' %}</a>
+			      	<button class="btn btn-info" data-toggle="modal" data-target="#update-modal-{{ forloop.counter }}">Wijzig</button>
 			      	<button class="btn btn-danger" data-toggle="modal" data-target="#delete-modal-{{ forloop.counter }}">Verwijder</button>
 			      </div>
 			    </div>
@@ -139,6 +139,10 @@
 	      				{% render_field form.date class+="form-control" %}
 	      			</div>
 	      			<div class="form-group">
+	      				<label for="{{ form.duration.id_for_label }}">{{ form.duration.label }}</label><br>
+	      				{% render_field form.duration class+="form-control" %}
+	      			</div>
+	      			<div class="form-group">
 	      				<label for="{{ form.location.id_for_label }}">{{ form.location.label }}</label>
 	      				{% render_field form.location class+="form-control" %}
 	      			</div>
@@ -162,6 +166,35 @@
   </div>
 </div>
 
+<!-- UPDATE MODAL VIEWS-->
+{% for event in object_list %}
+<div class="modal fade" id="update-modal-{{ forloop.counter }}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Wijzig {{ event.name }}</h4>
+      </div>
+      <div class="modal-body">
+
+
+		{% event_form event %}
+
+      <!-- 	{{ update_form_1 }} -->
+      </div>
+      <div class="modal-footer">
+      	<form method="POST" action="{% url 'event-update' event.pk %}">
+  			{% csrf_token %}
+        	<button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+        	<button class="btn btn-info">Wijzigen</button>
+	        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+<!-- DELETE MODAL VIEWS-->
 {% for event in object_list %}
 <div class="modal fade" id="delete-modal-{{ forloop.counter }}">
   <div class="modal-dialog modal-sm">
