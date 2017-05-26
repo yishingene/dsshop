@@ -80,6 +80,7 @@ INSTALLED_APPS = [
     'rest_framework',   # Required om gebruik te kunnen maken van oscarapi
     'Crypto',           # Wordt gebruikt voor hashing om te communiceren met payment gateway
     'easy_pdf',         # Wordt gebruikt om pdf's te genereren op basis van templates
+    'django_countries', # Wordt gebruikt om landen in te laden
 
     'dsshop',
     'other_pages',
@@ -295,3 +296,5 @@ OSCAR_ORDER_STATUS_PIPELINE = {
 }
 
 DEV = False
+
+COUNTRIES_ONLY = ['BE', 'FR', 'NL', 'DE', ]

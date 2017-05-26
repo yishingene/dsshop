@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from django_countries.fields import CountryField
+
 
 # Create your models here.
 
@@ -10,6 +12,7 @@ class Event(models.Model):
 	date = models.DateField(_('datum'))
 	website = models.URLField(_('website link'), blank=True)
 	location = models.CharField(_('locatie (stad)'), max_length=64)
+	country = CountryField('location (land)', default='BE')
 
 	class Meta:
 		verbose_name = 'beurs'

@@ -1,6 +1,6 @@
 import os
 
-from django.views.generic import TemplateView, FormView, ListView, DetailView
+from django.views.generic import TemplateView, FormView, ListView, DetailView, DeleteView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.utils.translation import ugettext as _
@@ -21,8 +21,13 @@ class EventListView(FormView, ListView):
 	form_class = EventForm
 	success_url = reverse_lazy('event-list')
 
-	def post(self, request, *args, **kwargs):
+	def get_context_data(self, **kwargs):
 
+		ctx = super(EventListView, self).get_context_data(**kwargs)
+
+		return ctx
+
+	def post(self, request, *args, **kwargs):
 
 		form = self.get_form()
 
@@ -39,6 +44,11 @@ class EventListView(FormView, ListView):
 		form.save(commit=True)
 
 		return HttpResponseRedirect(self.success_url)
+
+class EventDeleteView(DeleteView):
+
+	model = Event
+	success_url = reverse_lazy('event-list')
 
 class EventDetailView(FormView, DetailView):
 
