@@ -21,7 +21,11 @@ def event_form(parser, token):
 @register.tag
 def render_footer_events(parser, token):
 
-	return FooterEventsNode()
+	tokens = token.split_contents()	
+
+	user = tokens[1]
+
+	return FooterEventsNode(user)
 
 
 class EventFormNode(template.Node):
@@ -46,11 +50,16 @@ class EventFormNode(template.Node):
 
 class FooterEventsNode(template.Node):
 
+	def __init__(self, user):
+
+		self.user = template.Variable(user)
+
 	def render(self, context):
 
 		events = Event.objects.order_by('date').filter(date__gte=datetime.date.today())[:2]
+		user = self.user.resolve(context)
 
 		t = context.template.engine.get_template('events/partials/footer_events.html')
 
-		return t.render(Context({'events': events}, autoescape=context.autoescape))
+		return t.render(Context({'events': events, 'user': user}, autoescape=context.autoescape))
 

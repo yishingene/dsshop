@@ -16,5 +16,11 @@
 	{% endfor %}
 	</ul>
 {% else %}
-	<p>
+	<a>
+		{% trans 'Er zijn op dit ogenblik geen beurzen gepland' %}
+	</a>
+	 {% if user.is_staff  %}
+	<hr>
+	<a class="button" href="{% url 'event-list' %}"" style="color:white; text-align: center;">Event toevoegen</a>
+	{% endif %}
 {% endif %}
