@@ -63,12 +63,8 @@ class EventUpdateView(FormView):
 	fields = '__all__'
 	form_class = EventForm
 	queryset = None
-	pk_url_kwarg = 'pk'
-
 
 	def post(self, request, *args, **kwargs):
-
-		print('------- post ')
 
 		form = EventForm(request.POST, instance=self.get_object())
 
@@ -91,7 +87,7 @@ class EventUpdateView(FormView):
 		if queryset is None:
 			queryset = self.get_queryset()
 		# Next, try looking up by primary key.
-		pk = self.kwargs.get(self.pk_url_kwarg)
+		pk = self.kwargs.get('pk')
 
 		if pk is not None:
 			queryset = queryset.filter(pk=pk)

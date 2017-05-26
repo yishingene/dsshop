@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n event_tags %}
 <div class="footer-widgets">
     <div class="container">
         <div class="row">
@@ -14,16 +14,7 @@
                     <div class="col-md-4">
                         <div class="widget widget_recent_entries">
                             <h4 class="widget-title">{% trans 'Opkomende events?' %}</h4>
-                            <ul>
-                                <li>
-                                    <a href="#">Oldtimer beurs<br>- Vestibulum</a>
-                                    <span class="post-date">25 maart 2016</span>
-                                </li>
-                                <li>
-                                    <a href="#">DS meeting<br>- Justo</a>
-                                    <span class="post-date">25 maart 2016</span>
-                                </li>
-                            </ul>
+                            {% render_footer_events %}
                         </div><!-- /.widget_recent_entries -->
                     </div><!-- /.col-md-3 -->
                     <div class="col-md-4">

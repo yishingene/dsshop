@@ -2,6 +2,7 @@ import datetime
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.template.defaultfilters import date as _date
 
 from django_countries.fields import CountryField
 
@@ -30,4 +31,24 @@ class Event(models.Model):
 
 		difference = self.duration - 1
 		return self.date + datetime.timedelta(days=difference)
+
+
+	def date_represenation(self):
+
+		if self.duration == 1:
+
+			start = self.date
+
+			return _date(start, 'd F Y')
+
+		else:
+			end = self.end_date()
+			start = self.date
+
+			if start.month == end.month:
+				return _date(start, 'd') + ' - ' + _date(end, 'd F Y')  
+
+			else: 
+				return _date(start, 'd F') + ' - ' + _date(end, 'd F') 
+
 

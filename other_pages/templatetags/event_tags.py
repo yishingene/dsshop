@@ -1,3 +1,5 @@
+import datetime
+
 from django import template
 from django.template import Context
 from django.utils.safestring import mark_safe
@@ -16,6 +18,12 @@ def event_form(parser, token):
 
 	return EventFormNode(event)
 
+@register.tag
+def render_footer_events(parser, token):
+
+	return FooterEventsNode()
+
+
 class EventFormNode(template.Node):
 
 	def __init__(self, event):
@@ -26,8 +34,6 @@ class EventFormNode(template.Node):
 
 		form = self.get_form(context)
 
-		#print('°°°°°°°°°°°°° %s' % form)
-
 		t = context.template.engine.get_template('events/partials/event_form.html')
 
 		return t.render(Context({'update_form': form, 'event': self.event.resolve(context)}, autoescape=context.autoescape))
@@ -36,6 +42,15 @@ class EventFormNode(template.Node):
 
 		event = self.event.resolve(context)
 
-		print(' yyyyyyyyyyy %s' % event)
-
 		return EventForm(instance=event)
+
+class FooterEventsNode(template.Node):
+
+	def render(self, context):
+
+		events = Event.objects.order_by('date').filter(date__gte=datetime.date.today())[:2]
+
+		t = context.template.engine.get_template('events/partials/footer_events.html')
+
+		return t.render(Context({'events': events}, autoescape=context.autoescape))
+
