@@ -1,8 +1,7 @@
 {% extends "customer/baseaccountpage.html" %}
-{% load currency_filters %}
-{% load display_tags %}
-{% load i18n %}
-{% load reviews_tags %}
+{% load currency_filters i18n display_tags %}
+
+{% load test_tags %}
 
 {% block extra_breadcrumbs %}
     <li>
@@ -30,11 +29,6 @@
                                 <p>
                                     <a href="{{ product.get_absolute_url }}">{{ line.description|capfirst }}</a>
                                 </p>
-                                {% iffeature "reviews" %}
-                                    {% if product|is_review_permitted:user %}
-                                        <a class="button" href="{% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id %}#addreview">{% trans 'Write a review' %}</a>
-                                    {% endif %}
-                                {% endiffeature %}
                             {% else %}
                                 <p>
                                     {{ line.description|capfirst }}
@@ -87,8 +81,16 @@
             {% csrf_token %}
             <input type="hidden" name="order_id" value="{{ order.id }}" />
             <input type="hidden" name="action" value="reorder" />
-            <button type="submit" class="button" data-loading-text="{% trans 'Re-ordering...' %}">{% trans 'Re-order all items' %}</button>
+            <button type="submit" class="button" data-loading-text="{% trans 'Re-ordering...' %}">
+                {% trans 'Re-order all items' %}
+            </button>
+            {% if order.payment_events.all %}
+            <button class="button black">Hierzo {{ order.payment_events.all|length }} {{ order.payment_events }}</button>
+            {% endif %}
+            {% get_payment_event order %}
+            <button class="button blank">test - {{ var }}</button>
         </form>
+
     {% endblock order_actions %}
 
 {% endblock tabcontent %}
