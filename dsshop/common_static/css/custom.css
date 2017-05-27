@@ -340,3 +340,26 @@ div.textwidget div.content-text input::placeholder {
 div.textwidget div.content-text input:focus::placeholder {
 	color: darkgray;
 }
+
+a.collapsor.collapsed:after {
+	font-family: "FontAwesome";
+	content: "\f0d7";
+}
+
+a.collapsor:after {
+	font-family: "FontAwesome";
+	content: "\f0d8";
+}
+
+.widget.widget_text .textwidget .content-text {
+	padding: 15px;
+}
+
+.content-text > .title > a {
+	color: white;
+	cursor: hand;
+}
+
+.content-text > h4.title {
+	margin-bottom: 0px;
+}
