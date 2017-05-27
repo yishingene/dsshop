@@ -27,7 +27,7 @@
                                     <li><a href="{% url 'catalogue:index' %}">Shop</a></li>
                                     <li><a href="#">{% trans 'Onze diensten' %}</a></li>
                                     <li><a href="{% url 'contact' %}">{% trans 'Contacteer ons' %}</a></li>
-                                    <li><a href="#">{% trans 'Account' %}</a></li>
+                                    <li><a href="{% url 'customer:profile-view' %}">{% trans 'Account' %}</a></li>
                                     <li><a href="{% url 'basket:summary' %}">{% trans 'Winkelwagen' %}</a></li>
                                     <li><a href="#">{% trans "Foto's" %}</a></li>
                                 </ul>

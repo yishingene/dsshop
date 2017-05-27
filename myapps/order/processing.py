@@ -26,7 +26,6 @@ class EventHandler(OscarEventHandler):
 			payment_event_type.save()
 
 			payment_event = PaymentEvent(order=order, event_type=payment_event_type, amount=order.total_incl_tax, reference=order.number)
-
 			payment_event.save()
 
 			signals.post_payment.send_robust(sender=view, view=view)

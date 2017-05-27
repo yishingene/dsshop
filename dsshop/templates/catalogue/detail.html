@@ -25,7 +25,7 @@
                             <li class="trail-item"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
                         {% endfor %}
                     {% endwith %}
-                            <li class="trail-item">{{ product.title }}</li>
+                            <li class="trail-item">{{ product.title|capfirst }}</li>
                         </ul>
                     </div><!-- /.breadcrumbs -->
                 </div><!-- /.flat-wrapper -->
@@ -54,7 +54,7 @@
                 {% endwith %}
                     <div class="summary">
                         <div class="description">
-                            <h4>{{ product.title }}</h4>
+                            <h4>{{ product.title|capfirst }}</h4>
                             <!-- <p>{% trans 'Geen beschrijving opgegeven' %}</p> -->
                         </div>
                         <div>

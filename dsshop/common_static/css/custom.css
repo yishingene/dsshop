@@ -332,3 +332,11 @@ div.navigation.paging-navigation.numeric {
 #contactform textarea {
 	height: 272px;
 }
+
+div.textwidget div.content-text input::placeholder {
+	color: white;
+}
+
+div.textwidget div.content-text input:focus::placeholder {
+	color: darkgray;
+}

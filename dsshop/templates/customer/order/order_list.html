@@ -24,15 +24,31 @@
         <div class="widget widget_text information">
             <div class="textwidget">
                 <div class="content-text">
-                    <h4 class="title">{% trans "Filter" %}</h4>
+                    <h4 class="title">{% trans "Filter opties" %}</h4>
                     <form action="." method="get" class="form-horizontal">
-                        {% trans 'Date from' as date_from %}
-                        <!-- {% render_field form.date_from placeholder=date_from %} -->
-                        {% include "partials/form_fields.html" with form=form style='horizontal' %}
                         <div class="form-group">
-                            <div class="col-sm-offset-4 col-sm-8">
-                                <button type="submit" class="btn btn-primary" data-loading-text="{% trans 'Filtering...' %}">{% trans 'Filter results' %}</button>
-                                <a href="{% url 'customer:order-list' %}" class="btn btn-default">{% trans 'Reset' %}</a>
+                            <div class="row">
+                                <div class="col-xs-5 col-xs-offset-1">
+                            {% trans 'Date from' as date_from %}
+                            {% render_field form.date_from placeholder=date_from class+='form-control'  %}
+                                </div>
+                                <div class="col-xs-5">
+                            {% trans 'Date to' as date_to %}
+                            {% render_field form.date_to placeholder=date_to class+='form-control' %}
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 20px;">
+                                <div class="col-sm-3 col-xs-5 col-xs-offset-1">
+                        {% render_field form.order_number placeholder=form.order_number.label class+='form-control' %}
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 15px;">
+                                <div class="col-sm-8 col-xs-offset-1">
+                                    <button type="submit" class="button black sm" data-loading-text="{% trans 'Filtering...' %}">
+                                        {% trans 'Filter results' %}
+                                    </button>
+                                    <a href="{% url 'customer:order-list' %}" class="button black sm">{% trans 'Reset' %}</a>
+                                </div>
                             </div>
                         </div>
                     </form>
