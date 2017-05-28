@@ -166,9 +166,15 @@
               </tr>
               <tr  style="width:30%">
                 <td>
-                    <h4>{% trans 'Date' %}</h4>
+                    <h4>{% trans 'Factuur datum' %}</h4>
                 </td>
-                <td>{{ order.date_placed|date:'m N o' }}</td>
+                <td>{{ order.date_placed|date:'d N Y' }} </td>
+              </tr>
+             <tr  style="width:30%">
+                <td>
+                    <h4>{% trans 'Vervaldatum' %}</h4>
+                </td>
+                <td>{{ order.end_date|date:'d N Y' }} </td>
               </tr>
           </table>
       </div>

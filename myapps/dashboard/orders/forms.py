@@ -1,6 +1,7 @@
 from django import forms
 
-from oscar.apps.order.models import Order
+#from oscar.apps.order.models import Order
+from myapps.order.models import Order
 
 from decimal import Decimal as D
 
