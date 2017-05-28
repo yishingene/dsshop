@@ -146,3 +146,24 @@
                 });
             });
         };
+/* FLAT ACCORDION */
+    var flatAccordion = function() {
+        var args = {duration: 300};
+        $('.flat-toggle .toggle-title.active').siblings('.toggle-content').show();
+
+        $('.flat-toggle.enable .toggle-title').on('click', function() {
+            $(this).closest('.flat-toggle').find('.toggle-content').slideToggle(args);
+            $(this).toggleClass('active');
+        }); // toggle 
+
+        $('.flat-accordion .toggle-title').on('click', function () {
+            if( !$(this).is('.active') ) {
+                $(this).closest('.flat-accordion').find('.toggle-title.active').toggleClass('active').next().slideToggle(args);
+                $(this).toggleClass('active');
+                $(this).next().slideToggle(args);
+            } else {
+                $(this).toggleClass('active');
+                $(this).next().slideToggle(args);
+            }     
+        }); // accordion
+    }; 
