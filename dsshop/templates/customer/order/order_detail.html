@@ -1,8 +1,6 @@
 {% extends "customer/baseaccountpage.html" %}
 {% load currency_filters i18n display_tags %}
 
-{% load test_tags %}
-
 {% block extra_breadcrumbs %}
     <li>
         <a href="{% url 'customer:order-list' %}">{% trans 'Order history' %}</a>
@@ -85,10 +83,8 @@
                 {% trans 'Re-order all items' %}
             </button>
             {% if order.payment_events.all %}
-            <button class="button black">Hierzo {{ order.payment_events.all|length }} {{ order.payment_events }}</button>
+            <a target='_' href="http://www.google.be" class="button black">{% trans 'Jouw factuur' %}</a>
             {% endif %}
-            {% get_payment_event order %}
-            <button class="button blank">test - {{ var }}</button>
         </form>
 
     {% endblock order_actions %}
