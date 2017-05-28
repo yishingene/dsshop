@@ -135,7 +135,7 @@
       <div id="client-company">
         <table>
             <tr>
-                <td class="client">{% if order.billing_address %}{{ order.billing_address.title }} {{ order.billing_address.first_name }} {{ order.billing_address.last_name }}{% else %}{{ order.shipping_address.title }} {{ order.shipping_address.first_name }} {{ order.shipping_address.last_name }}{% endif %}</td>
+                <td class="client"><b>{% trans 'Aan:' %}</b> {% if order.billing_address %}{{ order.billing_address.first_name|title }} {{ order.billing_address.last_name|title }}{% else %}{{ order.shipping_address.first_name|title }} {{ order.shipping_address.last_name|title }}{% endif %}</td>
                 <td class="company">ELV bvba</td>
             </tr>
             <tr>
@@ -151,7 +151,7 @@
                 <td class="company">{% trans 'Belgium' %}</td>
             </tr>
             <tr>
-                <td class="client">Mijn Klant</td>
+                <td class="client"></td>
                 <td class="company">BE0500.518.020</td>
             </tr>
         </table>
@@ -182,11 +182,9 @@
 {% endblock %}
 
 
-{% block content %}
-
- 
+{% block content %} 
     <main>
-      <table>
+      <table style="margin-top: 60px;">
         <thead>
           <tr>
             {% trans 'Item' as item %}
@@ -216,27 +214,25 @@
             <td colspan="4" class="total">{{ subtotal|upper }}</td>
             <td class="total">{{ order.basket_total_excl_tax|currency:order.currency }}</td>
           </tr>
+          {% if order.shipping_excl_tax != 0 %}
           {% trans 'Verzendkosten' as shipping %}
           <tr class="totals">
             <td colspan="4" class="total">{{ shipping|upper }}</td>
-            <td class="total"></td>
+            <td class="total">{{ order.shipping_excl_tax|currency:order.currency }}</td>
           </tr>
+          {% endif %}
           {% trans 'BTW 21%' as tax %}
           <tr class="totals">
             <td colspan="4" class="total">{{ tax|upper }}</td>
             <td class="total">{{ order.total_tax|currency:order.currency }}</td>
           </tr>
           {% trans 'Total' as total %}
-          <tr class="totals" style="font-weight: bold;">
+          <tr class="totals complete" style="font-weight: bold;">
             <td colspan="4" class="grand total">{{ total|upper }}</td>
             <td class="grand total">{{ order.total_incl_tax|currency:order.currency }}</td>
           </tr>
         </tbody>
       </table>
-      <div id="notices">
-        <div>NOTICE:</div>
-        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
-      </div>
     </main>
 
 {% endblock %}

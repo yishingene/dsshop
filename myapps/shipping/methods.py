@@ -72,18 +72,18 @@ class SelfService(Free):
     code = 'Afhaling door klant'
     name = _('Ik kom de goederen zelf afhalen.')
 
-class DefferedShippingCost(Base):
+class DefferedShippingCost(Free):
 
     code = 'Verzenden naar klant'
     name = _('Verzend de producten naar mijn adres!')
 
-    def calculate(self, basket):
+    # def calculate(self, basket):
 
-        return prices.Price(
-            currency=basket.currency,
-            excl_tax=D('100.00'),
-            incl_tax=D('121.00'),
-            )
+    #     return prices.Price(
+    #         currency=basket.currency,
+    #         excl_tax=D('0.00'),
+    #         incl_tax=D('0.00'),
+    #         )
 
 class FixedPrice(Base):
     """
