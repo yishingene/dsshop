@@ -14,13 +14,15 @@ class EventHandler(OscarEventHandler):
 
 			view = PaymentDetailsView()
 
-			source_type, __ = paymentmodels.SourceType.objects.get_or_create(name="Betaalmethode_1")
+			source_type, __ = paymentmodels.SourceType.objects.get_or_create(name="Overschrijving")
 
 			source = paymentmodels.Source(
 				source_type=source_type,
 				amount_allocated=order.total_incl_tax,
-				reference=order.number
+				reference=order.number,
+				order=order,
 				)
+			source.save()
 
 			payment_event_type, created = PaymentEventType.objects.get_or_create(name='Betaald')
 			payment_event_type.save()
