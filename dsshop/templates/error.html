@@ -4,13 +4,11 @@
 
 {# yellow title block #}
 {% block subheader_title %}
-	{% trans 'Permission denied!' as error %}
+	{% trans 'Sorry!' as error %}
     {% include 'partials/page-title.html' with page_title=error %}
-	
 {% endblock %}
 
 {% block content %}
-
 <div class="flat-row">
   	<div class="container">
     	<div class="row">
@@ -19,7 +17,7 @@
 					<div class="col-md-8 col-md-offset-2">
 				        <div class="flat-woocommerce">
 				            <div class="woocommerce-danger">
-				                <strong>{% trans 'Permission denied!' %}</strong>
+				                <strong>{% block error_heading %}{% trans 'Sorry!' %}{% endblock %}</strong>
 				                {% block error_message %}{% endblock %}
 				            </div>
 				        </div>
@@ -31,5 +29,4 @@
 		</div>
 	</div>
 </div>
-
 {% endblock %}

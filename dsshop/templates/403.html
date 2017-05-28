@@ -1,0 +1,20 @@
+{% extends "error.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Permission denied!' %} | {{ block.super }}
+{% endblock %}
+
+{# yellow title block #}
+{% block subheader_title %}
+	{% trans 'Permission denied!' as error %}
+    {% include 'partials/page-title.html' with page_title=error %}
+{% endblock %}
+
+{% block error_heading %}
+    {% trans "Permission denied!" %}
+{% endblock %}
+
+{% block error_message %}
+    <p>{% trans "We're sorry but you are not permitted to access this page." %}</p>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'error.html' %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Page not found!' %} | {{ block.super }}
+{% endblock %}
+
+{# yellow title block #}
+{% block subheader_title %}
+	{% trans 'Page not found!' as error %}
+    {% include 'partials/page-title.html' with page_title=error %}
+{% endblock %}
+
+{% block error_heading %}
+    {% trans 'Page not found!'' %}
+{% endblock %}
+
+{% block error_message %}
+	<p>{% trans "We're sorry but the page you are looking for can't be found." %}</p>
+{% endblock %}
