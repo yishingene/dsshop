@@ -83,7 +83,7 @@
                 {% trans 'Re-order all items' %}
             </button>
             {% if order.payment_events.all %}
-            <a target='_' href="http://www.google.be" class="button black">{% trans 'Jouw factuur' %}</a>
+            <a target="_" href="{% url 'dashboard:order-invoice' order.number %}" class="button black">{% trans 'Jouw factuur' %}</a>
             {% endif %}
         </form>
 

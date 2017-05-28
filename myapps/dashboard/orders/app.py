@@ -14,7 +14,7 @@ class OrdersDashboardApplication(DashboardApplication):
         'order-detail-note': (['is_staff'], ['partner.dashboard_access']),
         'order-line-detail': (['is_staff'], ['partner.dashboard_access']),
         'order-shipping-address': (['is_staff'], ['partner.dashboard_access']),
-        'order-invoice': (['is_staff'], ['partner.dashboard_access']),
+        'order-invoice': (['is_staff'], ['is_active'], ['partner.dashboard_access'], ),
     }
 
     order_list_view = get_class('dashboard.orders.views', 'OrderListView')
