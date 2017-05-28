@@ -14,7 +14,7 @@
                     {% for message in messages %}
                     <div class="flat-woocommerce">
                         <div class="woocommerce-{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}success{% else %}danger{% endif %}">
-                            <p>{{ message }}<p>
+                            {{ message }}
                         </div>
                     </div>
                     {% endfor %}
