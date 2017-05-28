@@ -86,7 +86,6 @@
                 <li class="{% if active_tab == 'lines' %}active{% endif %}"><a href="#lines" data-toggle="tab">{% trans "Order contents" %}</a></li>
                 <li class="{% if active_tab == 'shipping' %}active{% endif %}"><a href="#shipping" data-toggle="tab">{% trans "Shipping" %}</a></li>
                 <li class="{% if active_tab == 'payment' %}active{% endif %}"><a href="#payment" data-toggle="tab">{% trans "Payment" %}</a></li>
-                <!-- <li class="{% if active_tab == 'discounts' %}active{% endif %}"><a href="#discounts" data-toggle="tab">{% trans "Discounts" %}</a></li> -->
                 <li class="{% if active_tab == 'notes' %}active{% endif %}"><a href="#notes" data-toggle="tab">{% trans "Notes" %}</a></li>
             {% endblock nav_tabs %}
         </ul>
@@ -111,8 +110,8 @@
                                     <th>{% trans "Supplier" %}</th>
                                     <th>{% trans "Supplier SKU" %}</th>
                                     <th>{% trans "Est. dispatch date" %}</th>
-                                    <th>{% trans "Price excl tax (before discounts)" %}</th>
-                                    <th>{% trans "Price inc tax (before discounts)" %}</th>
+                                    <th>{% trans "Prijs excl btw" %}</th>
+                                    <th>{% trans "Price incl btw" %}</th>
                                     <th>{% trans "Actions" %}</th>
                                 </tr>
                             </thead>
@@ -171,69 +170,6 @@
                         </table>
                     {% endblock order_lines %}
 
-                    {% comment %}
-                        This is the important block within this template: you will almost certainly want to
-                        override this block to provide your own form widgets that suit your order processing
-                        flow.  The default contents shows a range of widgets - more than is sensible really.
-                    {% endcomment %}
-                    {% block line_actions %}
-<!--                         <div class="well">
-                            <h3>{% trans "With selected lines" %}:</h3>
-
-                            <div class="form-group">
-                                <div class="">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="line_action" value="change_line_statuses" /> {% trans "Change line status to" %}
-                                    </label>
-                                    <label class="radio-inline">
-                                        <select name="new_status">
-                                            <option value=""> -- {% trans "choose new status" %} -- </option>
-                                            {% for status in line_statuses %}
-                                                <option>{{ status }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="line_action" value="create_shipping_event" /> {% trans "Create shipping event" %}
-                                    </label>
-                                    <label class="radio-inline">
-                                        <select name="shipping_event_type">
-                                            <option value=""> -- {% trans "choose event type" %} -- </option>
-                                            {% for event_type in shipping_event_types %}
-                                                <option value="{{ event_type.code }}">{{ event_type.name }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </label>
-                                    <label class="radio-inline">
-                                        {% trans "with reference" %} <input type="text" name="reference" value="" />
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="line_action" value="create_payment_event" /> {% trans "Create payment event" %}
-                                    </label>
-                                    <label class="radio-inline">
-                                        <select name="payment_event_type">
-                                            <option value=""> -- {% trans "choose event type" %} -- </option>
-                                            {% for event_type in payment_event_types %}
-                                                <option value="{{ event_type.code }}">{{ event_type.name }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </label>
-                                    <label class="radio-inline">
-                                        {% trans "with amount" %} <input type="text" name="amount" value="" />
-                                    </label>
-                                </div>
-                            </div>
-                            <input type="submit" value="{% trans "Go!" %}" class="btn btn-primary" />
-                        </div> -->
-                    {% endblock line_actions %}
                 </form>
 
                 <form action="." method="post" id="order_status_form">
@@ -350,6 +286,11 @@
 
             <div class="tab-pane {% if active_tab == 'payment' %}active{% endif %}" id="payment">
                 {% block tab_payment %}
+                    {% if order.payment_events.all %}
+                        <a href="{% url 'dashboard:order-invoice' order.number %}" target="_" value="" class="btn btn-info" style="margin-bottom: 25px;">
+                            {% trans 'Bekijk factuur' %}
+                        </a>
+                    {% endif %}
 
                     {% if order.billing_address %}
                         <div class="sub-header">
@@ -425,56 +366,6 @@
                             </table>
                         {% endif %}
                     {% endblock %}
-
-                {% endblock %}
-            </div>
-
-            <div class="tab-pane {% if active_tab == 'discounts' %}active{% endif %}" id="discounts">
-                {% block tab_discounts %}
-
-                    {% with discounts=order.discounts.all %}
-                        <div class="table-header">
-                            <h3>{% trans "Discounts" %}</h3>
-                        </div>
-                        {% if discounts %}
-                            <table class="table table-striped table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>{% trans "Type" %}</th>
-                                        <th>{% trans "Voucher" %}</th>
-                                        <th>{% trans "Offer name" %}</th>
-                                        <th>{% trans "Frequency" %}</th>
-                                        <th>{% trans "Message" %}</th>
-                                        <th>{% trans "Amount" %}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for discount in discounts %}
-                                        <tr>
-                                            <td>{{ discount.get_category_display }}</td>
-                                            <td>
-                                                {{ discount.voucher.code|default:"-" }}
-                                            </td>
-                                            <td>
-                                                {% if discount.offer %}
-                                                    <a href="{% url 'dashboard:offer-detail' pk=discount.offer.id %}">{{ discount.offer.name }}</a>
-                                                {% else %}
-                                                    {{ discount.offer_name }}
-                                                {% endif %}
-                                            </td>
-                                            <td>{{ discount.frequency }}</td>
-                                            <td>{{ discount.message|default:"-" }}</td>
-                                            <td>{{ discount.amount|currency:order.currency }}</td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        {% else %}
-                            <table class="table table-striped table-bordered table-hover">
-                                <tr><td>{% trans "No discounts were applied to this order." %}</td></tr>
-                            </table>
-                        {% endif %}
-                    {% endwith %}
 
                 {% endblock %}
             </div>
