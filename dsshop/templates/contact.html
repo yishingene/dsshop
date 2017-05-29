@@ -7,7 +7,6 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <div id="flat-map">
 			<div class="col-md-8 col-md-offset-2">
                 <p>{% trans 'Vul onderstaand formulier in en wij nemen zo snel mogelijk contact op met jou!' %}</p>
                 {% if messages %}
@@ -50,10 +49,41 @@
                         </div>
                     </div>
                 </form>
+            </div>    
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="flat-map" style="margin-top: 50px;">
+                
             </div>
-        </div>    
-      </div>
+        </div>
     </div>
   </div>
 </div>
 {% endblock content %}
+
+{% block extrascripts %}
+    {% include 'partials/extrascripts.html' %}
+    {{ block.super }}
+    <script type="text/javascript">
+        /* GOOGLE MAPS */
+        function initMap() {
+            var uluru = {lat: -25.363, lng: 131.044};
+            var map = new google.maps.Map(document.getElementById('flat-map'), {
+              zoom: 4,
+              center: uluru
+            });
+            var marker = new google.maps.Marker({
+              position: uluru,
+              map: map
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWaQegobjj8YEkODOkqxfuwpxojzVqFws&callback=initMap">
+    </script>
+{% endblock extrascripts %}
+
+{% block onbodyload %}
+    {{ block.super }}
+{% endblock %}
