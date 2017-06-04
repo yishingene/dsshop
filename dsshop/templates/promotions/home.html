@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+@{% extends 'layout.html' %}
 
 {% load staticfiles i18n %}
 
@@ -67,6 +67,69 @@
             </div><!-- /.row -->
         </div><!-- /.container -->
     </div><!-- /.flat-row -->
+
+
+    <div class="flat-row pad-top60px pad-bottom10px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="flat-title-section style">{% trans 'Onze' %} <span class="scheme">{% trans 'diensten' %}</span></h2>
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+            <div class="flat-divider d40px"></div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="iconbox style1">
+                        <div class="box-header">
+                            <div class="box-icon"><i class="fa fa-dropbox"></i></div>
+                            <h5 class="box-title">Packaged goods transport</h5>
+                        </div>
+                        <div class="box-content">
+                            Focuses on the packaging requirements of goods in transit, in particular for items traveling overland by road or rail.                                        
+                        </div>
+                    </div>
+                </div><!-- /.item-three-column -->
+
+                <div class="col-sm-5 col-sm-offset-1">
+                    <div class="iconbox style1">
+                        <div class="box-header">
+                            <div class="box-icon"><i class="fa fa-truck"></i></div>
+                            <h5 class="box-title">Multimodal transport</h5>
+                        </div>
+                        <div class="box-content">
+                            Combined rail road transport is particularly well suited to the shipping of hazardous goods since it reduces risk.                                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin:40px 0px;">
+                <div class="col-sm-5">
+                    <div class="iconbox style1">
+                        <div class="box-header">
+                            <div class="box-icon"><i class="fa fa-cube"></i></div>
+                            <h5 class="box-title">Warehousing and storage</h5>
+                        </div>
+                        <div class="box-content">
+                            Canava is able to offer heated or unheated warehouse solutions both for short-term and for long-term storage.                                        
+                        </div>
+                    </div>
+                </div><!-- /.item-three-column -->
+
+                <div class="col-sm-5 col-sm-offset-1">
+                    <div class="iconbox style1">
+                        <div class="box-header">
+                            <div class="box-icon"><i class="fa fa-mail-forward"></i></div>
+                            <h5 class="box-title">Forwarding services</h5>
+                        </div>
+                        <div class="box-content">
+                            With our extensive network, we will find a competitive and efficient solution to your next assignment.                                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock content %}
 
 {% block extrascripts %}
