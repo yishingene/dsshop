@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 19:27+0000\n"
+"POT-Creation-Date: 2017-06-06 19:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -371,20 +371,17 @@ msgstr ""
 
 #: dsshop/templates/checkout/payment_details.html:30
 msgid ""
-"\n"
-"                        Automatische betalingen zijn op dit moment nog niet "
-"mogelijk, wij werken eraan om dit naar de toekomst\n"
-"                        toe mogelijk te maken. \n"
-"                    "
+"Automatische betalingen zijn op dit moment nog niet mogelijk, wij werken "
+"eraan om dit naar de toekomst toe mogelijk te maken"
 msgstr ""
 
-#: dsshop/templates/checkout/payment_details.html:35
+#: dsshop/templates/checkout/payment_details.html:32
 #: dsshop/templates/checkout/payment_details_old.html:53
 #: dsshop/templates/checkout/payment_details_old.html:57
 msgid "Continue"
 msgstr ""
 
-#: dsshop/templates/checkout/payment_details.html:44
+#: dsshop/templates/checkout/payment_details.html:41
 #: dsshop/templates/checkout/payment_details_old.html:66
 #: dsshop/templates/checkout/preview.html:83
 #: dsshop/templates/checkout/preview_old.html:82
@@ -419,8 +416,8 @@ msgstr ""
 
 #: dsshop/templates/checkout/preview.html:72
 #: dsshop/templates/checkout/preview_old.html:71
-#: dsshop/templates/checkout/shipping_methods.html:59
-#: dsshop/templates/checkout/shipping_methods.html:80
+#: dsshop/templates/checkout/shipping_methods.html:56
+#: dsshop/templates/checkout/shipping_methods.html:74
 #: dsshop/templates/dashboard/orders/order_list.html:109
 msgid "Submitting..."
 msgstr ""
@@ -489,36 +486,30 @@ msgstr ""
 
 #: dsshop/templates/checkout/shipping_methods.html:50
 msgid ""
-"\n"
-"                        Op dit moment kunnen wij de verzendkosten nog niet "
-"automatisch berekenen. Op basis van de bestelde \n"
-"                        onderdelen berekenen wij de correcte verzendkosten, "
-"en contacteren we jou om deze te bevestigen. We streven ernaar om een "
-"antwoord te geven binnen de 2 werkdagen.\n"
-"                    "
+"Op dit moment kunnen wij de verzendkosten nog niet automatisch berekenen. Op "
+"basis van de bestelde onderdelen berekenen wij de correcte verzendkosten, en "
+"contacteren we jou om deze te bevestigen. We streven ernaar om een antwoord "
+"te geven binnen de 2 werkdagen."
 msgstr ""
 
-#: dsshop/templates/checkout/shipping_methods.html:59
-#: dsshop/templates/checkout/shipping_methods.html:80
+#: dsshop/templates/checkout/shipping_methods.html:56
+#: dsshop/templates/checkout/shipping_methods.html:74
 msgid "Select option"
 msgstr ""
 
-#: dsshop/templates/checkout/shipping_methods.html:64
+#: dsshop/templates/checkout/shipping_methods.html:61
 msgid "Zelf"
 msgstr ""
 
-#: dsshop/templates/checkout/shipping_methods.html:64
+#: dsshop/templates/checkout/shipping_methods.html:61
 msgid "afhalen"
 msgstr ""
 
-#: dsshop/templates/checkout/shipping_methods.html:66
+#: dsshop/templates/checkout/shipping_methods.html:63
 msgid ""
-"\n"
-"                        Het is mogelijk om je bestelling zelf op te halen "
-"aan ons magazijn. Wij zullen alle producten uit\n"
-"                        je bestelling klaarzetten, en deze kan afgehaald "
-"worden na afspraak.\n"
-"                    "
+"Het is mogelijk om je bestelling zelf op te halen aan ons magazijn. Wij "
+"zullen alle producten uit je bestelling klaarzetten, en deze kan afgehaald "
+"worden na afspraak."
 msgstr ""
 
 #: dsshop/templates/checkout/thank_you.html:8
@@ -1680,6 +1671,14 @@ msgstr ""
 
 #: dsshop/templates/promotions/home.html:64
 msgid "Contacteer ons!"
+msgstr ""
+
+#: dsshop/templates/promotions/home.html:76
+msgid "Onze"
+msgstr ""
+
+#: dsshop/templates/promotions/home.html:76
+msgid "diensten"
 msgstr ""
 
 #: dsshop/templates/registration/password_reset_complete.html:4

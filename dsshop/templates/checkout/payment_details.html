@@ -27,10 +27,7 @@
             {% block payment_details_content %}
                 <div class="col-sm-6">
                     <p>
-                    {% blocktrans %}
-                        Automatische betalingen zijn op dit moment nog niet mogelijk, wij werken eraan om dit naar de toekomst
-                        toe mogelijk te maken. 
-                    {% endblocktrans %}
+                    {% trans 'Automatische betalingen zijn op dit moment nog niet mogelijk, wij werken eraan om dit naar de toekomst toe mogelijk te maken' %}
                     </p>
                     <a id="view_preview" href="{% url 'checkout:preview' %}" class="button">{% trans "Continue" %}</a>
                 </div>
