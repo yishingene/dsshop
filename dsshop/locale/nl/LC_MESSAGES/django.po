@@ -534,6 +534,8 @@ msgid ""
 "                    <strong>%(number)s</strong>.\n"
 "                    "
 msgstr ""
+"\n"
+"Je bestelling werd doorgevoerd en een bevestigingsmail is verstuurd. Je bestelnummer is <strong>%(number)s</strong>."
 
 #: dsshop/templates/checkout/thank_you.html:57
 msgid ""

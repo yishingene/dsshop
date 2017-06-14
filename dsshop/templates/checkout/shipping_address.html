@@ -40,6 +40,13 @@
         		<div class="row" style="margin-top: 45px;">
         			<div class="col-sm-6">
         				<h4 class="title" style="margin-top: 0px;">{% trans 'Nieuw adres' %}</h4>
+        				{% for field in form %}
+        					{% if field.errors  %}
+        						{% for error in field.errors %}
+        						{{ error }}
+        						{% endfor %}
+        					{% endif %}
+        				{% endfor %}
 				{% block new_address_form %}
 		    			<form action="{% url 'checkout:shipping-address' %}" method="post" id="new_shipping_address" class="form form-horizontal">
 		    				{% csrf_token %}
@@ -47,8 +54,7 @@
 			        		{% render_field form.first_name class+='input-text' placeholder=form.first_name.label class+='address-form' %}
 			        		{% render_field form.last_name class+='input-text' placeholder=form.last_name.label class+='address-form' %}
 			        		{% render_field form.line1 class+='input-text' placeholder=form.line1.label class+='address-form' %}
-		<!-- 	        		<label for="id_line2">{% trans 'Tweede adresregel' %}</label>
-			        		{% render_field form.line2 class+='input-text' %} -->
+			        		{% render_field form.line2 class+='input-text' placeholder=form.line2.label class+='address-form' %}
 			        		{% render_field form.line4 class+='input-text' placeholder=form.line4.label class+='address-form' %}
 			        		{% render_field form.postcode class+='input-text' placeholder=form.postcode.label class+='address-form' %}
 		        		{% if form.country %}

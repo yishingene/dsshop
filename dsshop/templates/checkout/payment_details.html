@@ -25,9 +25,14 @@
                 </h3> 
         {% block payment_details %}
             {% block payment_details_content %}
-                <div class="col-sm-6">
+                <div class="col-sm-8">
                     <p>
-                    {% trans 'Automatische betalingen zijn op dit moment nog niet mogelijk, wij werken eraan om dit naar de toekomst toe mogelijk te maken' %}
+                        {% trans 'Automatische betalingen zijn op dit moment nog niet mogelijk, wij werken eraan om dit naar de toekomst toe mogelijk te maken.' %}
+                    </p>
+                   <p>
+                        <strong>
+                            {% trans 'Wij sturen na ontvangst van jouw bestelling een mail met daarin de nodige details om de bestelling correct af te handelen.' %}
+                        </strong>
                     </p>
                     <a id="view_preview" href="{% url 'checkout:preview' %}" class="button">{% trans "Continue" %}</a>
                 </div>

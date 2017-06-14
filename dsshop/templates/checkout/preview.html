@@ -1,7 +1,5 @@
-
-
 {% extends "checkout/checkout.html" %}
-{% load i18n %}
+{% load i18n purchase_info_tags thumbnail currency_filters %}
 
 {% block title %}
     {% trans "Order preview" %} | {{ block.super }}
@@ -38,17 +36,51 @@
                 <h3 class="flat-title-section style">
                     <span>{% trans 'Overzicht' %}</span>
                 </h3> 
-
+                <br>
                 <div class="row heading-row">
-                    <div class="col-sm-2 hidden-xs"></div>
-                    <div class="col-sm-4 col-xs-5">{% trans 'Product' %}</div>
-                    <div class="col-sm-2 hidden-xs">{% trans 'Prijs (BTW incl.)' %}</div>
-                    <div class="col-sm-2 col-xs-3">{% trans 'Aantal' %}</div>
-                    <div class="col-sm-2 col-xs-2 total">{% trans 'Totaal' %}</div>
+                    <div class="col-xs-5">{% trans 'Product' %}</div>
+                    <div class="col-xs-2">{% trans 'Prijs (BTW incl.)' %}</div>
+                    <div class="col-xs-2">{% trans 'Aantal' %}</div>
+                    <div class="col-xs-3 total">{% trans 'Totaal' %}</div>
                 </div>
-                <br>
-                <br>
-                <br>
+                {% for line in basket.lines.all %}
+                 <div class="row item-row {% cycle '' 'even' %}" style="margin-top: 0px;">
+                    <div class="col-xs-5">
+                        {{ line.product }}
+                    </div>
+                    <div class="col-xs-2">
+                        {{ line.unit_price_incl_tax|currency }}
+                    </div>
+                    <div class="col-xs-2">
+                        {{ line.quantity }}
+                    </div>
+                    <div class="col-xs-3 total">
+                        {{ line.line_price_incl_tax|currency }}
+                    </div>
+                 </div>
+                {% endfor %}
+
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-6">
+                        <div class="cart-collaterals">
+                            <div class="cart_totals calculated_shipping">
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <h2>{% trans 'Totaal winkelwagen' %}</h2>
+                                    </div>
+                                    <div class="col-xs-5">
+                                    {% if not show_tax_separately and basket.is_tax_known %}
+                                        <h2>{{ basket.total_incl_tax|currency:basket.currency }}</h2>
+                                    {% else %}
+                                        <h2>{{ basket.total_excl_tax|currency:basket.currency }}</h2>
+                                    {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
 			{% block place_order %}
 			    <form method="post" action="{% url 'checkout:preview' %}" id="place_order_form">
@@ -95,3 +127,112 @@
 </div>
 
 {% endblock content %}
+
+
+<!-- <div id="content_inner" class="flat-row flat-woocommerce flat-general sidebar-right">
+    <div class="container">
+
+    {% if not basket.is_empty %}
+        <div class="row heading-row">
+            <div class="col-sm-1 col-xs-2"></div>
+            <div class="col-sm-2 hidden-xs"></div>
+            <div class="col-sm-3 col-xs-5">{% trans 'Product' %}</div>
+            <div class="col-sm-2 hidden-xs">{% trans 'Prijs (BTW incl.)' %}</div>
+            <div class="col-sm-2 col-xs-3">{% trans 'Aantal' %}</div>
+            <div class="col-sm-2 col-xs-2 total">{% trans 'Totaal' %}</div>
+        </div>
+        <form action="." method="post" class="basket_summary" id="basket_formset">
+            {% csrf_token %}
+            {{ formset.management_form }}
+            {% for form in formset %}
+                {% with line=form.instance product=form.instance.product %}
+                    {% purchase_info_for_line request line as session %}
+            <div class="row item-row {% cycle '' 'even' %}">
+                <div class="col-sm-1 col-xs-2">
+                    <a href="#" data-id="{{ forloop.counter0 }}" data-behaviours="remove" class="remove basket"><b>x</b></a>
+                    <div style="display:none">
+                        {{ form.move_to_basket }}
+                        {{ form.DELETE }}
+                    </div>
+                </div>
+                <div class="col-sm-2 hidden-xs">
+            {% with image=product.primary_image %}
+                {% thumbnail image.original "110x110" upscale=False as thumb %}
+                    <a href="{{ product.get_absolute_url }}">
+                        <img class="thumbnail basket img-responsive" src="{{ thumb.url }}" alt="{{ product.get_title }}"/>
+                    </a>
+                {% endthumbnail %}
+            {% endwith %}
+                </div>
+                <div class="col-sm-3 col-xs-5 product-title">
+                    {{ line.description }}
+                </div>
+                <div class="col-sm-2 hidden-xs">
+                {% if line.is_tax_known %}
+                    {{ line.unit_price_incl_tax|currency:line.price_currency }}
+                {% else %}
+                    {{ line.unit_price_excl_tax|currency:line.price_currency }}
+                {% endif %}
+                </div>
+                <div class="col-sm-2 col-xs-3">
+                    {{ form.id }}
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button class="btn" type="submit">Ok</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-xs-2 total">
+                {% if line.is_tax_known %}
+                    {{ line.line_price_incl_tax|currency:line.price_currency }}
+                {% else %}
+                    {{ line.line_price_excl_tax|currency:line.price_currency }}
+                {% endif %} 
+                </div>
+            </div>
+                {% endwith %}
+
+            {% endfor %}
+        </form>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-6">
+                <div class="cart-collaterals">
+                    <div class="cart_totals calculated_shipping">
+                        <div class="row">
+                            <div class="col-xs-7">
+                                <h2>{% trans 'Totaal winkelwagen' %}</h2>
+                            </div>
+                            <div class="col-xs-5">
+                            {% if not show_tax_separately and basket.is_tax_known %}
+                                <h2>{{ basket.total_incl_tax|currency:basket.currency }}</h2>
+                            {% else %}
+                                <h2>{{ basket.total_excl_tax|currency:basket.currency }}</h2>
+                            {% endif %}
+                            </div>
+                        </div>
+                        <div class="wc-proceed-to-checkout" style="margin-top: 15px;">
+                            <a href="{% url 'checkout:index' %}" class="checkout-button button alt wc-forward">
+                                {% trans 'Afrekenen' %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="row">
+                <div class="woocommerce-info col-md-6">
+                    <strong>{% trans 'Je winkelwagen is leeg!' %}</strong>
+                </div>
+            </div>
+            <div class="row">
+                <a href="" class="button">
+                    {% trans 'Naar onze shop' %}<i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    {% endif %}
+    </div>
+</div> -->                  
+
