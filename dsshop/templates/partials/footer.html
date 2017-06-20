@@ -5,7 +5,7 @@
             <div class="col-md-4">
                 <div class="widge widget_text">
                     <div class="textwidget">
-                        <h2>Tom Verheyden <br><br>Citroën DS onderdelen</h2>
+                        <h2>Tom Verheyden <br><br>{% trans 'Citroën DS & 2CV onderdelen' %}</h2>
                     </div>
                 </div><!-- /.widget_text -->
             </div><!-- /.col-md-3 -->
@@ -13,7 +13,7 @@
                 <div class="row">     
                     <div class="col-md-4">
                         <div class="widget widget_recent_entries">
-                            <h4 class="widget-title">{% trans 'Opkomende events?' %}</h4>
+                            <h4 class="widget-title">{% trans 'Opkomende events' %}</h4>
                             {% render_footer_events user %}
                         </div><!-- /.widget_recent_entries -->
                     </div><!-- /.col-md-3 -->
@@ -23,13 +23,13 @@
                             <div class="menu-footer-menu-container">
                                 <ul class="menu-footer-menu">
                                     <li><a href="{% url 'promotions:home' %}">Home</a></li>
-                                    <li><a href="#">{% trans 'Over ons' %}</a></li>
+                                    <!-- <li><a href="#">{% trans 'Over ons' %}</a></li> -->
                                     <li><a href="{% url 'catalogue:index' %}">Shop</a></li>
-                                    <li><a href="#">{% trans 'Onze diensten' %}</a></li>
+                                    <!-- <li><a href="#">{% trans 'Onze diensten' %}</a></li> -->
                                     <li><a href="{% url 'contact' %}">{% trans 'Contacteer ons' %}</a></li>
                                     <li><a href="{% url 'customer:profile-view' %}">{% trans 'Account' %}</a></li>
                                     <li><a href="{% url 'basket:summary' %}">{% trans 'Winkelwagen' %}</a></li>
-                                    <li><a href="#">{% trans "Foto's" %}</a></li>
+                                    <!-- <li><a href="#">{% trans "Foto's" %}</a></li> -->
                                 </ul>
                             </div>
                         </div>
@@ -39,11 +39,16 @@
                             <h3 class="widget-title">{% trans 'Contact opnemen' %}</h3>
                             <div class="textwidget">
                                 <p>
-                                    <strong>Oudenbos 77A 3202 Rillaar</strong>
-                                </p>
-                                <p>
                                     <i class="fa fa-phone"></i>  +32 475/ 931 789<br>
                                     <i class="fa fa-reply"></i><a href="{% url 'contact' %}">{% trans 'Contactformulier' %}</a>
+                                </p>
+                                <p>
+                                    <i class="fa fa-home"></i>  <b>{% trans 'Maatschappelijke zetel' %}</b><br>
+                                    </i><a>Oudenbos 77A 3202 Rillaar</a>
+                                </p>
+                                <p>
+                                    <i class="fa fa-car"></i>  <b>{% trans 'Magazijn' %}</b><br>
+                                    <a>Buitingstraat 17 3583 Paal</a>
                                 </p>
                             </div>          
                         </div>
