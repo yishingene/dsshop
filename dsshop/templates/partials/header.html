@@ -91,26 +91,26 @@
                             <a href="{{ home_url }}">Home</a>
                         </li>
                         <li class="{% if request.get_full_path == catalogue_url %}active{% endif %}">
-                        <a href="{{ catalogue_url }}">Shop</a>
-                    {% category_tree as tree_categories %}
-                    {% if tree_categories %}
-                        <ul class="submenu">
-                        {% for tree_category, info in tree_categories %}
-                            {% if info.level == 0 %}
-                            <li>
-                                <a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
-                            </li>
-                            {% endif %}
-                        {% endfor %}
-                        </ul>
-                    {% endif %}
-                        </li>
-                        <li><a href="#">{% trans 'Onze diensten' %}</a>
+                            <a href="{{ catalogue_url }}">Shop</a>
+                        {% category_tree as tree_categories %}
+                        {% if tree_categories %}
+                            <ul class="submenu">
+                            {% for tree_category, info in tree_categories %}
+                                {% if info.level == 0 %}
+                                <li>
+                                    <a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
+                                </li>
+                                {% endif %}
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
                         </li>
 <!--                         <li>
+                            <a href="#">{% trans 'Onze diensten' %}</a>
+                        </li>
+                        <li>
                             <a href="#">{% trans "Foto's" %}</a>
-                        </li>   -->                                            
-                        </li>    
+                        </li> -->                                                
                         <li class="{% if request.get_full_path == contact_url %}active{% endif %}"><a href="{% url 'contact' %}">{% trans 'Contact' %}</a></li>
                     </ul><!-- /.menu -->                                        
                 </nav><!-- /.mainnav -->  
