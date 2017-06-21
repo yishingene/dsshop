@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-20 18:38+0000\n"
+"POT-Creation-Date: 2017-06-21 19:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,13 +155,13 @@ msgid "Winkelwagen"
 msgstr ""
 
 #: dsshop/templates/basket/basket.html:32
-#: dsshop/templates/checkout/thank_you.html:164
 msgid "Basket"
 msgstr ""
 
 #: dsshop/templates/basket/basket.html:39
 #: dsshop/templates/checkout/preview.html:41
 #: dsshop/templates/checkout/preview.html:140
+#: dsshop/templates/checkout/thank_you.html:74
 #: dsshop/templates/customer/order/order_detail.html:14
 #: dsshop/templates/dashboard/orders/order_detail.html:108
 msgid "Product"
@@ -176,6 +176,7 @@ msgstr ""
 #: dsshop/templates/basket/basket.html:41
 #: dsshop/templates/checkout/preview.html:43
 #: dsshop/templates/checkout/preview.html:142
+#: dsshop/templates/checkout/thank_you.html:75
 msgid "Aantal"
 msgstr ""
 
@@ -183,6 +184,7 @@ msgstr ""
 #: dsshop/templates/checkout/partials/basket_overview.html:42
 #: dsshop/templates/checkout/preview.html:44
 #: dsshop/templates/checkout/preview.html:143
+#: dsshop/templates/checkout/thank_you.html:76
 msgid "Totaal"
 msgstr ""
 
@@ -312,20 +314,6 @@ msgstr ""
 msgid "Subcategorieën"
 msgstr ""
 
-#: dsshop/templates/checkout/checkout.html:16
-msgid "Change"
-msgstr ""
-
-#: dsshop/templates/checkout/checkout.html:19
-#: dsshop/templates/checkout/shipping_methods.html:6
-#: dsshop/templates/checkout/shipping_methods.html:11
-#: dsshop/templates/checkout/shipping_methods.html:19
-#: dsshop/templates/checkout/shipping_methods.html:34
-#: dsshop/templates/checkout/thank_you.html:94
-#: dsshop/templates/checkout/thank_you.html:212
-msgid "Shipping method"
-msgstr ""
-
 #: dsshop/templates/checkout/gateway.html:19
 msgid "Inloggen of aanmelden"
 msgstr ""
@@ -429,7 +417,6 @@ msgstr ""
 #: dsshop/templates/checkout/preview.html:37
 #: dsshop/templates/checkout/preview_old.html:27
 #: dsshop/templates/checkout/preview_old.html:42
-#: dsshop/templates/checkout/thank_you.html:50
 msgid "Overzicht"
 msgstr ""
 
@@ -456,10 +443,12 @@ msgid "Shipping Address"
 msgstr ""
 
 #: dsshop/templates/checkout/shipping_address.html:42
+#: dsshop/templates/customer/address/address_form.html:8
 msgid "Nieuw adres"
 msgstr ""
 
 #: dsshop/templates/checkout/shipping_address.html:66
+#: dsshop/templates/customer/address/address_form.html:24
 msgid "Opslaan"
 msgstr ""
 
@@ -489,6 +478,13 @@ msgstr ""
 
 #: dsshop/templates/checkout/shipping_address.html:110
 msgid "Adressen beheren"
+msgstr ""
+
+#: dsshop/templates/checkout/shipping_methods.html:6
+#: dsshop/templates/checkout/shipping_methods.html:11
+#: dsshop/templates/checkout/shipping_methods.html:19
+#: dsshop/templates/checkout/shipping_methods.html:34
+msgid "Shipping method"
 msgstr ""
 
 #: dsshop/templates/checkout/shipping_methods.html:48
@@ -538,10 +534,21 @@ msgstr ""
 
 #: dsshop/templates/checkout/thank_you.html:21
 #: dsshop/templates/checkout/thank_you.html:35
+#: dsshop/templates/checkout/thank_you.html:50
 msgid "Bevestiging"
 msgstr ""
 
-#: dsshop/templates/checkout/thank_you.html:53
+#: dsshop/templates/checkout/thank_you.html:55
+msgid "Belangrijke informatie!"
+msgstr ""
+
+#: dsshop/templates/checkout/thank_you.html:56
+msgid ""
+"Wij nemen binnen de 2 werkdagen contact op met u om deze bestelling op een "
+"vlotte manier af te handelen. "
+msgstr ""
+
+#: dsshop/templates/checkout/thank_you.html:61
 #, python-format
 msgid ""
 "\n"
@@ -554,142 +561,38 @@ msgstr ""
 "Je bestelling werd doorgevoerd en een bevestigingsmail is verstuurd. Je "
 "bestelnummer is <strong>%(number)s</strong>."
 
-#: dsshop/templates/checkout/thank_you.html:57
+#: dsshop/templates/checkout/thank_you.html:65
 msgid ""
 "Please make a note of this reference or print this page and quote it in any "
 "communication with us regarding your order."
 msgstr ""
 
-#: dsshop/templates/checkout/thank_you.html:63
-#: dsshop/templates/checkout/thank_you.html:209
-#: dsshop/templates/dashboard/orders/order_detail.html:87
-#: dsshop/templates/dashboard/orders/order_detail.html:247
-msgid "Shipping"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:66
-#: dsshop/templates/dashboard/orders/order_detail.html:264
-msgid "Address"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:75
-#: dsshop/templates/partials/header.html:114
-msgid "Contact"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:77
-#: dsshop/templates/dashboard/orders/order_detail.html:275
-msgid "Phone"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:79 dsshop/templates/contact.html:30
-msgid "Email"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:85
-#: dsshop/templates/dashboard/orders/order_detail.html:279
-msgid "Instructions"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:89
-msgid "No shipping address required."
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:103
+#: dsshop/templates/checkout/thank_you.html:69
 #: dsshop/templates/dashboard/orders/order_detail.html:86
 msgid "Order contents"
 msgstr ""
 
-#: dsshop/templates/checkout/thank_you.html:108
-msgid "Items purchased"
+#: dsshop/templates/checkout/thank_you.html:73
+msgid "Image"
 msgstr ""
 
-#: dsshop/templates/checkout/thank_you.html:109
-#: dsshop/templates/dashboard/orders/invoice.html:196
-#: dsshop/templates/dashboard/orders/order_detail.html:107
-msgid "Quantity"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:110
-#: dsshop/templates/dashboard/orders/invoice.html:198
-#: dsshop/templates/dashboard/orders/invoice.html:229
-msgid "Total"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:131
-#, python-format
-msgid ""
-"\n"
-"                                    Estimated dispatch: <strong>%(date)s</"
-"strong>\n"
-"                                "
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:158
-msgid "Totals"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:170
-msgid "Basket total (before discounts)"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:175
-#: dsshop/templates/checkout/thank_you.html:222
-msgid "Discount"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:185
-msgid "Basket total (after discounts)"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:190
-#: dsshop/templates/customer/order/order_detail.html:56
-msgid "Basket total"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:217
-msgid "Shipping charge (before discounts)"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:227
-msgid "Shipping charge (after discounts)"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:232
-msgid "Shipping charge"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:249
-msgid "Order tax"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:263
-msgid "Post order actions"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:279
+#: dsshop/templates/checkout/thank_you.html:104
 #: dsshop/templates/customer/order/order_detail.html:70
 #: dsshop/templates/dashboard/orders/order_detail.html:164
 msgid "Order total"
 msgstr ""
 
-#: dsshop/templates/checkout/thank_you.html:292
-msgid "Tracking your order"
+#: dsshop/templates/checkout/thank_you.html:116
+#: dsshop/templates/dashboard/orders/order_detail.html:87
+#: dsshop/templates/dashboard/orders/order_detail.html:247
+msgid "Shipping"
 msgstr ""
 
-#: dsshop/templates/checkout/thank_you.html:294
-msgid "You can track the status of your order"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:295
-msgid "View order status"
-msgstr ""
-
-#: dsshop/templates/checkout/thank_you.html:304
+#: dsshop/templates/checkout/thank_you.html:149
 msgid "Print this page"
 msgstr ""
 
-#: dsshop/templates/checkout/thank_you.html:307
+#: dsshop/templates/checkout/thank_you.html:152
 msgid "Continue shopping"
 msgstr ""
 
@@ -701,6 +604,10 @@ msgstr ""
 
 #: dsshop/templates/contact.html:26
 msgid "Naam"
+msgstr ""
+
+#: dsshop/templates/contact.html:30
+msgid "Email"
 msgstr ""
 
 #: dsshop/templates/contact.html:34
@@ -900,6 +807,10 @@ msgstr ""
 
 #: dsshop/templates/customer/order/order_detail.html:47
 msgid "Not available anymore"
+msgstr ""
+
+#: dsshop/templates/customer/order/order_detail.html:56
+msgid "Basket total"
 msgstr ""
 
 #: dsshop/templates/customer/order/order_detail.html:63
@@ -1265,6 +1176,16 @@ msgstr ""
 msgid "Prijs BTW excl"
 msgstr ""
 
+#: dsshop/templates/dashboard/orders/invoice.html:196
+#: dsshop/templates/dashboard/orders/order_detail.html:107
+msgid "Quantity"
+msgstr ""
+
+#: dsshop/templates/dashboard/orders/invoice.html:198
+#: dsshop/templates/dashboard/orders/invoice.html:229
+msgid "Total"
+msgstr ""
+
 #: dsshop/templates/dashboard/orders/invoice.html:218
 msgid "Verzendkosten"
 msgstr ""
@@ -1456,8 +1377,20 @@ msgstr ""
 msgid "Charge (excl tax)"
 msgstr ""
 
+#: dsshop/templates/dashboard/orders/order_detail.html:264
+msgid "Address"
+msgstr ""
+
 #: dsshop/templates/dashboard/orders/order_detail.html:270
 msgid "Update"
+msgstr ""
+
+#: dsshop/templates/dashboard/orders/order_detail.html:275
+msgid "Phone"
+msgstr ""
+
+#: dsshop/templates/dashboard/orders/order_detail.html:279
+msgid "Instructions"
 msgstr ""
 
 #: dsshop/templates/dashboard/orders/order_detail.html:291
@@ -1620,7 +1553,7 @@ msgid "Over ons"
 msgstr ""
 
 #: dsshop/templates/partials/footer.html:28
-#: dsshop/templates/partials/header.html:108
+#: dsshop/templates/partials/header.html:109
 msgid "Onze diensten"
 msgstr ""
 
@@ -1629,7 +1562,7 @@ msgid "Contacteer ons"
 msgstr ""
 
 #: dsshop/templates/partials/footer.html:32
-#: dsshop/templates/partials/header.html:111
+#: dsshop/templates/partials/header.html:112
 msgid "Foto's"
 msgstr ""
 
@@ -1656,6 +1589,10 @@ msgstr ""
 
 #: dsshop/templates/partials/header.html:57
 msgid "Zoek producten"
+msgstr ""
+
+#: dsshop/templates/partials/header.html:114
+msgid "Contact"
 msgstr ""
 
 #: dsshop/templates/partials/pagination.html:7
@@ -1695,15 +1632,42 @@ msgid "Op zoek naar andere oldtimer Citroën onderdelen?"
 msgstr ""
 
 #: dsshop/templates/promotions/home.html:64
+msgid "Tom Verheyden – hét adres voor al uw onderdelen van Citroën DS en 2PK!"
+msgstr ""
+
+#: dsshop/templates/promotions/home.html:65
+#: dsshop/templates/promotions/home.html:95
 msgid "Contacteer ons!"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:76
-msgid "Onze"
+#: dsshop/templates/promotions/home.html:79
+msgid "Over"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:76
-msgid "diensten"
+#: dsshop/templates/promotions/home.html:79
+msgid "ons"
+msgstr ""
+
+#: dsshop/templates/promotions/home.html:81
+msgid ""
+"Tom Verheyden (ELV BVBA) is reeds meer dan 20 jaar actief op het vlak van "
+"Citroën oldtimers. Wij zijn een groot- en kleinhandel van (hoofdzakelijk "
+"nieuwe) onderdelen voor DS en 2PK en leveren wereldwijd aan particulieren, "
+"restauratieateliers, oldtimerclubs en handelaars.   Bijna alles kan "
+"verzonden worden. Bestellingen afhalen kan ook na afspraak in ons magazijn "
+"in Paal-Beringen of op de vele beurzen en Citroën meetings (zie lijst van "
+"opkomende events) waar we vertegenwoordigd zijn."
+msgstr ""
+
+#: dsshop/templates/promotions/home.html:93
+msgid "Op zoek naar andere Citroën onderdelen?"
+msgstr ""
+
+#: dsshop/templates/promotions/home.html:94
+msgid ""
+"Wij verdelen ook onderdelen van andere oldtimer Citroën modellen, nog niet "
+"alles is terug te vinden in onze webshop. Neem zeker contact op met ons "
+"wanneer u een onderdeel zoekt voor uw oldtimer!"
 msgstr ""
 
 #: dsshop/templates/registration/password_reset_complete.html:4
