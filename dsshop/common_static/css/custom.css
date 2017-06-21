@@ -169,8 +169,9 @@ a.remove.basket:hover{
 	color:white;
 }
 .heading-row {
-	height: 65px;
-	line-height: 65px;
+	/*height: 65px;*/
+	/*line-height: 65px;*/
+	padding: 10px;
 	background-color: #21242b;
 	font-weight: bold;
 	color: #fff;
