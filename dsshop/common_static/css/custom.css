@@ -181,7 +181,7 @@ a.remove.basket:hover{
 }
 .item-row {
 	height: 115px;
-	line-height: 90px;
+	line-height: 30px;
 	vertical-align: middle;
     display: flex;
     align-items: center;

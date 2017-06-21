@@ -47,7 +47,7 @@
         <div class="row">
             <div class="general">
                 <h3 class="flat-title-section style">
-                    <span>{% trans 'Overzicht' %}</span>
+                    <span>{% trans 'Bevestiging' %}</span>
                 </h3>  
                 <p class="lead">
                     {% blocktrans with number=order.number %}
@@ -56,6 +56,64 @@
                     {% endblocktrans %}
                     {% trans "Please make a note of this reference or print this page and quote it in any communication with us regarding your order." %}</p>
                 </p>
+
+                <div class="widget" style="margin-top: 50px; margin-bottom: 25px;">
+                    <h3 class="widget-title">{% trans "Order contents" %}</h3>
+                </div>
+
+                <div class="row heading-row">
+                    <div class="col-xs-3">{% trans 'Image' %}</div>
+                    <div class="col-sm-5 col-xs-6">{% trans 'Product' %}</div>
+                    <div class="col-sm-1 hidden-xs">{% trans 'Aantal' %}</div>
+                    <div class="col-xs-3 total">{% trans 'Totaal' %}</div>
+                </div>
+                {% for line in order.lines.all %}
+                 <div class="row item-row {% cycle '' 'even' %}" style="margin-top: 0px;">
+                    <div class="col-xs-3">
+                {% with image=line.product.primary_image %}
+                    {% thumbnail image.original "110x110" upscale=False as thumb %}                       
+                            <img class="thumbnail basket img-responsive" src="{{ thumb.url }}" alt="{{ line.product.get_title }}"/>
+                    {% endthumbnail %}
+                {% endwith %}
+                    </div>
+                    <div class="col-sm-5 col-xs-6">
+                        {{ line.product }}
+                    </div>
+                    <div class="col-sm-1 hidden-xs">
+                        {{ line.quantity }}
+                    </div>
+                    <div class="col-xs-3 total">
+                        {{ line.line_price_incl_tax|currency }}
+                    </div>
+                 </div>
+                {% endfor %}
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-6">
+                        <div class="cart-collaterals">
+                            <div class="cart_totals calculated_shipping">
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <h2>{% trans 'Totaal winkelwagen' %}</h2>
+                                    </div>
+                                    <div class="col-xs-5">
+                                    {% if not show_tax_separately and basket.is_tax_known %}
+                                        <h2>{{ basket.total_incl_tax|currency:basket.currency }}</h2>
+                                    {% else %}
+                                        <h2>{{ basket.total_excl_tax|currency:basket.currency }}</h2>
+                                    {% endif %}
+                                    </div>
+                                </div>
+                                <div class="wc-proceed-to-checkout" style="margin-top: 15px;">
+                                    <a href="{% url 'checkout:index' %}" class="checkout-button button alt wc-forward">
+                                        {% trans 'Afrekenen' %}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="row shipping-payment">
                     <div class="col-sm-6">
                         {% block shipping_info %}
@@ -163,83 +221,8 @@
                                 <tr>
                                     <th colspan="2"><h3>{% trans "Basket" %}</h3></th>
                                 </tr>
-                                {% with discounts=order.basket_discounts %}
-                                    {% block discount_totals %}
-                                        {% if discounts %}
-                                            <tr>
-                                                <td>{% trans "Basket total (before discounts)" %}</td>
-                                                <td class="align-right">{{ order.basket_total_before_discounts_incl_tax|currency:order.currency }}</td>
-                                            </tr>
-                                            {% for discount in discounts %}
-                                                <tr>
-                                                    <td><span class="label label-success">{% trans "Discount" %}</span> {{ discount.offer }}</td>
-                                                    <td class="align-right">- {{ discount.amount|currency:order.currency }}</td>
-                                                </tr>
-                                            {% endfor %}
-                                        {% endif %}
-                                    {% endblock discount_totals %}
 
-                                    {% block basket_total %}
-                                        {% if discounts %}
-                                            <tr>
-                                                <th class="total">{% trans "Basket total (after discounts)" %}</th>
-                                                <th class="total align-right">{{ order.basket_total_incl_tax|currency:order.currency }}</th>
-                                            </tr>
-                                        {% else %}
-                                            <tr class="basket-items">
-                                                <th class="total">{% trans "Basket total" %}</th>
-                                                <th class="total align-right">
-                                                    {% if show_tax_separately %}
-                                                        {{ order.basket_total_excl_tax|currency:order.currency }}
-                                                    {% else %}
-                                                        {{ order.basket_total_incl_tax|currency:order.currency }}
-                                                    {% endif %}
-                                                </th>
-                                            </tr>
-                                        {% endif %}
-                                    {% endblock basket_total %}
-                                {% endwith %}
 
-                                {% block shipping_total %}
-                                    <tr>
-                                        <th>&nbsp;</th>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="2"><h3>{% trans "Shipping" %}</h3></th>
-                                    </tr>
-                                    <tr>
-                                        <td>{% trans "Shipping method" %}</td>
-                                        <td class="align-right">{{ order.shipping_method }}</td>
-                                    </tr>
-                                    {% if order.has_shipping_discounts %}
-                                        <tr>
-                                            <td>{% trans "Shipping charge (before discounts)" %}</td>
-                                            <td class="align-right">{{ order.shipping_before_discounts_incl_tax|currency:order.currency }}</td>
-                                        </tr>
-                                        {% for discount in order.shipping_discounts %}
-                                            <tr>
-                                                <td><span class="label label-success">{% trans "Discount" %}</span> {{ discount.offer }}</td>
-                                                <td class="align-right">- {{ discount.amount|currency:order.currency }}</td>
-                                            </tr>
-                                        {% endfor %}
-                                        <tr>
-                                            <th class="total">{% trans "Shipping charge (after discounts)" %}</th>
-                                            <th class="total align-right">{{ order.shipping_incl_tax|currency:order.currency }}</th>
-                                        </tr>
-                                    {% else %}
-                                        <tr>
-                                            <th class="total">{% trans "Shipping charge" %}</th>
-                                            <th class="total align-right">
-                                                {% if show_tax_separately %}
-                                                    {{ order.shipping_excl_tax|currency:order.currency }}
-                                                {% else %}
-                                                    {{ order.shipping_incl_tax|currency:order.currency }}
-                                                {% endif %}
-                                            </th>
-                                        </tr>
-                                    {% endif %}
-                                {% endblock shipping_total %}
 
                                 {% if show_tax_separately %}
                                     <tr>
@@ -286,16 +269,6 @@
                 </div>
             {% endblock basket_totals %}
 
-        {% block order_tracking %}
-            {% if not order.user %}
-                <div class="sub-header">
-                    <h2>{% trans "Tracking your order" %}</h2>
-                </div>
-                <p>{% trans "You can track the status of your order" %}</p>
-                <a class="btn btn-primary" href="{% url 'customer:anon-order' order_number=order.number hash=order.verification_hash %}">{% trans "View order status" %}</a>.
-            {% endif %}
-        {% endblock %}
-
 
             {% block order_actions %}
                 <div class="form-group">
@@ -304,7 +277,7 @@
                             <p><a onclick="window.print()" href="#" class="button">{% trans "Print this page" %}</a></p>
                         </div>
                         <div class="col-sm-4 col-sm-offset-4">
-                            <p><a href="{{ homepage_url }}" class="button">{% trans "Continue shopping" %}</a></p>
+                            <p><a href="{% url 'catalogue:index' %}" class="button">{% trans "Continue shopping" %}</a></p>
                         </div>
                     </div>
                 </div>
