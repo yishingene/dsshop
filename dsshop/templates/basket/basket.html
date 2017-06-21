@@ -49,11 +49,11 @@
 					{% purchase_info_for_line request line as session %}
 			<div class="row item-row {% cycle '' 'even' %}">
 				<div class="col-sm-1 col-xs-2">
-					<a href="#" data-id="{{ forloop.counter0 }}" data-behaviours="remove" class="remove basket"><b>x</b></a>
+<!-- 					<a href="#" data-id="{{ forloop.counter0 }}" data-behaviours="remove" class="remove basket"><b>x</b></a>
 	                <div style="display:none">
 	                	{{ form.move_to_basket }}
 	                    {{ form.DELETE }}
-	                </div>
+	                </div> -->
 				</div>
 				<div class="col-sm-2 hidden-xs">
 		    {% with image=product.primary_image %}
@@ -137,3 +137,4 @@
 	</div>
 </div>					
 {% endblock content %}
+
