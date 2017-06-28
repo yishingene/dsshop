@@ -19,7 +19,7 @@
                     {% if session.price.exists %}
                     <span class="amount">{{ session.price.incl_tax|currency:session.price.currency }}</span>
                     {% else %}
-                    <span class="amount">Niet beschikbaar</span>
+                    <span class="amount">{% trans 'Niet beschikbaar' %}</span>
                     {% endif %}
                 </span>
             {% if not product.is_parent %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 18:54+0000\n"
+"POT-Creation-Date: 2017-06-28 19:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -282,6 +282,7 @@ msgid "In winkelwagen"
 msgstr "Dans votre panier"
 
 #: dsshop/templates/catalogue/partials/add_to_basket_form_compact.html:13
+#: dsshop/templates/catalogue/partials/product.html:22
 #: dsshop/templates/customer/history/recently_viewed_products.html:22
 msgid "Niet beschikbaar"
 msgstr "Non disponible"
