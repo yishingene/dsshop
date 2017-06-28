@@ -14,7 +14,7 @@
         <div class="product-info">
             <div class="product-info-wrap">
                 <h3>{{ product|title }}</h3>
-                <h6>Artikel nr {{ product.upc }}</h6>
+                <h6>{% trans 'Artikel nr' %} {{ product.upc }}</h6>
                 <span class="price">
                     {% if session.price.exists %}
                     <span class="amount">{{ session.price.incl_tax|currency:session.price.currency }}</span>
