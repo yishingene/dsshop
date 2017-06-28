@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-21 19:33+0000\n"
+"POT-Creation-Date: 2017-06-28 18:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1533,7 +1533,7 @@ msgstr ""
 msgid "Event toevoegen"
 msgstr ""
 
-#: dsshop/templates/events/partials/footer_events.html:20
+#: dsshop/templates/events/partials/footer_events.html:27
 msgid "Er zijn op dit ogenblik geen beurzen gepland"
 msgstr ""
 
@@ -1543,6 +1543,10 @@ msgstr ""
 
 #: dsshop/templates/partials/footer.html:16
 msgid "Opkomende events"
+msgstr ""
+
+#: dsshop/templates/partials/footer.html:22
+msgid "Informatie"
 msgstr ""
 
 #: dsshop/templates/partials/footer.html:26

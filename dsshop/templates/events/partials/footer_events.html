@@ -4,8 +4,15 @@
 	<ul>
 	{% for event in events %}
 	    <li>
-	        <a href="{% if event.website %}{{ event.website }}{% else %}Link toevoegen{% endif %}">
-	        	{{ event.name|title }}<br>
+	    	{% if event.website %}
+	        <a href="{{ event.website }}" target="_blank">
+	        	<small style="font-weight: normal">{{ event.name|title }}</small>
+        	</a>
+	        {% else %}
+	        <a>
+	        	<small style="font-weight: normal">{{ event.name|title }}</small>
+        	</a>
+	        {% endif %}
 	        	<small style="font-weight: normal">{{ event.location|title }}</small>
 	        </a>
 	        <span class="post-date">{{ event.date_represenation }}</span>
