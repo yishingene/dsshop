@@ -4,7 +4,8 @@
     <h4 class="widget-title">{% trans 'Categoriëen' %}</h4>
     <ul class="product-categories">
 {% category_tree as tree_categories %}
-{% if tree_categories %}
+{% get_current_language as LANGUAGE_CODE %}
+{% if tree_categories and LANGUAGE_CODE == 'nl' %}
 	{% for tree_category, info in tree_categories %}
         {% if info.level == 0 %}
 		<li>
@@ -14,6 +15,18 @@
          <!--{{ tree_category.name }}<br>-->
         {% endif %}
 	{% endfor %}
+{% elif tree_categories and LANGUAGE_CODE == 'fr' %}
+    {% for tree_category, info in tree_categories %}
+        {% if info.level == 0 and tree_category.name != '2CV Onderdelen' %}
+        <li>
+            <a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a> 
+        </li>
+        {% elif info.level == 0 and tree_category.name == '2CV Onderdelen' %}
+        <li>
+            <a href="{{ tree_category.get_absolute_url }}">Pièces 2CV</a> 
+        </li>
+        {% endif %}
+    {% endfor %}
 {% endif %}
     </ul>
 </div><!-- /.widget_product_categories -->
