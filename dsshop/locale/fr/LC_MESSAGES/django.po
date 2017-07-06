@@ -1597,11 +1597,11 @@ msgstr "Formulaire de contact"
 
 #: dsshop/templates/partials/footer.html:46
 msgid "Maatschappelijke zetel"
-msgstr ""
+msgstr "Siège social"
 
 #: dsshop/templates/partials/footer.html:50
 msgid "Magazijn"
-msgstr ""
+msgstr "Magasin"
 
 #: dsshop/templates/partials/header.html:8
 msgid "Contact opnemen?"
@@ -1653,7 +1653,7 @@ msgstr "A la recherche d'autres pièces Citroën?"
 
 #: dsshop/templates/promotions/home.html:64
 msgid "Tom Verheyden – hét adres voor al uw onderdelen van Citroën DS en 2PK!"
-msgstr ""
+msgstr "Tom Verheyden - Votre fournisseur pour toutes les pièces DS et 2CV!"
 
 #: dsshop/templates/promotions/home.html:65
 #: dsshop/templates/promotions/home.html:95
@@ -1678,6 +1678,14 @@ msgid ""
 "in Paal-Beringen of op de vele beurzen en Citroën meetings (zie lijst van "
 "opkomende events) waar we vertegenwoordigd zijn."
 msgstr ""
+"Depuis plus de 20 ans, Tom Verheyden (ELV BVBA) se met au service des "
+"passionnés de la marque Citroën. Nous sommes détaillant et grossiste de pièces "
+"(principalement pièces neuves) DS et 2CV et nous fournissons dans le monde "
+"entier aux particuliers, aux ateliers de restauration, aux clubs et aux "
+"commerçants.   Presque chaque article peut être expédié, mais Vous pourrez "
+"également opter pour enlever votre commande dans notre magasin à Paal-Beringen "
+"(toujours après rendez-vous) ou pendant une des nombreuses bourses auxquelles "
+"nous participons (voir liste évènements)."
 
 #: dsshop/templates/promotions/home.html:93
 msgid "Op zoek naar andere Citroën onderdelen?"
