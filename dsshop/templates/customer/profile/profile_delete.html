@@ -41,12 +41,14 @@
         	<p style="margin-top: 40px;">
         		<b>{% trans 'Bevestig hieronder je wachtwoord om je profiel te verwijderen' %}</b>
     		</p>
-    		{% csrf_token %}
-    		{{ form.as_p }}
-	        <div class="form-group">
-	            <button class="btn btn-danger" type="submit" data-loading-text="{% trans 'Deleting...' %}">{% trans "Delete" %}</button>
-	            {% trans "or" %} <a href="{% url "customer:profile-view" %}">{% trans "cancel" %}</a>.
-	        </div>
+            <form id="delete_profile_form" action="." method="post">
+        		{% csrf_token %}
+        		{{ form.as_p }}
+    	        <div class="form-group">
+    	            <button class="btn btn-danger" type="submit" data-loading-text="{% trans 'Deleting...' %}">{% trans "Delete" %}</button>
+    	            {% trans "or" %} <a href="{% url "customer:profile-view" %}">{% trans "cancel" %}</a>.
+    	        </div>
+            </form>
         </div>
     </div>
 </div>
