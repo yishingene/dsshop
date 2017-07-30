@@ -31,7 +31,7 @@ class ContactForm(forms.Form):
 	def send_email(self):
 
 		subject = 'Nieuwe contactformulier via website!' + ' van: ' + self.cleaned_data['email']
-		receivers = ['tim.claes@live.be', ]
+		receivers = ['info@tomverheyden.com', ]
 		sender = 'website@tomverheyden.com'
 
 		ctx = {}
