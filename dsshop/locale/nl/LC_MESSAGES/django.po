@@ -1704,15 +1704,15 @@ msgstr ""
 #: dsshop/templates/registration/password_reset_form.html:25
 #: dsshop/templates/registration/password_reset_form.html:29
 msgid "Password reset"
-msgstr ""
+msgstr "Wachtwoord resetten"
 
 #: dsshop/templates/registration/password_reset_complete.html:17
 msgid "Complete"
-msgstr ""
+msgstr "Klaar"
 
 #: dsshop/templates/registration/password_reset_complete.html:41
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr ""
+msgstr "Je wachtwoord werd ingesteld, je kan inloggin nu."
 
 #: dsshop/templates/registration/password_reset_complete.html:42
 msgid "Log in"
@@ -1726,7 +1726,7 @@ msgstr "Bevestigen"
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
-msgstr ""
+msgstr "Gelieve je nieuwe wachtwoord twee keer in te geven."
 
 #: dsshop/templates/registration/password_reset_confirm.html:45
 msgid "Changing..."
@@ -1738,7 +1738,7 @@ msgstr "Wijzig mijn wachtwoord"
 
 #: dsshop/templates/registration/password_reset_confirm.html:49
 msgid "Password reset unsuccessful"
-msgstr "Wachtwoord wijziging is NIET doorgevoerd"
+msgstr "Wachtwoord wijziging werd NIET doorgevoerd"
 
 #: dsshop/templates/registration/password_reset_confirm.html:50
 msgid ""
@@ -1746,7 +1746,7 @@ msgid ""
 "used.  Please request a new password reset."
 msgstr ""
 "De wachtwoord reset link is ongeldig, dit kan zijn doordat deze eerder werd "
-"gebruikt. Probeer aub opnieuw een wachtwoord reset aan te vragen"
+"gebruikt. Probeer aub opnieuw een wachtwoord reset aan te vragen."
 
 #: dsshop/templates/registration/password_reset_done.html:17
 msgid "Email sent"

@@ -386,14 +386,16 @@ msgid ""
 "Automatische betalingen zijn op dit moment nog niet mogelijk, wij werken "
 "eraan om dit naar de toekomst toe mogelijk te maken."
 msgstr ""
-"Les paiement automatiques ne sont pas encore possibles. Nous nous efforçons "
-"dele rendre possible au plus vite"
+"Les paiement automatiques ne sont pas encore possibles sur notre site internet. Nous nous efforçons "
+"d’activer cette fonction dans les plus brefs délais."
 
 #: dsshop/templates/checkout/payment_details.html:34
 msgid ""
 "Wij sturen na ontvangst van jouw bestelling een mail met daarin de nodige "
 "details om de bestelling correct af te handelen."
 msgstr ""
+"Après reception de votre commande, vous recevrez un émail avec tous les details qui "
+"vous permettront d’achever la commande de façon appropriée."
 
 #: dsshop/templates/checkout/payment_details.html:37
 #: dsshop/templates/checkout/payment_details_old.html:53
@@ -769,11 +771,11 @@ msgstr "Récemment consulté"
 #: dsshop/templates/customer/login_registration.html:5
 #: dsshop/templates/customer/login_registration.html:22
 msgid "Login or register"
-msgstr ""
+msgstr "Login ou régristrer"
 
 #: dsshop/templates/customer/login_registration.html:37
 msgid "Login "
-msgstr ""
+msgstr "Login"
 
 #: dsshop/templates/customer/login_registration.html:42
 #: dsshop/templates/customer/login_registration.html:60
@@ -783,7 +785,7 @@ msgstr ""
 
 #: dsshop/templates/customer/login_registration.html:43
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
 #: dsshop/templates/customer/login_registration.html:47
 msgid "Help! "
@@ -791,18 +793,18 @@ msgstr ""
 
 #: dsshop/templates/customer/login_registration.html:47
 msgid "I've forgotten my password"
-msgstr ""
+msgstr "J'ai oublié mon mot de passe"
 
 #: dsshop/templates/customer/login_registration.html:55
 msgid "Register "
-msgstr ""
+msgstr "Régistrer"
 
 #: dsshop/templates/customer/login_registration.html:60
 #: dsshop/templates/customer/registration.html:6
 #: dsshop/templates/customer/registration.html:33
 #: dsshop/templates/customer/registration.html:43
 msgid "Register"
-msgstr ""
+msgstr "Régistrer"
 
 #: dsshop/templates/customer/order/order_detail.html:6
 #: dsshop/templates/customer/order/order_list.html:14
@@ -1709,6 +1711,9 @@ msgid ""
 "alles is terug te vinden in onze webshop. Neem zeker contact op met ons "
 "wanneer u een onderdeel zoekt voor uw oldtimer!"
 msgstr ""
+"Nous distribuons également des pièces pour d’autres types d’ancêtres Citroën. "
+"Vous ne trouverez pas tous les articles dans notre boutique en ligne: "
+"prenez donc contact avec nous quand vous êtes à la recherche d’une pièce introuvable!"
 
 #: dsshop/templates/registration/password_reset_complete.html:4
 #: dsshop/templates/registration/password_reset_complete.html:16
@@ -1780,6 +1785,9 @@ msgid ""
 "You should be receiving it shortly.\n"
 "\t\t\t\t    "
 msgstr ""
+"\n"
+"Nous vous avons envoyé un émail avec les instructions pour modifier votre mot de passe. "
+"Vous devriez le recevoir dans les plus brefs délais."
 
 #: dsshop/templates/registration/password_reset_done.html:45
 msgid ""
@@ -1789,6 +1797,9 @@ msgid ""
 "\t\t\t\t        your spam folder.\n"
 "\t\t\t\t    "
 msgstr ""
+"\n"
+"Au cas ou vous ne l’auriez pas reçu, veuillez contrôler l’adresse que vous venez de "
+"régistrer et verifiez le contenu de votre dossier 'spam'."
 
 #: dsshop/templates/registration/password_reset_form.html:41
 msgid ""

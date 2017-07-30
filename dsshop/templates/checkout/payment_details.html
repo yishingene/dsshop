@@ -1,4 +1,4 @@
-{% extends "checkout/checkout.html" %}
+    {% extends "checkout/checkout.html" %}
 {% load i18n %}
 
 {% block title %}
@@ -42,6 +42,7 @@
             <div class="general-sidebars">
                 <div class="sidebar-wrap">
                     <div class="sidebar">
+                    {% if true %}
                         <div class="widget">
                             <h4 class="widget-title">{% trans 'Verzendadres' %}</h4>
                             <strong>
@@ -51,6 +52,7 @@
                             </strong>
                             <a class="button" href="{% url 'checkout:shipping-address' %}">Wijzigen</a>
                         </div>
+                    {% endif %}
                         <div class="widget">
                             {% include 'checkout/partials/basket_overview.html' %}
                         </div>
