@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 19:01+0000\n"
+"POT-Creation-Date: 2017-07-30 07:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -227,27 +227,27 @@ msgstr "Articles"
 msgid "Messages"
 msgstr "Messages"
 
-#: dsshop/templates/catalogue/detail.html:58
+#: dsshop/templates/catalogue/detail.html:62
 msgid "Geen beschrijving opgegeven"
 msgstr "Aucune déscription trouvée"
 
-#: dsshop/templates/catalogue/detail.html:64
+#: dsshop/templates/catalogue/detail.html:68
 msgid "Gratis"
 msgstr "Gratuit"
 
-#: dsshop/templates/catalogue/detail.html:71
+#: dsshop/templates/catalogue/detail.html:75
 msgid "BTW incl."
 msgstr "TVA inclus"
 
-#: dsshop/templates/catalogue/detail.html:78
+#: dsshop/templates/catalogue/detail.html:82
 msgid "BTW excl."
 msgstr "TVA non inclus"
 
-#: dsshop/templates/catalogue/detail.html:92
+#: dsshop/templates/catalogue/detail.html:96
 msgid "kenmerken"
 msgstr "caractéristiques"
 
-#: dsshop/templates/catalogue/detail.html:109
+#: dsshop/templates/catalogue/detail.html:113
 msgid "Gerelateerde producten"
 msgstr "Produits similaires"
 
@@ -315,7 +315,7 @@ msgstr "Article n°"
 msgid "Doorzoek onze catalogus"
 msgstr "Chercher dans le catalogue"
 
-#: dsshop/templates/catalogue/partials/subcategory_overview.html:10
+#: dsshop/templates/catalogue/partials/subcategory_overview.html:14
 msgid "Subcategorieën"
 msgstr "Sous-catégories"
 
@@ -362,6 +362,10 @@ msgstr "login"
 #: dsshop/templates/checkout/partials/basket_overview.html:3
 msgid "Winkelwagen Overzicht"
 msgstr "Aperçu de mon panier"
+
+#: dsshop/templates/checkout/partials/basket_overview.html:53
+msgid "Wijzigen"
+msgstr "Modifier"
 
 #: dsshop/templates/checkout/payment_details.html:5
 #: dsshop/templates/checkout/payment_details.html:24
@@ -470,6 +474,7 @@ msgstr "Mes adresses"
 #: dsshop/templates/dashboard/catalogue/product_update.html:350
 #: dsshop/templates/dashboard/catalogue/product_update.html:354
 #: dsshop/templates/dashboard/catalogue/product_update.html:357
+#: dsshop/templates/partials/form.html:11
 msgid "Saving..."
 msgstr "Sauvegarder..."
 
@@ -512,7 +517,7 @@ msgid ""
 "te geven binnen de 2 werkdagen."
 msgstr ""
 "En ce moment, nous ne sommes pas encore en mesure de calculer les frais "
-"d'envoi automatiquemen. A base des produits commandés nous calculerons les "
+"d'envoi automatiquement. A base des produits commandés nous calculerons les "
 "frais exactes et nous vous contacterons à fin de les confirmer. Nous nous "
 "efforçons de vous répondre endéans les 2 jours ouvrables."
 
@@ -530,13 +535,17 @@ msgid "afhalen"
 msgstr "votre commande"
 
 #: dsshop/templates/checkout/shipping_methods.html:63
+#, fuzzy
+#| msgid ""
+#| "Het is mogelijk om je bestelling zelf op te halen in ons magazijn na "
+#| "afspraak."
 msgid ""
 "Het is mogelijk om je bestelling zelf op te halen aan ons magazijn. Wij "
 "zullen alle producten uit je bestelling klaarzetten, en deze kan afgehaald "
 "worden na afspraak."
 msgstr ""
 "Il est possible de venir enlever votre commande dans notre magasin, après "
-"rendez-vous préalable. Nous préparerons les produits commandées."
+"rendez-vous préalable."
 
 #: dsshop/templates/checkout/thank_you.html:8
 #: dsshop/templates/checkout/thank_you.html:14
@@ -655,29 +664,31 @@ msgid "Are you sure you want to delete this address?"
 msgstr ""
 
 #: dsshop/templates/customer/address/address_delete.html:23
-#: dsshop/templates/customer/profile/profile_delete.html:47
+#: dsshop/templates/customer/profile/profile_delete.html:48
 msgid "Deleting..."
 msgstr "Supprimer..."
 
 #: dsshop/templates/customer/address/address_delete.html:24
 #: dsshop/templates/customer/address/address_list.html:67
 #: dsshop/templates/customer/profile/profile_delete.html:18
-#: dsshop/templates/customer/profile/profile_delete.html:47
+#: dsshop/templates/customer/profile/profile_delete.html:48
 #: dsshop/templates/dashboard/catalogue/product_update.html:279
 #: dsshop/templates/dashboard/orders/order_detail.html:401
 msgid "Delete"
 msgstr "Supprimer"
 
 #: dsshop/templates/customer/address/address_delete.html:25
-#: dsshop/templates/customer/profile/profile_delete.html:48
+#: dsshop/templates/customer/profile/profile_delete.html:49
 #: dsshop/templates/customer/registration.html:45
 #: dsshop/templates/dashboard/catalogue/product_update.html:348
+#: dsshop/templates/partials/form.html:12
 msgid "or"
 msgstr ""
 
 #: dsshop/templates/customer/address/address_delete.html:25
-#: dsshop/templates/customer/profile/profile_delete.html:48
+#: dsshop/templates/customer/profile/profile_delete.html:49
 #: dsshop/templates/customer/registration.html:45
+#: dsshop/templates/partials/form.html:12
 msgid "cancel"
 msgstr ""
 
@@ -764,29 +775,29 @@ msgstr ""
 msgid "Login "
 msgstr ""
 
-#: dsshop/templates/customer/login_registration.html:43
-msgid "Help! "
-msgstr ""
-
-#: dsshop/templates/customer/login_registration.html:43
-msgid "I've forgotten my password"
-msgstr ""
-
-#: dsshop/templates/customer/login_registration.html:45
-#: dsshop/templates/customer/login_registration.html:55
+#: dsshop/templates/customer/login_registration.html:42
+#: dsshop/templates/customer/login_registration.html:60
 #: dsshop/templates/customer/registration.html:43
 msgid "Registering..."
 msgstr ""
 
-#: dsshop/templates/customer/login_registration.html:45
+#: dsshop/templates/customer/login_registration.html:43
 msgid "Login"
 msgstr ""
 
-#: dsshop/templates/customer/login_registration.html:50
-msgid "Register "
+#: dsshop/templates/customer/login_registration.html:47
+msgid "Help! "
+msgstr ""
+
+#: dsshop/templates/customer/login_registration.html:47
+msgid "I've forgotten my password"
 msgstr ""
 
 #: dsshop/templates/customer/login_registration.html:55
+msgid "Register "
+msgstr ""
+
+#: dsshop/templates/customer/login_registration.html:60
 #: dsshop/templates/customer/registration.html:6
 #: dsshop/templates/customer/registration.html:33
 #: dsshop/templates/customer/registration.html:43
@@ -1081,6 +1092,7 @@ msgid "Save and continue editing"
 msgstr ""
 
 #: dsshop/templates/dashboard/catalogue/product_update.html:358
+#: dsshop/templates/partials/form.html:11
 msgid "Save"
 msgstr ""
 
@@ -1573,7 +1585,7 @@ msgid "Over ons"
 msgstr "Qui sommes nous?"
 
 #: dsshop/templates/partials/footer.html:28
-#: dsshop/templates/partials/header.html:109
+#: dsshop/templates/partials/header.html:124
 msgid "Onze diensten"
 msgstr "Nos services"
 
@@ -1582,7 +1594,7 @@ msgid "Contacteer ons"
 msgstr "Contactez-nous!"
 
 #: dsshop/templates/partials/footer.html:32
-#: dsshop/templates/partials/header.html:112
+#: dsshop/templates/partials/header.html:127
 msgid "Foto's"
 msgstr "Photos"
 
@@ -1611,7 +1623,7 @@ msgstr "Contact?"
 msgid "Zoek producten"
 msgstr "Chercher dans les articles"
 
-#: dsshop/templates/partials/header.html:114
+#: dsshop/templates/partials/header.html:129
 msgid "Contact"
 msgstr "Contact"
 
@@ -1679,13 +1691,13 @@ msgid ""
 "opkomende events) waar we vertegenwoordigd zijn."
 msgstr ""
 "Depuis plus de 20 ans, Tom Verheyden (ELV BVBA) se met au service des "
-"passionnés de la marque Citroën. Nous sommes détaillant et grossiste de pièces "
-"(principalement pièces neuves) DS et 2CV et nous fournissons dans le monde "
-"entier aux particuliers, aux ateliers de restauration, aux clubs et aux "
-"commerçants.   Presque chaque article peut être expédié, mais Vous pourrez "
-"également opter pour enlever votre commande dans notre magasin à Paal-Beringen "
-"(toujours après rendez-vous) ou pendant une des nombreuses bourses auxquelles "
-"nous participons (voir liste évènements)."
+"passionnés de la marque Citroën. Nous sommes détaillant et grossiste de "
+"pièces (principalement pièces neuves) DS et 2CV et nous fournissons dans le "
+"monde entier aux particuliers, aux ateliers de restauration, aux clubs et "
+"aux commerçants.   Presque chaque article peut être expédié, mais vous "
+"pourriez également opter pour enlever votre commande dans notre magasin à "
+"Paal-Beringen (toujours après rendez-vous) ou pendant une des nombreuses "
+"bourses auxquelles nous participons (voir liste évènements)."
 
 #: dsshop/templates/promotions/home.html:93
 msgid "Op zoek naar andere Citroën onderdelen?"

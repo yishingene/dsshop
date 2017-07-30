@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 19:01+0000\n"
+"POT-Creation-Date: 2017-07-30 07:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -227,27 +227,27 @@ msgstr ""
 msgid "Messages"
 msgstr ""
 
-#: dsshop/templates/catalogue/detail.html:58
+#: dsshop/templates/catalogue/detail.html:62
 msgid "Geen beschrijving opgegeven"
 msgstr ""
 
-#: dsshop/templates/catalogue/detail.html:64
+#: dsshop/templates/catalogue/detail.html:68
 msgid "Gratis"
 msgstr ""
 
-#: dsshop/templates/catalogue/detail.html:71
+#: dsshop/templates/catalogue/detail.html:75
 msgid "BTW incl."
 msgstr ""
 
-#: dsshop/templates/catalogue/detail.html:78
+#: dsshop/templates/catalogue/detail.html:82
 msgid "BTW excl."
 msgstr ""
 
-#: dsshop/templates/catalogue/detail.html:92
+#: dsshop/templates/catalogue/detail.html:96
 msgid "kenmerken"
 msgstr ""
 
-#: dsshop/templates/catalogue/detail.html:109
+#: dsshop/templates/catalogue/detail.html:113
 msgid "Gerelateerde producten"
 msgstr ""
 
@@ -315,7 +315,7 @@ msgstr ""
 msgid "Doorzoek onze catalogus"
 msgstr ""
 
-#: dsshop/templates/catalogue/partials/subcategory_overview.html:10
+#: dsshop/templates/catalogue/partials/subcategory_overview.html:14
 msgid "Subcategorieën"
 msgstr ""
 
@@ -359,6 +359,10 @@ msgstr ""
 
 #: dsshop/templates/checkout/partials/basket_overview.html:3
 msgid "Winkelwagen Overzicht"
+msgstr ""
+
+#: dsshop/templates/checkout/partials/basket_overview.html:53
+msgid "Wijzigen"
 msgstr ""
 
 #: dsshop/templates/checkout/payment_details.html:5
@@ -466,6 +470,7 @@ msgstr ""
 #: dsshop/templates/dashboard/catalogue/product_update.html:350
 #: dsshop/templates/dashboard/catalogue/product_update.html:354
 #: dsshop/templates/dashboard/catalogue/product_update.html:357
+#: dsshop/templates/partials/form.html:11
 msgid "Saving..."
 msgstr ""
 
@@ -646,29 +651,31 @@ msgid "Are you sure you want to delete this address?"
 msgstr ""
 
 #: dsshop/templates/customer/address/address_delete.html:23
-#: dsshop/templates/customer/profile/profile_delete.html:47
+#: dsshop/templates/customer/profile/profile_delete.html:48
 msgid "Deleting..."
 msgstr ""
 
 #: dsshop/templates/customer/address/address_delete.html:24
 #: dsshop/templates/customer/address/address_list.html:67
 #: dsshop/templates/customer/profile/profile_delete.html:18
-#: dsshop/templates/customer/profile/profile_delete.html:47
+#: dsshop/templates/customer/profile/profile_delete.html:48
 #: dsshop/templates/dashboard/catalogue/product_update.html:279
 #: dsshop/templates/dashboard/orders/order_detail.html:401
 msgid "Delete"
 msgstr ""
 
 #: dsshop/templates/customer/address/address_delete.html:25
-#: dsshop/templates/customer/profile/profile_delete.html:48
+#: dsshop/templates/customer/profile/profile_delete.html:49
 #: dsshop/templates/customer/registration.html:45
 #: dsshop/templates/dashboard/catalogue/product_update.html:348
+#: dsshop/templates/partials/form.html:12
 msgid "or"
 msgstr ""
 
 #: dsshop/templates/customer/address/address_delete.html:25
-#: dsshop/templates/customer/profile/profile_delete.html:48
+#: dsshop/templates/customer/profile/profile_delete.html:49
 #: dsshop/templates/customer/registration.html:45
+#: dsshop/templates/partials/form.html:12
 msgid "cancel"
 msgstr ""
 
@@ -755,29 +762,29 @@ msgstr ""
 msgid "Login "
 msgstr ""
 
-#: dsshop/templates/customer/login_registration.html:43
-msgid "Help! "
-msgstr ""
-
-#: dsshop/templates/customer/login_registration.html:43
-msgid "I've forgotten my password"
-msgstr ""
-
-#: dsshop/templates/customer/login_registration.html:45
-#: dsshop/templates/customer/login_registration.html:55
+#: dsshop/templates/customer/login_registration.html:42
+#: dsshop/templates/customer/login_registration.html:60
 #: dsshop/templates/customer/registration.html:43
 msgid "Registering..."
 msgstr ""
 
-#: dsshop/templates/customer/login_registration.html:45
+#: dsshop/templates/customer/login_registration.html:43
 msgid "Login"
 msgstr ""
 
-#: dsshop/templates/customer/login_registration.html:50
+#: dsshop/templates/customer/login_registration.html:47
+msgid "Help! "
+msgstr ""
+
+#: dsshop/templates/customer/login_registration.html:47
+msgid "I've forgotten my password"
+msgstr ""
+
+#: dsshop/templates/customer/login_registration.html:55
 msgid "Register "
 msgstr "Registeren"
 
-#: dsshop/templates/customer/login_registration.html:55
+#: dsshop/templates/customer/login_registration.html:60
 #: dsshop/templates/customer/registration.html:6
 #: dsshop/templates/customer/registration.html:33
 #: dsshop/templates/customer/registration.html:43
@@ -1070,6 +1077,7 @@ msgid "Save and continue editing"
 msgstr ""
 
 #: dsshop/templates/dashboard/catalogue/product_update.html:358
+#: dsshop/templates/partials/form.html:11
 msgid "Save"
 msgstr ""
 
@@ -1562,7 +1570,7 @@ msgid "Over ons"
 msgstr ""
 
 #: dsshop/templates/partials/footer.html:28
-#: dsshop/templates/partials/header.html:109
+#: dsshop/templates/partials/header.html:124
 msgid "Onze diensten"
 msgstr ""
 
@@ -1571,7 +1579,7 @@ msgid "Contacteer ons"
 msgstr ""
 
 #: dsshop/templates/partials/footer.html:32
-#: dsshop/templates/partials/header.html:112
+#: dsshop/templates/partials/header.html:127
 msgid "Foto's"
 msgstr ""
 
@@ -1600,7 +1608,7 @@ msgstr ""
 msgid "Zoek producten"
 msgstr ""
 
-#: dsshop/templates/partials/header.html:114
+#: dsshop/templates/partials/header.html:129
 msgid "Contact"
 msgstr ""
 
@@ -1736,8 +1744,9 @@ msgstr "Wachtwoord wijziging is NIET doorgevoerd"
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
-msgstr "De wachtwoord reset link is ongeldig, dit kan zijn doordat deze eerder werd gebruikt. "
-"Probeer aub opnieuw een wachtwoord reset aan te vragen"
+msgstr ""
+"De wachtwoord reset link is ongeldig, dit kan zijn doordat deze eerder werd "
+"gebruikt. Probeer aub opnieuw een wachtwoord reset aan te vragen"
 
 #: dsshop/templates/registration/password_reset_done.html:17
 msgid "Email sent"
@@ -1751,8 +1760,8 @@ msgid ""
 "\t\t\t\t    "
 msgstr ""
 "\n"
-"We hebben een mail gestuurd met de nodige instructies om je wachtwoord te resetten. "
-"Je zal deze dadelijk ontvangen."
+"We hebben een mail gestuurd met de nodige instructies om je wachtwoord te "
+"resetten. Je zal deze dadelijk ontvangen."
 
 #: dsshop/templates/registration/password_reset_done.html:45
 msgid ""
@@ -1764,14 +1773,16 @@ msgid ""
 msgstr ""
 "\n"
 "Als je geen email ontvangt, kijk dan na of je het email adres hebt ingegeven "
-"waarmee je geregistreerd bent. Het is ook mogelijk dat de mail in je ongewenste inbox is beland."
+"waarmee je geregistreerd bent. Het is ook mogelijk dat de mail in je "
+"ongewenste inbox is beland."
 
 #: dsshop/templates/registration/password_reset_form.html:41
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
-msgstr "Wachtwoord vergeten? Geef je email adres hieronder in, en we zullen je "
-"een mail sturen waar je je wachtwoord opnieuw kan instellen"
+msgstr ""
+"Wachtwoord vergeten? Geef je email adres hieronder in, en we zullen je een "
+"mail sturen waar je je wachtwoord opnieuw kan instellen"
 
 #: dsshop/templates/registration/password_reset_form.html:44
 msgid "Sending..."
