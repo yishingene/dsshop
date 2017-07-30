@@ -1,4 +1,4 @@
-    {% extends "checkout/checkout.html" %}
+{% extends "checkout/checkout.html" %}
 {% load i18n %}
 
 {% block title %}
@@ -42,7 +42,15 @@
             <div class="general-sidebars">
                 <div class="sidebar-wrap">
                     <div class="sidebar">
-                    {% if true %}
+                    {% if shipping_method.code == 'Afhaling door klant' %}
+                        <div class="widget">
+                            <h4 class="widget-title">{% trans 'Shipping method' %}</h4>
+                            <strong>
+                                {% trans 'Zelf' %} {% trans 'afhalen' %}
+                            </strong><br>
+                            <a class="button" href="{% url 'checkout:shipping-address' %}">{% trans 'Wijzigen' %}</a>
+                        </div>
+                    {% else %}
                         <div class="widget">
                             <h4 class="widget-title">{% trans 'Verzendadres' %}</h4>
                             <strong>
@@ -50,7 +58,7 @@
                                     {{ block.super }}
                                 {% endblock %}
                             </strong>
-                            <a class="button" href="{% url 'checkout:shipping-address' %}">Wijzigen</a>
+                            <a class="button" href="{% url 'checkout:shipping-address' %}">{% trans 'Wijzigen' %}</a>
                         </div>
                     {% endif %}
                         <div class="widget">
