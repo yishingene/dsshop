@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-30 07:33+0000\n"
+"POT-Creation-Date: 2017-07-30 08:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,7 +160,7 @@ msgstr ""
 
 #: dsshop/templates/basket/basket.html:39
 #: dsshop/templates/checkout/preview.html:41
-#: dsshop/templates/checkout/preview.html:140
+#: dsshop/templates/checkout/preview.html:150
 #: dsshop/templates/checkout/thank_you.html:74
 #: dsshop/templates/customer/order/order_detail.html:14
 #: dsshop/templates/dashboard/orders/order_detail.html:108
@@ -169,13 +169,13 @@ msgstr ""
 
 #: dsshop/templates/basket/basket.html:40
 #: dsshop/templates/checkout/preview.html:42
-#: dsshop/templates/checkout/preview.html:141
+#: dsshop/templates/checkout/preview.html:151
 msgid "Prijs (BTW incl.)"
 msgstr ""
 
 #: dsshop/templates/basket/basket.html:41
 #: dsshop/templates/checkout/preview.html:43
-#: dsshop/templates/checkout/preview.html:142
+#: dsshop/templates/checkout/preview.html:152
 #: dsshop/templates/checkout/thank_you.html:75
 msgid "Aantal"
 msgstr ""
@@ -183,21 +183,21 @@ msgstr ""
 #: dsshop/templates/basket/basket.html:42
 #: dsshop/templates/checkout/partials/basket_overview.html:42
 #: dsshop/templates/checkout/preview.html:44
-#: dsshop/templates/checkout/preview.html:143
+#: dsshop/templates/checkout/preview.html:153
 #: dsshop/templates/checkout/thank_you.html:76
 msgid "Totaal"
 msgstr ""
 
 #: dsshop/templates/basket/basket.html:104
 #: dsshop/templates/checkout/preview.html:69
-#: dsshop/templates/checkout/preview.html:204
+#: dsshop/templates/checkout/preview.html:214
 msgid "Totaal winkelwagen"
 msgstr ""
 
 #: dsshop/templates/basket/basket.html:116
 #: dsshop/templates/catalogue/partials/header-basket.html:33
 #: dsshop/templates/checkout/preview.html:21
-#: dsshop/templates/checkout/preview.html:216
+#: dsshop/templates/checkout/preview.html:226
 #: dsshop/templates/checkout/preview_old.html:26
 #: dsshop/templates/checkout/shipping_address.html:20
 #: dsshop/templates/checkout/shipping_methods.html:33
@@ -206,12 +206,12 @@ msgid "Afrekenen"
 msgstr ""
 
 #: dsshop/templates/basket/basket.html:127
-#: dsshop/templates/checkout/preview.html:227
+#: dsshop/templates/checkout/preview.html:237
 msgid "Je winkelwagen is leeg!"
 msgstr ""
 
 #: dsshop/templates/basket/basket.html:132
-#: dsshop/templates/checkout/preview.html:232
+#: dsshop/templates/checkout/preview.html:242
 #: dsshop/templates/customer/order/order_list.html:94
 #: dsshop/templates/customer/order/order_list.html:107
 msgid "Naar onze shop"
@@ -362,6 +362,10 @@ msgid "Winkelwagen Overzicht"
 msgstr ""
 
 #: dsshop/templates/checkout/partials/basket_overview.html:53
+#: dsshop/templates/checkout/payment_details.html:51
+#: dsshop/templates/checkout/payment_details.html:61
+#: dsshop/templates/checkout/preview.html:120
+#: dsshop/templates/checkout/preview.html:130
 msgid "Wijzigen"
 msgstr ""
 
@@ -397,9 +401,30 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#: dsshop/templates/checkout/payment_details.html:46
+#: dsshop/templates/checkout/payment_details.html:47
+#: dsshop/templates/checkout/preview.html:116
+#: dsshop/templates/checkout/shipping_methods.html:6
+#: dsshop/templates/checkout/shipping_methods.html:11
+#: dsshop/templates/checkout/shipping_methods.html:19
+#: dsshop/templates/checkout/shipping_methods.html:34
+msgid "Shipping method"
+msgstr ""
+
+#: dsshop/templates/checkout/payment_details.html:49
+#: dsshop/templates/checkout/preview.html:118
+#: dsshop/templates/checkout/shipping_methods.html:61
+msgid "Zelf"
+msgstr ""
+
+#: dsshop/templates/checkout/payment_details.html:49
+#: dsshop/templates/checkout/preview.html:118
+#: dsshop/templates/checkout/shipping_methods.html:61
+msgid "afhalen"
+msgstr ""
+
+#: dsshop/templates/checkout/payment_details.html:55
 #: dsshop/templates/checkout/payment_details_old.html:66
-#: dsshop/templates/checkout/preview.html:115
+#: dsshop/templates/checkout/preview.html:124
 #: dsshop/templates/checkout/preview_old.html:82
 msgid "Verzendadres"
 msgstr ""
@@ -490,13 +515,6 @@ msgstr ""
 msgid "Adressen beheren"
 msgstr ""
 
-#: dsshop/templates/checkout/shipping_methods.html:6
-#: dsshop/templates/checkout/shipping_methods.html:11
-#: dsshop/templates/checkout/shipping_methods.html:19
-#: dsshop/templates/checkout/shipping_methods.html:34
-msgid "Shipping method"
-msgstr ""
-
 #: dsshop/templates/checkout/shipping_methods.html:48
 msgid "Verzend"
 msgstr ""
@@ -518,19 +536,10 @@ msgstr ""
 msgid "Select option"
 msgstr ""
 
-#: dsshop/templates/checkout/shipping_methods.html:61
-msgid "Zelf"
-msgstr ""
-
-#: dsshop/templates/checkout/shipping_methods.html:61
-msgid "afhalen"
-msgstr ""
-
 #: dsshop/templates/checkout/shipping_methods.html:63
 msgid ""
-"Het is mogelijk om je bestelling zelf op te halen aan ons magazijn. Wij "
-"zullen alle producten uit je bestelling klaarzetten, en deze kan afgehaald "
-"worden na afspraak."
+"Het is mogelijk om je bestelling zelf op te halen in ons magazijn na "
+"afspraak."
 msgstr ""
 
 #: dsshop/templates/checkout/thank_you.html:8
