@@ -1,6 +1,7 @@
 from django import forms
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
+from django.template import Context
+from django.template.loader import get_template
 from django.forms.widgets import SelectDateWidget
 
 from .models import Event
@@ -29,17 +30,18 @@ class ContactForm(forms.Form):
 
 	def send_email(self):
 
+		subject = 'Nieuwe contactformulier via website!' + ' van: ' + self.cleaned_data['email']
+		receivers = ['tim.claes@live.be', ]
+		sender = 'website@tomverheyden.com'
+
 		ctx = {}
 		ctx['name'] = self.cleaned_data['name']
 		ctx['message'] = self.cleaned_data['message']
 		ctx['company'] = self.cleaned_data.get('company', 'geen bedrijf opgegeven')
 		ctx['email'] = self.cleaned_data['email']
 		ctx['phone'] = self.cleaned_data['phone']
-		
-		title = 'Contactformulier van website'
-		msg_html = render_to_string('others/contact_form.html', ctx)
-		msg_plain = 'niet html versie'
-		to_addresses = ['',]
-		from_adress = 'alfa@beta.gamma'
 
-		send_mail(subject=title, message=msg_plain, from_email=from_adress, recipient_list=to_addresses, html_message=msg_html)
+		message = get_template('others/contact_form.html').render(Context(ctx))
+		msg = EmailMessage(subject, message, to=receivers, from_email=sender)
+		msg.content_subtype = 'html'
+		msg.send()

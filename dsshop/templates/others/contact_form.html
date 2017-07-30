@@ -1,2 +1,16 @@
-<h>Formulier via website</h1>
-<!-- Hier komt de mail template-->
+<h1>Formulier via website</h1>
+<hr>
+<h3>Nieuw bericht van: {{ name }}</h3>
+<p>
+	<b>Contact gegevens</b><br>
+	Email: {{ email }}<br>
+	Telefoon: {{ phone }}<br>
+{% if company %}
+	Bedrijf: {{ company }}<br>
+{% endif %}
+<p>
+<p>
+	<b>Bericht</b><br>
+	{{ message }}
+</p>
+<hr>
