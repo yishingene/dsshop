@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-30 08:42+0000\n"
+"POT-Creation-Date: 2017-07-30 17:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1769,25 +1769,28 @@ msgstr ""
 
 #: dsshop/templates/registration/password_reset_confirm.html:45
 msgid "Changing..."
-msgstr ""
+msgstr "Mofifier..."
 
 #: dsshop/templates/registration/password_reset_confirm.html:45
 msgid "Change my password"
-msgstr ""
+msgstr "Modifier votre mot de passe"
 
 #: dsshop/templates/registration/password_reset_confirm.html:49
 msgid "Password reset unsuccessful"
-msgstr ""
+msgstr "Reinitialisation du mot de passe n'a pas été approuvée"
 
 #: dsshop/templates/registration/password_reset_confirm.html:50
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"Le lien de réinitialisation du mot de passe n'est plus actif. Il a déjà été "
+"utilisé. Veuillez relancer votre demande pour une nouvelle réinitialisation "
+"du mot de passe."
 
 #: dsshop/templates/registration/password_reset_done.html:17
 msgid "Email sent"
-msgstr ""
+msgstr "Courrier envoyé"
 
 #: dsshop/templates/registration/password_reset_done.html:40
 msgid ""
@@ -1820,7 +1823,7 @@ msgstr ""
 
 #: dsshop/templates/registration/password_reset_form.html:44
 msgid "Sending..."
-msgstr ""
+msgstr "Envoyer..."
 
 #: dsshop/templates/registration/password_reset_form.html:44
 msgid "Send reset email"

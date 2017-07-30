@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-30 07:33+0000\n"
+"POT-Creation-Date: 2017-07-30 17:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,7 +160,7 @@ msgstr "Mon panier"
 
 #: dsshop/templates/basket/basket.html:39
 #: dsshop/templates/checkout/preview.html:41
-#: dsshop/templates/checkout/preview.html:140
+#: dsshop/templates/checkout/preview.html:150
 #: dsshop/templates/checkout/thank_you.html:74
 #: dsshop/templates/customer/order/order_detail.html:14
 #: dsshop/templates/dashboard/orders/order_detail.html:108
@@ -169,13 +169,13 @@ msgstr "Article"
 
 #: dsshop/templates/basket/basket.html:40
 #: dsshop/templates/checkout/preview.html:42
-#: dsshop/templates/checkout/preview.html:141
+#: dsshop/templates/checkout/preview.html:151
 msgid "Prijs (BTW incl.)"
 msgstr "Prix (TVA inclus)"
 
 #: dsshop/templates/basket/basket.html:41
 #: dsshop/templates/checkout/preview.html:43
-#: dsshop/templates/checkout/preview.html:142
+#: dsshop/templates/checkout/preview.html:152
 #: dsshop/templates/checkout/thank_you.html:75
 msgid "Aantal"
 msgstr "Nombre"
@@ -183,21 +183,21 @@ msgstr "Nombre"
 #: dsshop/templates/basket/basket.html:42
 #: dsshop/templates/checkout/partials/basket_overview.html:42
 #: dsshop/templates/checkout/preview.html:44
-#: dsshop/templates/checkout/preview.html:143
+#: dsshop/templates/checkout/preview.html:153
 #: dsshop/templates/checkout/thank_you.html:76
 msgid "Totaal"
 msgstr "Montant total"
 
 #: dsshop/templates/basket/basket.html:104
 #: dsshop/templates/checkout/preview.html:69
-#: dsshop/templates/checkout/preview.html:204
+#: dsshop/templates/checkout/preview.html:214
 msgid "Totaal winkelwagen"
 msgstr "Montant panier"
 
 #: dsshop/templates/basket/basket.html:116
 #: dsshop/templates/catalogue/partials/header-basket.html:33
 #: dsshop/templates/checkout/preview.html:21
-#: dsshop/templates/checkout/preview.html:216
+#: dsshop/templates/checkout/preview.html:226
 #: dsshop/templates/checkout/preview_old.html:26
 #: dsshop/templates/checkout/shipping_address.html:20
 #: dsshop/templates/checkout/shipping_methods.html:33
@@ -206,12 +206,12 @@ msgid "Afrekenen"
 msgstr "Passer à la caisse"
 
 #: dsshop/templates/basket/basket.html:127
-#: dsshop/templates/checkout/preview.html:227
+#: dsshop/templates/checkout/preview.html:237
 msgid "Je winkelwagen is leeg!"
 msgstr "Votre panier est vide"
 
 #: dsshop/templates/basket/basket.html:132
-#: dsshop/templates/checkout/preview.html:232
+#: dsshop/templates/checkout/preview.html:242
 #: dsshop/templates/customer/order/order_list.html:94
 #: dsshop/templates/customer/order/order_list.html:107
 msgid "Naar onze shop"
@@ -364,6 +364,10 @@ msgid "Winkelwagen Overzicht"
 msgstr "Aperçu de mon panier"
 
 #: dsshop/templates/checkout/partials/basket_overview.html:53
+#: dsshop/templates/checkout/payment_details.html:51
+#: dsshop/templates/checkout/payment_details.html:61
+#: dsshop/templates/checkout/preview.html:120
+#: dsshop/templates/checkout/preview.html:130
 msgid "Wijzigen"
 msgstr "Modifier"
 
@@ -386,14 +390,17 @@ msgid ""
 "Automatische betalingen zijn op dit moment nog niet mogelijk, wij werken "
 "eraan om dit naar de toekomst toe mogelijk te maken."
 msgstr ""
-"Les paiement automatiques ne sont pas encore possibles. Nous nous efforçons "
-"dele rendre possible au plus vite"
+"Les paiement automatiques ne sont pas encore possibles sur notre site "
+"internet. Nous nous efforçons d’activer cette fonction dans les plus brefs "
+"délais."
 
 #: dsshop/templates/checkout/payment_details.html:34
 msgid ""
 "Wij sturen na ontvangst van jouw bestelling een mail met daarin de nodige "
 "details om de bestelling correct af te handelen."
 msgstr ""
+"Après reception de votre commande, vous recevrez un émail avec tous les "
+"details qui vous permettront d’achever la commande de façon appropriée."
 
 #: dsshop/templates/checkout/payment_details.html:37
 #: dsshop/templates/checkout/payment_details_old.html:53
@@ -401,9 +408,30 @@ msgstr ""
 msgid "Continue"
 msgstr "Continuer"
 
-#: dsshop/templates/checkout/payment_details.html:46
+#: dsshop/templates/checkout/payment_details.html:47
+#: dsshop/templates/checkout/preview.html:116
+#: dsshop/templates/checkout/shipping_methods.html:6
+#: dsshop/templates/checkout/shipping_methods.html:11
+#: dsshop/templates/checkout/shipping_methods.html:19
+#: dsshop/templates/checkout/shipping_methods.html:34
+msgid "Shipping method"
+msgstr ""
+
+#: dsshop/templates/checkout/payment_details.html:49
+#: dsshop/templates/checkout/preview.html:118
+#: dsshop/templates/checkout/shipping_methods.html:61
+msgid "Zelf"
+msgstr "Enlever"
+
+#: dsshop/templates/checkout/payment_details.html:49
+#: dsshop/templates/checkout/preview.html:118
+#: dsshop/templates/checkout/shipping_methods.html:61
+msgid "afhalen"
+msgstr "votre commande"
+
+#: dsshop/templates/checkout/payment_details.html:55
 #: dsshop/templates/checkout/payment_details_old.html:66
-#: dsshop/templates/checkout/preview.html:115
+#: dsshop/templates/checkout/preview.html:124
 #: dsshop/templates/checkout/preview_old.html:82
 msgid "Verzendadres"
 msgstr "Adresse de livraison"
@@ -494,13 +522,6 @@ msgstr "Aucune adresse trouvée"
 msgid "Adressen beheren"
 msgstr "Gérer vos adresses"
 
-#: dsshop/templates/checkout/shipping_methods.html:6
-#: dsshop/templates/checkout/shipping_methods.html:11
-#: dsshop/templates/checkout/shipping_methods.html:19
-#: dsshop/templates/checkout/shipping_methods.html:34
-msgid "Shipping method"
-msgstr ""
-
 #: dsshop/templates/checkout/shipping_methods.html:48
 msgid "Verzend"
 msgstr "Envoyez"
@@ -526,23 +547,14 @@ msgstr ""
 msgid "Select option"
 msgstr ""
 
-#: dsshop/templates/checkout/shipping_methods.html:61
-msgid "Zelf"
-msgstr "Enlever"
-
-#: dsshop/templates/checkout/shipping_methods.html:61
-msgid "afhalen"
-msgstr "votre commande"
-
 #: dsshop/templates/checkout/shipping_methods.html:63
 #, fuzzy
 #| msgid ""
 #| "Het is mogelijk om je bestelling zelf op te halen in ons magazijn na "
 #| "afspraak."
 msgid ""
-"Het is mogelijk om je bestelling zelf op te halen aan ons magazijn. Wij "
-"zullen alle producten uit je bestelling klaarzetten, en deze kan afgehaald "
-"worden na afspraak."
+"Het is mogelijk om je bestelling zelf op te halen in ons magazijn na "
+"afspraak."
 msgstr ""
 "Il est possible de venir enlever votre commande dans notre magasin, après "
 "rendez-vous préalable."
@@ -769,11 +781,11 @@ msgstr "Récemment consulté"
 #: dsshop/templates/customer/login_registration.html:5
 #: dsshop/templates/customer/login_registration.html:22
 msgid "Login or register"
-msgstr ""
+msgstr "Login ou régristrer"
 
 #: dsshop/templates/customer/login_registration.html:37
 msgid "Login "
-msgstr ""
+msgstr "Login"
 
 #: dsshop/templates/customer/login_registration.html:42
 #: dsshop/templates/customer/login_registration.html:60
@@ -783,7 +795,7 @@ msgstr ""
 
 #: dsshop/templates/customer/login_registration.html:43
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
 #: dsshop/templates/customer/login_registration.html:47
 msgid "Help! "
@@ -791,18 +803,18 @@ msgstr ""
 
 #: dsshop/templates/customer/login_registration.html:47
 msgid "I've forgotten my password"
-msgstr ""
+msgstr "J'ai oublié mon mot de passe"
 
 #: dsshop/templates/customer/login_registration.html:55
 msgid "Register "
-msgstr ""
+msgstr "Régistrer"
 
 #: dsshop/templates/customer/login_registration.html:60
 #: dsshop/templates/customer/registration.html:6
 #: dsshop/templates/customer/registration.html:33
 #: dsshop/templates/customer/registration.html:43
 msgid "Register"
-msgstr ""
+msgstr "Régistrer"
 
 #: dsshop/templates/customer/order/order_detail.html:6
 #: dsshop/templates/customer/order/order_list.html:14
@@ -1709,6 +1721,10 @@ msgid ""
 "alles is terug te vinden in onze webshop. Neem zeker contact op met ons "
 "wanneer u een onderdeel zoekt voor uw oldtimer!"
 msgstr ""
+"Nous distribuons également des pièces pour d’autres types d’ancêtres "
+"Citroën. Vous ne trouverez pas tous les articles dans notre boutique en "
+"ligne: prenez donc contact avec nous quand vous êtes à la recherche d’une "
+"pièce introuvable!"
 
 #: dsshop/templates/registration/password_reset_complete.html:4
 #: dsshop/templates/registration/password_reset_complete.html:16
@@ -1753,25 +1769,28 @@ msgstr ""
 
 #: dsshop/templates/registration/password_reset_confirm.html:45
 msgid "Changing..."
-msgstr ""
+msgstr "Mofifier..."
 
 #: dsshop/templates/registration/password_reset_confirm.html:45
 msgid "Change my password"
-msgstr ""
+msgstr "Modifier votre mot de passe"
 
 #: dsshop/templates/registration/password_reset_confirm.html:49
 msgid "Password reset unsuccessful"
-msgstr ""
+msgstr "Reinitialisation du mot de passe n'a pas été approuvée"
 
 #: dsshop/templates/registration/password_reset_confirm.html:50
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"Le lien de réinitialisation du mot de passe n'est plus actif. Il a déjà été "
+"utilisé. Veuillez relancer votre demande pour une nouvelle réinitialisation "
+"du mot de passe."
 
 #: dsshop/templates/registration/password_reset_done.html:17
 msgid "Email sent"
-msgstr ""
+msgstr "Courrier envoyé"
 
 #: dsshop/templates/registration/password_reset_done.html:40
 msgid ""
@@ -1780,6 +1799,9 @@ msgid ""
 "You should be receiving it shortly.\n"
 "\t\t\t\t    "
 msgstr ""
+"\n"
+"Nous vous avons envoyé un émail avec les instructions pour modifier votre "
+"mot de passe. Vous devriez le recevoir dans les plus brefs délais."
 
 #: dsshop/templates/registration/password_reset_done.html:45
 msgid ""
@@ -1789,6 +1811,9 @@ msgid ""
 "\t\t\t\t        your spam folder.\n"
 "\t\t\t\t    "
 msgstr ""
+"\n"
+"Au cas ou vous ne l’auriez pas reçu, veuillez contrôler l’adresse que vous "
+"venez de régistrer et verifiez le contenu de votre dossier 'spam'."
 
 #: dsshop/templates/registration/password_reset_form.html:41
 msgid ""
@@ -1798,7 +1823,7 @@ msgstr ""
 
 #: dsshop/templates/registration/password_reset_form.html:44
 msgid "Sending..."
-msgstr ""
+msgstr "Envoyer..."
 
 #: dsshop/templates/registration/password_reset_form.html:44
 msgid "Send reset email"
