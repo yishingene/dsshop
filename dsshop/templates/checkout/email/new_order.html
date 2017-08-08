@@ -5,14 +5,14 @@
 {% block body %}<p xmlns="http://www.w3.org/1999/html"></p>
 
 <p>
-    Er is een nieuwe bestelling binnengekomen vanaf de website!
-    Bestelling van: <b>{{ user }}</b>
+    Er is een nieuwe bestelling binnengekomen vanaf de website!<br>
+    Bestelling van: <b>{{ user }}</b><br>
     Email adres: <b>{{ user.email }}</b>
 </p>
 
 <ul>
     {% for line in basket.lines.all %}
-    <li>{{ line.title }} - {%  trans 'quantity:' %} {{ line.quantity }} - {% trans 'price:' %} {{ line.line_price_incl_tax|currency:basket.currency }}</li>
+    <li>{{ line.description }} - {{ line.quantity }} stuks x {% trans 'price:' %} {{ line.unit_price_incl_tax|currency:basket.currency }} = {{ line.line_price_incl_tax|currency:basket.currency }}</li>
     {% endfor %}
 </ul>
 
