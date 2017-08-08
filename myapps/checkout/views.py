@@ -26,7 +26,7 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 	def send_mail(self, user, basket, order_total):
 
 		subject = 'Nieuwe bestelling op website!' + ' > van: ' + user.email
-		receivers = ['info@tomverheyden.com', ]
+		receivers = ['info@tomverheyden.com', 'tim.claes@live.be']
 		sender = 'website@tomverheyden.com'
 
 		ctx = {}
