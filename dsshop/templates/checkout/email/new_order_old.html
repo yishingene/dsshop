@@ -1,0 +1,48 @@
+{% extends 'base_email.html' %}
+
+{% load currency_filters %}
+
+{% block styles %}
+    <style type="text/css"> 
+
+    	/*Calling our web font*/
+		@import url(http://fonts.googleapis.com/css?family=Roboto:300);
+
+		/* Some resets and issue fixes */
+        #outlook a { padding:0; }
+        body { 
+    		width:100% !important; 
+        	-webkit-text;
+        	size-adjust:100%;
+        	-ms-text-size-adjust:100%;
+        	margin:0;
+        	padding:0; 
+        }     
+        .ReadMsgBody { 
+        	width: 100%;
+        }
+        .ExternalClass {
+        	width:100%;
+        } 
+        .backgroundTable {
+        	margin:0 auto;
+        	padding:0;
+        	width:100%!important;
+        } 
+        table td {
+        	border-collapse: collapse;
+        }
+        .ExternalClass * {
+        	line-height: 115%;
+        }           
+        /* End reset */
+
+        @media screen and (max-width: 630px) {
+
+        }
+    </style>
+{% endblock styles %}
+
+{% block main %}
+
+{% endblock main %}

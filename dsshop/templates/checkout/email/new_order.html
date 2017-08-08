@@ -1,0 +1,23 @@
+{% extends "base_email.html" %}
+
+{% load currency_filters i18n %}
+
+{% block body %}<p xmlns="http://www.w3.org/1999/html"></p>
+
+<p>
+    Er is een nieuwe bestelling binnengekomen vanaf de website!
+    Bestelling van: <b>{{ user }}</b>
+    Email adres: <b>{{ user.email }}</b>
+</p>
+
+<ul>
+    {% for line in basket.lines.all %}
+    <li>{{ line.title }} - {%  trans 'quantity:' %} {{ line.quantity }} - {% trans 'price:' %} {{ line.line_price_incl_tax|currency:basket.currency }}</li>
+    {% endfor %}
+</ul>
+
+<p>
+    <b>{% trans 'Basket total:' %} {{ basket.total_incl_tax|currency:basket.currency }}</b><br/>
+</p>
+
+{% endblock body %}

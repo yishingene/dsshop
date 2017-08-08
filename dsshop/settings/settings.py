@@ -248,20 +248,20 @@ OSCAR_DASHBOARD_NAVIGATION = [
             },
         ]
     },
-#    {
-#        'label': _('Content'),
-#        'icon': 'icon-folder-close',
-#        'children': [
-#            {
-#                'label': _('Pages'),
-#                'url_name': 'dashboard:page-list',
-#            },
-#            {
-#                'label': _('Email templates'),
-#                'url_name': 'dashboard:comms-list',
-#            },
-#        ]
-#    },
+   {
+       'label': _('Content'),
+       'icon': 'icon-folder-close',
+       'children': [
+           # {
+           #     'label': _('Pages'),
+           #     'url_name': 'dashboard:page-list',
+           # },
+           {
+               'label': _('Email templates'),
+               'url_name': 'dashboard:comms-list',
+           },
+       ]
+   },
     {
         'label': _('Orders'),
         'icon': 'icon-list',

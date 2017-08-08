@@ -17,20 +17,23 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 	def submit(self, user, basket, shipping_address, shipping_method,
 			shipping_charge, billing_address, order_total, payment_kwargs=None, order_kwargs=None):
 
-		self.send_mail(user.email)
-
+		self.send_mail(user, basket, order_total)
 
 		return super(PaymentDetailsView, self).submit(user=user, basket=basket, shipping_address=shipping_address,
 			shipping_method=shipping_method, shipping_charge=shipping_charge, billing_address=billing_address,
 			order_total=order_total, payment_kwargs=payment_kwargs, order_kwargs=order_kwargs)
 
-	def send_mail(self, user_email):
+	def send_mail(self, user, basket, order_total):
 
-		subject = 'Nieuwe bestelling op website!' + ' van: ' + user_email
-		receivers = ['info@tomverheyden.com', 'tim.claes@live.be', ]
+		subject = 'Nieuwe bestelling op website!' + ' > van: ' + user.email
+		receivers = ['info@tomverheyden.com', ]
 		sender = 'website@tomverheyden.com'
 
 		ctx = {}
+
+		ctx['basket'] = basket
+		ctx['order_total'] = order_total
+		ctx['user'] = user
 
 		message = get_template('checkout/email/new_order.html').render(Context(ctx))
 		msg = EmailMessage(subject, message, to=receivers, from_email=sender)

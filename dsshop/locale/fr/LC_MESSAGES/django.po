@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-30 17:30+0000\n"
+"POT-Creation-Date: 2017-07-31 19:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,6 +59,18 @@ msgstr "Catégories"
 #: dsshop/templates/dashboard/index.html:111
 msgid "Customers"
 msgstr "Clients"
+
+#: dsshop/settings/settings.py:252
+#, fuzzy
+#| msgid "Contact"
+msgid "Content"
+msgstr "Contact"
+
+#: dsshop/settings/settings.py:260
+#, fuzzy
+#| msgid "Email sent"
+msgid "Email templates"
+msgstr "Courrier envoyé"
 
 #: dsshop/settings/settings.py:266
 #: dsshop/templates/dashboard/orders/order_detail.html:17
