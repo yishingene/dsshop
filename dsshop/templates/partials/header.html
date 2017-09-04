@@ -49,7 +49,7 @@
                     <div class="menu-extra">
                         <ul>
                             <li id="s" class="search-box">
-                                <a href="#search" class="flat-search"><i class="fa fa-search"></i></a>
+                                <a href="#search" class="flat-search"><i class="fa fa-lg fa-search"></i></a>
                                 <div class="submenu top-search">
                                     <div class="widget widget_search">
                                         <form method="get" action="{% url 'search:search' %}" class="search-form">
@@ -64,14 +64,14 @@
                                 </div>
                             </li>
                             <li class="search-box">
-                                <a href="{% url 'customer:profile-view' %}" class="flat-search"><i class="fa fa-user"></i></a>
+                                <a href="{% url 'customer:profile-view' %}" class="flat-search"><i class="fa fa-lg fa-user"></i></a>
                                 <div class="submenu top-search">
                                     
                                 </div>
                             </li>
                             <li class="shopping-cart">
                                 <a href="#">
-                                    <i class="fa fa-shopping-cart"></i>
+                                    <i class="fa fa-lg fa-shopping-cart"></i>
                                     <!-- AANTAL ITEMS IN SHOPPING CAR-->
                                     <span id="nav-cart" class="shopping-cart-items-count">{{ request.basket.num_lines }}</span>
                                 </a>

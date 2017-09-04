@@ -283,3 +283,7 @@ a.collapsor:after {
 .content-text > h4.title {
 	margin-bottom: 0px;
 }
+.shopping-cart .shopping-cart-items-count {
+	top: 25px;
+	left: 18px;
+}
