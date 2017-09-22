@@ -20,6 +20,7 @@ class ShippingCostForm(forms.ModelForm):
 
 		my_order = super(ShippingCostForm, self).save(commit=True)
 
+		my_order.set_status('Verzendkosten toegevoegd')
 		my_order.shipping_incl_tax = self.instance.shipping_excl_tax * D('1.21')
 
 		my_order.total_excl_tax = my_order.basket_total_before_discounts_excl_tax + my_order.shipping_excl_tax

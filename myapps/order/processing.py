@@ -10,8 +10,6 @@ class EventHandler(OscarEventHandler):
 
 		if new_status == 'Betaald':
 
-			print('Tis betaald!')
-
 			view = PaymentDetailsView()
 
 			source_type, __ = paymentmodels.SourceType.objects.get_or_create(name="Overschrijving")

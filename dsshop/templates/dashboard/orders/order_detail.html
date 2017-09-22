@@ -233,6 +233,7 @@
 
             <div class="tab-pane {% if active_tab == 'shipping' %}active{% endif %}" id="shipping">
                 {% block tab_shipping %}
+                    {% if not order.shipping_code == 'Afhaling door klant' %}
                 	<div>
                 		{{ shipping_cost_form.errors }}
                 		<form method="post">
@@ -241,8 +242,8 @@
                 			<input type="hidden" name="test" value="test" />
                             <input type="submit" value="{% trans 'Aanpassen' %}" class="btn btn-info" />
                 		</form>
-                		 
                 	</div>
+                    {% endif %}
                     <div class="table-header">
                         <h3>{% trans "Shipping" %}</h3>
                     </div>

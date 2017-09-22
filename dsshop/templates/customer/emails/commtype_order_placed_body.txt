@@ -1,0 +1,32 @@
+{% load currency_filters i18n %}{% blocktrans with order_number=order.number %}Hello,
+
+We are pleased to confirm your order {{ order_number }} has been received and
+will be processed shortly.{% endblocktrans %}
+
+{% trans 'Your order contains:' %}
+
+{% for line in order.lines.all %} * {{ line.title }} - {%  trans 'quantity:' %} {{ line.quantity }} - {% trans 'price:' %} {{ line.line_price_incl_tax|currency:order.currency }}
+{% endfor %}
+{% trans 'Basket total:' %} {{ order.basket_total_incl_tax|currency:order.currency }}
+
+
+{% if order.shipping_code == 'Afhaling door klant' %}
+{% blocktrans %}Bedankt voor je bestelling! Zodra we jouw betaling hebben ontvangen op rekeningnummer 
+BEXX XXXX XXXX XXXX zetten we de bestelde onderdelen klaar. We geven dan een seintje wanneer deze opgehaald
+kunnen worden{% endblocktrans %}
+{% else %}
+{% trans 'Shipping address:' %}
+
+{% for field in order.shipping_address.active_address_fields %}  {{ field }}
+{% endfor %}
+
+{% trans 'Op dit moment kunnen wij de verzendkosten nog niet automatisch berekenen. Op basis van de bestelde onderdelen berekenen wij de correcte verzendkosten, en contacteren we jou om deze te bevestigen. We streven ernaar om een antwoord te geven binnen de 2 werkdagen.' %}
+{% endif %}
+
+
+{% if status_url %}
+{% blocktrans %}You can view the status of this order at the below URL:
+{{ status_url }}{% endblocktrans %}
+{% endif %}
+
+{% blocktrans %}The team{% endblocktrans %}
