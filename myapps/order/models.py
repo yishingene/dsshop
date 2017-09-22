@@ -1,8 +1,12 @@
 import datetime
 
+from django.db import models
+
 from oscar.apps.order.abstract_models import AbstractOrder
 
 class Order(AbstractOrder):
+
+	language = models.CharField(blank=True, null=True, max_length=255)
 
 	def end_date(self):
 

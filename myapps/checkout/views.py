@@ -1,7 +1,7 @@
 from django.core.mail import EmailMessage
 from django.template import Context
 from django.template.loader import get_template
-
+from django.utils.translation import get_language
 
 from oscar.core.loading import get_model
 from oscar.apps.checkout.views import PaymentDetailsView as OscarPaymentDetailsView
@@ -16,6 +16,14 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 
 	def submit(self, user, basket, shipping_address, shipping_method,
 			shipping_charge, billing_address, order_total, payment_kwargs=None, order_kwargs=None):
+
+		lang = get_language()
+
+		print('ooooooooooo')
+		print('ooooooooooo')
+		print('%s' % lang)
+		print('ooooooooooo')
+		print('ooooooooooo')
 
 		self.send_mail(user, basket, order_total)
 
