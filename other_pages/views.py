@@ -1,5 +1,6 @@
 import os
 
+from django.views import View
 from django.views.generic import TemplateView, FormView, ListView, DetailView, DeleteView, UpdateView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
@@ -120,6 +121,22 @@ class EventUpdateView(FormView):
 					}
 				)
 		return self.queryset.all()
+
+class ShippingChargesMailView(View):
+
+	def get(self, request, *args, **kwargs):
+
+		return_url = request.META.get('HTTP_REFERER')
+
+		print('^^^^^^^^^^^^')
+		print('^^^^^^^^^^^^')
+		print('sending mail!')
+		print('^^^^^^^^^^^^')
+		print('^^^^^^^^^^^^')
+
+		messages.add_message(self.request, messages.SUCCESS, _('Mail met verzendkosten is verzonden!'))
+
+		return HttpResponseRedirect(return_url)
 
 class ContactPageView(FormView):
 

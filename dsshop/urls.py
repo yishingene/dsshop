@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^contact/$', other_views.ContactPageView.as_view(), name='contact'),
+    url(r'^send_shipping_charges_mail/$', other_views.ShippingChargesMailView.as_view(), name='shipping-charges-mail'),
     url(r'^dashboard/events/$', other_views.EventListView.as_view(), name='event-list'),
     url(r'^dashboard/events/update/(?P<pk>\d+)/$', other_views.EventUpdateView.as_view(), name='event-update'),
     url(r'^dashboard/events/delete/(?P<pk>\d+)/$', other_views.EventDeleteView.as_view(), name='event-delete'),
