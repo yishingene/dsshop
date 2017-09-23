@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.views.generic import TemplateView
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -7,17 +8,51 @@ from django.utils.translation import ugettext_lazy as _
 from oscar.apps.dashboard.orders.views import OrderDetailView as OscarOrderDetailView
 from oscar.core.loading import get_class, get_model
 
-from easy_pdf.views import PDFTemplateView
+from easy_pdf.views import PDFTemplateView, PDFTemplateResponseMixin
 from decimal import Decimal as D
 
 Order = get_model('order', 'Order')
 ShippingCostForm = get_class('myapps.dashboard.orders.forms', 'ShippingCostForm')
-	
+
+
+class InvoiceDownloadView(PDFTemplateResponseMixin, TemplateView):
+
+	base_url = 'file://' + settings.STATIC_ROOT
+
+	if settings.DEV:
+		img_url = '/Users/timclaes/development/thinkmobile/2016/dsshop/dsshop/common_static/images/logo.png'
+
+	else:
+		img_url = ''
+
+	template_name = 'dashboard/orders/invoice.html'
+	download_filename =  'factuur_tom_verheyden.pdf'
+
+	order = None
+
+	'''
+	KIJK MSS BEST HIER NAAR: https://github.com/dentemm/festival/blob/1d6793de172dd2d45099afdce8762e08d96b7bd2/home/views.py
+	'''
+
+	def dispatch(self, request, *args, **kwargs):
+
+		order_nr = kwargs['number']
+		self.order = Order.objects.get(number=order_nr)
+
+		return super(InvoiceDownloadView, self).dispatch(request, *args, **kwargs)
+
+	def get_context_data(self, **kwargs):
+
+		ctx = super(InvoiceDownloadView, self).get_context_data(**kwargs)
+
+		ctx['pagesize'] = 'A4'
+		ctx['order'] = self.order
+		ctx['url'] = self.img_url
+
+		return ctx
+
 
 class InvoicePdfView(PDFTemplateView):
-
-	#if settings.DEV:
-	#base_url = '/Users/timclaes/development/thinkmobile/2016/dsshop/dsshop/common_static'
 
 	base_url = 'file://' + settings.STATIC_ROOT
 

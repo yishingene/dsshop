@@ -14,7 +14,8 @@ class OrdersDashboardApplication(DashboardApplication):
         'order-detail-note': (['is_staff'], ['partner.dashboard_access']),
         'order-line-detail': (['is_staff'], ['partner.dashboard_access']),
         'order-shipping-address': (['is_staff'], ['partner.dashboard_access']),
-        'order-invoice': (['is_staff'], ['is_active'], ['partner.dashboard_access'], ),
+        'order-invoice': (['is_staff'], ['is_active'], ['partner.dashboard_access']),
+        'order-invoice-download': (['is_staff'], ['is_active'], ['partner.dashboard_access']),
     }
 
     order_list_view = get_class('dashboard.orders.views', 'OrderListView')
@@ -24,6 +25,7 @@ class OrdersDashboardApplication(DashboardApplication):
     line_detail_view = get_class('dashboard.orders.views', 'LineDetailView')
     order_stats_view = get_class('dashboard.orders.views', 'OrderStatsView')
     order_invoice_view = get_class('dashboard.orders.views', 'InvoicePdfView')
+    order_invoice_download_view = get_class('dashboard.orders.views', 'InvoiceDownloadView')
 
     def get_urls(self):
         urls = [
@@ -41,6 +43,8 @@ class OrdersDashboardApplication(DashboardApplication):
                 name='order-shipping-address'),
             url(r'^invoice/(?P<number>[-\w]+)/$',
                 self.order_invoice_view.as_view(), name='order-invoice'),
+            url(r'^invoice/(?P<number>[-\w]+)/download/$',
+                self.order_invoice_download_view.as_view(), name='order-invoice-download')
         ]
         return self.post_process_urls(urls)
 

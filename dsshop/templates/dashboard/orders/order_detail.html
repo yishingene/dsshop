@@ -310,6 +310,9 @@
                         <a href="{% url 'dashboard:order-invoice' order.number %}" target="_" value="" class="btn btn-info" style="margin-bottom: 25px;">
                             {% trans 'Bekijk factuur' %}
                         </a>
+                        <a href="{% url 'dashboard:order-invoice-download' order.number %}" class="btn btn-primary" style="margin-bottom: 25px;">
+                            {% trans 'Factuur downloaden' %}
+                        </a>
                     {% endif %}
 
                     {% if order.billing_address %}
@@ -443,7 +446,6 @@
                     </form>
                 {% endblock %}
             </div>
-
             {% block extra_tabs %}{% endblock %}
         </div>
     </div>
