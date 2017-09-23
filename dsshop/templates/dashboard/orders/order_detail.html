@@ -85,6 +85,7 @@
             {% block nav_tabs %}
                 <li class="{% if active_tab == 'lines' %}active{% endif %}"><a href="#lines" data-toggle="tab">{% trans "Order contents" %}</a></li>
                 <li class="{% if active_tab == 'shipping' %}active{% endif %}"><a href="#shipping" data-toggle="tab">{% trans "Shipping" %}</a></li>
+<!--                 <li class="{% if active_tab == 'order_number' %}active{% endif %}"><a href="#order_number" data-toggle="tab">{% trans "Order number" %}</a></li> -->
                 <li class="{% if active_tab == 'payment' %}active{% endif %}"><a href="#payment" data-toggle="tab">{% trans "Payment" %}</a></li>
                 <li class="{% if active_tab == 'notes' %}active{% endif %}"><a href="#notes" data-toggle="tab">{% trans "Notes" %}</a></li>
             {% endblock nav_tabs %}
@@ -241,9 +242,9 @@
                 			{% csrf_token %}
                 			<input type="hidden" name="test" value="test" />
                             <input type="submit" value="{% trans 'Aanpassen' %}" class="btn btn-info" />
-                            {% if not order.shipping_inc_tax == 0 %}
+                            {% if not order.shipping_incl_tax == 0 %}
                             <a href="{% url 'shipping-charges-mail' order.id %}" class="btn btn-warning" {% if order.shipping_confirmed %}disabled{% endif %}>{% if order.shipping_confirmed %}Klant verwittigd{% else %}Mail verzenden{% endif %}</a>
-                            {% endif %}
+                            {% endif %} 
                 		</form>
                 	</div>
                     {% endif %}
@@ -287,6 +288,21 @@
                     </table>
                 {% endblock %}
             </div>
+<!--             <div class="tab-pane {% if active_tab == 'order_number' %}active{% endif %}" id="order_number">
+                <div class="table-header">
+                    <h3>Bestelnummer wijzigen</h3>
+                </div>
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <div style="height: 50px;"></div>
+                            </th>
+
+                        </tr>
+                    </thead>
+                </table>
+            </div> -->
 
             <div class="tab-pane {% if active_tab == 'payment' %}active{% endif %}" id="payment">
                 {% block tab_payment %}
