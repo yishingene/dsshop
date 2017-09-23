@@ -5,14 +5,18 @@ from django.views.generic import TemplateView, FormView, ListView, DetailView, D
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.utils.translation import ugettext as _
+from django.core.mail import EmailMessage
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.template import Context
+from django.template.loader import get_template
 
 from .forms import UploadFileForm, ContactForm, EventForm
 from .models import Event
+from myapps.order.models import Order
 
 # Create your views here.
 class EventListView(FormView, ListView):
@@ -128,11 +132,29 @@ class ShippingChargesMailView(View):
 
 		return_url = request.META.get('HTTP_REFERER')
 
-		print('^^^^^^^^^^^^')
-		print('^^^^^^^^^^^^')
-		print('sending mail!')
-		print('^^^^^^^^^^^^')
-		print('^^^^^^^^^^^^')
+		try:
+			order = Order.objects.get(id=kwargs.get('order_id', None))
+
+		except:
+			messages.add_message(self.request, messages.ERROR, _('Fout tijdens verzenden van mail!'))
+			return HttpResponseRedirect
+
+		# SEND MAIL WITH SHIPPING CHARGES TO CUSTOMER
+
+		# subject = 'Nieuwe bestelling op website!' + ' > van: ' + user.email
+		# receivers = ['info@tomverheyden.com', 'tim.claes@live.be']
+		# sender = 'website@tomverheyden.com'
+
+		# ctx = {}
+
+		# ctx['basket'] = basket
+		# ctx['order_total'] = order_total
+		# ctx['user'] = user
+
+		# message = get_template('checkout/email/new_order.html').render(Context(ctx))
+		# msg = EmailMessage(subject, message, to=receivers, from_email=sender)
+		# msg.content_subtype = 'html'
+		# msg.send()
 
 		messages.add_message(self.request, messages.SUCCESS, _('Mail met verzendkosten is verzonden!'))
 
@@ -142,7 +164,6 @@ class ContactPageView(FormView):
 
 	template_name = 'contact.html'
 	form_class = ContactForm
-
 
 	def post(self, request, *args, **kwargs):
 

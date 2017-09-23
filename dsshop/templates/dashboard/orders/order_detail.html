@@ -242,7 +242,7 @@
                 			<input type="hidden" name="test" value="test" />
                             <input type="submit" value="{% trans 'Aanpassen' %}" class="btn btn-info" />
                 		</form>
-                        <a href="{% url 'shipping-charges-mail' %}" class="btn btn-danger">Mail verzenden</a>
+                        <a href="{% url 'shipping-charges-mail' order.id %}" class="btn btn-danger">Mail verzenden</a>
                 	</div>
                     {% endif %}
                     <div class="table-header">

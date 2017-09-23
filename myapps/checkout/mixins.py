@@ -6,6 +6,7 @@ from oscar.core.compat import user_is_authenticated
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import NoReverseMatch, reverse
 from django.http import HttpResponseRedirect
+from django.utils.translation import get_language
 
 from oscar.core.loading import get_class, get_model
 
@@ -136,6 +137,7 @@ class OrderPlacementMixin(CheckoutSessionMixin):
         else:
             status = kwargs.pop('status')
 
+        # ADDED LANGUAGE TO ORDER 
         order = OrderCreator().place_order(
             user=user,
             order_number=order_number,
@@ -145,7 +147,11 @@ class OrderPlacementMixin(CheckoutSessionMixin):
             shipping_charge=shipping_charge,
             total=order_total,
             billing_address=billing_address,
-            status=status, **kwargs)
+            status=status,
+            language=get_language(),
+            **kwargs
+            )
+
         self.save_payment_details(order)
         return order
 
