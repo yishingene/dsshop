@@ -241,8 +241,10 @@
                 			{% csrf_token %}
                 			<input type="hidden" name="test" value="test" />
                             <input type="submit" value="{% trans 'Aanpassen' %}" class="btn btn-info" />
+                            {% if not order.shipping_inc_tax == 0 %}
+                            <a href="{% url 'shipping-charges-mail' order.id %}" class="btn btn-warning" {% if order.shipping_confirmed %}disabled{% endif %}>{% if order.shipping_confirmed %}Klant verwittigd{% else %}Mail verzenden{% endif %}</a>
+                            {% endif %}
                 		</form>
-                        <a href="{% url 'shipping-charges-mail' order.id %}" class="btn btn-danger">Mail verzenden</a>
                 	</div>
                     {% endif %}
                     <div class="table-header">

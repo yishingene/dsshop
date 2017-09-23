@@ -7,19 +7,27 @@
 {% if order.language == 'nl' %}
 	<ul>
 	    {% for line in order.lines.all %}
-	    <li>{{ line.description }} - {{ line.quantity }} stuks x {% trans 'price:' %} {{ line.unit_price_incl_tax|currency:order.currency }} = {{ line.line_price_incl_tax|currency:order.currency }}</li>
+	    <li>{{ line.description }} - {{ line.quantity }} stuks x prijs {{ line.unit_price_incl_tax|currency:order.currency }} = {{ line.line_price_incl_tax|currency:order.currency }}</li>
 	    {% endfor %}
 	</ul>
+	<p>
+	    <b>Verzendkosten: {{ order.shipping_incl_tax|currency:order.currency }}</b><br/>
+	</p>
+	<p>
+	    <b>Totaal bestelling: {{ order.total_incl_tax|currency:order.currency }}</b><br/>
+	</p>
 {% elif order.language == 'fr' %}
 	<ul>
 	    {% for line in order.lines.all %}
-	    <li>{{ line.description }} - {{ line.quantity }} stuks x {% trans 'price:' %} {{ line.unit_price_incl_tax|currency:order.currency }} = {{ line.line_price_incl_tax|currency:order.currency }}</li>
+	    <li>{{ line.description }} - {{ line.quantity }} pièces x prix {{ line.unit_price_incl_tax|currency:order.currency }} = {{ line.line_price_incl_tax|currency:order.currency }}</li>
 	    {% endfor %}
 	</ul>
+	<p>
+	    <b>Frais d'envoi: {{ order.shipping_incl_tax|currency:order.currency }}</b><br/>
+	</p>
+	<p>
+	    <b>Prix total: {{ order.total_incl_tax|currency:order.currency }}</b><br/>
+	</p>
 {% endif %}
-
-<p>
-    <b>{% trans 'Basket total:' %} {{ basket.total_incl_tax|currency:basket.currency }}</b><br/>
-</p>
 
 {% endblock body %}
