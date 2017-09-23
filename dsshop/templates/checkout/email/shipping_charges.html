@@ -1,0 +1,25 @@
+{% extends 'base_email.html' %}
+
+{% load currency_filters %}
+
+{% block body %}<p xmlns="http://www.w3.org/1999/html"></p>
+
+{% if order.language == 'nl' %}
+	<ul>
+	    {% for line in order.lines.all %}
+	    <li>{{ line.description }} - {{ line.quantity }} stuks x {% trans 'price:' %} {{ line.unit_price_incl_tax|currency:order.currency }} = {{ line.line_price_incl_tax|currency:order.currency }}</li>
+	    {% endfor %}
+	</ul>
+{% elif order.language == 'fr' %}
+	<ul>
+	    {% for line in order.lines.all %}
+	    <li>{{ line.description }} - {{ line.quantity }} stuks x {% trans 'price:' %} {{ line.unit_price_incl_tax|currency:order.currency }} = {{ line.line_price_incl_tax|currency:order.currency }}</li>
+	    {% endfor %}
+	</ul>
+{% endif %}
+
+<p>
+    <b>{% trans 'Basket total:' %} {{ basket.total_incl_tax|currency:basket.currency }}</b><br/>
+</p>
+
+{% endblock body %}

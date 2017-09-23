@@ -141,20 +141,30 @@ class ShippingChargesMailView(View):
 
 		# SEND MAIL WITH SHIPPING CHARGES TO CUSTOMER
 
-		# subject = 'Nieuwe bestelling op website!' + ' > van: ' + user.email
-		# receivers = ['info@tomverheyden.com', 'tim.claes@live.be']
-		# sender = 'website@tomverheyden.com'
+		sender = 'info@tomverheyden.com'
+		customer_email = order.user.email
+		receivers = [customer_email, ]
+		subject = ''
 
-		# ctx = {}
+		if order.language == 'nl':
+			subject = 'Verzendkosten voor bestelling %s' % order.number
 
-		# ctx['basket'] = basket
-		# ctx['order_total'] = order_total
-		# ctx['user'] = user
+		elif order.language == 'fr':
+			subject = 'Nog te vertalen'
 
-		# message = get_template('checkout/email/new_order.html').render(Context(ctx))
-		# msg = EmailMessage(subject, message, to=receivers, from_email=sender)
-		# msg.content_subtype = 'html'
-		# msg.send()
+		else:
+			subject = 'Shipping charges for order %s' % order.number
+
+		ctx = {}
+		ctx['order'] = order
+
+		message = get_template('checkout/email/shipping_charges.html').render(Context(ctx))
+		msg = EmailMessage(subject, message, to=receivers, from_email=sender)
+		msg.content_subtype = 'html'
+		msg.send()
+
+		order.shipping_confirmed = True
+		order.set_status('Klant verwittigd van verzendkosten')
 
 		messages.add_message(self.request, messages.SUCCESS, _('Mail met verzendkosten is verzonden!'))
 

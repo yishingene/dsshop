@@ -26,7 +26,7 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 
 		subject = 'Nieuwe bestelling op website!' + ' > van: ' + user.email
 		receivers = ['info@tomverheyden.com', 'tim.claes@live.be']
-		sender = 'website@tomverheyden.com'
+		sender = 'info@tomverheyden.com'
 
 		ctx = {}
 

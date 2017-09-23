@@ -7,6 +7,7 @@ from oscar.apps.order.abstract_models import AbstractOrder
 class Order(AbstractOrder):
 
 	language = models.CharField(blank=True, null=True, max_length=255)
+	shipping_confirmed = models.BooleanField(default=False)
 
 	def end_date(self):
 
