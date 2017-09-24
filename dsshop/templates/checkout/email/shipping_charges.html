@@ -32,15 +32,15 @@
 	{% elif order.language == 'fr' %}
 		Quantité
 	{% endif %}
-{% endblock product_th %}
+{% endblock amount_th %}
 
-{% block amount_th %}
+{% block price_th %}
 	{% if order.language == 'nl' %}
 		Prijs
 	{% elif order.language == 'fr' %}
 		Prix
 	{% endif %}
-{% endblock product_th %}
+{% endblock price_th %}
 
 {% block order_table_content %}
 	{% for line in order.lines.all %}
