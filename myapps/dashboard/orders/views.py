@@ -9,6 +9,7 @@ from oscar.apps.dashboard.orders.views import OrderDetailView as OscarOrderDetai
 from oscar.core.loading import get_class, get_model
 
 from easy_pdf.views import PDFTemplateView, PDFTemplateResponseMixin
+from easy_pdf.rendering import render_to_pdf_response, render_to_pdf
 from decimal import Decimal as D
 
 Order = get_model('order', 'Order')
@@ -23,10 +24,11 @@ class InvoiceDownloadView(PDFTemplateResponseMixin, TemplateView):
 		img_url = '/Users/timclaes/development/thinkmobile/2016/dsshop/dsshop/common_static/images/logo.png'
 
 	else:
-		img_url = ''
+		img_url = 'https://s3.eu-central-1.amazonaws.com/dsshop/media/images/logo.png'
 
 	template_name = 'dashboard/orders/invoice.html'
 	download_filename =  'factuur_tom_verheyden.pdf'
+	content_type = 'application/pdf'
 
 	order = None
 
@@ -34,12 +36,24 @@ class InvoiceDownloadView(PDFTemplateResponseMixin, TemplateView):
 	KIJK MSS BEST HIER NAAR: https://github.com/dentemm/festival/blob/1d6793de172dd2d45099afdce8762e08d96b7bd2/home/views.py
 	'''
 
-	def dispatch(self, request, *args, **kwargs):
+	# def dispatch(self, request, *args, **kwargs):
 
-		order_nr = kwargs['number']
-		self.order = Order.objects.get(number=order_nr)
+	# 	order_nr = kwargs['number']
+	# 	self.order = Order.objects.get(number=order_nr)
 
-		return super(InvoiceDownloadView, self).dispatch(request, *args, **kwargs)
+	# 	return super(InvoiceDownloadView, self).dispatch(request, *args, **kwargs)
+
+	def get(self, request, *args, **kwargs):
+
+		self.order = Order.objects.get(number=kwargs['number'])
+
+		ctx = self.get_context_data()
+
+		render_to_pdf(request=request, template=self.template_name, context=ctx, download_filename=self.download_filename)
+
+		return super(InvoiceDownloadView, self).get(request, *args, **kwargs)
+
+
 
 	def get_context_data(self, **kwargs):
 

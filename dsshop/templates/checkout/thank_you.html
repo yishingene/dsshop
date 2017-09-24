@@ -49,13 +49,14 @@
                 <h3 class="flat-title-section style">
                     <span>{% trans 'Bevestiging' %}</span>
                 </h3>  
-
+                {% if not order.shipping_code == 'Afhaling door klant'
                 <div class="flat-woocommerce">
                     <div class="woocommerce-danger">
                         <strong>{% trans 'Belangrijke informatie!' %}</strong>
                         {% trans 'Wij nemen binnen de 2 werkdagen contact op met u om deze bestelling op een vlotte manier af te handelen. ' %}
                     </div>
                 </div>
+                {% endif %}
 
                 <p class="lead">
                     {% blocktrans with number=order.number %}
