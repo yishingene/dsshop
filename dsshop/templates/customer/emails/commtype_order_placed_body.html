@@ -14,10 +14,17 @@
 	{% else %}
 		{% trans 'Op dit moment kunnen wij de verzendkosten nog niet automatisch berekenen. Op basis van de bestelde onderdelen berekenen wij de correcte verzendkosten, en contacteren we jou om deze te bevestigen. We streven ernaar om een antwoord te geven binnen de 2 werkdagen.' %}
 	{% endif %}
+	{% if status_url %}
+		<p>
+		{% blocktrans %}
+			You can view the status of this order by clicking <a href="{{ status_url }}" title="order status">here</a>
+		{% endblocktrans %}
+		</p>
+		{% endif %}
 {% endblock message_body %}
 
-{% if not order.shipping_code == 'Afhaling door klant' %}
-	{% block shipping_info %}
+{% block shipping_info %}
+	{% if not order.shipping_code == 'Afhaling door klant' %}
 	    <h4 class="address" style="font-size: 20px;color: #21242b;border-bottom: 2px solid #32bfc0;max-width: 275px;font-weight: 600;">
 	        {% trans 'Shipping address' %}
 	    </h4>
@@ -26,9 +33,8 @@
 			{{ field }}<br/>
 		{% endfor %}
 		</p>
-	{% endblock shipping_info %}
-{% endif %}
-
+	{% endif %}
+{% endblock shipping_info %}
 
 {% block overview_subtitle %}
 	{% trans 'Jouw bestelling' %}
@@ -41,7 +47,7 @@
 	{% for line in order.lines.all %}
     <tr {% if forloop.counter|divisibleby:2 %}class="even"{% endif %} style="height: 80px; {% if forloop.counter|divisibleby:2 %}background: #f5f5f5;{% endif %}">
         <td class="first" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 55%;text-align: left;">
-        	{{ line.title }} 
+        	{{ line.title|capfirst }} 
         </td>
         <td class="second" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 15%;text-align: center;">
         	{{ line.quantity }}
