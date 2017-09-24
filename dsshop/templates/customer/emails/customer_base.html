@@ -3,12 +3,18 @@
 <!DOCTYPE html>
 <html> 
     <head>
-        <title>Jouw bestelling bij Tom Verheyden</title>
+        <title>{% trans 'Jouw bestelling bij Tom Verheyden' %}</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
         <style type="text/css">
             .pre-header {
-
+            }
+            .address {
+                font-size: 20px;
+                color: #21242b;
+                border-bottom: 2px solid #32bfc0;
+                max-width: 275px;
+                font-weight: 600;
             }
             .email-background {
                 font-family: 'Poppins', sans-serif;
@@ -27,6 +33,13 @@
                 width: 100%;
                 height: 16px;
                 margin: 0 -200% 0 25px;
+            }
+            .content p {
+                max-width: 550px;
+                width: 100%;               
+            }
+            b {
+                font-weight: 600;
             }
             table {
                 max-width: 550px;
@@ -113,8 +126,17 @@
             </div>
             <div class="email-container">
                 <div class="content">
-                    {% block subtitle %}
-                    {% endblock subtitle %}
+                    <h3 class="subtitle" style="color: #32bfc0;font-weight: 600;font-size: 24px;margin: 30px 10px 20px 0px;">
+                        {% block message_subtitle %}{% endblock message_subtitle %}
+                    </h3>
+                    <p style="max-width: 550px;width: 100%;">
+                        {% block message_body %}{% endblock message_body %}
+                    </p>
+                    {% block shipping_info %}{% endblock shipping_info %}
+                    <h3 class="subtitle" style="color: #32bfc0;font-weight: 600;font-size: 24px;margin: 30px 10px 20px 0px;">
+                        {% block overview_subtitle %}{% endblock overview_subtitle %}
+                    </h3>
+
                     {% block order_table  %}
                     <table style="max-width: 550px;width: 100%;margin-bottom: 30px;border-spacing: 0px !important;">
                         <thead style="color: white;background-color: #21242b;">

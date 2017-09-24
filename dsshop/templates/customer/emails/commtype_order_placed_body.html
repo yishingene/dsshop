@@ -2,18 +2,44 @@
 
 {% load currency_filters i18n %}
 
-{% block subtitle %}
-	<h3 class="subtitle" style="color: #32bfc0;font-weight: 600;font-size: 24px;margin-bottom: 30px;">
-	    <span>Jouw bestelling</span>
-	</h3>
-{% endblock subtitle %}
+{% block message_subtitle %}
+	{% trans 'Thank you!' %}
+{% endblock message_subtitle %}
+
+{% block message_body %}
+	{% if order.shipping_code == 'Afhaling door klant' %}
+		{% blocktrans %}
+			Bedankt voor je bestelling! Zodra we jouw betaling hebben ontvangen op rekeningnummer <b style="font-weight: 600;">BE39 0017 1591 2519 (BIC: KREDBEBB)</b> zetten we de bestelde onderdelen klaar. We geven dan een seintje wanneer deze opgehaald kunnen worden
+		{% endblocktrans %}
+	{% else %}
+		{% trans 'Op dit moment kunnen wij de verzendkosten nog niet automatisch berekenen. Op basis van de bestelde onderdelen berekenen wij de correcte verzendkosten, en contacteren we jou om deze te bevestigen. We streven ernaar om een antwoord te geven binnen de 2 werkdagen.' %}
+	{% endif %}
+{% endblock message_body %}
+
+{% if not order.shipping_code == 'Afhaling door klant' %}
+	{% block shipping_info %}
+	    <h4 class="address" style="font-size: 20px;color: #21242b;border-bottom: 2px solid #32bfc0;max-width: 275px;font-weight: 600;">
+	        {% trans 'Shipping address' %}
+	    </h4>
+		<p>
+		{% for field in order.shipping_address.active_address_fields %}
+			{{ field }}<br/>
+		{% endfor %}
+		</p>
+	{% endblock shipping_info %}
+{% endif %}
+
+
+{% block overview_subtitle %}
+	{% trans 'Jouw bestelling' %}
+{% endblock overview_subtitle %}
 
 {% if order.shipping_code == 'Afhaling door klant' %}
 {% endif %}
 
 {% block order_table_content %}
 	{% for line in order.lines.all %}
-    <tr style="height: 80px;">
+    <tr {% if forloop.counter|divisibleby:2 %}class="event"{% endif %} style="height: 80px; {% if forloop.counter|divisibleby:2 %}background: #f5f5f5;{% endif %}">
         <td class="first" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 55%;text-align: left;">
         	{{ line.title }} 
         </td>
@@ -27,8 +53,13 @@
     {% endfor %}
 {% endblock order_table_content %}
 {% block order_table_total %}
-	{% if not order.shipping_code == 'Afhaling door klant' %}
-	    <tr class="bottom" style="height: 40px;">
+	{% if not order.shipping_code == 'Afhaling door klant' and order.shipping_incl_tax == 0 %}
+	    <tr class="bottom total" style="height: 40px;">
+	        <td class="third" colspan="2" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 400;font-size: 18px;">{% trans 'Subtotal' %}</td>
+	        <td class="third" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 400;font-size: 18px;">eztze </td>
+	    </tr>
+    {% elif not order.shipping_code == 'Afhaling door klant' and not order.shipping_incl_tax == 0 %}
+	    <tr class="bottom total" style="height: 40px;">
 	        <td class="third" colspan="2" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 400;font-size: 18px;">{% trans 'Subtotal' %}</td>
 	        <td class="third" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 400;font-size: 18px;">eztze </td>
 	    </tr>
