@@ -47,9 +47,9 @@
 	    <tr {% if forloop.counter|divisibleby:2 %}class="even"{% endif %} style="height: 80px; {% if forloop.counter|divisibleby:2 %}background: #f5f5f5;{% endif %}">
 	        <td class="first" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 55%;text-align: left;">
         	{% if order.language == 'nl' %}
-	        	{{ line.title_nl|capfirst }}
+	        	{{ line.product.title_nl|capfirst }}
         	{% elif order.language == 'fr' %}
-        		{{ line.title_fr|capfirst }}
+        		{{ line.product.title_fr|capfirst }}
         	{% endif %}
 	        </td>
 	        <td class="second" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 15%;text-align: center;">
