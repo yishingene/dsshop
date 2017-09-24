@@ -61,26 +61,21 @@
 {% block order_table_total %}
 	{% if not order.shipping_code == 'Afhaling door klant' and order.shipping_incl_tax == 0 %}
 	    <tr class="bottom total" style="height: 40px;">
-	        <td class="third" colspan="2" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 400;font-size: 18px;">{% trans 'Subtotal' %}</td>
-	        <td class="third" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 400;font-size: 18px;">eztze </td>
-	    </tr>
-    {% elif not order.shipping_code == 'Afhaling door klant' and not order.shipping_incl_tax == 0 %}
-	    <tr class="bottom total" style="height: 40px;">
-	        <td class="third" colspan="2" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 400;font-size: 18px;">{% trans 'Subtotal' %}</td>
-	        <td class="third" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 400;font-size: 18px;">eztze </td>
-	    </tr>
-	    <tr class="bottom" style="height: 40px;">
-	        <td class="third" colspan="2" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 400;font-size: 18px;">{% trans 'Shipping costs' %}</td>
-	        <td class="third" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 400;font-size: 18px;">eztze </td>
-	    </tr>
-	    <tr class="bottom total" style="height: 40px;">
-	        <td class="third" colspan="2" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 600;font-size: 18px;color: #21242b;">{% trans 'Total' %}</td>
-	        <td class="third" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 600;font-size: 18px;color: #21242b;">{{ order.basket_total_incl_tax|currency:order.currency }} </td>
+	        <td class="third" colspan="2" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 400;font-size: 18px;">
+	        	{% trans 'Subtotal' %}
+	        </td>
+	        <td class="third" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 600;font-size: 18px;color: #21242b;">
+	        	{{ order.basket_total_incl_tax|currency:order.currency }}
+	        </td>
 	    </tr>
     {% elif order.shipping_code == 'Afhaling door klant'%}
 	    <tr class="bottom total" style="height: 40px;">
-	        <td class="third" colspan="2" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 600;font-size: 18px;color: #21242b;">{% trans 'Total' %}</td>
-	        <td class="third" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 600;font-size: 18px;color: #21242b;">{{ order.basket_total_incl_tax|currency:order.currency }} </td>
+	        <td class="third" colspan="2" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 600;font-size: 18px;color: #21242b;">
+	        	{% trans 'Total' %}
+	        </td>
+	        <td class="third" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 30%;text-align: right;border: none;font-weight: 600;font-size: 18px;color: #21242b;">
+	        	{{ order.basket_total_incl_tax|currency:order.currency }}
+        	</td>
 	    </tr>
     {% endif  %}
 

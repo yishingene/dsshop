@@ -140,9 +140,15 @@
                     <table style="max-width: 550px;width: 100%;margin-bottom: 30px;border-spacing: 0px !important;">
                         <thead style="color: white;background-color: #21242b;">
                             <tr>
-                                <th class="first" style="padding: 10px 10px 10px 10px;font-weight: 500;font-size: 18px;width: 55%;text-align: left;">{% trans 'Product' %}</th>
-                                <th class="second" style="padding: 10px 10px 10px 10px;font-weight: 500;font-size: 18px;width: 15%;text-align: center;">{% trans 'Amount' %}</th> 
-                                <th class="third" style="padding: 10px 10px 10px 10px;font-weight: 500;font-size: 18px;width: 30%;text-align: right;">{% trans 'Price' %}</th>
+                                <th class="first" style="padding: 10px 10px 10px 10px;font-weight: 500;font-size: 18px;width: 55%;text-align: left;">
+                                    {% block product_th %}{% trans 'Product' %}{% endblock product_th %}
+                                </th>
+                                <th class="second" style="padding: 10px 10px 10px 10px;font-weight: 500;font-size: 18px;width: 15%;text-align: center;">
+                                    {% block amount_th %}{% trans 'Amount' %}{% endblock amount_th %}
+                                </th> 
+                                <th class="third" style="padding: 10px 10px 10px 10px;font-weight: 500;font-size: 18px;width: 30%;text-align: right;">
+                                    {% block price_th %}{% trans 'Price' %}{% endblock price_th %}
+                                </th>
                             </tr>
                         </thead>
                         <tbody style="color: #666e70;font-weight: 300;">
