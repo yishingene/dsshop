@@ -115,14 +115,39 @@ div.custom-info  > a:hover, div.custom-info > a::focus {
 	color: #999;
 }
 .product-info-wrap .button {
-	width: 100%
+	width: 100%;
 }
 .product-info-wrap span.amount {
 	font-size: 18px;
 }
 div.product-inner {
 	margin-top: 45px;
+	
 }
+
+@media only screen and (min-width: 768px) {
+	.cart-sm {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	div.row {
+		margin-right: -12px;
+		margin-left: -12px;
+	}
+	div.cart-sm {
+		background-color: #32bfc0;
+		padding: 10px;
+		color: green;
+		position: fixed;
+		right: 0px;
+		top: 32vh;
+		z-index: 1;
+	}
+}
+
+
 #mainnav-mobi ul > li > a:hover {
 	background-color: #32bfc0;
 }
