@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-27 18:59+0000\n"
+"POT-Creation-Date: 2017-09-27 19:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -297,7 +297,6 @@ msgid "Niet beschikbaar"
 msgstr "Non disponible"
 
 #: dsshop/templates/catalogue/partials/category_overview.html:4
-#: dsshop/templates/catalogue/partials/subcategory_overview.html:38
 msgid "Categoriëen"
 msgstr "Catégories"
 
@@ -325,7 +324,7 @@ msgstr "Article n°"
 msgid "Doorzoek onze catalogus"
 msgstr "Chercher dans le catalogue"
 
-#: dsshop/templates/catalogue/partials/subcategory_overview.html:14
+#: dsshop/templates/catalogue/partials/subcategory_overview.html:10
 msgid "Subcategorieën"
 msgstr "Sous-catégories"
 
@@ -563,7 +562,7 @@ msgstr ""
 "En ce moment, nous ne sommes pas encore en mesure de calculer les frais "
 "d'envoi automatiquement. A base des produits commandés nous calculerons les "
 "frais exactes et nous vous contacterons à fin de les confirmer. Nous nous "
-"efforçons de vous répondre endéans les 2 jours ouvrables."
+"efforçons de vous répondre dans les 2 jours ouvrables."
 
 #: dsshop/templates/checkout/shipping_methods.html:56
 #: dsshop/templates/checkout/shipping_methods.html:74
@@ -606,6 +605,8 @@ msgid ""
 "Wij nemen binnen de 2 werkdagen contact op met u om deze bestelling op een "
 "vlotte manier af te handelen. "
 msgstr ""
+"Nous vous contacterons dans un délai de deux jours ouvrables pour achever la "
+"commande de façon appropriée."
 
 #: dsshop/templates/checkout/thank_you.html:62
 #, python-format
@@ -823,9 +824,9 @@ msgid ""
 "Bedankt voor je bestelling! Binnen de 2 werkdagen ontvang je van ons een "
 "mail met de verzendkosten en het totale bedrag."
 msgstr ""
-"Merci de votre commande! Vous recevrez un email de confirmation dans un délai de "
-"deux jours ouvrables indiquant le montant des frais d'envoi ainsi que le montant "
-"total de votre commande."
+"Merci de votre commande! Vous recevrez un email de confirmation dans un "
+"délai de deux jours ouvrables indiquant le montant des frais d'envoi ainsi "
+"que le montant total de votre commande."
 
 #: dsshop/templates/customer/emails/commtype_order_placed_body.html:19
 #, python-format
@@ -845,7 +846,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Datum bestelling"
 msgid "Jouw bestelling"
-msgstr "Date de commande"
+msgstr "Votre commande"
 
 #: dsshop/templates/customer/emails/commtype_order_placed_body.html:65
 #, fuzzy
@@ -906,7 +907,13 @@ msgstr ""
 
 #: dsshop/templates/customer/emails/customer_base.html:6
 msgid "Jouw bestelling bij Tom Verheyden"
-msgstr ""
+msgstr "Votre commande - Tom Verheyden"
+
+#: dsshop/templates/customer/emails/customer_base.html:124
+#, fuzzy
+#| msgid "Jouw bestelling bij Tom Verheyden"
+msgid "Jouw bestelling | Tom Verheyden - Citroën onderdelen"
+msgstr "Votre commande - Tom Verheyden"
 
 #: dsshop/templates/customer/emails/customer_base.html:147
 #: dsshop/templates/dashboard/orders/order_detail.html:203
@@ -917,6 +924,12 @@ msgstr ""
 #: dsshop/templates/customer/emails/customer_base.html:150
 msgid "Price"
 msgstr ""
+
+#: dsshop/templates/customer/emails/customer_base.html:168
+#, fuzzy
+#| msgid "DS Onderdelen"
+msgid "onderdelen"
+msgstr "Pièces DS"
 
 #: dsshop/templates/customer/history/recently_viewed_products.html:6
 msgid "Recent bekeken"
@@ -1734,7 +1747,7 @@ msgid "Over ons"
 msgstr "Qui sommes nous?"
 
 #: dsshop/templates/partials/footer.html:28
-#: dsshop/templates/partials/header.html:124
+#: dsshop/templates/partials/header.html:114
 msgid "Onze diensten"
 msgstr "Nos services"
 
@@ -1743,7 +1756,7 @@ msgid "Contacteer ons"
 msgstr "Contactez-nous!"
 
 #: dsshop/templates/partials/footer.html:32
-#: dsshop/templates/partials/header.html:127
+#: dsshop/templates/partials/header.html:117
 msgid "Foto's"
 msgstr "Photos"
 
@@ -1772,7 +1785,7 @@ msgstr "Contact?"
 msgid "Zoek producten"
 msgstr "Chercher dans les articles"
 
-#: dsshop/templates/partials/header.html:129
+#: dsshop/templates/partials/header.html:119
 msgid "Contact"
 msgstr "Contact"
 

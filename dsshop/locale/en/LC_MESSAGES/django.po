@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-27 18:59+0000\n"
+"POT-Creation-Date: 2017-09-27 19:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -293,7 +293,6 @@ msgid "Niet beschikbaar"
 msgstr ""
 
 #: dsshop/templates/catalogue/partials/category_overview.html:4
-#: dsshop/templates/catalogue/partials/subcategory_overview.html:38
 msgid "Categoriëen"
 msgstr ""
 
@@ -321,7 +320,7 @@ msgstr ""
 msgid "Doorzoek onze catalogus"
 msgstr ""
 
-#: dsshop/templates/catalogue/partials/subcategory_overview.html:14
+#: dsshop/templates/catalogue/partials/subcategory_overview.html:10
 msgid "Subcategorieën"
 msgstr ""
 
@@ -868,6 +867,10 @@ msgstr ""
 msgid "Jouw bestelling bij Tom Verheyden"
 msgstr ""
 
+#: dsshop/templates/customer/emails/customer_base.html:124
+msgid "Jouw bestelling | Tom Verheyden - Citroën onderdelen"
+msgstr ""
+
 #: dsshop/templates/customer/emails/customer_base.html:147
 #: dsshop/templates/dashboard/orders/order_detail.html:203
 #: dsshop/templates/dashboard/orders/order_detail.html:372
@@ -876,6 +879,10 @@ msgstr ""
 
 #: dsshop/templates/customer/emails/customer_base.html:150
 msgid "Price"
+msgstr ""
+
+#: dsshop/templates/customer/emails/customer_base.html:168
+msgid "onderdelen"
 msgstr ""
 
 #: dsshop/templates/customer/history/recently_viewed_products.html:6
@@ -1690,7 +1697,7 @@ msgid "Over ons"
 msgstr ""
 
 #: dsshop/templates/partials/footer.html:28
-#: dsshop/templates/partials/header.html:124
+#: dsshop/templates/partials/header.html:114
 msgid "Onze diensten"
 msgstr ""
 
@@ -1699,7 +1706,7 @@ msgid "Contacteer ons"
 msgstr ""
 
 #: dsshop/templates/partials/footer.html:32
-#: dsshop/templates/partials/header.html:127
+#: dsshop/templates/partials/header.html:117
 msgid "Foto's"
 msgstr ""
 
@@ -1728,7 +1735,7 @@ msgstr ""
 msgid "Zoek producten"
 msgstr ""
 
-#: dsshop/templates/partials/header.html:129
+#: dsshop/templates/partials/header.html:119
 msgid "Contact"
 msgstr ""
 
