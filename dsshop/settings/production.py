@@ -45,3 +45,6 @@ OSCAR_FROM_EMAIL = 'info@tomverheyden.com'
 
 # Allow these domains
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.tomverheyden.com', '.aws.amazon.com', '.herokuapp.com']
+
+# Enforce SSL
+SECURE_SSL_REDIRECT = True
