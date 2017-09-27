@@ -24,13 +24,12 @@
 	                        <li class="trail-item"><a href="{% url 'promotions:home' %}">Home</a></li>
 	                        <li>{% trans 'Producten' %}</li>
 	                    </ul>
-	                </div><!-- /.breadcrumbs -->
-	            </div><!-- /.flat-wrapper -->
-	        </div><!-- /.row -->
-	    </div><!-- /.container -->
-	</div><!-- /.page-breadcrumbs -->
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 {% endblock breadcrumbs %}
-
 
 {% block product_list %}
 
@@ -47,38 +46,26 @@
 	                    		{% render_product product %}
 	                    	{% endfor %}
 	                    </div>
-                    </ul><!-- /.products -->
+                    </ul>
                     {% include 'catalogue/partials/pagination.html' with paginator=paginator page_obj=page_obj %}
-                </div><!-- /.woocommerce -->
-            </div><!-- /.general -->
+                </div>
+            </div>
             <div class="general-sidebars">
                 <div class="sidebar-wrap">
                     <div class="sidebar">
                     {% if messages %}
-<!--                         <div class="widget messages">
-                            <h4 class="widget-title">{% trans 'Messages' %}</h4>
-                        {% for message in messages %}
-                            <div class="message-info" id="message-{{forloop.counter}}">
-                            {{ message|truncatechars:75 }}
-                                <button type="button" class="close" data-dismiss="alert" data-target="#message-{{forloop.counter}}" aria-label="Close"">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        {% endfor %}
-                        </div> -->
-                    {% endif %}
-                              
+                    {% endif %}   
                     	{% block categories %}
                             {% include 'catalogue/partials/category_overview.html' %}
                     	{% endblock categories %}
                         {% block recently_viewed %}
                             {% recently_viewed_products current_product=product %}
                         {% endblock recently_viewed %}
-                    </div><!-- /.sidebar -->
-                </div><!-- /.sidebar-wrap -->
-            </div><!-- /.general-sidebars -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endif %}
 

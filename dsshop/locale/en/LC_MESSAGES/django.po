@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-24 18:11+0000\n"
+"POT-Creation-Date: 2017-09-27 18:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -232,10 +232,6 @@ msgstr ""
 msgid "Producten"
 msgstr ""
 
-#: dsshop/templates/catalogue/browse.html:59
-msgid "Messages"
-msgstr ""
-
 #: dsshop/templates/catalogue/detail.html:62
 msgid "Geen beschrijving opgegeven"
 msgstr ""
@@ -297,6 +293,7 @@ msgid "Niet beschikbaar"
 msgstr ""
 
 #: dsshop/templates/catalogue/partials/category_overview.html:4
+#: dsshop/templates/catalogue/partials/subcategory_overview.html:38
 msgid "Categoriëen"
 msgstr ""
 
@@ -310,7 +307,7 @@ msgid "Je hebt geen producten in je winkelmand!"
 msgstr ""
 
 #: dsshop/templates/catalogue/partials/header-basket.html:42
-#: dsshop/templates/layout.html:161 dsshop/templates/promotions/home.html:33
+#: dsshop/templates/layout.html:166 dsshop/templates/promotions/home.html:33
 #: dsshop/templates/promotions/home.html:41
 #: dsshop/templates/promotions/home.html:49
 msgid "Naar shop"
@@ -329,13 +326,11 @@ msgid "Subcategorieën"
 msgstr ""
 
 #: dsshop/templates/checkout/email/new_order.html:15
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:92
 #: dsshop/templates/customer/emails/commtype_order_placed_body.txt:8
 msgid "price:"
 msgstr ""
 
 #: dsshop/templates/checkout/email/new_order.html:20
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:96
 #: dsshop/templates/customer/emails/commtype_order_placed_body.txt:10
 msgid "Basket total:"
 msgstr ""
@@ -545,8 +540,6 @@ msgid "naar mijn adres"
 msgstr ""
 
 #: dsshop/templates/checkout/shipping_methods.html:50
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:15
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:109
 #: dsshop/templates/customer/emails/commtype_order_placed_body.txt:23
 msgid ""
 "Op dit moment kunnen wij de verzendkosten nog niet automatisch berekenen. Op "
@@ -791,79 +784,43 @@ msgstr ""
 #: dsshop/templates/customer/emails/commtype_order_placed_body.html:11
 msgid ""
 "\n"
-"\t\t\tBedankt voor je bestelling! Zodra we jouw betaling hebben ontvangen op "
-"rekeningnummer <b style=\"font-weight: 600;\">BE39 0017 1591 2519 (BIC: "
-"KREDBEBB)</b> zetten we de bestelde onderdelen klaar. We geven dan een "
-"seintje wanneer deze opgehaald kunnen worden\n"
+"\t\t\tBedankt voor je bestelling! Zodra je een afspraak hebt gemaakt kan je "
+"deze goederen komen afhalen.\n"
 "\t\t"
 msgstr ""
 
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:22
+#: dsshop/templates/customer/emails/commtype_order_placed_body.html:15
+msgid ""
+"Bedankt voor je bestelling! Binnen de 2 werkdagen ontvang je van ons een "
+"mail met de verzendkosten en het totale bedrag."
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.html:19
+#, python-format
+msgid ""
+"\n"
+"\t\t\tYou can view the status of this order by clicking <a href="
+"\"%(status_url)s\" title=\"order status\">here</a>\n"
+"\t\t"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.html:29
 #: dsshop/templates/dashboard/orders/order_list.html:122
 msgid "Shipping address"
 msgstr ""
 
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:34
+#: dsshop/templates/customer/emails/commtype_order_placed_body.html:40
 msgid "Jouw bestelling"
 msgstr ""
 
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:58
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:63
+#: dsshop/templates/customer/emails/commtype_order_placed_body.html:65
 msgid "Subtotal"
 msgstr ""
 
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:67
-msgid "Shipping costs"
-msgstr ""
-
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:71
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:76
+#: dsshop/templates/customer/emails/commtype_order_placed_body.html:74
 #: dsshop/templates/dashboard/orders/invoice.html:198
 #: dsshop/templates/dashboard/orders/invoice.html:229
 msgid "Total"
-msgstr ""
-
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:83
-msgid "Hello,"
-msgstr ""
-
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:85
-#, python-format
-msgid ""
-"We are pleased to confirm your order %(order_number)s has been received and\n"
-"will be processed shortly."
-msgstr ""
-
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:88
-#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:6
-msgid "Your order contains:"
-msgstr ""
-
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:92
-#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:8
-msgid "quantity:"
-msgstr ""
-
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:100
-#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:14
-msgid ""
-"Bedankt voor je bestelling! Zodra we jouw betaling hebben ontvangen op "
-"rekeningnummer \n"
-"BEXX XXXX XXXX XXXX zetten we de bestelde onderdelen klaar. We geven dan een "
-"seintje wanneer deze opgehaald\n"
-"kunnen worden"
-msgstr ""
-
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:104
-#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:18
-msgid "Shipping address:"
-msgstr ""
-
-#: dsshop/templates/customer/emails/commtype_order_placed_body.html:113
-#, python-format
-msgid ""
-"You can view the status of this order by clicking <a href=\"%(status_url)s\" "
-"title=\"order status\">here</a>"
 msgstr ""
 
 #: dsshop/templates/customer/emails/commtype_order_placed_body.txt:1
@@ -873,6 +830,27 @@ msgid ""
 "\n"
 "We are pleased to confirm your order %(order_number)s has been received and\n"
 "will be processed shortly."
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:6
+msgid "Your order contains:"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:8
+msgid "quantity:"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:14
+msgid ""
+"Bedankt voor je bestelling! Zodra we jouw betaling hebben ontvangen op "
+"rekeningnummer \n"
+"BEXX XXXX XXXX XXXX zetten we de bestelde onderdelen klaar. We geven dan een "
+"seintje wanneer deze opgehaald\n"
+"kunnen worden"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:18
+msgid "Shipping address:"
 msgstr ""
 
 #: dsshop/templates/customer/emails/commtype_order_placed_body.txt:28
@@ -890,13 +868,13 @@ msgstr ""
 msgid "Jouw bestelling bij Tom Verheyden"
 msgstr ""
 
-#: dsshop/templates/customer/emails/customer_base.html:145
+#: dsshop/templates/customer/emails/customer_base.html:147
 #: dsshop/templates/dashboard/orders/order_detail.html:203
 #: dsshop/templates/dashboard/orders/order_detail.html:372
 msgid "Amount"
 msgstr ""
 
-#: dsshop/templates/customer/emails/customer_base.html:146
+#: dsshop/templates/customer/emails/customer_base.html:150
 msgid "Price"
 msgstr ""
 

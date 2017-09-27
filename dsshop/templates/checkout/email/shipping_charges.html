@@ -12,9 +12,9 @@
 
 {% block message_body %}
 	{% if order.language == 'nl' %}
-	De verzendkosten voor je bestelling werden berekend. 
+		De verzendkosten voor je bestelling zijn berekend, hieronder vind je het nieuwe overzicht. Zodra we jouw betaling hebben ontvangen op rekeningnummer BE39 0017 1591 2519 (ELV BVBA) (BIC: KREDBEBB) worden de onderdelen verzonden naar jouw adres. 
 	{% elif order.language == 'fr' %}
-		Frais d'envoi
+		Les frais d'envoi ont été calculés et le total de votre commande est indiqué ci-dessous. Dès que nous aurons reçu votre paiement sur le compte BE39 0017 1591 2519 (ELV BVBA) (BIC: KREDBEBB), votre commande sera envoyée.
 	{% endif %}
 {% endblock message_body %}
 
@@ -51,7 +51,7 @@
         	{% elif order.language == 'fr' %}
         		{{ line.product.title_fr|capfirst }}
         	{% endif %}
-        	
+
 	        </td>
 	        <td class="second" style="border-bottom: 1px solid #ddd;padding-left: 10px;padding-right: 10px;width: 15%;text-align: center;">
 	        	{{ line.quantity }}
