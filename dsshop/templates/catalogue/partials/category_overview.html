@@ -5,28 +5,20 @@
     <ul class="product-categories">
 {% category_tree as tree_categories %}
 {% get_current_language as LANGUAGE_CODE %}
-{% if tree_categories and LANGUAGE_CODE == 'nl' %}
+{% if tree_categories %}
 	{% for tree_category, info in tree_categories %}
         {% if info.level == 0 %}
 		<li>
-			<a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
+            {% if LANGUAGE_CODE == 'nl' %}
+			<a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name_nl }}</a>
+            {% elif LANGUAGE_CODE == 'fr' %}
+            <a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name_fr }}</a>
+            {% endif %}
 		</li>
         {% elif info.level == 1 %}
          <!--{{ tree_category.name }}<br>-->
         {% endif %}
 	{% endfor %}
-{% elif tree_categories and LANGUAGE_CODE == 'fr' %}
-    {% for tree_category, info in tree_categories %}
-        {% if info.level == 0 and tree_category.name != '2CV Onderdelen' %}
-        <li>
-            <a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a> 
-        </li>
-        {% elif info.level == 0 and tree_category.name == '2CV Onderdelen' %}
-        <li>
-            <a href="{{ tree_category.get_absolute_url }}">Pièces 2CV</a> 
-        </li>
-        {% endif %}
-    {% endfor %}
 {% endif %}
     </ul>
 </div>
