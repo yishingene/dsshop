@@ -14,9 +14,19 @@
 	                        <li class="trail-item"><a href="{% url 'catalogue:index' %}">{% trans 'Producten' %}</a></li>
                 	{% get_current_language as LANGUAGE_CODE %}
 				        {% for category in category.get_ancestors %}
+				        	{% if category.name == '2CV Onderdelen' and LANGUAGE_CODE == 'nl' %}
 				            <li class="trail-item"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+				        	{% elif category.name == '2CV Onderdelen' and LANGUAGE_CODE == 'fr' %}
+				            <li class="trail-item"><a href="{{ category.get_absolute_url }}">Pièces 2CV</a></li>
+				            {% else %}
+				            <li class="trail-item"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>	            
+				        	{% endif %}
 				        {% endfor %}
-	                        <li class="trail-item">{{ category.name }}</li>
+				        	{% if LANGUAGE_CODE == 'nl' %}
+				            <li class="trail-item">{{ category.name_nl }}</li>
+				        	{% elif LANGUAGE_CODE == 'fr' %}
+				            <li class="trail-item">{{ category.name_fr }}</li>	            
+				        	{% endif %}
 	                    </ul>
 	                </div>
 	            </div>

@@ -3,11 +3,7 @@
 {% category_tree as tree_categories %}
 <div class="widget widget_product_categories">
 {% if category.get_depth == 1 %}
-    {% if category.name != '2CV Onderdelen' %}
     <h4 class="widget-title">{{ category.name }}</h4>
-    {% else %}
-    <h4 class="widget-title">Pièces 2CV</h4>
-    {% endif %}
 {% elif category.get_depth == 2 %}
 	<h4 class="widget-title">{{ category.get_parent }}</h4>
 {% endif %}
@@ -38,7 +34,6 @@
     <h4 class="widget-title">{% trans 'Categoriëen' %}</h4>
     <ul class="product-categories">
 {% category_tree as tree_categories %}
-{% get_current_language as LANGUAGE_CODE %}
 {% if tree_categories %}
     {% for tree_category, info in tree_categories %}
         {% if info.level == 0 %}
