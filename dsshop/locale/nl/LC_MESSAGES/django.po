@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-27 19:57+0000\n"
+"POT-Creation-Date: 2017-09-28 18:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,7 +133,7 @@ msgid "Version:"
 msgstr ""
 
 #: dsshop/templates/basket/basket.html:16
-#: dsshop/templates/catalogue/browse.html:22
+#: dsshop/templates/catalogue/browse.html:26
 #: dsshop/templates/catalogue/category.html:11
 #: dsshop/templates/catalogue/detail.html:19
 #: dsshop/templates/checkout/gateway.html:15
@@ -228,7 +228,13 @@ msgstr ""
 msgid "Naar onze shop"
 msgstr ""
 
-#: dsshop/templates/catalogue/browse.html:25
+#: dsshop/templates/catalogue/browse.html:6
+msgid ""
+"Welkom bij Tom Verheyden (ELV), de webshop voor al jouw oldtimer Citroën "
+"onderdele - DS, 2CV / 2PK"
+msgstr ""
+
+#: dsshop/templates/catalogue/browse.html:29
 #: dsshop/templates/catalogue/category.html:14
 #: dsshop/templates/catalogue/detail.html:22
 msgid "Producten"
@@ -1998,7 +2004,7 @@ msgid ""
 "been taken. Please contact customer services if this problem persists"
 msgstr ""
 
-#: myapps/dashboard/orders/views.py:127
+#: myapps/dashboard/orders/views.py:125
 msgid "No valid action submitted"
 msgstr ""
 
