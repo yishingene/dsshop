@@ -1,5 +1,4 @@
 from django.core.mail import EmailMessage
-from django.template import Context
 from django.template.loader import get_template
 
 from oscar.core.loading import get_model
@@ -34,7 +33,7 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 		ctx['order_total'] = order_total
 		ctx['user'] = user
 
-		message = get_template('checkout/email/new_order.html').render(Context(ctx))
+		message = get_template('checkout/email/new_order.html').render(ctx)
 		msg = EmailMessage(subject, message, to=receivers, from_email=sender)
 		msg.content_subtype = 'html'
 		msg.send()

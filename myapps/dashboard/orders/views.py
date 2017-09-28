@@ -19,12 +19,11 @@ ShippingCostForm = get_class('myapps.dashboard.orders.forms', 'ShippingCostForm'
 class InvoiceDownloadView(PDFTemplateResponseMixin, TemplateView):
 
 	base_url = 'file://' + settings.STATIC_ROOT
+	
+	img_url = 'https://s3.eu-central-1.amazonaws.com/dsshop/media/images/logo_new.png'
 
 	if settings.DEV:
 		img_url = '/Users/timclaes/development/thinkmobile/2016/dsshop/dsshop/common_static/images/logo_new.png'
-
-	else:
-		img_url = 'https://s3.eu-central-1.amazonaws.com/dsshop/media/images/logo_new.png'
 
 	template_name = 'dashboard/orders/invoice.html'
 	download_filename =  'factuur_tom_verheyden.pdf'
@@ -70,11 +69,10 @@ class InvoicePdfView(PDFTemplateView):
 
 	base_url = 'file://' + settings.STATIC_ROOT
 
-	if settings.DEV:
-		img_url = '/Users/timclaes/development/thinkmobile/2016/dsshop/dsshop/common_static/images/logo.png'
+	img_url = 'https://s3.eu-central-1.amazonaws.com/dsshop/media/images/logo_new.png'
 
-	else:
-		img_url = ''
+	if settings.DEV:
+		img_url = '/Users/timclaes/development/thinkmobile/2016/dsshop/dsshop/common_static/images/logo_new.png'
 
 	template_name = 'dashboard/orders/invoice.html'
 	download_filename =  'factuur_tom_verheyden.pdf'
