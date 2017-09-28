@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
+from django.views.generic.base import RedirectView
 
 from oscar.app import application
 from oscar.apps.search import facets
@@ -30,10 +31,14 @@ from other_pages import views as other_views
 urlpatterns = [
 
 	url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^nl/$', RedirectView.as_view(url='/', permanent=True)), 
+    url(r'^fr/$', RedirectView.as_view(url='/', permanent=True)), 
+    url(r'^en/$', RedirectView.as_view(url='/', permanent=True)), 
 
     url(r'^admin/', admin.site.urls),
 
     url(r'^contact/$', other_views.ContactPageView.as_view(), name='contact'),
+
     url(r'^send_shipping_charges_mail/(?P<order_id>\d+)/$', other_views.ShippingChargesMailView.as_view(), name='shipping-charges-mail'),
     url(r'^dashboard/events/$', other_views.EventListView.as_view(), name='event-list'),
     url(r'^dashboard/events/update/(?P<pk>\d+)/$', other_views.EventUpdateView.as_view(), name='event-update'),
