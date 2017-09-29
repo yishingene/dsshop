@@ -1,4 +1,5 @@
-{% load static i18n thumbnail category_tags %}
+{% load static i18n thumbnail category_tags new_category_tags %}
+
 <div class="site-header header-v2">
     <div class="flat-top">
         <div class="container">
@@ -92,7 +93,7 @@
                         </li>
                         <li class="{% if request.get_full_path == catalogue_url %}active{% endif %}">
                             <a href="{{ catalogue_url }}">Shop</a>
-                        {% category_tree as tree_categories %}
+                        {% new_category_tree as tree_categories %}
                         {% get_current_language as LANGUAGE_CODE %}
                         {% if tree_categories and LANGUAGE_CODE == 'nl' %}
                             <ul class="submenu">
@@ -100,21 +101,17 @@
                                 {% if info.level == 0 %}
                                 <li>
                                     <a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
-                                </li>
+                                </li> {{ info }}
                                 {% endif %}
                             {% endfor %}
                             </ul>
                         {% elif tree_categories and LANGUAGE_CODE == 'fr' %}
                             <ul class="submenu">
-                            {% for tree_category, info in tree_categories %}
+                            {% for tree_category, info in new_tree_categories %}
                                 {% if info.level == 0 and tree_category.name != '2CV Onderdelen' %}
                                 <li>
                                     <a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
-                                </li>
-                                {% elif info.level == 0 and tree_category.name == '2CV Onderdelen' %}
-                                <li>
-                                    <a href="{{ tree_category.get_absolute_url }}">Pièces 2CV</a> 
-                                </li>
+                                </li> {{ info }}
                                 {% endif %}
                             {% endfor %}
                             </ul>                        
