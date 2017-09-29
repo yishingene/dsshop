@@ -1,4 +1,4 @@
-{% load static i18n thumbnail category_tags new_category_tags %}
+{% load static i18n thumbnail category_tags %}
 
 <div class="site-header header-v2">
     <div class="flat-top">
@@ -93,20 +93,13 @@
                         </li>
                         <li class="{% if request.get_full_path == catalogue_url %}active{% endif %}">
                             <a href="{{ catalogue_url }}">Shop</a>
-                        {% new_category_tree depth=1 as tree_categories %}
-                        {% get_current_language as LANGUAGE_CODE %}
+                        {% category_tree depth=1 as tree_categories %}
                         {% if tree_categories  %}
                             <ul class="submenu">
                             {% for tree_category, info in tree_categories %}
-                                {% if LANGUAGE_CODE == 'nl' %}
                                 <li>
-                                    <a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name_nl }}</a>
+                                    <a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
                                 </li>
-                                {% elif LANGUAGE_CODE == 'fr' %}
-                                <li>
-                                    <a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name_fr }}</a>
-                                </li>
-                                {% endif %}
                             {% endfor %}
                             </ul>                       
                         {% endif %}

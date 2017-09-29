@@ -1,31 +1,28 @@
 {% load category_tags i18n %}
 
-{% category_tree as tree_categories %}
+{% get_current_language as LANGUAGE_CODE %}
+
 <div class="widget widget_product_categories">
-{% if category.get_depth == 1 %}
-    <h4 class="widget-title">{{ category.name }}</h4>
-{% elif category.get_depth == 2 %}
-	<h4 class="widget-title">{{ category.get_parent }}</h4>
+    {% if category.get_depth == 1 %}
+    <h4 class="widget-title">{{ category.name }}</h4> 
+    {% elif category.get_depth == 2 %}
+    <h4 class="widget-title">{{ category.get_parent }}</h4>
 {% endif %}
     <h6 class="subcategory">{% trans 'Subcategorieën' %}</h6>
     <ul class="product-categories">
-{% if tree_categories %}
-    {% get_current_language as LANGUAGE_CODE %}
-    {% for tree_cat, info in tree_categories %}
-    	{% if info.level == 1 and category.get_depth == 1 and tree_cat.get_parent == category %}
+
+{% if category.get_depth == 1 %}
+    {% category_tree parent=category as tree_categories %}
+        {% for tree_cat, info in tree_categories %}
         <li>
             <a href="{{ tree_cat.get_absolute_url }}">{{ tree_cat.name }}</a>
         </li>
-        {% elif info.level == 1 and category.get_depth == 2 and tree_cat.get_parent == category.get_parent %}
+        {% endfor %}
+{% elif category.get_depth == 2 %}
+    {% category_tree parent=category.get_parent as tree_categories %}
+        {% for tree_cat, info in tree_categories %}
         <li>
-    	{% if category == tree_cat %}
-    		<strong><u><a href="{{ tree_cat.get_absolute_url }}">{{ tree_cat.name }}</a></u></strong>
-    	{% else %}
-        	<a href="{{ tree_cat.get_absolute_url }}">{{ tree_cat.name }}</a>
-    	{% endif %}
+            <a href="{{ tree_cat.get_absolute_url }}">{{ tree_cat.name }}</a>
         </li>
-        {% endif %}
-    {% endfor %}
+        {% endfor %}
 {% endif %}
-    </ul>
-</div>
