@@ -14,9 +14,7 @@
 	                        <li class="trail-item"><a href="{% url 'catalogue:index' %}">{% trans 'Producten' %}</a></li>
                 	{% get_current_language as LANGUAGE_CODE %}
 				        {% for category in category.get_ancestors %}
-				        	{% if category.name == '2CV Onderdelen' %}
 				            <li class="trail-item"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>	            
-				        	{% endif %}
 				        {% endfor %}
 				            <li class="trail-item">{{ category.name }}</li>
 	                    </ul>

@@ -22,7 +22,11 @@
     {% category_tree parent=category.get_parent as tree_categories %}
         {% for tree_cat, info in tree_categories %}
         <li>
+            {% if category == tree_cat %}
+            <strong><u><a href="{{ tree_cat.get_absolute_url }}">{{ tree_cat.name }}</a></u></strong>
+            {% else %}
             <a href="{{ tree_cat.get_absolute_url }}">{{ tree_cat.name }}</a>
+            {% endif %}
         </li>
         {% endfor %}
 {% endif %}
