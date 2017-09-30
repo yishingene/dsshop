@@ -10,7 +10,6 @@
 {% endif %}
     <h6 class="subcategory">{% trans 'Subcategorieën' %}</h6>
     <ul class="product-categories">
-
 {% if category.get_depth == 1 %}
     {% category_tree parent=category as tree_categories %}
         {% for tree_cat, info in tree_categories %}
@@ -30,3 +29,5 @@
         </li>
         {% endfor %}
 {% endif %}
+    </ul>
+</div>

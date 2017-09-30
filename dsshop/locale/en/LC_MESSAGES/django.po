@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-28 18:19+0000\n"
+"POT-Creation-Date: 2017-09-30 06:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -227,9 +227,10 @@ msgid "Naar onze shop"
 msgstr ""
 
 #: dsshop/templates/catalogue/browse.html:6
+#: dsshop/templates/promotions/home.html:6
 msgid ""
 "Welkom bij Tom Verheyden (ELV), de webshop voor al jouw oldtimer Citroën "
-"onderdele - DS, 2CV / 2PK"
+"onderdelen - DS, 2CV / 2PK"
 msgstr ""
 
 #: dsshop/templates/catalogue/browse.html:29
@@ -312,9 +313,9 @@ msgid "Je hebt geen producten in je winkelmand!"
 msgstr ""
 
 #: dsshop/templates/catalogue/partials/header-basket.html:42
-#: dsshop/templates/layout.html:166 dsshop/templates/promotions/home.html:33
-#: dsshop/templates/promotions/home.html:41
-#: dsshop/templates/promotions/home.html:49
+#: dsshop/templates/layout.html:166 dsshop/templates/promotions/home.html:37
+#: dsshop/templates/promotions/home.html:45
+#: dsshop/templates/promotions/home.html:53
 msgid "Naar shop"
 msgstr ""
 
@@ -326,7 +327,7 @@ msgstr ""
 msgid "Doorzoek onze catalogus"
 msgstr ""
 
-#: dsshop/templates/catalogue/partials/subcategory_overview.html:10
+#: dsshop/templates/catalogue/partials/subcategory_overview.html:11
 msgid "Subcategorieën"
 msgstr ""
 
@@ -1703,7 +1704,7 @@ msgid "Over ons"
 msgstr ""
 
 #: dsshop/templates/partials/footer.html:28
-#: dsshop/templates/partials/header.html:114
+#: dsshop/templates/partials/header.html:108
 msgid "Onze diensten"
 msgstr ""
 
@@ -1712,7 +1713,7 @@ msgid "Contacteer ons"
 msgstr ""
 
 #: dsshop/templates/partials/footer.html:32
-#: dsshop/templates/partials/header.html:117
+#: dsshop/templates/partials/header.html:111
 msgid "Foto's"
 msgstr ""
 
@@ -1721,7 +1722,7 @@ msgid "Contact opnemen"
 msgstr ""
 
 #: dsshop/templates/partials/footer.html:43
-#: dsshop/templates/partials/header.html:9
+#: dsshop/templates/partials/header.html:10
 msgid "Contactformulier"
 msgstr ""
 
@@ -1733,15 +1734,19 @@ msgstr ""
 msgid "Magazijn"
 msgstr ""
 
-#: dsshop/templates/partials/header.html:8
+#: dsshop/templates/partials/footer.html:50
+msgid "op afspraak"
+msgstr ""
+
+#: dsshop/templates/partials/header.html:9
 msgid "Contact opnemen?"
 msgstr ""
 
-#: dsshop/templates/partials/header.html:57
+#: dsshop/templates/partials/header.html:58
 msgid "Zoek producten"
 msgstr ""
 
-#: dsshop/templates/partials/header.html:119
+#: dsshop/templates/partials/header.html:113
 msgid "Contact"
 msgstr ""
 
@@ -1761,44 +1766,44 @@ msgstr ""
 msgid "next"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:31
+#: dsshop/templates/promotions/home.html:35
 msgid "DS Onderdelen"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:39
+#: dsshop/templates/promotions/home.html:43
 msgid "2PK Onderdelen"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:47
+#: dsshop/templates/promotions/home.html:51
 msgid "SM Onderdelen"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:61
+#: dsshop/templates/promotions/home.html:65
 msgid "Bezoek onze webshop voor een overzicht van al onze producten!"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:63
+#: dsshop/templates/promotions/home.html:67
 msgid "Op zoek naar andere oldtimer Citroën onderdelen?"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:64
+#: dsshop/templates/promotions/home.html:68
 msgid "Tom Verheyden – hét adres voor al uw onderdelen van Citroën DS en 2PK!"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:65
-#: dsshop/templates/promotions/home.html:95
+#: dsshop/templates/promotions/home.html:69
+#: dsshop/templates/promotions/home.html:99
 msgid "Contacteer ons!"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:79
+#: dsshop/templates/promotions/home.html:83
 msgid "Over"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:79
+#: dsshop/templates/promotions/home.html:83
 msgid "ons"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:81
+#: dsshop/templates/promotions/home.html:85
 msgid ""
 "Tom Verheyden (ELV BVBA) is reeds meer dan 20 jaar actief op het vlak van "
 "Citroën oldtimers. Wij zijn een groot- en kleinhandel van (hoofdzakelijk "
@@ -1809,11 +1814,11 @@ msgid ""
 "opkomende events) waar we vertegenwoordigd zijn."
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:93
+#: dsshop/templates/promotions/home.html:97
 msgid "Op zoek naar andere Citroën onderdelen?"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:94
+#: dsshop/templates/promotions/home.html:98
 msgid ""
 "Wij verdelen ook onderdelen van andere oldtimer Citroën modellen, nog niet "
 "alles is terug te vinden in onze webshop. Neem zeker contact op met ons "
