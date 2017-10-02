@@ -2,17 +2,18 @@ import logging
 
 from django.contrib.sites.models import Site
 from django.contrib.sites.shortcuts import get_current_site
-from oscar.core.compat import user_is_authenticated
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import NoReverseMatch, reverse
 from django.http import HttpResponseRedirect
 from django.utils.translation import get_language
 
+from oscar.core.compat import user_is_authenticated
 from oscar.core.loading import get_class, get_model
 
 OrderCreator = get_class('order.utils', 'OrderCreator')
 Dispatcher = get_class('customer.utils', 'Dispatcher')
 CheckoutSessionMixin = get_class('checkout.session', 'CheckoutSessionMixin')
+BillingAddress = get_model('order', 'BillingAddress')
 ShippingAddress = get_model('order', 'ShippingAddress')
 OrderNumberGenerator = get_class('order.utils', 'OrderNumberGenerator')
 PaymentEventType = get_model('order', 'PaymentEventType')
@@ -32,6 +33,7 @@ logger = logging.getLogger('oscar.checkout')
 class OrderPlacementMixin(CheckoutSessionMixin):
     """
     Mixin which provides functionality for placing orders.
+
     Any view class which needs to place an order should use this mixin.
     """
     # Any payment sources should be added to this list as part of the
@@ -55,8 +57,10 @@ class OrderPlacementMixin(CheckoutSessionMixin):
     def handle_payment(self, order_number, total, **kwargs):
         """
         Handle any payment processing and record payment sources and events.
+
         This method is designed to be overridden within your project.  The
         default is to do nothing as payment is domain-specific.
+
         This method is responsible for handling payment and recording the
         payment sources (using the add_payment_source method) and payment
         events (using add_payment_event) so they can be
@@ -101,6 +105,7 @@ class OrderPlacementMixin(CheckoutSessionMixin):
                                **kwargs):
         """
         Write out the order models and return the appropriate HTTP response
+
         We deliberately pass the basket in here as the one tied to the request
         isn't necessarily the correct one to use in placing the order.  This
         can happen when a basket gets frozen.
@@ -114,7 +119,7 @@ class OrderPlacementMixin(CheckoutSessionMixin):
 
         if shipping_method.code == 'Afhaling door klant':
             order.set_status('Afhaling door klant')
-
+        
         return self.handle_successful_order(order)
 
     def place_order(self, order_number, user, basket, shipping_address,
@@ -130,14 +135,18 @@ class OrderPlacementMixin(CheckoutSessionMixin):
         # We pass the kwargs as they often include the billing address form
         # which will be needed to save a billing address.
         billing_address = self.create_billing_address(
-            billing_address, shipping_address, **kwargs)
+            user, billing_address, shipping_address, **kwargs)
 
         if 'status' not in kwargs:
             status = self.get_initial_order_status(basket)
         else:
             status = kwargs.pop('status')
 
-        # ADDED LANGUAGE TO ORDER 
+        if 'request' not in kwargs:
+            request = getattr(self, 'request', None)
+        else:
+            request = kwargs.pop('request')
+
         order = OrderCreator().place_order(
             user=user,
             order_number=order_number,
@@ -148,16 +157,16 @@ class OrderPlacementMixin(CheckoutSessionMixin):
             total=order_total,
             billing_address=billing_address,
             status=status,
+            request=request,
             language=get_language(),
-            **kwargs
-            )
-
+            **kwargs)
         self.save_payment_details(order)
         return order
 
     def create_shipping_address(self, user, shipping_address):
         """
         Create and return the shipping address for the current order.
+
         Compared to self.get_shipping_address(), ShippingAddress is saved and
         makes sure that appropriate UserAddress exists.
         """
@@ -170,28 +179,34 @@ class OrderPlacementMixin(CheckoutSessionMixin):
             self.update_address_book(user, shipping_address)
         return shipping_address
 
-    def update_address_book(self, user, shipping_addr):
+    def update_address_book(self, user, addr):
         """
         Update the user's address book based on the new shipping address
         """
         try:
             user_addr = user.addresses.get(
-                hash=shipping_addr.generate_hash())
+                hash=addr.generate_hash())
         except ObjectDoesNotExist:
             # Create a new user address
             user_addr = UserAddress(user=user)
-            shipping_addr.populate_alternative_model(user_addr)
-        user_addr.num_orders += 1
+            addr.populate_alternative_model(user_addr)
+        if isinstance(addr, ShippingAddress):
+            user_addr.num_orders_as_shipping_address += 1
+        if isinstance(addr, BillingAddress):
+            user_addr.num_orders_as_billing_address += 1
         user_addr.save()
 
-    def create_billing_address(self, billing_address=None,
+    def create_billing_address(self, user, billing_address=None,
                                shipping_address=None, **kwargs):
         """
         Saves any relevant billing data (eg a billing address).
         """
-        if billing_address is not None:
-            billing_address.save()
-            return billing_address
+        if not billing_address:
+            return None
+        billing_address.save()
+        if user_is_authenticated(user):
+            self.update_address_book(user, billing_address)
+        return billing_address
 
     def save_payment_details(self, order):
         """
@@ -210,14 +225,14 @@ class OrderPlacementMixin(CheckoutSessionMixin):
         for event in self._payment_events:
             event.order = order
             event.save()
-        # We assume all lines are involved in the initial payment event
-        for line in order.lines.all():
-            PaymentEventQuantity.objects.create(
-                event=event, line=line, quantity=line.quantity)
+            for line in order.lines.all():
+                PaymentEventQuantity.objects.create(
+                    event=event, line=line, quantity=line.quantity)
 
     def save_payment_sources(self, order):
         """
         Saves any payment sources used in this order.
+
         When the payment sources are created, the order model does not exist
         and so they need to have it set before saving.
         """
@@ -237,6 +252,7 @@ class OrderPlacementMixin(CheckoutSessionMixin):
         """
         Handle the various steps required after an order has been successfully
         placed.
+
         Override this view if you want to perform custom actions when an
         order is submitted.
         """
