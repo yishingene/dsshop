@@ -11,7 +11,6 @@ from django.core.files.base import ContentFile
 from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse_lazy
-from django.template import Context
 from django.template.loader import get_template
 
 from .forms import UploadFileForm, ContactForm, EventForm
@@ -158,7 +157,7 @@ class ShippingChargesMailView(View):
 		ctx = {}
 		ctx['order'] = order
 
-		message = get_template('checkout/email/shipping_charges.html').render(Context(ctx))
+		message = get_template('checkout/email/shipping_charges.html').render(ctx)
 		msg = EmailMessage(subject, message, to=receivers, from_email=sender)
 		msg.content_subtype = 'html'
 		msg.send()
