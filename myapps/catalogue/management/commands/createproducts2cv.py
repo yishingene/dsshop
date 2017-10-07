@@ -148,166 +148,166 @@ class Command(BaseCommand):
 		self.stdout.write('--Het is gefixt!--')
 
 		
-		# with urlopen(PRODUCTS_FILE) as file:
+		with urlopen(PRODUCTS_FILE) as file:
 
-		# 	csv_file = file.read()
+			csv_file = file.read()
 
-		# 	reader = csv.reader(csv_file.decode('utf-8').splitlines(), delimiter=';')
-		# 	product_class = ProductClass.objects.get(name='Onderdelen')
+			reader = csv.reader(csv_file.decode('utf-8').splitlines(), delimiter=';')
+			product_class = ProductClass.objects.get(name='Onderdelen')
 
-		# 	print('HHHHHHHHHHH')
+			print('HHHHHHHHHHH')
 
-		# 	for row in reader:
+			for row in reader:
 
-		# 		'''STAPPENPLAN:
-		# 		1. Analyseer Product code (UPC), derde rij
-		# 		2. Maak product category aan als nog niet bestaat
-		# 		3. Maak product aan
-		# 		4. Voeg afbeelding toe aan product
-		# 		5. Voeg de nodige prijsinformatie toe
-		# 		'''
+				'''STAPPENPLAN:
+				1. Analyseer Product code (UPC), derde rij
+				2. Maak product category aan als nog niet bestaat
+				3. Maak product aan
+				4. Voeg afbeelding toe aan product
+				5. Voeg de nodige prijsinformatie toe
+				'''
 
-		# 		upc = str(row[2])
-		# 		alternate_id = str(row[1])
-		# 		price_purchase = row[4]
-		# 		price_sell = row[5]
+				upc = str(row[2])
+				alternate_id = str(row[1])
+				price_purchase = row[4]
+				price_sell = row[5]
 
-		# 		#print('---- prijs %s' % price_sell)
-
-
-		# 		if upc != '':
-
-		# 			if len(upc) == 6:
-
-		# 				car_type_id = upc[:1]
-		# 				category_id = upc[1:3]
-		# 				product_id = upc[-3:]
+				#print('---- prijs %s' % price_sell)
 
 
-		# 				if car_type_id == '2':
+				if upc != '':
 
-		# 					main_cat = '2CV Onderdelen'
+					if len(upc) == 6:
 
-		# 					if category_id == '11':
-		# 						cat_breadcrumb = 'Chassis'
+						car_type_id = upc[:1]
+						category_id = upc[1:3]
+						product_id = upc[-3:]
 
-		# 					elif category_id == '12':
-		# 						cat_breadcrumb = 'Sierstrips'						
 
-		# 					elif category_id == '13':
-		# 						cat_breadcrumb = 'Bumpers'
+						if car_type_id == '2':
 
-		# 					elif category_id == '14':
-		# 						cat_breadcrumb = 'Voorvleugel'
+							main_cat = '2CV Onderdelen'
 
-		# 					elif category_id == '15':
-		# 						cat_breadcrumb = 'Motorkap'
+							if category_id == '11':
+								cat_breadcrumb = 'Chassis'
 
-		# 					elif category_id == '16':
-		# 						cat_breadcrumb = 'Deuren'
+							elif category_id == '12':
+								cat_breadcrumb = 'Sierstrips'						
 
-		# 					elif category_id == '17':
-		# 						cat_breadcrumb = 'Dak'
+							elif category_id == '13':
+								cat_breadcrumb = 'Bumpers'
 
-		# 					elif category_id == '18':
-		# 						cat_breadcrumb = 'Achtervleugel'
+							elif category_id == '14':
+								cat_breadcrumb = 'Voorvleugel'
 
-		# 					elif category_id == '19':
-		# 						cat_breadcrumb = 'Kofferklep'
+							elif category_id == '15':
+								cat_breadcrumb = 'Motorkap'
 
-		# 					elif category_id == '21':
-		# 						cat_breadcrumb = 'Ruiten'
+							elif category_id == '16':
+								cat_breadcrumb = 'Deuren'
 
-		# 					elif category_id == '22':
-		# 						cat_breadcrumb = 'Uitlaat'
+							elif category_id == '17':
+								cat_breadcrumb = 'Dak'
 
-		# 					elif category_id == '23':
-		# 						cat_breadcrumb = 'Elektriciteit & Ontsteking'
+							elif category_id == '18':
+								cat_breadcrumb = 'Achtervleugel'
 
-		# 					elif category_id == '24':
-		# 						cat_breadcrumb = 'Verlichting'
+							elif category_id == '19':
+								cat_breadcrumb = 'Kofferklep'
 
-		# 					elif category_id == '25':
-		# 						cat_breadcrumb = 'Motor'
+							elif category_id == '21':
+								cat_breadcrumb = 'Ruiten'
 
-		# 					elif category_id == '26':
-		# 						cat_breadcrumb = 'Benzinesysteem'
+							elif category_id == '22':
+								cat_breadcrumb = 'Uitlaat'
 
-		# 					elif category_id == '27':
-		# 						cat_breadcrumb = 'Koeling & Verwarming'
+							elif category_id == '23':
+								cat_breadcrumb = 'Elektriciteit & Ontsteking'
 
-		# 					elif category_id == '28':
-		# 						cat_breadcrumb = 'Remmen'
+							elif category_id == '24':
+								cat_breadcrumb = 'Verlichting'
 
-		# 					elif category_id == '30':
-		# 						cat_breadcrumb = 'Leidingen'
+							elif category_id == '25':
+								cat_breadcrumb = 'Motor'
 
-		# 					elif category_id == '31':
-		# 						cat_breadcrumb = 'Koppeling'
+							elif category_id == '26':
+								cat_breadcrumb = 'Benzinesysteem'
 
-		# 					elif category_id == '32':
-		# 						cat_breadcrumb = 'Interieur'
+							elif category_id == '27':
+								cat_breadcrumb = 'Koeling & Verwarming'
 
-		# 					elif category_id == '33':
-		# 						cat_breadcrumb = 'Allerlei'
+							elif category_id == '28':
+								cat_breadcrumb = 'Remmen'
 
-		# 					elif category_id == '35':
-		# 						cat_breadcrumb = 'Stuurinrichting'
+							elif category_id == '30':
+								cat_breadcrumb = 'Leidingen'
 
-		# 					elif category_id == '36':
-		# 						cat_breadcrumb = 'Aandrijving & Ophanging'
+							elif category_id == '31':
+								cat_breadcrumb = 'Koppeling'
 
-		# 					elif category_id == '37':
-		# 						cat_breadcrumb = 'Accesoires'
+							elif category_id == '32':
+								cat_breadcrumb = 'Interieur'
 
-		# 					elif category_id == '38':
-		# 						cat_breadcrumb = 'Sloten'
+							elif category_id == '33':
+								cat_breadcrumb = 'Allerlei'
 
-		# 					elif category_id == '39':
-		# 						cat_breadcrumb = 'Plaatwerk'
+							elif category_id == '35':
+								cat_breadcrumb = 'Stuurinrichting'
 
-		# 					elif category_id == '40':
-		# 						cat_breadcrumb = 'Banden'
+							elif category_id == '36':
+								cat_breadcrumb = 'Aandrijving & Ophanging'
 
-		# 					else:
-		# 						continue
+							elif category_id == '37':
+								cat_breadcrumb = 'Accesoires'
 
-		# 				else:
-		# 					continue
+							elif category_id == '38':
+								cat_breadcrumb = 'Sloten'
 
-		# 				cat_string = main_cat + '>' + cat_breadcrumb
-		# 				category = create_from_breadcrumbs(cat_string)
+							elif category_id == '39':
+								cat_breadcrumb = 'Plaatwerk'
 
-		# 				try:
-		# 					product = Product.objects.get(upc=upc)
+							elif category_id == '40':
+								cat_breadcrumb = 'Banden'
 
-		# 				except Product.DoesNotExist:
+							else:
+								continue
 
-		# 					self.stdout.write('*** creating product starts here')
+						else:
+							continue
 
-		# 					product = Product()
-		# 					product.title = row[0]
-		# 					product.upc = upc
-		# 					product.product_class = product_class
+						cat_string = main_cat + '>' + cat_breadcrumb
+						category = create_from_breadcrumbs(cat_string)
 
-		# 					product.save()
+						try:
+							product = Product.objects.get(upc=upc)
 
-		# 					# Link het product aan een ProductCategory
-		# 					ProductCategory.objects.update_or_create(product=product, category=category)
+						except Product.DoesNotExist:
 
-		# 				finally:
-		# 					self.stdout.write('*** Adding image to product starts here')
+							self.stdout.write('*** creating product starts here')
 
-		# 					if product:
-		# 						add_image_to_product(product, main_cat, alternate_id)
-		# 						# add_partner_information(
-		# 						# 	product=product, 
-		# 						# 	partner_code=alternate_id, 
-		# 						# 	price_purchase=price_purchase,
-		# 						# 	price_sell=price_sell
-		# 						# 	)
+							product = Product()
+							product.title = row[0]
+							product.upc = upc
+							product.product_class = product_class
 
-		# 			else:
-		# 				continue
+							product.save()
 
-		# self.stdout.write('--Het is gefixt!--')
+							# Link het product aan een ProductCategory
+							ProductCategory.objects.update_or_create(product=product, category=category)
+
+						finally:
+							#self.stdout.write('*** Adding image to product starts here')
+
+							if product:
+								#add_image_to_product(product, main_cat, alternate_id)
+								add_partner_information(
+									product=product, 
+									partner_code=alternate_id, 
+									price_purchase=price_purchase,
+									price_sell=price_sell
+									)
+
+					else:
+						continue
+
+		self.stdout.write('--Het is gefixt!--')

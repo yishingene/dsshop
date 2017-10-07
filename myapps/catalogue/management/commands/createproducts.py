@@ -12,6 +12,7 @@ from oscar.apps.partner.importers import CatalogueImporter
 import os
 import csv
 import urllib
+from urllib.request import urlopen
 from decimal import Decimal
 
 # Zie ook: stackoverflow: programmatically saving image to django imagefield
@@ -74,11 +75,19 @@ class Command(BaseCommand):
 		FILE_PATH = settings.MEDIA_ROOT								# development
 		FILE = os.path.join(FILE_PATH, 'DS_Onderdelen.csv')
 
-		PRODUCTS_FILE = 'https://s3.eu-central-1.amazonaws.com/dsshop/media/DS_Onderdelen.csv'
-		
-		with open(PRODUCTS_FILE) as file:
+		PRODUCTS_FILE = 'http://s3.eu-central-1.amazonaws.com/dsshop/media/DS_Onderdelen.csv'
 
-			reader = csv.reader(file, delimiter=';')
+		#if settings.DEV == True:
+		#	PRODUCTS_FILE = 'file://' + settings.MEDIA_ROOT + '/DS_Onderdelen.csv'
+		
+		#with open(PRODUCTS_FILE) as file:
+
+		with urlopen(PRODUCTS_FILE) as file:
+
+			csv_file = file.read()
+
+			#reader = csv.reader(csv_file, delimiter=';')
+			reader = csv.reader(csv_file.decode('utf-8').splitlines(), delimiter=';')
 
 			cat_string = ''
 			product_class = ProductClass.objects.get(name='Onderdelen')

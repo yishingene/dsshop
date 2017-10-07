@@ -20,6 +20,7 @@ class Command(BaseCommand):
 				stock = StockRecord.objects.get(partner__id=partner_id, product__id=product.id)
 
 			except StockRecord.DoesNotExist:
+				print('error')
 				continue
 
 			except:
