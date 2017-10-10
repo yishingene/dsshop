@@ -141,7 +141,15 @@ class ShippingChargesMailView(View):
 		# SEND MAIL WITH SHIPPING CHARGES TO CUSTOMER
 
 		sender = 'info@tomverheyden.com'
-		customer_email = order.user.email
+		
+
+		if order.is_anonymous:
+			customer_email = order.guest_email
+
+		else:
+			customer_email = order.user.email
+
+
 		receivers = [customer_email, ]
 		subject = ''
 
