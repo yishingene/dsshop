@@ -2,6 +2,14 @@
 
 {% load i18n %}
 
+{% block description %}
+    {% trans 'Welkom bij Tom Verheyden (ELV), de webshop voor al jouw oldtimer Citroën onderdelen - DS, 2CV / 2PK' %} 
+{% endblock %}
+
+{% block title %}
+    {% for category in category.get_ancestors_and_self %}{{ category }}{% endfor %} {{ block.super }}
+{% endblock %}
+
 {% block breadcrumbs %}
 	<div class="page-breadcrumbs">
 	    <div class="container">

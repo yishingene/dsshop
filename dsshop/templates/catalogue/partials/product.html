@@ -5,7 +5,7 @@
             <a href="{{ product.get_absolute_url }}">
             {% with image=product.primary_image %}
                 {% thumbnail image.original "x200" as thumb %}
-                <img src="{{ thumb.url }}" alt="{{ product.get_title }}" style="height: 200px;">
+                <img src="{{ thumb.url }}" alt="{% if category.get_depth == 1 %}{{ category.name }}{% elif category.get_depth == 2 %}{{ category.get_parent }}{% endif %} - {{ product.get_title }}" style="height: 200px;">
                 {% endthumbnail %}
             {% endwith %}
             </a>
