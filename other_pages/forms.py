@@ -1,6 +1,5 @@
 from django import forms
 from django.core.mail import EmailMessage
-from django.template import Context
 from django.template.loader import get_template
 from django.forms.widgets import SelectDateWidget
 
@@ -32,7 +31,7 @@ class ContactForm(forms.Form):
 
 		subject = 'Nieuwe contactformulier via website!' + ' van: ' + self.cleaned_data['email']
 		receivers = ['info@tomverheyden.com', ]
-		sender = 'website@tomverheyden.com'
+		sender = 'info@tomverheyden.com'
 
 		ctx = {}
 		ctx['name'] = self.cleaned_data['name']
@@ -41,7 +40,7 @@ class ContactForm(forms.Form):
 		ctx['email'] = self.cleaned_data['email']
 		ctx['phone'] = self.cleaned_data['phone']
 
-		message = get_template('others/contact_form.html').render(Context(ctx))
+		message = get_template('others/contact_form.html').render(ctx)
 		msg = EmailMessage(subject, message, to=receivers, from_email=sender)
 		msg.content_subtype = 'html'
 		msg.send()
