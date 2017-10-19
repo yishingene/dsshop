@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block title %}
-    {% for category in category.get_ancestors_and_self %}{{ category }}{% endfor %} {{ block.super }}
+    {{ category }} |{{ block.super }}
 {% endblock %}
 
 {% block breadcrumbs %}
