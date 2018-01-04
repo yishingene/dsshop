@@ -12,7 +12,8 @@
         </div>
 	</div>
 	<div class="col-sm-5 col-xs-6">
-		{{ product|title }}
+        {{ product|title }}<br>
+        <strong>{% trans 'Artikel nr' %} {{ product.upc }}</strong>
 	</div>
     <div class="col-sm-3 col-xs-3">
 {% with category=product.categories.all.0 %}
