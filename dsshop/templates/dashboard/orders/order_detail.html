@@ -243,7 +243,7 @@
                 			<input type="hidden" name="test" value="test" />
                             <input type="submit" value="{% trans 'Aanpassen' %}" class="btn btn-info" />
                             {% if not order.shipping_incl_tax == 0 %}
-                            <a href="{% url 'shipping-charges-mail' order.id %}" class="btn btn-warning" {% if order.shipping_confirmed %}disabled{% endif %}>{% if order.shipping_confirmed %}Klant verwittigd{% else %}Mail verzenden{% endif %}</a>
+                            <a href="{% url 'shipping-charges-mail' order.id %}" class="btn {% if not order.shipping_confirmed %}btn-warning{% else %}btn-danger{% endif %}">{% if order.shipping_confirmed %}KLANT AL VERWITTIGD{% else %}Mail verzenden{% endif %}</a>
                             {% endif %} 
                 		</form>
                 	</div>
