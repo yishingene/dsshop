@@ -96,7 +96,7 @@
                         {% category_tree depth=1 as tree_categories %}
                         {% if tree_categories  %}
                             <ul class="submenu">
-                            {% for tree_category, info in tree_categories.reverse %}
+                            {% for tree_category, info in tree_categories reversed %}
                                 <li>
                                     <a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
                                 </li>
