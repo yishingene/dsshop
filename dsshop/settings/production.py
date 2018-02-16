@@ -49,3 +49,5 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.tomverheyden.com', '.aws.amazon.com
 
 # Enforce SSL
 SECURE_SSL_REDIRECT = True
+
+TEMPLATE_DEBUG = True
