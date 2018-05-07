@@ -9,6 +9,7 @@
 /dsshop/media/images/products/
 /dsshop/media/custom_image_list/
 .env
+/env/
 dev.py
 # settings/
 # migrations/
