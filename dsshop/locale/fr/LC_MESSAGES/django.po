@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-16 10:05+0000\n"
+"POT-Creation-Date: 2018-06-16 10:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -246,6 +246,10 @@ msgstr ""
 msgid "Producten"
 msgstr "Articles"
 
+#: dsshop/templates/catalogue/browse.html:50
+msgid "Let op: wij zijn met verlof van 7 juli tot 22 juli"
+msgstr "Note: nous sommes en congé du 7 juillet au 22 juillet"
+
 #: dsshop/templates/catalogue/detail.html:67
 #: dsshop/templates/catalogue/partials/product.html:17
 #: dsshop/templates/search/partials/search_result.html:16
@@ -335,10 +339,6 @@ msgstr "Vers la boutique"
 #: dsshop/templates/catalogue/partials/search_input.html:7
 msgid "Doorzoek onze catalogus"
 msgstr "Chercher dans le catalogue"
-
-#: dsshop/templates/catalogue/partials/search_input.html:18
-msgid "Let op: wij zijn met verlof van 7 juli tot 22 juli"
-msgstr "Note: nous sommes en congé du 7 juillet au 22 juillet"
 
 #: dsshop/templates/catalogue/partials/subcategory_overview.html:11
 msgid "Subcategorieën"
