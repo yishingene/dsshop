@@ -338,7 +338,7 @@ msgstr ""
 
 #: dsshop/templates/catalogue/partials/subcategory_overview.html:11
 msgid "Subcategorieën"
-msgstr "Note: nous sommes en congé du 7 juillet au 22 juillet"
+msgstr ""
 
 #: dsshop/templates/checkout/email/new_order.html:15
 #: dsshop/templates/customer/emails/commtype_order_placed_body.txt:8
