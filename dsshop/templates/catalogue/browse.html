@@ -38,10 +38,16 @@
 {% block product_list %}
 
 {% if products %}
+
 <div class="flat-row flat-woocommerce flat-general sidebar-right">
     <div class="container">
         <div class="row">
-            <div class="general"> 
+            <div class="general">
+                <div class="flat-woocommerce" style="margin-top: 15px">
+                    <div class="woocommerce-info">
+                        <strong>{% trans "Let op: wij zijn met verlof van 7 juli tot 22 juli" %}</strong>
+                    </div>
+                </div> 
                 <div class="woocommerce">
                     {% include 'catalogue/partials/search_input.html' %}
                    	<ul class="products">
