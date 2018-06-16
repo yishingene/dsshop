@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-30 17:30+0000\n"
+"POT-Creation-Date: 2017-09-30 06:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,6 +59,16 @@ msgstr ""
 #: dsshop/templates/dashboard/index.html:111
 msgid "Customers"
 msgstr ""
+
+#: dsshop/settings/settings.py:252
+msgid "Content"
+msgstr ""
+
+#: dsshop/settings/settings.py:260
+#, fuzzy
+#| msgid "Email sent"
+msgid "Email templates"
+msgstr "Email verstuurd"
 
 #: dsshop/settings/settings.py:266
 #: dsshop/templates/dashboard/orders/order_detail.html:17
@@ -123,7 +133,7 @@ msgid "Version:"
 msgstr ""
 
 #: dsshop/templates/basket/basket.html:16
-#: dsshop/templates/catalogue/browse.html:22
+#: dsshop/templates/catalogue/browse.html:26
 #: dsshop/templates/catalogue/category.html:11
 #: dsshop/templates/catalogue/detail.html:19
 #: dsshop/templates/checkout/gateway.html:15
@@ -161,9 +171,10 @@ msgstr ""
 #: dsshop/templates/basket/basket.html:39
 #: dsshop/templates/checkout/preview.html:41
 #: dsshop/templates/checkout/preview.html:150
-#: dsshop/templates/checkout/thank_you.html:74
+#: dsshop/templates/checkout/thank_you.html:75
+#: dsshop/templates/customer/emails/customer_base.html:144
 #: dsshop/templates/customer/order/order_detail.html:14
-#: dsshop/templates/dashboard/orders/order_detail.html:108
+#: dsshop/templates/dashboard/orders/order_detail.html:109
 msgid "Product"
 msgstr ""
 
@@ -176,7 +187,7 @@ msgstr ""
 #: dsshop/templates/basket/basket.html:41
 #: dsshop/templates/checkout/preview.html:43
 #: dsshop/templates/checkout/preview.html:152
-#: dsshop/templates/checkout/thank_you.html:75
+#: dsshop/templates/checkout/thank_you.html:76
 msgid "Aantal"
 msgstr ""
 
@@ -184,7 +195,7 @@ msgstr ""
 #: dsshop/templates/checkout/partials/basket_overview.html:42
 #: dsshop/templates/checkout/preview.html:44
 #: dsshop/templates/checkout/preview.html:153
-#: dsshop/templates/checkout/thank_you.html:76
+#: dsshop/templates/checkout/thank_you.html:77
 msgid "Totaal"
 msgstr ""
 
@@ -217,14 +228,17 @@ msgstr ""
 msgid "Naar onze shop"
 msgstr ""
 
-#: dsshop/templates/catalogue/browse.html:25
+#: dsshop/templates/catalogue/browse.html:6
+#: dsshop/templates/promotions/home.html:6
+msgid ""
+"Welkom bij Tom Verheyden (ELV), de webshop voor al jouw oldtimer Citroën "
+"onderdelen - DS, 2CV / 2PK"
+msgstr ""
+
+#: dsshop/templates/catalogue/browse.html:29
 #: dsshop/templates/catalogue/category.html:14
 #: dsshop/templates/catalogue/detail.html:22
 msgid "Producten"
-msgstr ""
-
-#: dsshop/templates/catalogue/browse.html:59
-msgid "Messages"
 msgstr ""
 
 #: dsshop/templates/catalogue/detail.html:62
@@ -301,9 +315,9 @@ msgid "Je hebt geen producten in je winkelmand!"
 msgstr ""
 
 #: dsshop/templates/catalogue/partials/header-basket.html:42
-#: dsshop/templates/layout.html:161 dsshop/templates/promotions/home.html:33
-#: dsshop/templates/promotions/home.html:41
-#: dsshop/templates/promotions/home.html:49
+#: dsshop/templates/layout.html:166 dsshop/templates/promotions/home.html:37
+#: dsshop/templates/promotions/home.html:45
+#: dsshop/templates/promotions/home.html:53
 msgid "Naar shop"
 msgstr ""
 
@@ -315,8 +329,18 @@ msgstr ""
 msgid "Doorzoek onze catalogus"
 msgstr ""
 
-#: dsshop/templates/catalogue/partials/subcategory_overview.html:14
+#: dsshop/templates/catalogue/partials/subcategory_overview.html:11
 msgid "Subcategorieën"
+msgstr ""
+
+#: dsshop/templates/checkout/email/new_order.html:15
+#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:8
+msgid "price:"
+msgstr ""
+
+#: dsshop/templates/checkout/email/new_order.html:20
+#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:10
+msgid "Basket total:"
 msgstr ""
 
 #: dsshop/templates/checkout/gateway.html:19
@@ -524,6 +548,7 @@ msgid "naar mijn adres"
 msgstr ""
 
 #: dsshop/templates/checkout/shipping_methods.html:50
+#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:23
 msgid ""
 "Op dit moment kunnen wij de verzendkosten nog niet automatisch berekenen. Op "
 "basis van de bestelde onderdelen berekenen wij de correcte verzendkosten, en "
@@ -567,7 +592,7 @@ msgid ""
 "vlotte manier af te handelen. "
 msgstr ""
 
-#: dsshop/templates/checkout/thank_you.html:61
+#: dsshop/templates/checkout/thank_you.html:62
 #, python-format
 msgid ""
 "\n"
@@ -580,38 +605,38 @@ msgstr ""
 "Je bestelling werd doorgevoerd en een bevestigingsmail is verstuurd. Je "
 "bestelnummer is <strong>%(number)s</strong>."
 
-#: dsshop/templates/checkout/thank_you.html:65
+#: dsshop/templates/checkout/thank_you.html:66
 msgid ""
 "Please make a note of this reference or print this page and quote it in any "
 "communication with us regarding your order."
 msgstr ""
 
-#: dsshop/templates/checkout/thank_you.html:69
+#: dsshop/templates/checkout/thank_you.html:70
 #: dsshop/templates/dashboard/orders/order_detail.html:86
 msgid "Order contents"
 msgstr ""
 
-#: dsshop/templates/checkout/thank_you.html:73
+#: dsshop/templates/checkout/thank_you.html:74
 msgid "Image"
 msgstr ""
 
-#: dsshop/templates/checkout/thank_you.html:104
+#: dsshop/templates/checkout/thank_you.html:105
 #: dsshop/templates/customer/order/order_detail.html:70
-#: dsshop/templates/dashboard/orders/order_detail.html:164
+#: dsshop/templates/dashboard/orders/order_detail.html:165
 msgid "Order total"
 msgstr ""
 
-#: dsshop/templates/checkout/thank_you.html:116
+#: dsshop/templates/checkout/thank_you.html:117
 #: dsshop/templates/dashboard/orders/order_detail.html:87
-#: dsshop/templates/dashboard/orders/order_detail.html:247
+#: dsshop/templates/dashboard/orders/order_detail.html:252
 msgid "Shipping"
 msgstr ""
 
-#: dsshop/templates/checkout/thank_you.html:149
+#: dsshop/templates/checkout/thank_you.html:150
 msgid "Print this page"
 msgstr ""
 
-#: dsshop/templates/checkout/thank_you.html:152
+#: dsshop/templates/checkout/thank_you.html:153
 msgid "Continue shopping"
 msgstr ""
 
@@ -669,7 +694,7 @@ msgstr ""
 #: dsshop/templates/customer/profile/profile_delete.html:18
 #: dsshop/templates/customer/profile/profile_delete.html:48
 #: dsshop/templates/dashboard/catalogue/product_update.html:279
-#: dsshop/templates/dashboard/orders/order_detail.html:401
+#: dsshop/templates/dashboard/orders/order_detail.html:424
 msgid "Delete"
 msgstr ""
 
@@ -703,7 +728,7 @@ msgstr ""
 
 #: dsshop/templates/customer/address/address_list.html:59
 #: dsshop/templates/dashboard/catalogue/product_update.html:276
-#: dsshop/templates/dashboard/orders/order_detail.html:396
+#: dsshop/templates/dashboard/orders/order_detail.html:419
 msgid "Edit"
 msgstr ""
 
@@ -756,6 +781,120 @@ msgstr ""
 
 #: dsshop/templates/customer/baseaccountpage.html:64
 msgid "Wish Lists"
+msgstr ""
+
+#: dsshop/templates/customer/emails/base.html:5
+#: dsshop/templates/customer/emails/base.txt:3
+msgid "Thanks for using our site!"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.html:6
+msgid "Thank you!"
+msgstr "Bedankt!"
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.html:11
+msgid ""
+"\n"
+"\t\t\tBedankt voor je bestelling! Zodra je een afspraak hebt gemaakt kan je "
+"deze goederen komen afhalen.\n"
+"\t\t"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.html:15
+msgid ""
+"Bedankt voor je bestelling! Binnen de 2 werkdagen ontvang je van ons een "
+"mail met de verzendkosten en het totale bedrag."
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.html:19
+#, python-format
+msgid ""
+"\n"
+"\t\t\tYou can view the status of this order by clicking <a href="
+"\"%(status_url)s\" title=\"order status\">here</a>\n"
+"\t\t"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.html:29
+#: dsshop/templates/dashboard/orders/order_list.html:122
+msgid "Shipping address"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.html:40
+msgid "Jouw bestelling"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.html:65
+msgid "Subtotal"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.html:74
+#: dsshop/templates/dashboard/orders/invoice.html:198
+#: dsshop/templates/dashboard/orders/invoice.html:229
+msgid "Total"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:1
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"We are pleased to confirm your order %(order_number)s has been received and\n"
+"will be processed shortly."
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:6
+msgid "Your order contains:"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:8
+msgid "quantity:"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:14
+msgid ""
+"Bedankt voor je bestelling! Zodra we jouw betaling hebben ontvangen op "
+"rekeningnummer \n"
+"BEXX XXXX XXXX XXXX zetten we de bestelde onderdelen klaar. We geven dan een "
+"seintje wanneer deze opgehaald\n"
+"kunnen worden"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:18
+msgid "Shipping address:"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:28
+#, python-format
+msgid ""
+"You can view the status of this order at the below URL:\n"
+"%(status_url)s"
+msgstr ""
+
+#: dsshop/templates/customer/emails/commtype_order_placed_body.txt:32
+msgid "The team"
+msgstr ""
+
+#: dsshop/templates/customer/emails/customer_base.html:6
+msgid "Jouw bestelling bij Tom Verheyden"
+msgstr ""
+
+#: dsshop/templates/customer/emails/customer_base.html:124
+msgid "Jouw bestelling | Tom Verheyden - Citroën onderdelen"
+msgstr ""
+
+#: dsshop/templates/customer/emails/customer_base.html:147
+#: dsshop/templates/dashboard/orders/order_detail.html:203
+#: dsshop/templates/dashboard/orders/order_detail.html:372
+msgid "Amount"
+msgstr ""
+
+#: dsshop/templates/customer/emails/customer_base.html:150
+msgid "Price"
+msgstr ""
+
+#: dsshop/templates/customer/emails/customer_base.html:168
+msgid "onderdelen"
 msgstr ""
 
 #: dsshop/templates/customer/history/recently_viewed_products.html:6
@@ -835,7 +974,7 @@ msgid "Basket total"
 msgstr ""
 
 #: dsshop/templates/customer/order/order_detail.html:63
-#: dsshop/templates/dashboard/orders/order_detail.html:156
+#: dsshop/templates/dashboard/orders/order_detail.html:157
 msgid "Shipping total"
 msgstr ""
 
@@ -872,6 +1011,7 @@ msgid "Reset"
 msgstr ""
 
 #: dsshop/templates/customer/order/order_list.html:69
+#: dsshop/templates/dashboard/orders/order_detail.html:88
 #: dsshop/templates/dashboard/orders/order_list.html:117
 msgid "Order number"
 msgstr ""
@@ -1199,13 +1339,8 @@ msgid "Prijs BTW excl"
 msgstr ""
 
 #: dsshop/templates/dashboard/orders/invoice.html:196
-#: dsshop/templates/dashboard/orders/order_detail.html:107
+#: dsshop/templates/dashboard/orders/order_detail.html:108
 msgid "Quantity"
-msgstr ""
-
-#: dsshop/templates/dashboard/orders/invoice.html:198
-#: dsshop/templates/dashboard/orders/invoice.html:229
-msgid "Total"
 msgstr ""
 
 #: dsshop/templates/dashboard/orders/invoice.html:218
@@ -1267,7 +1402,7 @@ msgid "Time of purchase"
 msgstr ""
 
 #: dsshop/templates/dashboard/orders/order_detail.html:64
-#: dsshop/templates/dashboard/orders/order_detail.html:351
+#: dsshop/templates/dashboard/orders/order_detail.html:374
 #: dsshop/templates/dashboard/orders/order_list.html:120
 msgid "Status"
 msgstr ""
@@ -1276,208 +1411,207 @@ msgstr ""
 msgid "Order Details"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:88
+#: dsshop/templates/dashboard/orders/order_detail.html:89
 msgid "Payment"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:89
-#: dsshop/templates/dashboard/orders/order_detail.html:376
+#: dsshop/templates/dashboard/orders/order_detail.html:90
+#: dsshop/templates/dashboard/orders/order_detail.html:399
 msgid "Notes"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:96
+#: dsshop/templates/dashboard/orders/order_detail.html:97
 msgid "Items ordered"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:106
+#: dsshop/templates/dashboard/orders/order_detail.html:107
 msgid "Line ID"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:109
+#: dsshop/templates/dashboard/orders/order_detail.html:110
 msgid "UPC"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:110
+#: dsshop/templates/dashboard/orders/order_detail.html:111
 msgid "Supplier"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:111
+#: dsshop/templates/dashboard/orders/order_detail.html:112
 msgid "Supplier SKU"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:112
+#: dsshop/templates/dashboard/orders/order_detail.html:113
 msgid "Est. dispatch date"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:113
+#: dsshop/templates/dashboard/orders/order_detail.html:114
 msgid "Prijs excl btw"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:114
+#: dsshop/templates/dashboard/orders/order_detail.html:115
 msgid "Price incl btw"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:115
+#: dsshop/templates/dashboard/orders/order_detail.html:116
 msgid "Actions"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:149
+#: dsshop/templates/dashboard/orders/order_detail.html:150
 #: dsshop/templates/dashboard/orders/order_list.html:149
 msgid "View"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:179
+#: dsshop/templates/dashboard/orders/order_detail.html:180
 msgid "Change order status"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:179
+#: dsshop/templates/dashboard/orders/order_detail.html:180
 msgid "Nu:"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:183
+#: dsshop/templates/dashboard/orders/order_detail.html:184
 msgid "Change status"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:185
+#: dsshop/templates/dashboard/orders/order_detail.html:186
 msgid "This order can't have its status changed."
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:193
+#: dsshop/templates/dashboard/orders/order_detail.html:194
 msgid "Payment Events"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:200
-#: dsshop/templates/dashboard/orders/order_detail.html:352
-#: dsshop/templates/dashboard/orders/order_detail.html:382
+#: dsshop/templates/dashboard/orders/order_detail.html:201
+#: dsshop/templates/dashboard/orders/order_detail.html:375
+#: dsshop/templates/dashboard/orders/order_detail.html:405
 msgid "Date"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:201
+#: dsshop/templates/dashboard/orders/order_detail.html:202
 msgid "Event"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:202
-#: dsshop/templates/dashboard/orders/order_detail.html:349
-msgid "Amount"
-msgstr ""
-
-#: dsshop/templates/dashboard/orders/order_detail.html:203
+#: dsshop/templates/dashboard/orders/order_detail.html:204
 msgid "Lines"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:204
-#: dsshop/templates/dashboard/orders/order_detail.html:318
-#: dsshop/templates/dashboard/orders/order_detail.html:350
+#: dsshop/templates/dashboard/orders/order_detail.html:205
+#: dsshop/templates/dashboard/orders/order_detail.html:341
+#: dsshop/templates/dashboard/orders/order_detail.html:373
 msgid "Reference"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:216
+#: dsshop/templates/dashboard/orders/order_detail.html:217
 msgid "Product:"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:216
+#: dsshop/templates/dashboard/orders/order_detail.html:217
 msgid "quantity"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:226
+#: dsshop/templates/dashboard/orders/order_detail.html:227
 msgid "No payment events."
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:242
+#: dsshop/templates/dashboard/orders/order_detail.html:244
 msgid "Aanpassen"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:252
+#: dsshop/templates/dashboard/orders/order_detail.html:257
 msgid "Method"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:256
+#: dsshop/templates/dashboard/orders/order_detail.html:261
 msgid "Charge (incl tax)"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:260
+#: dsshop/templates/dashboard/orders/order_detail.html:265
 msgid "Charge (excl tax)"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:264
+#: dsshop/templates/dashboard/orders/order_detail.html:269
 msgid "Address"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:270
+#: dsshop/templates/dashboard/orders/order_detail.html:275
 msgid "Update"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:275
+#: dsshop/templates/dashboard/orders/order_detail.html:280
 msgid "Phone"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:279
+#: dsshop/templates/dashboard/orders/order_detail.html:284
 msgid "Instructions"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:291
+#: dsshop/templates/dashboard/orders/order_detail.html:311
 msgid "Bekijk factuur"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:297
+#: dsshop/templates/dashboard/orders/order_detail.html:314
+msgid "Factuur downloaden"
+msgstr ""
+
+#: dsshop/templates/dashboard/orders/order_detail.html:320
 #: dsshop/templates/dashboard/orders/order_list.html:123
 msgid "Billing address"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:308
+#: dsshop/templates/dashboard/orders/order_detail.html:331
 msgid "Payment sources"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:314
-#: dsshop/templates/dashboard/orders/order_detail.html:348
+#: dsshop/templates/dashboard/orders/order_detail.html:337
+#: dsshop/templates/dashboard/orders/order_detail.html:371
 msgid "Source"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:315
+#: dsshop/templates/dashboard/orders/order_detail.html:338
 msgid "Allocation"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:316
+#: dsshop/templates/dashboard/orders/order_detail.html:339
 msgid "Amount debited"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:317
+#: dsshop/templates/dashboard/orders/order_detail.html:340
 msgid "Amount refunded"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:335
+#: dsshop/templates/dashboard/orders/order_detail.html:358
 msgid "No payment sources found for this order."
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:343
+#: dsshop/templates/dashboard/orders/order_detail.html:366
 msgid "Transactions"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:383
+#: dsshop/templates/dashboard/orders/order_detail.html:406
 msgid "User"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:384
+#: dsshop/templates/dashboard/orders/order_detail.html:407
 msgid "Type"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:385
+#: dsshop/templates/dashboard/orders/order_detail.html:408
 msgid "Message"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:386
+#: dsshop/templates/dashboard/orders/order_detail.html:409
 msgid "Admin"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:409
+#: dsshop/templates/dashboard/orders/order_detail.html:432
 msgid "No notes available."
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:420
+#: dsshop/templates/dashboard/orders/order_detail.html:443
 msgid "Save note"
 msgstr ""
 
-#: dsshop/templates/dashboard/orders/order_detail.html:421
+#: dsshop/templates/dashboard/orders/order_detail.html:444
 msgid "Notes are only editable for 5 minutes after being saved."
 msgstr ""
 
@@ -1524,10 +1658,6 @@ msgstr ""
 
 #: dsshop/templates/dashboard/orders/order_list.html:121
 msgid "Customer"
-msgstr ""
-
-#: dsshop/templates/dashboard/orders/order_list.html:122
-msgid "Shipping address"
 msgstr ""
 
 #: dsshop/templates/dashboard/orders/order_list.html:142
@@ -1579,7 +1709,7 @@ msgid "Over ons"
 msgstr ""
 
 #: dsshop/templates/partials/footer.html:28
-#: dsshop/templates/partials/header.html:124
+#: dsshop/templates/partials/header.html:108
 msgid "Onze diensten"
 msgstr ""
 
@@ -1588,7 +1718,7 @@ msgid "Contacteer ons"
 msgstr ""
 
 #: dsshop/templates/partials/footer.html:32
-#: dsshop/templates/partials/header.html:127
+#: dsshop/templates/partials/header.html:111
 msgid "Foto's"
 msgstr ""
 
@@ -1597,7 +1727,7 @@ msgid "Contact opnemen"
 msgstr ""
 
 #: dsshop/templates/partials/footer.html:43
-#: dsshop/templates/partials/header.html:9
+#: dsshop/templates/partials/header.html:10
 msgid "Contactformulier"
 msgstr ""
 
@@ -1609,15 +1739,19 @@ msgstr ""
 msgid "Magazijn"
 msgstr ""
 
-#: dsshop/templates/partials/header.html:8
+#: dsshop/templates/partials/footer.html:50
+msgid "op afspraak"
+msgstr ""
+
+#: dsshop/templates/partials/header.html:9
 msgid "Contact opnemen?"
 msgstr ""
 
-#: dsshop/templates/partials/header.html:57
+#: dsshop/templates/partials/header.html:58
 msgid "Zoek producten"
 msgstr ""
 
-#: dsshop/templates/partials/header.html:129
+#: dsshop/templates/partials/header.html:113
 msgid "Contact"
 msgstr ""
 
@@ -1637,44 +1771,44 @@ msgstr ""
 msgid "next"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:31
+#: dsshop/templates/promotions/home.html:35
 msgid "DS Onderdelen"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:39
+#: dsshop/templates/promotions/home.html:43
 msgid "2PK Onderdelen"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:47
+#: dsshop/templates/promotions/home.html:51
 msgid "SM Onderdelen"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:61
+#: dsshop/templates/promotions/home.html:65
 msgid "Bezoek onze webshop voor een overzicht van al onze producten!"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:63
+#: dsshop/templates/promotions/home.html:67
 msgid "Op zoek naar andere oldtimer Citroën onderdelen?"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:64
+#: dsshop/templates/promotions/home.html:68
 msgid "Tom Verheyden – hét adres voor al uw onderdelen van Citroën DS en 2PK!"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:65
-#: dsshop/templates/promotions/home.html:95
+#: dsshop/templates/promotions/home.html:69
+#: dsshop/templates/promotions/home.html:99
 msgid "Contacteer ons!"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:79
+#: dsshop/templates/promotions/home.html:83
 msgid "Over"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:79
+#: dsshop/templates/promotions/home.html:83
 msgid "ons"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:81
+#: dsshop/templates/promotions/home.html:85
 msgid ""
 "Tom Verheyden (ELV BVBA) is reeds meer dan 20 jaar actief op het vlak van "
 "Citroën oldtimers. Wij zijn een groot- en kleinhandel van (hoofdzakelijk "
@@ -1685,11 +1819,11 @@ msgid ""
 "opkomende events) waar we vertegenwoordigd zijn."
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:93
+#: dsshop/templates/promotions/home.html:97
 msgid "Op zoek naar andere Citroën onderdelen?"
 msgstr ""
 
-#: dsshop/templates/promotions/home.html:94
+#: dsshop/templates/promotions/home.html:98
 msgid ""
 "Wij verdelen ook onderdelen van andere oldtimer Citroën modellen, nog niet "
 "alles is terug te vinden in onze webshop. Neem zeker contact op met ons "
@@ -1875,7 +2009,7 @@ msgid ""
 "been taken. Please contact customer services if this problem persists"
 msgstr ""
 
-#: myapps/dashboard/orders/views.py:78
+#: myapps/dashboard/orders/views.py:125
 msgid "No valid action submitted"
 msgstr ""
 
@@ -1911,15 +2045,23 @@ msgstr ""
 msgid "locatie (stad)"
 msgstr ""
 
-#: other_pages/views.py:105
+#: other_pages/views.py:110
 #, python-format
 msgid "No %(verbose_name)s found matching the query"
 msgstr ""
 
-#: other_pages/views.py:140
+#: other_pages/views.py:139
+msgid "Fout tijdens verzenden van mail!"
+msgstr ""
+
+#: other_pages/views.py:169
+msgid "Mail met verzendkosten is verzonden!"
+msgstr ""
+
+#: other_pages/views.py:188
 msgid "Bedankt voor je bericht!"
 msgstr ""
 
-#: other_pages/views.py:147
+#: other_pages/views.py:195
 msgid "contact"
 msgstr ""
