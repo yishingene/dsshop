@@ -288,7 +288,7 @@ OSCAR_INITIAL_ORDER_STATUS = 'Aanvraag'
 OSCAR_ORDER_STATUS_PIPELINE = {
     'Aanvraag': ('Verzendkosten toegevoegd', 'Afhaling door klant', 'Geannuleerd',),
     'Verzendkosten toegevoegd': ('Klant verwittigd van verzendkosten', ),
-    'Klant verwittigd van verzendkosten': ('Betaald', 'Geannuleerd', ),
+    'Klant verwittigd van verzendkosten': ('Betaald', 'Geannuleerd', 'Verzendkosten toegevoegd', ),
     'Afhaling door klant': ('Betaald','Geannuleerd', ),
     'Betaald': ('Verwerkt', ),
     'Verwerkt': (),
