@@ -284,16 +284,36 @@ OSCAR_PRODUCTS_PER_PAGE = 21
 OSCAR_RECENTLY_VIEWED_PRODUCTS = 10
 OSCAR_ACCOUNTS_REDIRECT_URL = '/'
 
-OSCAR_INITIAL_ORDER_STATUS = 'Aanvraag'
+AANVRAAG = 'Aanvraag'
+VERZENDKOSTEN = 'Verzendkosten toegevoegd'
+VERWITTIGD = 'Klant verwittigd van verzendkosten'
+AFHALING = 'Afhaling door klant'
+BETAALD = 'Betaald'
+VERWERKT = 'Verwerkt'
+GEANNULEERD = 'Geannuleerd'
+
+OSCAR_INITIAL_ORDER_STATUS = AANVRAAG
 OSCAR_ORDER_STATUS_PIPELINE = {
-    'Aanvraag': ('Verzendkosten toegevoegd', 'Afhaling door klant', 'Geannuleerd',),
-    'Verzendkosten toegevoegd': ('Klant verwittigd van verzendkosten', 'Verzendkosten toegevoegd'),
-    'Klant verwittigd van verzendkosten': ('Betaald', 'Geannuleerd', 'Verzendkosten toegevoegd', ),
-    'Afhaling door klant': ('Betaald','Geannuleerd', 'Verzendkosten toegevoegd'),
-    'Betaald': ('Verwerkt', 'Verzendkosten toegevoegd'),
-    'Verwerkt': ('Verzendkosten toegevoegd'),
-    'Geannuleerd': ('Verzendkosten toegevoegd'),
+    AANVRAAG: (VERZENDKOSTEN, AFHALING, GEANNULEERD),
+    VERZENDKOSTEN: (VERWITTIGD, VERZENDKOSTEN),
+    VERWITTIGD: (BETAALD, GEANNULEERD, VERZENDKOSTEN),
+    AFHALING: (BETAALD, GEANNULEERD, VERZENDKOSTEN),
+    BETAALD: (VERWERKT, VERZENDKOSTEN),
+    VERWERKT: (VERZENDKOSTEN),
+    GEANNULEERD: (VERZENDKOSTEN),
+    'V': (AANVRAAG, VERZENDKOSTEN, VERWITTIGD, AFHALING, BETAALD, VERWERKT, GEANNULEERD)
 }
+
+# OSCAR_ORDER_STATUS_PIPELINE = {
+#     'Aanvraag': ('Verzendkosten toegevoegd', 'Afhaling door klant', 'Geannuleerd'),
+#     'Verzendkosten toegevoegd': ('Klant verwittigd van verzendkosten', 'Verzendkosten toegevoegd'),
+#     'Klant verwittigd van verzendkosten': ('Betaald', 'Geannuleerd', 'Verzendkosten toegevoegd'),
+#     'Afhaling door klant': ('Betaald','Geannuleerd', 'Verzendkosten toegevoegd'),
+#     'Betaald': ('Verwerkt', 'Verzendkosten toegevoegd'),
+#     'Verwerkt': ('Verzendkosten toegevoegd'),
+#     'Geannuleerd': ('Verzendkosten toegevoegd'),
+#     'V': ('Aanvraag', 'Verzendkosten toegevoegd', )
+# }
 
 DEV = False
 
