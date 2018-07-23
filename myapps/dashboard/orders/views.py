@@ -11,6 +11,7 @@ from oscar.core.loading import get_class, get_model
 from easy_pdf.views import PDFTemplateView, PDFTemplateResponseMixin
 from easy_pdf.rendering import render_to_pdf_response, render_to_pdf
 from decimal import Decimal as D
+from braces.views import CsrfExemptMixin
 
 Order = get_model('order', 'Order')
 ShippingCostForm = get_class('myapps.dashboard.orders.forms', 'ShippingCostForm')
@@ -88,7 +89,7 @@ class InvoicePdfView(PDFTemplateView):
 
 		return ctx
 
-class OrderDetailView(OscarOrderDetailView):
+class OrderDetailView(CsrfExemptMixin, OscarOrderDetailView):
 
 	def post(self, request, *args, **kwargs):
 		'''
