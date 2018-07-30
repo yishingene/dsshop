@@ -89,7 +89,7 @@ class InvoicePdfView(PDFTemplateView):
 
 		return ctx
 
-class OrderDetailView(CsrfExemptMixin, OscarOrderDetailView):
+class OrderDetailView(OscarOrderDetailView):
 
 	def post(self, request, *args, **kwargs):
 		'''
