@@ -1,4 +1,5 @@
 from .settings import *
+import sys
 
 DEV = False
 DEBUG = True
