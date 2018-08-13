@@ -1,4 +1,4 @@
-{% load i18n %}{% block header %}{% endblock %}{% block body %}{% endblock %}{% block footer %}
+{% load i18n %}{% block header %}{% endblock %}{% block body %}{% endblock %}{% block footer %}{% endblock %}
 
 {% trans "Thanks for using our site!" %}
 Het Tom Verheyden team
