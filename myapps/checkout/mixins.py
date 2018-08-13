@@ -3,11 +3,10 @@ import logging
 from django.contrib.sites.models import Site
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import NoReverseMatch, reverse
 from django.http import HttpResponseRedirect
-from django.utils.translation import get_language
+from django.urls import NoReverseMatch, reverse
 
-from oscar.core.compat import user_is_authenticated
+from oscar.apps.checkout.signals import post_checkout
 from oscar.core.loading import get_class, get_model
 
 OrderCreator = get_class('order.utils', 'OrderCreator')
@@ -23,8 +22,6 @@ UserAddress = get_model('address', 'UserAddress')
 Basket = get_model('basket', 'Basket')
 CommunicationEventType = get_model('customer', 'CommunicationEventType')
 UnableToPlaceOrder = get_class('order.exceptions', 'UnableToPlaceOrder')
-
-post_checkout = get_class('checkout.signals', 'post_checkout')
 
 # Standard logger for checkout events
 logger = logging.getLogger('oscar.checkout')
@@ -116,10 +113,6 @@ class OrderPlacementMixin(CheckoutSessionMixin):
             shipping_charge=shipping_charge, order_total=order_total,
             billing_address=billing_address, **kwargs)
         basket.submit()
-
-        if shipping_method.code == 'Afhaling door klant':
-            order.set_status('Afhaling door klant')
-        
         return self.handle_successful_order(order)
 
     def place_order(self, order_number, user, basket, shipping_address,
@@ -158,7 +151,6 @@ class OrderPlacementMixin(CheckoutSessionMixin):
             billing_address=billing_address,
             status=status,
             request=request,
-            language=get_language(),
             **kwargs)
         self.save_payment_details(order)
         return order
@@ -175,7 +167,7 @@ class OrderPlacementMixin(CheckoutSessionMixin):
         if not shipping_address:
             return None
         shipping_address.save()
-        if user_is_authenticated(user):
+        if user.is_authenticated:
             self.update_address_book(user, shipping_address)
         return shipping_address
 
@@ -204,7 +196,7 @@ class OrderPlacementMixin(CheckoutSessionMixin):
         if not billing_address:
             return None
         billing_address.save()
-        if user_is_authenticated(user):
+        if user.is_authenticated:
             self.update_address_book(user, billing_address)
         return billing_address
 
@@ -278,7 +270,17 @@ class OrderPlacementMixin(CheckoutSessionMixin):
         return reverse('checkout:thank-you')
 
     def send_confirmation_message(self, order, code, **kwargs):
-        ctx = self.get_message_context(order)
+        try:
+            ctx = self.get_message_context(order, code)
+        except TypeError:
+            # It seems like the get_message_context method was overridden and
+            # it does not support the code argument yet
+            logger.warning(
+                'The signature of the get_message_context method has changed, '
+                'please update it in your codebase'
+            )
+            ctx = self.get_message_context(order)
+
         try:
             event_type = CommunicationEventType.objects.get(code=code)
         except CommunicationEventType.DoesNotExist:
@@ -300,7 +302,7 @@ class OrderPlacementMixin(CheckoutSessionMixin):
             logger.warning("Order #%s - no %s communication event type",
                            order.number, code)
 
-    def get_message_context(self, order):
+    def get_message_context(self, order, code=None):
         ctx = {
             'user': self.request.user,
             'order': order,
@@ -308,7 +310,7 @@ class OrderPlacementMixin(CheckoutSessionMixin):
             'lines': order.lines.all()
         }
 
-        if not user_is_authenticated(self.request.user):
+        if not self.request.user.is_authenticated:
             # Attempt to add the anon order status URL to the email template
             # ctx.
             try:
