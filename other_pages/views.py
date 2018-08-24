@@ -139,7 +139,7 @@ class ShippingChargesMailView(View):
 
 		except:
 			messages.add_message(self.request, messages.ERROR, _('Fout tijdens verzenden van mail!'))
-			return HttpResponseRedirect
+			return HttpResponseRedirect(return_url)
 
 		# SEND MAIL WITH SHIPPING CHARGES TO CUSTOMER
 
