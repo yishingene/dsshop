@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-16 10:36+0000\n"
+"POT-Creation-Date: 2018-08-24 09:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -245,10 +245,6 @@ msgstr ""
 #: dsshop/templates/catalogue/detail.html:22
 msgid "Producten"
 msgstr "Articles"
-
-#: dsshop/templates/catalogue/browse.html:50
-msgid "Let op: wij zijn met verlof van 7 juli tot 22 juli"
-msgstr "Note: nous sommes en congé du 7 juillet au 22 juillet"
 
 #: dsshop/templates/catalogue/detail.html:67
 #: dsshop/templates/catalogue/partials/product.html:17
@@ -2061,7 +2057,49 @@ msgstr ""
 msgid "Original"
 msgstr ""
 
-#: myapps/dashboard/orders/views.py:117
+#: myapps/checkout/views.py:90
+msgid ""
+"Create your account and then you will be redirected back to the checkout "
+"process"
+msgstr ""
+
+#: myapps/checkout/views.py:213
+#, fuzzy
+#| msgid "Address book"
+msgid "Address saved"
+msgstr "Mes addresses"
+
+#: myapps/checkout/views.py:228
+#, fuzzy
+#| msgid "Adressen beheren"
+msgid "Address deleted"
+msgstr "Gérer vos adresses"
+
+#: myapps/checkout/views.py:273
+#, fuzzy
+#| msgid "Set as default shipping address"
+msgid "Please choose a shipping address"
+msgstr "Définier comme adresse de livraison principale"
+
+#: myapps/checkout/views.py:282
+msgid "Shipping is unavailable for your chosen address - please choose another"
+msgstr ""
+
+#: myapps/checkout/views.py:325
+msgid "Your submitted shipping method is not permitted"
+msgstr ""
+
+#: myapps/checkout/views.py:571
+msgid ""
+"A problem occurred while processing payment for this order - no payment has "
+"been taken.  Please contact customer services if this problem persists"
+msgstr ""
+
+#: myapps/checkout/views.py:675
+msgid "No order found"
+msgstr ""
+
+#: myapps/dashboard/orders/views.py:118
 msgid "No valid action submitted"
 msgstr ""
 
@@ -2097,26 +2135,33 @@ msgstr "Lien site internet"
 msgid "locatie (stad)"
 msgstr "Lieu (ville)"
 
-#: other_pages/views.py:109
+#: other_pages/views.py:112
 #, python-format
 msgid "No %(verbose_name)s found matching the query"
 msgstr ""
 
-#: other_pages/views.py:138
+#: other_pages/views.py:141
 msgid "Fout tijdens verzenden van mail!"
 msgstr ""
 
-#: other_pages/views.py:176
+#: other_pages/views.py:155
+msgid "Tom Verheyden: Verzendkosten voor jouw bestelling "
+msgstr "Tom Verheyden: Frais d'expédition pour votre commande "
+
+#: other_pages/views.py:181
 msgid "Mail met verzendkosten is verzonden!"
 msgstr ""
 
-#: other_pages/views.py:195
+#: other_pages/views.py:200
 msgid "Bedankt voor je bericht!"
 msgstr "Nous vous remercions de votre message!"
 
-#: other_pages/views.py:202
+#: other_pages/views.py:207
 msgid "contact"
 msgstr "contact"
+
+#~ msgid "Let op: wij zijn met verlof van 7 juli tot 22 juli"
+#~ msgstr "Note: nous sommes en congé du 7 juillet au 22 juillet"
 
 #~ msgid "Messages"
 #~ msgstr "Messages"

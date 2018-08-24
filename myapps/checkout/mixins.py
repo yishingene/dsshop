@@ -138,7 +138,7 @@ class OrderPlacementMixin(CheckoutSessionMixin):
         if 'request' not in kwargs:
             request = getattr(self, 'request', None)
         else:
-            request = kwargs.pop('request')
+            request = kwargs.pop('request')    
 
         order = OrderCreator().place_order(
             user=user,

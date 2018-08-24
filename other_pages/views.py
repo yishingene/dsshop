@@ -145,25 +145,23 @@ class ShippingChargesMailView(View):
 
 		sender = 'info@tomverheyden.com'
 		
-
 		if order.is_anonymous:
 			customer_email = order.guest_email
 
 		else:
 			customer_email = order.user.email
 
-
 		receivers = [customer_email, ]
-		subject = ''
+		subject = _('Tom Verheyden: Verzendkosten voor jouw bestelling ' + order.number)
 
-		if order.language == 'nl':
-			subject = 'Verzendkosten voor bestelling %s' % order.number
+		# if order.language == 'nl':
+		# 	subject = 'Tom Verheyden: Verzendkosten voor bestelling %s' % order.number
 
-		elif order.language == 'fr':
-			subject = 'Nog te vertalen'
+		# elif order.language == 'fr':
+		# 	subject = "Tom Verheyden: Frais d'expédition pour votre commande %s" % order.number
 
-		else:
-			subject = 'Shipping charges for order %s' % order.number
+		# else:
+		# 	subject = 'Shipping charges for order %s' % order.number
 
 		ctx = {}
 		ctx['order'] = order
