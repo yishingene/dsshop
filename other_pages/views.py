@@ -154,14 +154,14 @@ class ShippingChargesMailView(View):
 		receivers = [customer_email, ]
 		subject = _('Tom Verheyden: Verzendkosten voor jouw bestelling ' + order.number)
 
-		# if order.language == 'nl':
-		# 	subject = 'Tom Verheyden: Verzendkosten voor bestelling %s' % order.number
+		if order.language == 'nl':
+			subject = 'Tom Verheyden: Verzendkosten voor jouw bestelling %s' % order.number
 
-		# elif order.language == 'fr':
-		# 	subject = "Tom Verheyden: Frais d'expédition pour votre commande %s" % order.number
+		elif order.language == 'fr':
+			subject = "Tom Verheyden: Frais d'expédition pour votre commande %s" % order.number
 
-		# else:
-		# 	subject = 'Shipping charges for order %s' % order.number
+		else:
+			subject = 'Shipping charges for your order %s' % order.number
 
 		ctx = {}
 		ctx['order'] = order
