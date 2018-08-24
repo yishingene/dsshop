@@ -1,4 +1,5 @@
 import os
+import logging
 
 from django.views import View
 from django.views.generic import TemplateView, FormView, ListView, DetailView, DeleteView, UpdateView
@@ -16,6 +17,8 @@ from django.template.loader import get_template
 from .forms import UploadFileForm, ContactForm, EventForm
 from .models import Event
 from myapps.order.models import Order
+
+logger = logging.getLogger('testlogger')
 
 # Create your views here.
 class EventListView(FormView, ListView):
@@ -170,8 +173,12 @@ class ShippingChargesMailView(View):
 		msg.content_subtype = 'html'
 		msg.send()
 
+		logger.info('SHIPPING MAIL MESSAGE SENT! ' + customer_email)
+
 		order.shipping_confirmed = True
 		order.set_status('Klant verwittigd van verzendkosten')
+
+		logger.info('ORDER STATUS UPDATED! --')
 
 		messages.add_message(self.request, messages.SUCCESS, _('Mail met verzendkosten is verzonden!'))
 

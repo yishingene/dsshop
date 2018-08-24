@@ -53,30 +53,63 @@ SECURE_SSL_REDIRECT = True
 
 TEMPLATE_DEBUG = True
 
+# LOGGING = {
+#     "version": 1,
+#     "disable_existing_loggers": False,
+#     'formatters': {
+#         'simple': {
+#             'format': '%(levelname)s [%(name)s:%(lineno)s] %(message)s'
+#         },
+#     },
+#     'handlers': {
+#         'console': {
+#             'level': 'INFO',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'simple',
+#             'stream': sys.stdout
+#         },
+#     },
+#     'loggers': {
+#         '': {
+#             'handlers': ['console'],
+#             'level': 'INFO',
+#         },
+#         'django': {
+#             'handlers': ['console'],
+#             'level': 'INFO',
+#         }
+#     }
+# }
+
 LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
+    'version': 1,
+    'disable_existing_loggers': False,
     'formatters': {
-        'simple': {
-            'format': '%(levelname)s [%(name)s:%(lineno)s] %(message)s'
+        'verbose': {
+            'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
+                        'pathname=%(pathname)s lineno=%(lineno)s ' +
+                        'funcname=%(funcName)s %(message)s'),
+            'datefmt': '%Y-%m-%d %H:%M:%S'
         },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        }
     },
     'handlers': {
-        'console': {
-            'level': 'ERROR',
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple',
-            'stream': sys.stdout
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
         },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
     },
     'loggers': {
-        '': {
+        'testlogger': {
             'handlers': ['console'],
-            'level': 'ERROR',
-        },
-        'django': {
-            'handlers': ['console'],
-            'level': 'ERROR',
+            'level': 'INFO',
         }
     }
 }
