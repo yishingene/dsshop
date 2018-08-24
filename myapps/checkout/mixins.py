@@ -4,6 +4,7 @@ from django.contrib.sites.models import Site
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
+from django.utils.translation import get_language
 from django.urls import NoReverseMatch, reverse
 
 from oscar.apps.checkout.signals import post_checkout
@@ -113,6 +114,10 @@ class OrderPlacementMixin(CheckoutSessionMixin):
             shipping_charge=shipping_charge, order_total=order_total,
             billing_address=billing_address, **kwargs)
         basket.submit()
+
+        if shipping_method.code == 'Afhaling door klant':
+            order.set_status('Afhaling door klant')
+
         return self.handle_successful_order(order)
 
     def place_order(self, order_number, user, basket, shipping_address,
@@ -151,6 +156,7 @@ class OrderPlacementMixin(CheckoutSessionMixin):
             billing_address=billing_address,
             status=status,
             request=request,
+            language=get_language(),
             **kwargs)
         self.save_payment_details(order)
         return order

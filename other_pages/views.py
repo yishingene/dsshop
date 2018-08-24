@@ -5,7 +5,7 @@ from django.views import View
 from django.views.generic import TemplateView, FormView, ListView, DetailView, DeleteView, UpdateView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from django.core.mail import EmailMessage
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
