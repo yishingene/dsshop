@@ -316,5 +316,3 @@ OSCAR_ORDER_STATUS_PIPELINE = {
 # }
 
 DEV = False
-
-COUNTRIES_ONLY = ['BE', 'FR', 'NL', 'DE', ]

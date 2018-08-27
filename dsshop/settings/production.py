@@ -26,6 +26,8 @@ FILE_UPLOAD_TEMP_DIR = MEDIA_ROOT
 
 OSCAR_MISSING_IMAGE_URL = MEDIA_URL + 'image_not_found.jpg'
 
+COUNTRIES_ONLY = ['BE', 'FR', 'NL', 'DE', ]
+
 # WHITENOISE
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
